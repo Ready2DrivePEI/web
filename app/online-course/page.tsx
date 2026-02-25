@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 
 export default function OnlineCoursePage() {
-  // Organized into categories for better scannability
   const faqCategories = [
     {
       title: "Outcome & Recognition",
@@ -66,7 +65,7 @@ export default function OnlineCoursePage() {
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-[#4285F4] selection:text-white">
       <Navbar />
 
-      <main className="max-w-5xl mx-auto px-6 py-16 space-y-24">
+      <main className="max-w-5xl mx-auto px-6 py-16 space-y-20">
         
         {/* Hero Section */}
         <section className="text-center space-y-8 max-w-3xl mx-auto pt-8">
@@ -87,14 +86,14 @@ export default function OnlineCoursePage() {
           <div className="pt-4">
             <Link
               href="/lms-course"
-              className="inline-block bg-[#4285F4] text-white px-10 py-4 rounded-xl text-lg font-medium hover:bg-blue-600 transition-all shadow-md shadow-blue-200 active:scale-95"
+              className="inline-block bg-[#4285F4] text-white px-10 py-4 rounded-lg text-lg font-medium hover:bg-blue-600 transition-colors shadow-md shadow-blue-200 active:scale-95"
             >
               Enroll Now
             </Link>
           </div>
         </section>
 
-        {/* Feature Grid - (About Section) */}
+        {/* Feature Grid */}
         <section id="about" className="grid md:grid-cols-3 gap-6 scroll-mt-24">
           <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
             <PlayCircle className="text-[#4285F4] mb-4" size={32} />
@@ -122,7 +121,7 @@ export default function OnlineCoursePage() {
         </section>
 
         {/* Value Proposition & Pricing Section */}
-        <section id="price" className="grid md:grid-cols-2 gap-8 items-center bg-white p-10 md:p-14 rounded-[2.5rem] border border-gray-100 shadow-sm scroll-mt-24">
+        <section id="price" className="grid md:grid-cols-2 gap-8 items-center bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm scroll-mt-24">
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-gray-900">Why choose this course?</h2>
             <p className="text-gray-600">
@@ -143,8 +142,7 @@ export default function OnlineCoursePage() {
             </ul>
           </div>
 
-          {/* Pricing Card */}
-          <div className="bg-gray-50 p-10 rounded-3xl border border-gray-200 text-center">
+          <div className="bg-gray-50 p-8 rounded-2xl border border-gray-200 text-center">
             <h3 className="text-lg font-semibold text-gray-500 mb-2">Complete Access</h3>
             <div className="text-5xl font-bold text-gray-900 mb-4">₹4,000</div>
             <p className="text-gray-600 mb-8">
@@ -152,7 +150,7 @@ export default function OnlineCoursePage() {
             </p>
             <Link
               href="/lms-course"
-              className="block w-full bg-gray-900 text-white px-8 py-4 rounded-xl text-lg font-medium hover:bg-black transition-all active:scale-95"
+              className="block w-full bg-gray-900 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-black transition-all active:scale-95"
             >
               Get Started Today
             </Link>
@@ -160,22 +158,26 @@ export default function OnlineCoursePage() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="max-w-5xl mx-auto space-y-12 pb-24 scroll-mt-24">
-          <div className="text-center space-y-3">
+        <section id="faq" className="max-w-5xl mx-auto space-y-16 pb-24 scroll-mt-24">
+          {/* Main Title Area */}
+          <div className="text-center space-y-3 mb-20">
             <div className="flex items-center gap-3 justify-center">
-<MessageCircleQuestion className="text-[#4285F4]" size={28} />              <h2 className="text-3xl font-bold">Common Questions</h2>
+              <MessageCircleQuestion className="text-[#4285F4]" size={28} />
+              <h2 className="text-3xl font-bold">Common Questions</h2>
             </div>
             <p className="text-gray-600 italic">Everything you need to know about the training and certification.</p>
           </div>
 
-          {/* Categorized FAQ Grid */}
-          <div className="space-y-16">
+          {/* Categorized FAQ List */}
+          <div className="space-y-8">
             {faqCategories.map((category, catIdx) => (
-              <div key={catIdx} className="space-y-6">
-                {/* Category Heading */}
-                <div className="flex items-center gap-3 pb-3 border-b border-gray-200">
-                  {category.icon}
-                  <h3 className="text-sm font-bold text-gray-500 uppercase tracking-[0.2em]">
+              <div key={catIdx} className="space-y-4">
+                {/* Category Header: Balanced Size & High Attention */}
+                <div className="flex items-center gap-3 pb-2 border-b-2 border-blue-50">
+                  <div className="bg-blue-50 p-2 rounded-lg">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">
                     {category.title}
                   </h3>
                 </div>
@@ -185,16 +187,15 @@ export default function OnlineCoursePage() {
                   {category.questions.map((faq, faqIdx) => (
                     <details 
                       key={faqIdx} 
-                      className="group bg-white border border-gray-100 rounded-2xl shadow-sm hover:border-blue-200 transition-all"
+                      className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:border-blue-200 transition-all"
                     >
                       <summary className="flex items-center justify-between p-6 font-semibold text-lg outline-none text-gray-800 cursor-pointer">
                         {faq.q}
                         <ChevronDown 
-                          className="text-gray-400 group-open:rotate-180 group-open:text-[#4285F4] transition-all duration-300" 
+                          className="text-gray-400 group-open:rotate-180 group-open:text-[#4285F4] transition-transform duration-300" 
                           size={22} 
                         />
                       </summary>
-                      {/* Nested Answer Area */}
                       <div className="px-6 pb-6">
                         <div className="pl-5 border-l-2 border-blue-100 ml-1">
                           <p className="text-gray-600 leading-relaxed">
@@ -208,15 +209,20 @@ export default function OnlineCoursePage() {
               </div>
             ))}
           </div>
-
-          {/* Trust CTA */}
-          <div className="p-8 bg-blue-50 rounded-[2rem] border border-blue-100 text-center">
-            <p className="text-blue-700 font-medium">
-              Still have questions? We're here to help.{" "}
-              <Link href="/contact" className="underline font-bold hover:text-blue-900 ml-1">
-                Chat with our support team
-              </Link>
-            </p>
+{/* Bold Trust CTA */}
+          <div className="mt-24 p-12 bg-blue-900 rounded-[3rem] text-center shadow-2xl shadow-blue-100 relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+               <ShieldCheck size={120} className="text-white" />
+            </div>
+            <h3 className="text-white text-2xl font-bold mb-4 relative z-10">Still have a question?</h3>
+            <p className="text-gray-400 mb-8 max-w-md mx-auto relative z-10">
+Our team is ready to assist you with enrollment, payment processing, or technical inquiries.            </p>
+            <Link 
+              href="/contact" 
+              className="inline-block bg-white text-gray-900 px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors relative z-10"
+            >
+              Contact us
+            </Link>
           </div>
         </section>
 
