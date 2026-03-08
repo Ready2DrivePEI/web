@@ -4,7 +4,7 @@ import Link from "next/link"
 import { TrafficCone, Play } from "lucide-react"
 
 // Import all modules manually
-import { module1, module2, module3 } from "@/app/lms-course/data/modules/module1"
+import { module1, module2, module3 } from "@/app/lms-course/data/modules/module1/chapter1"
 
 const modules = [module1, module2, module3]
 

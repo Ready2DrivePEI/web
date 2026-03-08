@@ -80,6 +80,23 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+  --lms-bg: #0b1220;
+  --lms-surface: #0f172a;
+  --lms-surface-2: #172033;
+  --lms-border: #1e293b;
+  --lms-text: #e2e8f0;
+  --lms-text-muted: #94a3b8;
+  --lms-accent: #3b82f6;
+  --lms-accent-2: #f59e0b;
+  --lms-success: #10b981;
+  --lms-warning: #f59e0b;
+  --lms-danger: #ef4444;
+  --lms-info-bg: #172948;
+  --lms-info-border: #305a9b;
+  --lms-warning-bg: #3a2a10;
+  --lms-warning-border: #7a5612;
+  --lms-danger-bg: #3f1a1c;
+  --lms-danger-border: #8c3137;
 }
 
 .dark {
@@ -114,6 +131,23 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
+  --lms-bg: #070f1e;
+  --lms-surface: #0d1628;
+  --lms-surface-2: #141f33;
+  --lms-border: #24324a;
+  --lms-text: #e2e8f0;
+  --lms-text-muted: #8ea2c4;
+  --lms-accent: #60a5fa;
+  --lms-accent-2: #fbbf24;
+  --lms-success: #34d399;
+  --lms-warning: #fbbf24;
+  --lms-danger: #f87171;
+  --lms-info-bg: #1a2c4b;
+  --lms-info-border: #4b6ea8;
+  --lms-warning-bg: #473213;
+  --lms-warning-border: #9f701e;
+  --lms-danger-bg: #4b2024;
+  --lms-danger-border: #9b3b42;
 }
 
 @layer base {
@@ -122,5 +156,170 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .lms-shell {
+    background: radial-gradient(circle at 10% 0%, #14213a 0%, var(--lms-bg) 35%);
+    color: var(--lms-text);
+  }
+
+  .lms-sidebar {
+    background-color: var(--lms-surface);
+    border-color: var(--lms-border);
+    color: var(--lms-text);
+  }
+
+  .lms-surface {
+    background-color: var(--lms-surface-2);
+    border-color: var(--lms-border);
+  }
+
+  .lms-border {
+    border-color: var(--lms-border);
+  }
+
+  .lms-muted {
+    color: var(--lms-text-muted);
+  }
+
+  .lms-accent {
+    color: var(--lms-accent);
+  }
+
+  .lms-success {
+    color: var(--lms-success);
+  }
+
+  .lms-icon-chip {
+    background-color: var(--lms-accent-2);
+    color: var(--lms-bg);
+  }
+
+  .lms-module-trigger {
+    border: 1px solid transparent;
+    color: var(--lms-text-muted);
+    transition: all 200ms ease;
+  }
+
+  .lms-module-trigger:hover {
+    background-color: rgba(20, 32, 56, 0.8);
+    color: var(--lms-text);
+  }
+
+  .lms-module-trigger-open {
+    background-color: rgba(20, 32, 56, 0.95);
+    border-color: var(--lms-border);
+    color: var(--lms-text);
+  }
+
+  .lms-count-chip {
+    background-color: rgba(148, 163, 184, 0.12);
+    color: var(--lms-text-muted);
+  }
+
+  .lms-chapter-item {
+    color: var(--lms-text-muted);
+    transition: all 200ms ease;
+  }
+
+  .lms-chapter-item:hover {
+    background-color: rgba(20, 32, 56, 0.8);
+    color: var(--lms-text);
+  }
+
+  .lms-chapter-item-active {
+    background-color: rgba(59, 130, 246, 0.14);
+    border-left-color: var(--lms-accent-2);
+    color: var(--lms-accent);
+  }
+
+  .lms-lesson-shell {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+
+  .lms-lesson-header {
+    border-bottom: 1px solid var(--lms-border);
+  }
+
+  .lms-lesson-eyebrow {
+    color: var(--lms-text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .lms-lesson-title {
+    color: var(--lms-text);
+  }
+
+  .lms-reading {
+    color: var(--lms-text);
+  }
+
+  .lms-reading p {
+    color: var(--lms-text);
+  }
+
+  .lms-reading li {
+    color: var(--lms-text);
+  }
+
+  .lms-reading-list li::marker {
+    color: var(--lms-accent);
+  }
+
+  .lms-image-frame {
+    background-color: var(--lms-surface-2);
+    border-color: var(--lms-border);
+  }
+
+  .lms-callout {
+    border-left-width: 4px;
+    border-radius: 1rem;
+  }
+
+  .lms-callout-info {
+    background-color: var(--lms-info-bg);
+    border-color: var(--lms-info-border);
+    color: var(--lms-text);
+  }
+
+  .lms-callout-warning {
+    background-color: var(--lms-warning-bg);
+    border-color: var(--lms-warning-border);
+    color: var(--lms-text);
+  }
+
+  .lms-callout-danger {
+    background-color: var(--lms-danger-bg);
+    border-color: var(--lms-danger-border);
+    color: var(--lms-text);
+  }
+
+  .lms-nav-footer {
+    background-color: rgba(20, 32, 56, 0.8);
+    border-color: var(--lms-border);
+  }
+
+  .lms-progress-pill {
+    background-color: var(--lms-surface-2);
+  }
+
+  .lms-button-outline {
+    background-color: transparent;
+    border-color: var(--lms-border);
+  }
+
+  .lms-progress-value {
+    color: var(--lms-accent);
+  }
+
+  .lms-progress-track {
+    background-color: var(--lms-bg);
+  }
+
+  .lms-progress-fill {
+    background: linear-gradient(90deg, var(--lms-accent), var(--lms-accent-2));
   }
 }

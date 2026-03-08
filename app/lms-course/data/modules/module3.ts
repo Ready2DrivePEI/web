@@ -1,5 +1,5 @@
 import { ClipboardCheck } from "lucide-react";
-import { type Module } from "./module1";
+import { type Module } from "./module1/chapter1";
 
 export const module3: Module = {
   id: "module3",

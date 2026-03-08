@@ -5,30 +5,30 @@
  */
 export function ProgressFooter({ percentage = 0 }: { percentage?: number }) {
   return (
-    <div className="p-6 bg-slate-900/50 border-t border-slate-800">
+    <div className="lms-surface border-t p-6">
       <div className="flex justify-between items-end mb-3">
         <div>
-          <p className="text-xs text-slate-500 font-medium tracking-wide uppercase">Overall Course</p>
-          <p className="text-sm font-bold text-white">Your Progress</p>
+          <p className="lms-muted text-xs font-medium tracking-wide uppercase">Overall Course</p>
+          <p className="text-sm font-bold">Your Progress</p>
         </div>
         {/* Visual percentage readout */}
-        <span className="text-lg font-black text-blue-500">{percentage}%</span>
+        <span className="lms-progress-value text-lg font-black">{percentage}%</span>
       </div>
       
       {/* Progress Bar Track */}
-      <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+      <div className="lms-progress-track h-2 overflow-hidden rounded-full">
         {/* Progress Bar Fill: 
             The 'duration-1000' ensures a smooth slide animation 
             when the percentage state changes.
         */}
         <div
-          className="h-full bg-gradient-to-r from-blue-600 to-amber-400 rounded-full transition-all duration-1000 ease-out"
+          className="lms-progress-fill h-full rounded-full transition-all duration-1000 ease-out"
           style={{ width: `${percentage}%` }}
         />
       </div>
       
       {/* Dynamic CTA - You can update this text based on milestones later */}
-      <p className="text-[10px] text-slate-500 mt-3 text-center italic">
+      <p className="lms-muted mt-3 text-center text-[10px] italic">
         Begin your first lesson to start tracking progress
       </p>
     </div>

@@ -1,5 +1,5 @@
 import { ShieldAlert } from "lucide-react";
-import { type Module } from "./module1"; // Importing types from module1 to keep it DRY
+import { type Module } from "./module1/chapter1"; // Importing types from module1 to keep it DRY
 
 export const module2: Module = {
   id: "module2",

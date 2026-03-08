@@ -1,3 +1,10 @@
+seeelf note 
+Next Step
+- better lesson display, dark light theme
+- side bar collapse, mobile view\
+- lesson quizz
+- lock mechanism
+
 # Project AI Context — lms-ready2drive
 
 ## Purpose
@@ -17,7 +24,11 @@ This file provides a concise snapshot of the project's architecture, folder stru
 
 ```
 / (repo root)
-├─ ai/          
+├─ .env.local
+├─ .git/
+├─ .gitignore
+├─ .next/
+├─ ai_context.md          <-- this file
 ├─ app/
 │  ├─ globals.css
 │  ├─ layout.tsx
@@ -46,10 +57,12 @@ This file provides a concise snapshot of the project's architecture, folder stru
 │  │              │  └─ [lessonId]/page.tsx
 │  │              └─ quizz/
 │  │                 └─ [quizzId]/page.tsx
-│  ├─ login/page.tsx
+│  ├─ login/
+│  │  └─ page.tsx
 │  └─ online-course-info/
 │     ├─ page.tsx
-│     └─ components/navbar.tsx
+│     └─ components/
+│        └─ navbar.tsx
 ├─ components/
 │  ├─ lms-sidebar/
 │  │  ├─ index.tsx
@@ -60,15 +73,21 @@ This file provides a concise snapshot of the project's architecture, folder stru
 │     ├─ collapsible.tsx
 │     ├─ progress.tsx
 │     └─ scroll-area.tsx
+├─ components.json
+├─ eslint.config.mjs
 ├─ lib/
 │  ├─ supabaseClient.ts
 │  └─ utils.ts
-├─ public/
-├─ components.json
-├─ package.json
+├─ next-env.d.ts
 ├─ next.config.ts
+├─ node_modules/
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.mjs
+├─ public/
+├─ README.md
 ├─ tsconfig.json
-└─ README.md
+└─ ai/ (if present, tools or notebooks)
 ```
 
 Notes:
