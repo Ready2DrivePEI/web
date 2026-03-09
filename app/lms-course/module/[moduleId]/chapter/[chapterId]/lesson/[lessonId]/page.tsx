@@ -1,7 +1,7 @@
 // app/lms-course/module/[moduleId]/chapter/[chapterId]/lesson/[lessonId]/page.tsx
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { module1 } from "@/app/lms-course/data/modules/module1/chapter1";
 import { LessonView } from "@/app/lms-course/_components/lessonView";
@@ -75,9 +75,9 @@ export default async function LessonPage({
               </Button>
             ) : (
               <Button asChild>
-                <Link href={`/lms-course/module/${moduleId}`}>
-                  <CheckCircle2 />
-                  Finish Chapter
+                <Link href={`/lms-course/module/${moduleId}/chapter/${chapterId}/quizz/${chapterId}-quiz`}>
+                  Take Quiz
+                  <ChevronRight />
                 </Link>
               </Button>
             )}

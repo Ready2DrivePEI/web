@@ -1,4 +1,5 @@
 seeelf note 
+Push to git every major change
 Next Step
 - better lesson display, dark light theme
 - side bar collapse, mobile view\

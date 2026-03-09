@@ -1,7 +1,7 @@
 import { IdCard, LucideIcon } from "lucide-react";
 
 export type ContentBlock =
-  | { type: "image"; src: string; alt: string }
+  | { type: "image"; src: string; alt: string; layout?: "quarter" | "half" }
   | { type: "text"; value: string }
   | { type: "list"; items: string[] }
   | { type: "callout"; value: string; variant?: "info" | "warning" | "danger" }
@@ -52,6 +52,7 @@ export const module1: Module = {
               type: "image",
               src: "/module1/peidrivers-licence.jpg",
               alt: "Image of a Prince Edward Island driver's licence",
+              layout: "quarter",
             },
             {
               type: "text",
@@ -123,6 +124,7 @@ export const module1: Module = {
               type: "image",
               src: "/module1/class1-9.png",
               alt: "Diagram showing different licence classes and vehicle types",
+              layout: "half",
             },
             {
               type: "table",

@@ -1,18 +1,69 @@
+import { Moon, Sun } from "lucide-react"
+
 /**
  * ProgressFooter Component
  * Displays the global course completion percentage.
  * Initialized at 0% for the start of the course.
  */
-export function ProgressFooter({ percentage = 0 }: { percentage?: number }) {
+export function ProgressFooter({
+  percentage = 0,
+  isCollapsed = false,
+  theme = "dark",
+  onToggleTheme,
+}: {
+  percentage?: number
+  isCollapsed?: boolean
+  theme?: "dark" | "light"
+  onToggleTheme: () => void
+}) {
+  const isDark = theme === "dark"
+  const ThemeIcon = isDark ? Sun : Moon
+  const themeActionLabel = isDark ? "Switch to light mode" : "Switch to dark mode"
+
+  if (isCollapsed) {
+    return (
+      <div className="lms-surface mt-auto border-t px-3 py-4">
+        <div className="flex flex-col items-center gap-2">
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            className="lms-module-trigger rounded-lg p-2"
+            aria-label={themeActionLabel}
+            title={themeActionLabel}
+          >
+            <ThemeIcon className="h-4 w-4" />
+          </button>
+          <span className="lms-progress-value text-xs font-black">{percentage}%</span>
+          <div className="lms-progress-track h-1.5 w-full overflow-hidden rounded-full">
+            <div
+              className="lms-progress-fill h-full rounded-full transition-all duration-1000 ease-out"
+              style={{ width: `${percentage}%` }}
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="lms-surface border-t p-6">
+    <div className="lms-surface mt-auto border-t p-6">
       <div className="flex justify-between items-end mb-3">
         <div>
           <p className="lms-muted text-xs font-medium tracking-wide uppercase">Overall Course</p>
           <p className="text-sm font-bold">Your Progress</p>
         </div>
-        {/* Visual percentage readout */}
-        <span className="lms-progress-value text-lg font-black">{percentage}%</span>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            className="lms-module-trigger rounded-lg p-2"
+            aria-label={themeActionLabel}
+            title={themeActionLabel}
+          >
+            <ThemeIcon className="h-4 w-4" />
+          </button>
+          <span className="lms-progress-value text-lg font-black">{percentage}%</span>
+        </div>
       </div>
       
       {/* Progress Bar Track */}

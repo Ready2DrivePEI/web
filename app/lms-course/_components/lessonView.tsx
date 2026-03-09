@@ -15,9 +15,14 @@ const calloutLabels: Record<CalloutVariant, string> = {
   danger: "Critical",
 };
 
+const imageLayoutClasses: Record<"quarter" | "half", string> = {
+  quarter: "w-full lg:w-1/4",
+  half: "w-full lg:w-1/2",
+};
+
 export function LessonView({ content }: { content: ContentBlock[] }) {
   return (
-    <div className="lms-reading space-y-7 text-base leading-8 sm:text-lg">
+    <div className="lms-reading space-y-5 text-base leading-7 sm:text-lg">
       {content.map((block, idx) => {
         if (block.type === "text") {
           return (
@@ -31,7 +36,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <ul
               key={idx}
-              className="lms-reading-list max-w-[72ch] list-disc space-y-2 pl-6"
+              className="lms-reading-list max-w-[72ch] list-disc space-y-1 pl-5"
             >
               {block.items.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -41,10 +46,12 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
         }
 
         if (block.type === "image") {
+          const layout = block.layout ?? "half";
+
           return (
             <figure
               key={idx}
-              className="lms-image-frame my-8 overflow-hidden rounded-2xl border p-2"
+              className={`lms-image-frame my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]} mx-auto`}
             >
               <Image
                 src={block.src}
@@ -62,7 +69,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <div
               key={idx}
-              className="my-8 max-w-[72ch] overflow-x-auto rounded-2xl border"
+              className="my-6 max-w-[72ch] overflow-x-auto rounded-2xl border"
             >
               <table className="w-full border-collapse text-left text-sm sm:text-base">
                 <thead>
@@ -70,7 +77,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                     {block.headers.map((header, i) => (
                       <th
                         key={i}
-                        className="px-4 py-3 font-semibold text-zinc-100"
+                        className="px-4 py-2 font-semibold text-zinc-100"
                       >
                         {header}
                       </th>
@@ -85,13 +92,14 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                       className="border-b last:border-b-0 hover:bg-white/5"
                     >
                       {row.map((cell, cellIndex) => (
-<td
-  key={cellIndex}
-  className={`px-4 py-3 align-top ${
-    cellIndex === 0 ? "font-medium text-zinc-200" : "text-zinc-300"
-  }`}
->
-
+                        <td
+                          key={cellIndex}
+                          className={`px-4 py-2 align-top ${
+                            cellIndex === 0
+                              ? "font-medium text-zinc-200"
+                              : "text-zinc-300"
+                          }`}
+                        >
                           {cell}
                         </td>
                       ))}
@@ -109,12 +117,12 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <div
               key={idx}
-              className={`lms-callout ${calloutStyles[variant]} border px-4 py-3 sm:px-5 sm:py-4`}
+              className={`lms-callout ${calloutStyles[variant]} border px-4 py-2.5 sm:px-5 sm:py-3`}
             >
               <p className="text-sm font-semibold uppercase tracking-wide">
                 {calloutLabels[variant]}
               </p>
-              <p className="mt-1 text-base leading-7">{block.value}</p>
+              <p className="mt-1 text-base leading-6">{block.value}</p>
             </div>
           );
         }
