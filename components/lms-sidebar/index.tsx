@@ -28,13 +28,13 @@ export default function DrivingSidebar({
       {/* Brand Header */}
       <div className={`lms-border flex items-center border-b ${isCollapsed ? "justify-center px-3 py-4" : "px-6 py-6"}`}>
         <div className="flex min-w-0 items-center gap-3">
-          <div className="lms-icon-chip rounded-lg p-1.5">
-            <TrafficCone className="h-6 w-6" />
+          <div className="lms-icon-chip rounded-xl p-2 shadow-sm">
+            <TrafficCone className="h-5 w-5" />
           </div>
           {!isCollapsed && (
-            <div>
-              <h1 className="text-lg font-bold leading-tight tracking-tight">Ready2Drive</h1>
-              <p className="lms-accent text-[10px] font-bold uppercase tracking-widest">Theory Course 2026</p>
+            <div className="min-w-0">
+              <h1 className="truncate text-base font-semibold leading-tight tracking-tight">Ready2Drive</h1>
+              <p className="lms-accent truncate text-[10px] font-bold uppercase tracking-[0.18em]">Theory Course 2026</p>
             </div>
           )}
         </div>

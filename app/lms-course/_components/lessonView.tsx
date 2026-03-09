@@ -16,13 +16,13 @@ const calloutLabels: Record<CalloutVariant, string> = {
 };
 
 const imageLayoutClasses: Record<"quarter" | "half", string> = {
-  quarter: "w-full lg:w-1/4",
-  half: "w-full lg:w-1/2",
+  quarter: "w-full lg:w-1/4 lg:ml-0 lg:mr-auto",
+  half: "w-full lg:w-1/2 mx-auto",
 };
 
 export function LessonView({ content }: { content: ContentBlock[] }) {
   return (
-    <div className="lms-reading space-y-5 text-base leading-7 sm:text-lg">
+    <div className="lms-reading space-y-5 pt-3 text-base leading-7 sm:pt-4 sm:text-lg">
       {content.map((block, idx) => {
         if (block.type === "text") {
           return (
@@ -51,7 +51,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <figure
               key={idx}
-              className={`lms-image-frame my-6 mx-auto overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
+              className={`lms-image-frame my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
             >
               <Image
                 src={block.src}

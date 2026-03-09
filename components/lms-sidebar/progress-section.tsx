@@ -22,17 +22,8 @@ export function ProgressFooter({
 
   if (isCollapsed) {
     return (
-      <div className="lms-surface mt-auto border-t px-3 py-4">
+      <div className="lms-surface relative mt-auto border-t px-3 py-4">
         <div className="flex flex-col items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className="lms-module-trigger rounded-lg p-2"
-            aria-label={themeActionLabel}
-            title={themeActionLabel}
-          >
-            <ThemeIcon className="h-4 w-4" />
-          </button>
           <span className="lms-progress-value text-xs font-black">{percentage}%</span>
           <div className="lms-progress-track h-1.5 w-full overflow-hidden rounded-full">
             <div
@@ -46,24 +37,13 @@ export function ProgressFooter({
   }
 
   return (
-    <div className="lms-surface mt-auto border-t p-6">
+    <div className="lms-surface relative mt-auto border-t p-6">
       <div className="flex justify-between items-end mb-3">
         <div>
           <p className="lms-muted text-xs font-medium tracking-wide uppercase">Overall Course</p>
           <p className="text-sm font-bold">Your Progress</p>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className="lms-module-trigger rounded-lg p-2"
-            aria-label={themeActionLabel}
-            title={themeActionLabel}
-          >
-            <ThemeIcon className="h-4 w-4" />
-          </button>
-          <span className="lms-progress-value text-lg font-black">{percentage}%</span>
-        </div>
+        <span className="lms-progress-value text-lg font-black">{percentage}%</span>
       </div>
       
       {/* Progress Bar Track */}
@@ -78,10 +58,20 @@ export function ProgressFooter({
         />
       </div>
       
-      {/* Dynamic CTA - You can update this text based on milestones later */}
-      <p className="lms-muted mt-3 text-center text-[10px] italic">
-        Begin your first lesson to start tracking progress
-      </p>
+      <div className="mt-3 flex items-center justify-between gap-2">
+        <p className="lms-muted text-[10px] italic">
+          Begin your first lesson to start tracking progress
+        </p>
+        <button
+          type="button"
+          onClick={onToggleTheme}
+          className="lms-theme-toggle-icon"
+          aria-label={themeActionLabel}
+          title={themeActionLabel}
+        >
+          <ThemeIcon className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   )
 }

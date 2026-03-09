@@ -73,18 +73,18 @@ export function QuizClient({
   };
 
   return (
-    <div className="lms-lesson-shell flex min-h-[80vh] flex-col px-4 py-8 sm:px-6 sm:py-10">
-      <header className="lms-lesson-header pb-6">
+    <div className="lms-lesson-shell flex min-h-[80vh] flex-col px-1 py-0 sm:px-2 sm:py-1">
+      <header className="lms-lesson-header pb-3">
         <p className="lms-lesson-eyebrow text-xs font-semibold uppercase">{quiz.description}</p>
         <h1 className="lms-lesson-title mt-2 text-3xl font-bold leading-tight sm:text-4xl">
           {quiz.title}
         </h1>
-        <p className="lms-muted mt-4 text-sm sm:text-base">
+        <p className="lms-muted mt-2.5 text-sm sm:text-base">
           Pass rule: all answers must be correct to unlock the next chapter.
         </p>
       </header>
 
-      <main className="flex-grow py-8">
+      <main className="flex-grow py-3 sm:py-4">
         {alreadyPassed && !result?.submitted ? (
           <div className="lms-callout lms-callout-info mb-6 rounded-2xl border px-4 py-3 sm:px-5 sm:py-4">
             <p className="font-semibold">Preview status: quiz already passed on this device.</p>
