@@ -116,15 +116,16 @@ export function QuizView({
 
             {showFeedback && !isCorrect ? (
               <div className="lms-callout lms-callout-success space-y-3 rounded-xl border px-3 py-3 sm:px-4">
-                <p className="text-sm leading-6 sm:text-base">
-                  Incorrect. {question.explanation}
+                <p className="lms-feedback-explanation text-sm leading-6 sm:text-base">
+                  <span className="lms-feedback-wrong font-semibold">Incorrect.</span>{" "}
+                  {question.explanation}
                 </p>
-                <p className="text-sm leading-6 sm:text-base">
+                <p className="lms-feedback-correct text-sm leading-6 sm:text-base">
                   Correct answer: <span className="font-semibold">{correctOptionLabel}.</span>{" "}
                   {correctOptionText}
                 </p>
                 <div>
-                  <Button variant="outline" asChild className="lms-button-outline">
+                  <Button variant="outline" asChild className="lms-button-outline text-black hover:text-black">
                     <Link href={`${reviewLessonBasePath}/${question.sourceLessonId}`}>
                       Go to lesson
                     </Link>
@@ -174,7 +175,7 @@ export function QuizView({
       ) : null}
 
       {!isSubmitted ? (
-        <footer className="fixed right-5 bottom-5 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+0.75rem)] sm:right-5">
+        <footer className="fixed right-5 bottom-5 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
           <div className="lms-floating-footer mx-auto w-fit max-w-full rounded-2xl border px-3 py-2.5">
             <div className="flex items-center gap-3">
               <p className="lms-muted text-sm whitespace-nowrap">

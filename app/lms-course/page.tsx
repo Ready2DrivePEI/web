@@ -108,7 +108,7 @@ export default function LMSHome() {
             </div>
           </section>
 
-          <div className="lms-home-cta relative overflow-hidden rounded-3xl p-8">
+          <div className="lms-home-cta relative overflow-hidden rounded-3xl p-8 lg:translate-y-4">
             <div className="relative z-10">
               <h2 className="mb-2 text-2xl font-black italic">START YOUR ENGINE</h2>
               <p className="mb-8 font-medium opacity-90">

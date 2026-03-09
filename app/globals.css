@@ -476,9 +476,33 @@
     color: #0f172a;
   }
 
+  .lms-shell[data-lms-theme="light"] .lms-home-cta {
+    background: var(--lms-surface-2);
+    border: 1px solid var(--lms-border);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    color: var(--lms-text);
+  }
+
+  .lms-shell[data-lms-theme="light"] .lms-home-cta h2 {
+    color: var(--lms-text);
+    font-style: normal;
+    letter-spacing: 0.01em;
+  }
+
+  .lms-shell[data-lms-theme="light"] .lms-home-cta p {
+    color: var(--lms-text-muted);
+    opacity: 1;
+  }
+
   .lms-home-cta-chip {
     background-color: var(--lms-text);
     color: var(--lms-bg);
+  }
+
+  .lms-shell[data-lms-theme="light"] .lms-home-cta-chip {
+    background-color: var(--lms-active-bg);
+    color: var(--lms-accent);
+    border: 1px solid color-mix(in srgb, var(--lms-accent) 28%, transparent);
   }
 
   .lms-table-shell {
@@ -536,6 +560,18 @@
   .lms-quiz-option-wrong {
     border-color: var(--lms-danger-soft-border);
     background-color: var(--lms-danger-soft-bg);
+  }
+
+  .lms-feedback-explanation {
+    color: color-mix(in srgb, var(--lms-text) 82%, transparent);
+  }
+
+  .lms-feedback-wrong {
+    color: var(--lms-danger);
+  }
+
+  .lms-feedback-correct {
+    color: var(--lms-text);
   }
 
   .lms-quiz-radio {

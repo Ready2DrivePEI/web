@@ -38,7 +38,7 @@ export default async function LessonPage({
   const quizHref = `/lms-course/module/${moduleId}/chapter/${chapterId}/quizz/${chapterId}-quiz`;
 
   return (
-    <div className="lms-lesson-shell relative flex min-h-[80vh] flex-col px-1 pt-6 pb-32 sm:-ml-1 sm:px-2 sm:pb-36">
+    <div className="lms-lesson-shell relative flex min-h-[80vh] flex-col px-1 pt-2 pb-32 sm:ml-1 sm:px-2 sm:pt-3 sm:pb-36">
       <header className="lms-lesson-header pb-3">
         <p className="lms-lesson-eyebrow text-xs font-semibold uppercase">{currentChapter.title}</p>
         <h1 className="lms-lesson-title mt-2 text-3xl font-bold leading-tight sm:text-4xl">{lesson.title}</h1>
@@ -53,12 +53,12 @@ export default async function LessonPage({
         </div>
       </header>
 
-      <main className="flex-grow pt-7 pb-4 sm:pt-0 sm:pb-6">
+      <main className="flex-grow pt-4 pb-2 sm:pt-0 sm:pb-0">
         <LessonView content={lesson.content} />
       </main>
 
-      <footer className="fixed right-5 bottom-5 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+0.75rem)] sm:right-5">
-        <div className="lms-floating-footer mx-auto flex w-full max-w-3xl items-center justify-between rounded-2xl border px-3 py-3 sm:px-5">
+      <footer className="fixed right-5 bottom-5 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
+        <div className="lms-floating-footer mx-auto flex w-full max-w-4xl items-center justify-between rounded-2xl border px-3 py-3 sm:px-5">
           <div className="min-h-9">
             {prevLesson ? (
               <Button variant="outline" asChild className="lms-button-outline lms-prev-lesson-btn">

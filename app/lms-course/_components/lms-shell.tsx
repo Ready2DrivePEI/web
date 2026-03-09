@@ -62,7 +62,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
               <PanelLeftClose className="h-5 w-5" />
             )}
           </button>
-          <div className="-ml-1 min-w-0 flex-1 sm:-ml-2">{children}</div>
+          <div className="ml-1 min-w-0 flex-1 sm:ml-2">{children}</div>
         </div>
       </main>
     </div>
