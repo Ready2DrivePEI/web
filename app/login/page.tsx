@@ -2,15 +2,15 @@
 import { supabase } from "lib/supabaseClient";
 
 import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import Link from "next/link";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [welcomeText, setWelcomeText] = useState("Welcome");
   const [newTask, setNewTask] = useState({password: "", email: ""}); 
 
  // Inserts into Supabase
-   const handleSubmit = async (e:any) => {
+   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // prevent form from reloading the page
    
     const { data, error } = await supabase
@@ -26,9 +26,7 @@ export default function LoginPage() {
   }
     useEffect(() => {
       const visited = localStorage.getItem("r2d-visited");
-      if (visited) {
-        setWelcomeText("Welcome back");
-      } else {
+      if (!visited) {
         localStorage.setItem("r2d-visited", "true");
       }
     }, []);
@@ -40,7 +38,7 @@ export default function LoginPage() {
         {/* Header */}
         <div className="space-y-3 text-center">
           <h1 className="text-3xl font-bold tracking-tight text-neutral-900">
-            {welcomeText}
+            Welcome
           </h1>
           <p className="text-sm text-neutral-500 leading-relaxed">
             Access your online course and track your driving progress.

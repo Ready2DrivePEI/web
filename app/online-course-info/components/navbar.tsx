@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { CarFront } from "lucide-react";
 
 export default function Navbar() {
-  const [user, setUser] = useState<{ name: string } | null>(null);
+  const [user] = useState<{ name: string } | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Unique Touch: Detect scroll to add a "frosted glass" effect dynamically
@@ -15,12 +15,6 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Later replace with Supabase session check
-  useEffect(() => {
-    // mock example
-    // setUser({ name: "Ash" });
   }, []);
 
   return (

@@ -19,7 +19,11 @@ export const module3: Module = {
           title: "Walk-Around Check",
           content: [
             { type: "text", value: "Before you start the engine, you should perform a basic safety check." },
-            { type: "image", alt: "Diagram of car tire pressure check" },
+            {
+              type: "image",
+              src: "/module1/peidrivers-licence.jpg",
+              alt: "Diagram of car tire pressure check",
+            },
             { type: "list", items: ["Check tire pressure", "Ensure lights are clean", "Look for fluid leaks under the car"] }
           ]
         }

@@ -11,6 +11,7 @@ import {
   THEME_STORAGE_KEY,
   getCollapseSnapshot,
   getThemeSnapshot,
+  type LMSTheme,
   subscribeToPreference,
 } from "@/app/lms-course/_components/lms-preferences"
 
@@ -21,10 +22,10 @@ export function LMSShell({ children }: { children: ReactNode }) {
     () => false,
   )
 
-  const theme = useSyncExternalStore(
+  const theme = useSyncExternalStore<LMSTheme>(
     (onStoreChange) => subscribeToPreference(THEME_EVENT, onStoreChange),
     getThemeSnapshot,
-    () => "dark",
+    () => "dark" as LMSTheme,
   )
 
   const toggleCollapse = () => {
