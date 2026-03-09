@@ -1,7 +1,7 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { useState } from "react"
+import { useSyncExternalStore } from "react"
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react"
 import Sidebar from "@/components/lms-sidebar"
 
@@ -9,32 +9,60 @@ type LMSTheme = "dark" | "light"
 
 const COLLAPSE_STORAGE_KEY = "r2d-sidebar-collapsed"
 const THEME_STORAGE_KEY = "r2d-lms-theme"
+const COLLAPSE_EVENT = "r2d:lms-collapse-change"
+const THEME_EVENT = "r2d:lms-theme-change"
+
+const subscribeToStorage = (
+  customEventName: string,
+  onStoreChange: () => void,
+) => {
+  if (typeof window === "undefined") {
+    return () => {}
+  }
+
+  const handler = () => onStoreChange()
+  window.addEventListener("storage", handler)
+  window.addEventListener(customEventName, handler)
+
+  return () => {
+    window.removeEventListener("storage", handler)
+    window.removeEventListener(customEventName, handler)
+  }
+}
+
+const getCollapseSnapshot = () => {
+  if (typeof window === "undefined") return false
+  return localStorage.getItem(COLLAPSE_STORAGE_KEY) === "true"
+}
+
+const getThemeSnapshot = (): LMSTheme => {
+  if (typeof window === "undefined") return "dark"
+  return localStorage.getItem(THEME_STORAGE_KEY) === "light" ? "light" : "dark"
+}
 
 export function LMSShell({ children }: { children: ReactNode }) {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false
-    return localStorage.getItem(COLLAPSE_STORAGE_KEY) === "true"
-  })
+  const isCollapsed = useSyncExternalStore(
+    (onStoreChange) => subscribeToStorage(COLLAPSE_EVENT, onStoreChange),
+    getCollapseSnapshot,
+    () => false,
+  )
 
-  const [theme, setTheme] = useState<LMSTheme>(() => {
-    if (typeof window === "undefined") return "dark"
-    return localStorage.getItem(THEME_STORAGE_KEY) === "light" ? "light" : "dark"
-  })
+  const theme = useSyncExternalStore(
+    (onStoreChange) => subscribeToStorage(THEME_EVENT, onStoreChange),
+    getThemeSnapshot,
+    () => "dark",
+  )
 
   const toggleCollapse = () => {
-    setIsCollapsed((prev) => {
-      const next = !prev
-      localStorage.setItem(COLLAPSE_STORAGE_KEY, String(next))
-      return next
-    })
+    const next = !isCollapsed
+    localStorage.setItem(COLLAPSE_STORAGE_KEY, String(next))
+    window.dispatchEvent(new Event(COLLAPSE_EVENT))
   }
 
   const toggleTheme = () => {
-    setTheme((prev) => {
-      const next: LMSTheme = prev === "dark" ? "light" : "dark"
-      localStorage.setItem(THEME_STORAGE_KEY, next)
-      return next
-    })
+    const next: LMSTheme = theme === "dark" ? "light" : "dark"
+    localStorage.setItem(THEME_STORAGE_KEY, next)
+    window.dispatchEvent(new Event(THEME_EVENT))
   }
 
   return (

@@ -55,7 +55,7 @@ export function QuizView({
             className="lms-callout lms-callout-info space-y-4 rounded-2xl border p-4 sm:p-5"
           >
             <header className="space-y-1">
-              <p className="text-xs font-semibold uppercase tracking-wide">
+              <p className="lms-muted text-xs font-semibold uppercase tracking-wide">
                 Question {idx + 1}
               </p>
               <h2 className="text-lg font-semibold leading-7 sm:text-xl">
@@ -72,16 +72,19 @@ export function QuizView({
                 const showCorrectHighlight = isSubmitted && isCorrectOption;
                 const showWrongHighlight =
                   isSubmitted && isSelected && !isCorrectOption;
+                const showSelectedHighlight = !isSubmitted && isSelected;
 
                 return (
                   <li
                     key={`${question.id}-${optionIndex}`}
-                    className={`rounded-xl border px-3 py-2 sm:px-4 sm:py-3 ${
+                    className={`lms-quiz-option rounded-xl border px-3 py-2 sm:px-4 sm:py-3 ${
                       showCorrectHighlight
                         ? "lms-callout-warning"
                         : showWrongHighlight
                           ? "lms-callout-danger"
-                          : ""
+                          : showSelectedHighlight
+                            ? "lms-quiz-option-selected"
+                            : ""
                     }`}
                   >
                     <label className="flex cursor-pointer items-center gap-3">
@@ -91,6 +94,7 @@ export function QuizView({
                         checked={isSelected}
                         onChange={() => onSelect(question.id, optionIndex)}
                         disabled={isSubmitted}
+                        className="lms-quiz-radio h-4 w-4"
                       />
                       <span>
                         <span className="font-medium">{optionLabel}.</span> {option}
@@ -102,7 +106,7 @@ export function QuizView({
             </ul>
 
             {showFeedback && !isCorrect ? (
-              <div className="space-y-3 rounded-xl border px-3 py-3 sm:px-4">
+              <div className="lms-quiz-feedback space-y-3 rounded-xl border px-3 py-3 sm:px-4">
                 <p className="text-sm sm:text-base">
                   Incorrect. {question.explanation}
                 </p>

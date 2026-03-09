@@ -372,6 +372,104 @@
     border-color: var(--lms-border);
   }
 
+
+  .lms-home-title {
+    color: var(--lms-text);
+  }
+
+  .lms-home-lead {
+    color: var(--lms-text-muted);
+  }
+
+  .lms-home-step-chip {
+    background-color: var(--lms-active-bg);
+    color: var(--lms-accent);
+  }
+
+  .lms-home-card {
+    background-color: var(--lms-surface-2);
+    border-color: var(--lms-border);
+    color: var(--lms-text);
+    transition: all 200ms ease;
+  }
+
+  .lms-home-card:hover {
+    background-color: var(--lms-hover-bg-strong);
+    border-color: var(--lms-border);
+  }
+
+  .lms-home-card-copy {
+    color: var(--lms-text-muted);
+  }
+
+  .lms-home-section-title {
+    color: var(--lms-text);
+  }
+
+  .lms-home-cta {
+    background: linear-gradient(135deg, var(--lms-accent), var(--lms-accent-2));
+    color: #0f172a;
+  }
+
+  .lms-home-cta-chip {
+    background-color: var(--lms-text);
+    color: var(--lms-bg);
+  }
+
+  .lms-table-shell {
+    border-color: var(--lms-border);
+    background-color: var(--lms-surface-2);
+  }
+
+  .lms-table-head-row {
+    border-color: var(--lms-border);
+    background-color: var(--lms-hover-bg-strong);
+  }
+
+  .lms-table-head-cell {
+    color: var(--lms-text);
+  }
+
+  .lms-table-row {
+    border-color: var(--lms-border);
+  }
+
+  .lms-table-row:hover {
+    background-color: var(--lms-hover-bg);
+  }
+
+  .lms-table-cell-strong {
+    color: var(--lms-text);
+  }
+
+  .lms-table-cell {
+    color: var(--lms-text-muted);
+  }
+
+  .lms-quiz-option {
+    border-color: var(--lms-border);
+    background-color: var(--lms-surface-2);
+    color: var(--lms-text);
+    transition: all 200ms ease;
+  }
+
+  .lms-quiz-option:hover {
+    background-color: var(--lms-hover-bg);
+  }
+
+  .lms-quiz-option-selected {
+    border-color: var(--lms-accent);
+    background-color: var(--lms-active-bg);
+  }
+
+  .lms-quiz-radio {
+    accent-color: var(--lms-accent);
+  }
+
+  .lms-quiz-feedback {
+    border-color: var(--lms-border);
+    background-color: var(--lms-surface-2);
+  }
   .lms-progress-pill {
     background-color: var(--lms-surface-2);
   }
@@ -393,3 +491,4 @@
     background: linear-gradient(90deg, var(--lms-accent), var(--lms-accent-2));
   }
 }
+

@@ -51,7 +51,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <figure
               key={idx}
-              className={`lms-image-frame my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]} mx-auto`}
+              className={`lms-image-frame my-6 mx-auto overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
             >
               <Image
                 src={block.src}
@@ -69,15 +69,15 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <div
               key={idx}
-              className="my-6 max-w-[72ch] overflow-x-auto rounded-2xl border"
+              className="lms-table-shell my-6 max-w-[72ch] overflow-x-auto rounded-2xl border"
             >
               <table className="w-full border-collapse text-left text-sm sm:text-base">
                 <thead>
-                  <tr className="border-b bg-white/5">
+                  <tr className="lms-table-head-row border-b">
                     {block.headers.map((header, i) => (
                       <th
                         key={i}
-                        className="px-4 py-2 font-semibold text-zinc-100"
+                        className="lms-table-head-cell px-4 py-2 font-semibold"
                       >
                         {header}
                       </th>
@@ -89,15 +89,15 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                   {block.rows.map((row, rowIndex) => (
                     <tr
                       key={rowIndex}
-                      className="border-b last:border-b-0 hover:bg-white/5"
+                      className="lms-table-row border-b last:border-b-0"
                     >
                       {row.map((cell, cellIndex) => (
                         <td
                           key={cellIndex}
                           className={`px-4 py-2 align-top ${
                             cellIndex === 0
-                              ? "font-medium text-zinc-200"
-                              : "text-zinc-300"
+                              ? "lms-table-cell-strong font-medium"
+                              : "lms-table-cell"
                           }`}
                         >
                           {cell}
