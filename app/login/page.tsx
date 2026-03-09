@@ -1,5 +1,5 @@
 "use client";
-import { supabase } from "lib/supabaseClient";
+import { isSupabaseConfigured, supabase } from "lib/supabaseClient";
 
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
@@ -8,10 +8,17 @@ import Link from "next/link";
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [newTask, setNewTask] = useState({password: "", email: ""}); 
+  const [submitError, setSubmitError] = useState("");
 
  // Inserts into Supabase
    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // prevent form from reloading the page
+    setSubmitError("");
+
+    if (!supabase) {
+      setSubmitError("Login service is not configured. Add Supabase env vars in Vercel project settings.");
+      return;
+    }
    
     const { data, error } = await supabase
       .from("profiles") // correct method
@@ -19,6 +26,7 @@ export default function LoginPage() {
 
     if (error) {
       console.error("Error inserting task:", error);
+      setSubmitError("Could not sign in right now. Please try again.");
     } else {
       console.log("Task added:", data);
       setNewTask({ password: "", email: "" }); // reset form
@@ -141,10 +149,14 @@ export default function LoginPage() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full min-h-[48px] rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
+            disabled={!isSupabaseConfigured}
+            className="w-full min-h-[48px] rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:hover:bg-blue-300"
           >
             Log In
           </button>
+          {submitError && (
+            <p className="text-sm text-red-600">{submitError}</p>
+          )}
         </form>
 
         {/* Divider */}
