@@ -25,7 +25,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
   const theme = useSyncExternalStore<LMSTheme>(
     (onStoreChange) => subscribeToPreference(THEME_EVENT, onStoreChange),
     getThemeSnapshot,
-    () => "dark" as LMSTheme,
+    () => "light" as LMSTheme,
   )
 
   const toggleCollapse = () => {
@@ -53,7 +53,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
           <button
             type="button"
             onClick={toggleCollapse}
-            className="lms-module-trigger -ml-1 mt-0.5 shrink-0 rounded-xl p-2.5 sm:p-3"
+            className="lms-module-trigger sticky top-3 z-30 -ml-1 mt-0.5 shrink-0 self-start rounded-xl p-2.5 sm:top-4 sm:p-3"
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
             title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >

@@ -29,6 +29,6 @@ export const getCollapseSnapshot = () => {
 };
 
 export const getThemeSnapshot = (): LMSTheme => {
-  if (typeof window === "undefined") return "dark";
-  return localStorage.getItem(THEME_STORAGE_KEY) === "light" ? "light" : "dark";
+  if (typeof window === "undefined") return "light";
+  return localStorage.getItem(THEME_STORAGE_KEY) === "dark" ? "dark" : "light";
 };

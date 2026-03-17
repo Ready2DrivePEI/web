@@ -1,10 +1,27 @@
 seeelf note 
 Push to git every major change
 Next Step
-- better lesson display, dark light theme
-- side bar collapse, mobile view\
-- lesson quizz
+adding driving tips and helpful stuff
+
+screenshot good looks
+nav issue 
+similar to first page 2nd page 
+
+- mobile version and few more chapter back button
+- to give as example work
+
+- side bar sticky, mobile view
 - lock mechanism
+- back< from lms
+
+- auth login admin
+- auth generation new login id
+- watch day of creation
+
+- progress watch 
+- locking based on progress   
+
+- contact form working 
 
 # Project AI Context — lms-ready2drive
 
