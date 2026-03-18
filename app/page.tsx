@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display, Source_Sans_3 } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import {
   Award,
@@ -39,25 +39,26 @@ const navItems = [
 
 const offlinePlans = [
   {
-    title: "Focused Skill Session",
-    duration: "Under 1 hour",
+    title: "Single Lesson Package",
+    duration: "Around 1 hour",
     description:
-      "A concise coaching session for parking, lane control, intersections, and confidence-building before your next drive.",
-    points: [
-      "Best for targeted improvements",
-      "Ideal before a test week",
-      "Flexible scheduling windows",
-    ],
+      "This course is designed for drivers who need just one class of driving.",
+    points: ["One class is around 1 hour."],
   },
   {
-    title: "Road Test Intensive",
-    duration: "2+ hours",
+    title: "Multi Lesson Package",
+    duration: "4.5 to 6 hours",
     description:
-      "An in-depth practical block that mirrors real PEI test conditions with defensive habits, route strategy, and final polishing.",
+      "This course is designed for drivers who need multiple lessons to improve their driving skills.",
+    points: ["We offer packages of 4.5 to 6 hour lessons."],
+  },
+  {
+    title: "Co-Pilot Package",
+    duration: "Package pricing",
+    description: "Select test-day support with or without a one-hour lesson add-on.",
     points: [
-      "Complete exam readiness session",
-      "Defensive driving emphasis",
-      "Route simulation and feedback",
+      "Co-pilot and vehicle only: $75 + HST",
+      "1 hour lesson + co-pilot and vehicle: $130 + HST",
     ],
   },
 ];
@@ -71,14 +72,56 @@ const trustSignals = [
 
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const lastScrollY = useRef(0);
+  const navDirection = useRef<"up" | "down" | null>(null);
+  const directionalDistance = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 16);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+      const absDelta = Math.abs(delta);
+
+      setIsScrolled(currentScrollY > 16);
+
+      if (isMobileMenuOpen || currentScrollY < 24) {
+        setIsNavVisible(true);
+        directionalDistance.current = 0;
+        navDirection.current = null;
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      if (absDelta < 2) {
+        return;
+      }
+
+      const direction = delta > 0 ? "down" : "up";
+      if (direction !== navDirection.current) {
+        navDirection.current = direction;
+        directionalDistance.current = 0;
+      }
+
+      directionalDistance.current += absDelta;
+
+      if (direction === "down" && directionalDistance.current > 140 && currentScrollY > 240) {
+        setIsNavVisible(false);
+        directionalDistance.current = 0;
+      } else if (direction === "up" && directionalDistance.current > 70) {
+        setIsNavVisible(true);
+        directionalDistance.current = 0;
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -112,7 +155,9 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_8%,rgba(66,133,244,0.2),transparent_44%),radial-gradient(circle_at_90%_5%,rgba(15,23,42,0.1),transparent_30%),linear-gradient(180deg,#f8fbff_0%,#fdfefe_42%,#f8fbff_100%)]" />
 
         <header
-          className={`fixed inset-x-0 top-0 z-[100] border-b transition-all duration-300 ${
+          className={`fixed inset-x-0 top-0 z-[100] border-b transform-gpu transition-[transform,opacity,background-color,border-color,box-shadow] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+            isNavVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+          } ${
             isScrolled
               ? "border-blue-100 bg-white/85 shadow-[0_10px_35px_rgba(15,23,42,0.1)] backdrop-blur-xl"
               : "border-transparent bg-white/65 backdrop-blur-lg"
@@ -278,85 +323,87 @@ export default function HomePage() {
 
       <section id="plans" className="scroll-mt-28 py-20 md:scroll-mt-32 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="landing-reveal mb-12 max-w-3xl space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
-              Offline Plans
-            </p>
-            <h2 className="font-[var(--font-landing-display)] text-4xl leading-tight text-slate-900 md:text-5xl">
-              Pick the lesson style that fits your current stage.
-            </h2>
-            <p className="text-lg text-slate-600">
-              Start with focused practical lessons. Every plan leads directly to instructor support
-              through our on-page inquiry flow.
-            </p>
-          </div>
+          <div className="relative">
+            <div className="landing-reveal mb-12 max-w-3xl space-y-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
+                Offline Plans
+              </p>
+              <h2 className="font-[var(--font-landing-display)] text-4xl leading-tight text-slate-900 md:text-5xl">
+                Pick the lesson style that fits your current stage.
+              </h2>
+              <p className="text-lg text-slate-600">
+                Every plan leads directly to instructor support
+                through our on-page inquiry flow.
+              </p>
+            </div>
 
-          <div className="grid items-start gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-            <article
-              className="landing-reveal overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.12)]"
-              style={{ animationDelay: "120ms" }}
-            >
-                <Image
-                  src="/landing/offline-lesson-detail.png"
-                  alt="Close interior car shot of instructor pointing to mirrors and road signs while student takes notes, professional training atmosphere, neutral tones with subtle blue accents, documentary style."
-                  width={1000}
-                  height={1200}
-                  className="aspect-[4/5] w-full object-cover"
-              />
-              <div className="space-y-3 p-6">
-                <p className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
-                  <Clock3 className="h-3.5 w-3.5" />
-                  Practical Session Focus
-                </p>
-                <h3 className="font-[var(--font-landing-display)] text-2xl text-slate-900">
-                  Learn with direct, in-car feedback from your instructor.
-                </h3>
-                <p className="text-slate-600">
-                  Build road awareness, mirror routine, lane control, and confident decision-making
-                  with structured live practice.
-                </p>
-              </div>
-            </article>
+            <div className="grid items-start gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+              <article
+                className="landing-reveal overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.12)]"
+                style={{ animationDelay: "120ms" }}
+              >
+                  <Image
+                    src="/landing/offline-lesson-detail.png"
+                    alt="Close interior car shot of instructor pointing to mirrors and road signs while student takes notes, professional training atmosphere, neutral tones with subtle blue accents, documentary style."
+                    width={1000}
+                    height={1200}
+                    className="aspect-[5/6] w-full object-cover object-top"
+                />
+                <div className="space-y-3 p-6">
+                  <p className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
+                    <Clock3 className="h-3.5 w-3.5" />
+                    Practical Session Focus
+                  </p>
+                  <h3 className="font-[var(--font-landing-display)] text-2xl text-slate-900">
+                    Learn with direct, in-car feedback from your instructor.
+                  </h3>
+                  <p className="text-slate-600">
+                    Build road awareness, mirror routine, lane control, and confident decision-making
+                    with structured live practice.
+                  </p>
+                </div>
+              </article>
 
-            <div className="grid gap-6">
-              {offlinePlans.map((plan, index) => (
-                <article
-                  key={plan.title}
-                  className="landing-reveal rounded-3xl border border-blue-100 bg-white p-7 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.15)]"
-                  style={{ animationDelay: `${200 + index * 80}ms` }}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
-                        {plan.duration}
-                      </p>
-                      <h3 className="mt-2 text-2xl font-semibold text-slate-900">{plan.title}</h3>
-                    </div>
-                    <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#4285F4]">
-                      Pricing on request
-                    </span>
-                  </div>
-
-                  <p className="mt-4 text-slate-600">{plan.description}</p>
-
-                  <ul className="mt-5 space-y-2">
-                    {plan.points.map((point) => (
-                      <li key={point} className="flex items-center gap-2 text-sm text-slate-700">
-                        <CheckCircle2 className="h-4 w-4 text-[#4285F4]" />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href="#contact"
-                    className="mt-6 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+              <div className="grid gap-6">
+                {offlinePlans.map((plan, index) => (
+                  <article
+                    key={plan.title}
+                    className="landing-reveal rounded-3xl border border-blue-100 bg-white p-7 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.15)]"
+                    style={{ animationDelay: `${200 + index * 80}ms` }}
                   >
-                    Continue to Contact Form
-                    <ChevronRight className="ml-1.5 h-4 w-4" />
-                  </a>
-                </article>
-              ))}
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
+                          {plan.duration}
+                        </p>
+                        <h3 className="mt-2 text-2xl font-semibold text-slate-900">{plan.title}</h3>
+                      </div>
+                      <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#4285F4]">
+                        Pricing on request
+                      </span>
+                    </div>
+
+                    <p className="mt-4 text-slate-600">{plan.description}</p>
+
+                    <ul className="mt-5 space-y-2">
+                      {plan.points.map((point) => (
+                        <li key={point} className="flex items-center gap-2 text-sm text-slate-700">
+                          <CheckCircle2 className="h-4 w-4 text-[#4285F4]" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href="#contact"
+                      className="mt-6 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                    >
+                      Continue to Contact Form
+                      <ChevronRight className="ml-1.5 h-4 w-4" />
+                    </a>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -364,65 +411,67 @@ export default function HomePage() {
 
       <section id="online-course" className="scroll-mt-28 pb-16 md:scroll-mt-32 md:pb-20">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="landing-reveal overflow-hidden rounded-[2.2rem] border border-blue-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
-            <div className="grid items-center gap-10 px-6 py-8 md:px-10 md:py-12 lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
-                  <Sparkles className="h-3.5 w-3.5" />
-                  New Addition
-                </div>
-                <h2 className="font-[var(--font-landing-display)] text-4xl leading-tight text-slate-900 md:text-5xl">
-                  Online theory course that complements your road sessions.
-                </h2>
-                <p className="text-lg text-slate-600">
-                  Continue learning off the road with guided modules, quizzes, and certificate-focused
-                  progression that supports your practical driving training.
-                </p>
+          <div className="relative">
+            <div className="landing-reveal overflow-hidden rounded-[2.2rem] border border-blue-100 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
+              <div className="grid items-center gap-10 px-6 py-8 md:px-10 md:py-12 lg:grid-cols-[1.05fr_0.95fr]">
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    New Addition
+                  </div>
+                  <h2 className="font-[var(--font-landing-display)] text-4xl leading-tight text-slate-900 md:text-5xl">
+                    Online theory course that complements your road sessions.
+                  </h2>
+                  <p className="text-lg text-slate-600">
+                    Continue learning off the road with guided modules, quizzes, and certificate-focused
+                    progression that supports your practical driving training.
+                  </p>
 
-                <ul className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
-                  <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
-                    <BookOpenCheck className="h-4 w-4 text-[#4285F4]" />
-                    Structured multi-module lessons
-                  </li>
-                  <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
-                    <CheckCircle2 className="h-4 w-4 text-[#4285F4]" />
-                    Unlimited quiz attempts
-                  </li>
-                  <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
-                    <Award className="h-4 w-4 text-[#4285F4]" />
-                    Completion certificate
-                  </li>
-                  <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
-                    <ShieldCheck className="h-4 w-4 text-[#4285F4]" />
-                    Progress saved automatically
-                  </li>
-                </ul>
+                  <ul className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                    <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
+                      <BookOpenCheck className="h-4 w-4 text-[#4285F4]" />
+                      Structured multi-module lessons
+                    </li>
+                    <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
+                      <CheckCircle2 className="h-4 w-4 text-[#4285F4]" />
+                      Unlimited quiz attempts
+                    </li>
+                    <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
+                      <Award className="h-4 w-4 text-[#4285F4]" />
+                      Completion certificate
+                    </li>
+                    <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-blue-50/40 px-3 py-2">
+                      <ShieldCheck className="h-4 w-4 text-[#4285F4]" />
+                      Progress saved automatically
+                    </li>
+                  </ul>
 
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="grid gap-3 sm:grid-cols-2">
                   <Link
                     href="/online-course-info"
-                    className="inline-flex items-center justify-center rounded-xl bg-[#4285F4] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-[#4285F4] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                   >
                     Explore Online Course Details
                   </Link>
                   <Link
                     href="/lms-course"
-                    className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                    className="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                   >
                     Go to Course Dashboard
                   </Link>
                 </div>
-              </div>
+                </div>
 
-              <div className="landing-reveal" style={{ animationDelay: "140ms" }}>
-                <div className="overflow-hidden rounded-3xl border border-blue-100">
-                  <Image
-                    src="/landing/online-course-new-addition.png"
-                    alt=" Cinematic laptop-and-phone desk scene showing a driving theory e-learning dashboard with progress modules, blue and white UI theme, premium educational brand feel, soft shadows, realistic photography."
-                    width={1200}
-                    height={900}
-                    className="aspect-[4/3] w-full object-cover"
-                  />
+                <div className="landing-reveal" style={{ animationDelay: "140ms" }}>
+                  <div className="overflow-hidden rounded-3xl border border-blue-100">
+                    <Image
+                      src="/landing/online-course-new-addition.png"
+                      alt=" Cinematic laptop-and-phone desk scene showing a driving theory e-learning dashboard with progress modules, blue and white UI theme, premium educational brand feel, soft shadows, realistic photography."
+                      width={1200}
+                      height={900}
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -562,39 +611,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-blue-100 bg-white/90 py-10">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 text-sm text-slate-600 md:grid-cols-3">
-          <div className="space-y-2">
-            <p className="text-base font-semibold text-slate-900">Ready2Drive PEI</p>
-            <p>
-              Practical driving lessons for PEI learners, with optional online theory support to
-              reinforce real-road training.
-            </p>
-            <p className="text-xs text-slate-500">Copyright 2026 Ready2Drive PEI. All rights reserved.</p>
-          </div>
-
-          <div className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Quick Links</p>
-            <div className="flex flex-col gap-2">
-              <a href="#plans" className="transition-colors hover:text-[#4285F4]">
-                Offline Plans
-              </a>
-              <Link href="/online-course-info" className="transition-colors hover:text-[#4285F4]">
-                Online Course
-              </Link>
-              <Link href="/login" className="transition-colors hover:text-[#4285F4]">
-                Student Login
-              </Link>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Contact</p>
-            <p>123 Training Ave, Charlottetown, PE</p>
-            <p>Mon-Fri: 8:00 AM to 6:00 PM</p>
-            <p>Sat: 9:00 AM to 2:00 PM</p>
-            <p className="text-slate-700">Phone: (902) 555-0147</p>
-            <p className="text-slate-700">Email: hello@ready2drivepei.ca</p>
+      <footer className="border-t border-blue-100/80 bg-white/70 py-6 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>Ready2Drive PEI. Practical lessons + online support for PEI learners.</p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <a href="#plans" className="transition-colors hover:text-[#4285F4]">
+              Plans
+            </a>
+            <Link href="/online-course-info" className="transition-colors hover:text-[#4285F4]">
+              Online Course
+            </Link>
+            <Link href="/login" className="transition-colors hover:text-[#4285F4]">
+              Login
+            </Link>
+            <span className="text-slate-400">(902) 555-0147</span>
           </div>
         </div>
       </footer>
