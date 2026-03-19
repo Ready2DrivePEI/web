@@ -258,7 +258,7 @@ export default function HomePage() {
           <div className="landing-reveal space-y-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#4285F4] shadow-sm">
               <Sparkles className="h-3.5 w-3.5" />
-              Trusted PEI Driving Instruction
+              Licensed Driving Instruction in PEI
             </div>
             <h1 className="font-[var(--font-landing-display)] text-5xl leading-[1.03] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
               Practical driving lessons built for confidence on real roads.
