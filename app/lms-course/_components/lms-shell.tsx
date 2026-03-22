@@ -2,7 +2,8 @@
 
 import type { CSSProperties, ReactNode } from "react"
 import { useSyncExternalStore } from "react"
-import { PanelLeftClose, PanelLeftOpen } from "lucide-react"
+import Link from "next/link"
+import { House, PanelLeftClose, PanelLeftOpen } from "lucide-react"
 import Sidebar from "@/components/lms-sidebar"
 import {
   COLLAPSE_EVENT,
@@ -63,7 +64,18 @@ export function LMSShell({ children }: { children: ReactNode }) {
               <PanelLeftClose className="h-5 w-5" />
             )}
           </button>
-          <div className="ml-1 min-w-0 flex-1 sm:ml-2">{children}</div>
+          <div className="ml-1 min-w-0 flex-1 sm:ml-2">
+            <div className="mb-3 flex justify-end">
+              <Link
+                href="/"
+                className="lms-module-trigger lms-button-outline lms-border inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium"
+              >
+                <House className="h-4 w-4" />
+                Home
+              </Link>
+            </div>
+            {children}
+          </div>
         </div>
       </main>
     </div>
