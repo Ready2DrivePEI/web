@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { Eye, EyeOff, UserPlus } from "lucide-react";
+import { supabase } from "@/lib/supabase/client";
 
 type FormState = {
   fullName: string;
@@ -73,28 +74,46 @@ export function CreateAccountForm() {
     setSuccessMessage("");
     setIsSubmitting(true);
 
-    const response = await fetch("/api/admin/students", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
+    try {
+      if (!supabase) {
+        setSubmitError("Supabase client is not configured.");
+        return;
+      }
 
-    const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      const accessToken = sessionData.session?.access_token;
 
-    if (!response.ok) {
-      setSubmitError(payload?.error ?? "Failed to create account.");
+      if (sessionError || !accessToken) {
+        setSubmitError("Your admin session expired. Please sign in again.");
+        return;
+      }
+
+      const response = await fetch("/api/admin/students", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(form),
+      });
+
+      const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+
+      if (!response.ok) {
+        setSubmitError(payload?.error ?? "Failed to create account.");
+        return;
+      }
+
+      setSuccessMessage(`Account created for ${form.email}. The student can now log in.`);
+      setForm((prev) => {
+        const next = buildInitialState();
+        return { ...next, role: prev.role, status: prev.status };
+      });
+    } catch {
+      setSubmitError("Fetch failed while creating account. Check connection and server config.");
+    } finally {
       setIsSubmitting(false);
-      return;
     }
-
-    setSuccessMessage(`Account created for ${form.email}. The student can now log in.`);
-    setForm((prev) => {
-      const next = buildInitialState();
-      return { ...next, role: prev.role, status: prev.status };
-    });
-    setIsSubmitting(false);
   };
 
   return (

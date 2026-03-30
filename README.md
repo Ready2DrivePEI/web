@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ready2Drive LMS
 
-## Getting Started
+Next.js App Router + TypeScript + Tailwind + Supabase.
 
-First, run the development server:
+## Local Development
 
+1. Copy `.env.example` to `.env.local` and fill real values.
+2. Install dependencies:
+```bash
+npm install
+```
+3. Run dev server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Vercel Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1) Project Settings
+- Framework preset: `Next.js`
+- Build command: `npm run build`
+- Install command: `npm install`
+- Output directory: default (`.next`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2) Environment Variables (Vercel)
+Set these in Vercel for Production (and Preview if needed):
 
-## Learn More
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (optional alias)
+- `SUPABASE_SERVICE_ROLE_KEY` (server-only, required for admin API routes)
+- `SUPABASE_URL` (optional alias)
 
-To learn more about Next.js, take a look at the following resources:
+Use `.env.example` as the reference template.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3) Important Security Note
+- Never put `SUPABASE_SERVICE_ROLE_KEY` in client code.
+- Admin account creation route is server-side and requires an authenticated admin bearer token.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4) Post-Deploy Smoke Checks
+1. Login as admin.
+2. Open `/admin` and create a student account.
+3. Confirm user exists in `auth.users` and `public.profiles`.
+4. Login as student and verify LMS opens.
+5. Check chapter progress updates and resume prompt behavior.

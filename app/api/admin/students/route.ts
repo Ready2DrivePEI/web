@@ -14,6 +14,13 @@ type CreateStudentPayload = {
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
+function getBearerToken(authorizationHeader: string | null): string | null {
+  if (!authorizationHeader) return null;
+  const [scheme, token] = authorizationHeader.split(" ");
+  if (!scheme || !token || scheme.toLowerCase() !== "bearer") return null;
+  return token.trim();
+}
+
 function normalizeDateInput(value: string): string | null {
   const parsed = new Date(value);
   if (Number.isNaN(parsed.getTime())) {
@@ -93,6 +100,30 @@ export async function POST(request: Request) {
   const adminSupabase = createClient<Database>(supabaseUrl, serviceRoleKey, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
+
+  const accessToken = getBearerToken(request.headers.get("authorization"));
+  if (!accessToken) {
+    return NextResponse.json({ error: "Missing admin session." }, { status: 401 });
+  }
+
+  const { data: callerData, error: callerError } = await adminSupabase.auth.getUser(accessToken);
+  if (callerError || !callerData.user) {
+    return NextResponse.json({ error: "Invalid or expired admin session." }, { status: 401 });
+  }
+
+  const { data: callerProfile, error: callerProfileError } = await adminSupabase
+    .from("profiles")
+    .select("role, status")
+    .eq("user_id", callerData.user.id)
+    .maybeSingle();
+
+  if (callerProfileError || !callerProfile) {
+    return NextResponse.json({ error: "Admin profile not found." }, { status: 403 });
+  }
+
+  if (callerProfile.role !== "admin" || callerProfile.status !== "active") {
+    return NextResponse.json({ error: "Admin access required." }, { status: 403 });
+  }
 
   const { data: authData, error: authError } = await adminSupabase.auth.admin.createUser({
     email,
