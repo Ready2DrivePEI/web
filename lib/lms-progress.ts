@@ -12,9 +12,12 @@ export type StudentProgressSnapshot = Pick<
   StudentProgressRow,
   "user_id" | "last_chapter_id" | "furthest_chapter_id" | "progress_percent" | "updated_at"
 >;
+type StudentProgressRowWithId = StudentProgressSnapshot & { id: number };
 
 const PROGRESS_SNAPSHOT_KEY = "r2d:progress:snapshot";
 const LAST_PATH_KEY = "r2d:progress:last-path";
+const PROGRESS_SELECT_FIELDS =
+  "id,user_id,last_chapter_id,furthest_chapter_id,progress_percent,updated_at";
 
 function readLocalSnapshot(): StudentProgressSnapshot | null {
   if (typeof window === "undefined") return null;
@@ -81,21 +84,32 @@ function getSafeFurthestChapterId(candidate: string | null): string | null {
 async function getCurrentUserId() {
   if (!supabase) return null;
   const { data, error } = await supabase.auth.getUser();
-  if (error || !data.user) return null;
+  if (error || !data.user) {
+    if (error) {
+      console.error("[lms-progress] auth user lookup failed:", error.message);
+    }
+    return null;
+  }
   return data.user.id;
 }
 
-async function fetchProgressRow(userId: string): Promise<StudentProgressSnapshot | null> {
+async function fetchProgressRow(userId: string): Promise<StudentProgressRowWithId | null> {
   if (!supabase) return null;
 
   const { data, error } = await supabase
     .from("student_progress")
-    .select("user_id,last_chapter_id,furthest_chapter_id,progress_percent,updated_at")
+    .select(PROGRESS_SELECT_FIELDS)
     .eq("user_id", userId)
+    .order("updated_at", { ascending: false })
+    .order("id", { ascending: false })
+    .limit(1)
     .maybeSingle();
 
-  if (error) return null;
-  return data as StudentProgressSnapshot | null;
+  if (error) {
+    console.error("[lms-progress] fetchProgressRow failed:", error.message);
+    return null;
+  }
+  return data as StudentProgressRowWithId | null;
 }
 
 async function saveProgressRow(
@@ -115,13 +129,77 @@ async function saveProgressRow(
   const { data, error } = await supabase
     .from("student_progress")
     .upsert(rowToSave, { onConflict: "user_id" })
-    .select("user_id,last_chapter_id,furthest_chapter_id,progress_percent,updated_at")
+    .select(PROGRESS_SELECT_FIELDS)
     .maybeSingle();
 
-  if (error || !data) return null;
-  const snapshot = data as StudentProgressSnapshot;
-  writeLocalSnapshot(snapshot);
-  return snapshot;
+  if (!error && data) {
+    const row = data as StudentProgressRowWithId;
+    const snapshot: StudentProgressSnapshot = {
+      user_id: row.user_id,
+      last_chapter_id: row.last_chapter_id,
+      furthest_chapter_id: row.furthest_chapter_id,
+      progress_percent: row.progress_percent,
+      updated_at: row.updated_at,
+    };
+    writeLocalSnapshot(snapshot);
+    return snapshot;
+  }
+
+  if (error) {
+    console.error("[lms-progress] upsert failed, trying fallback save:", error.message);
+  }
+
+  const existing = await fetchProgressRow(userId);
+  if (existing) {
+    const { data: updatedData, error: updateError } = await supabase
+      .from("student_progress")
+      .update(rowToSave)
+      .eq("id", existing.id)
+      .select(PROGRESS_SELECT_FIELDS)
+      .maybeSingle();
+
+    if (!updateError && updatedData) {
+      const row = updatedData as StudentProgressRowWithId;
+      const snapshot: StudentProgressSnapshot = {
+        user_id: row.user_id,
+        last_chapter_id: row.last_chapter_id,
+        furthest_chapter_id: row.furthest_chapter_id,
+        progress_percent: row.progress_percent,
+        updated_at: row.updated_at,
+      };
+      writeLocalSnapshot(snapshot);
+      return snapshot;
+    }
+
+    if (updateError) {
+      console.error("[lms-progress] fallback update failed:", updateError.message);
+    }
+    return null;
+  }
+
+  const { data: insertedData, error: insertError } = await supabase
+    .from("student_progress")
+    .insert(rowToSave)
+    .select(PROGRESS_SELECT_FIELDS)
+    .maybeSingle();
+
+  if (insertError || !insertedData) {
+    if (insertError) {
+      console.error("[lms-progress] fallback insert failed:", insertError.message);
+    }
+    return null;
+  }
+
+  const insertedRow = insertedData as StudentProgressRowWithId;
+  const insertedSnapshot: StudentProgressSnapshot = {
+    user_id: insertedRow.user_id,
+    last_chapter_id: insertedRow.last_chapter_id,
+    furthest_chapter_id: insertedRow.furthest_chapter_id,
+    progress_percent: insertedRow.progress_percent,
+    updated_at: insertedRow.updated_at,
+  };
+  writeLocalSnapshot(insertedSnapshot);
+  return insertedSnapshot;
 }
 
 export async function getStudentProgress(): Promise<StudentProgressSnapshot | null> {
@@ -130,8 +208,15 @@ export async function getStudentProgress(): Promise<StudentProgressSnapshot | nu
 
   const snapshot = await fetchProgressRow(userId);
   if (snapshot) {
-    writeLocalSnapshot(snapshot);
-    return snapshot;
+    const normalized: StudentProgressSnapshot = {
+      user_id: snapshot.user_id,
+      last_chapter_id: snapshot.last_chapter_id,
+      furthest_chapter_id: snapshot.furthest_chapter_id,
+      progress_percent: snapshot.progress_percent,
+      updated_at: snapshot.updated_at,
+    };
+    writeLocalSnapshot(normalized);
+    return normalized;
   }
 
   return readLocalSnapshot();
