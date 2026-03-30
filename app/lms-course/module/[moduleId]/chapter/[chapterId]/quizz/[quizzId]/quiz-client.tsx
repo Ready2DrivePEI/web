@@ -1,14 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { QuizView, type QuizResult, type SelectedAnswers } from "@/app/lms-course/_components/quizView";
 import type { ChapterQuiz } from "@/app/lms-course/data/modules/module1/chapter1quiz";
+import { getChapterIndex } from "@/app/lms-course/data/modules";
+import { getStudentProgress, handleQuizPassProgress } from "@/lib/lms-progress";
 
 interface QuizClientProps {
   moduleId: string;
   chapterId: string;
+  nextChapterId: string | null;
   quiz: ChapterQuiz;
   nextChapterHref: string | null;
 }
@@ -16,14 +20,17 @@ interface QuizClientProps {
 export function QuizClient({
   moduleId,
   chapterId,
+  nextChapterId,
   quiz,
   nextChapterHref,
 }: QuizClientProps) {
+  const router = useRouter();
   const passStorageKey = `r2d:quiz:passed:${moduleId}:${chapterId}`;
   const reviewLessonBasePath = `/lms-course/module/${moduleId}/chapter/${chapterId}/lesson`;
 
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [result, setResult] = useState<QuizResult | undefined>(undefined);
+  const [isSavingPass, setIsSavingPass] = useState(false);
   const [alreadyPassed, setAlreadyPassed] = useState(() => {
     if (typeof window === "undefined") return false;
     return window.localStorage.getItem(passStorageKey) === "true";
@@ -34,6 +41,24 @@ export function QuizClient({
     [quiz.questions, selectedAnswers],
   );
 
+  useEffect(() => {
+    let active = true;
+    void (async () => {
+      const snapshot = await getStudentProgress();
+      if (!active || !snapshot?.furthest_chapter_id) return;
+
+      const currentIndex = getChapterIndex(chapterId);
+      const furthestIndex = getChapterIndex(snapshot.furthest_chapter_id);
+      if (furthestIndex > currentIndex) {
+        setAlreadyPassed(true);
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [chapterId]);
+
   const handleSelect = (questionId: string, optionIndex: number) => {
     if (result?.submitted) return;
 
@@ -43,8 +68,8 @@ export function QuizClient({
     }));
   };
 
-  const handleSubmit = () => {
-    if (submitDisabled) return;
+  const handleSubmit = async () => {
+    if (submitDisabled || isSavingPass) return;
 
     const score = quiz.questions.reduce((total, question) => {
       return selectedAnswers[question.id] === question.correctAnswerIndex
@@ -61,9 +86,22 @@ export function QuizClient({
     });
 
     if (passed) {
-      // TODO replace localStorage with Supabase progress persistence.
       window.localStorage.setItem(passStorageKey, "true");
       setAlreadyPassed(true);
+      setIsSavingPass(true);
+
+      await handleQuizPassProgress({
+        currentChapterId: chapterId,
+        nextChapterId,
+      });
+
+      setIsSavingPass(false);
+      if (nextChapterHref) {
+        router.push(nextChapterHref);
+        return;
+      }
+
+      router.push("/lms-course");
     }
   };
 
@@ -87,7 +125,7 @@ export function QuizClient({
       <main className="flex-grow py-3 sm:py-4">
         {alreadyPassed && !result?.submitted ? (
           <div className="lms-callout lms-callout-info mb-6 rounded-2xl border px-4 py-3 sm:px-5 sm:py-4">
-            <p className="font-semibold">Preview status: quiz already passed on this device.</p>
+            <p className="font-semibold">Preview status: quiz already passed.</p>
             <div className="mt-3 flex flex-wrap gap-3">
               {nextChapterHref ? (
                 <Button asChild>
@@ -110,7 +148,7 @@ export function QuizClient({
           onSubmit={handleSubmit}
           onRetake={handleRetake}
           result={result}
-          submitDisabled={submitDisabled}
+          submitDisabled={submitDisabled || isSavingPass}
           nextChapterHref={nextChapterHref}
         />
       </main>

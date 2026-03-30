@@ -1,14 +1,13 @@
 // app/lms-course/module/[moduleId]/chapter/[chapterId]/lesson/[lessonId]/page.tsx
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { module1, type Module } from "@/app/lms-course/data/modules/module1/chapter1";
-import { module2 } from "@/app/lms-course/data/modules/module2";
-import { module3 } from "@/app/lms-course/data/modules/module3";
+import { courseModules } from "@/app/lms-course/data/modules";
 import { LessonView } from "@/app/lms-course/_components/lessonView";
-
-const modules: Module[] = [module1, module2, module3];
+import { ChapterVisitTracker } from "@/app/lms-course/_components/chapter-visit-tracker";
+import { getChapterHref, isChapterUnlocked } from "@/app/lms-course/data/modules";
+import { getServerFurthestChapterId } from "@/lib/lms-progress-server";
 
 export default async function LessonPage({
   params,
@@ -17,8 +16,15 @@ export default async function LessonPage({
 }) {
   const { moduleId, chapterId, lessonId } = await params;
 
-  const currentModule = modules.find((module) => module.id === moduleId);
+  const currentModule = courseModules.find((module) => module.id === moduleId);
   if (!currentModule) return notFound();
+
+  const furthestChapterId = await getServerFurthestChapterId();
+  const chapterAllowed = isChapterUnlocked(chapterId, furthestChapterId);
+  if (!chapterAllowed && furthestChapterId) {
+    const fallbackHref = getChapterHref(furthestChapterId);
+    if (fallbackHref) redirect(fallbackHref);
+  }
 
   const currentChapter = currentModule.chapters.find((c) => c.id === chapterId);
 
@@ -39,6 +45,7 @@ export default async function LessonPage({
 
   return (
     <div className="lms-lesson-shell relative flex min-h-[80vh] flex-col px-1 pt-2 pb-32 sm:ml-1 sm:px-2 sm:pt-3 sm:pb-36">
+      <ChapterVisitTracker chapterId={chapterId} />
       <header className="lms-lesson-header pb-3">
         <p className="lms-lesson-eyebrow text-xs font-semibold uppercase">{currentChapter.title}</p>
         <h1 className="lms-lesson-title mt-2 text-3xl font-bold leading-tight sm:text-4xl">{lesson.title}</h1>

@@ -10,12 +10,16 @@ interface DrivingSidebarProps {
   isCollapsed: boolean
   theme: LMSTheme
   onToggleTheme: () => void
+  progressPercent: number
+  furthestChapterId: string | null
 }
 
 export default function DrivingSidebar({
   isCollapsed,
   theme,
   onToggleTheme,
+  progressPercent,
+  furthestChapterId,
 }: DrivingSidebarProps) {
 
   return (
@@ -41,11 +45,11 @@ export default function DrivingSidebar({
       </div>
 
       {/* Main Module Navigation */}
-      <ModuleList isCollapsed={isCollapsed} />
+      <ModuleList isCollapsed={isCollapsed} furthestChapterId={furthestChapterId} />
 
       {/* Course Stats Footer */}
       <ProgressFooter
-        percentage={0}
+        percentage={progressPercent}
         isCollapsed={isCollapsed}
         theme={theme}
         onToggleTheme={onToggleTheme}

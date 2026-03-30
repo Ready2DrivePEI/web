@@ -7,6 +7,7 @@ import {
   ChevronRight,
   CheckCircle2,
   Circle,
+  Lock,
   Car,
   IdCard,
   ShieldAlert,
@@ -18,22 +19,28 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { TruncatedLabel } from "./truncated-label";
+import { courseModules, getChapterIndex, getFirstChapterId, isChapterUnlocked } from "@/app/lms-course/data/modules";
+import type { Module } from "@/app/lms-course/data/modules/module1/chapter1";
 
-// 1. Import the Interface
-import { module1, type Module } from "@/app/lms-course/data/modules/module1/chapter1";
-import { module2 } from "@/app/lms-course/data/modules/module2";
-import { module3 } from "@/app/lms-course/data/modules/module3";
+const modules: Module[] = courseModules.map((module) => {
+  if (module.id === "module1") return { ...module, icon: IdCard };
+  if (module.id === "module2") return { ...module, icon: ShieldAlert };
+  if (module.id === "module3") return { ...module, icon: ClipboardCheck };
+  return module;
+});
 
-// 2. Explicitly type the modules array
-const modules: Module[] = [
-  { ...module1, icon: IdCard },
-  { ...(module2 as Module), icon: ShieldAlert },
-  { ...(module3 as Module), icon: ClipboardCheck },
-];
-
-export function ModuleList({ isCollapsed = false }: { isCollapsed?: boolean }) {
+export function ModuleList({
+  isCollapsed = false,
+  furthestChapterId = null,
+}: {
+  isCollapsed?: boolean;
+  furthestChapterId?: string | null;
+}) {
   const pathname = usePathname();
   const [openModule, setOpenModule] = useState<string | null>(modules[0]?.slug ?? null);
+  const fallbackFurthestChapterId = getFirstChapterId();
+  const resolvedFurthestChapterId = furthestChapterId ?? fallbackFurthestChapterId;
+  const furthestIndex = resolvedFurthestChapterId ? getChapterIndex(resolvedFurthestChapterId) : -1;
 
   if (isCollapsed) {
     return (
@@ -47,23 +54,35 @@ export function ModuleList({ isCollapsed = false }: { isCollapsed?: boolean }) {
               ? `/lms-course/module/${module.id}/chapter/${firstChapterId}/lesson/${firstLessonId}`
               : `/lms-course/module/${module.id}`
             const isActive = pathname.includes(`/module/${module.id}/`);
+            const hasUnlockedChapter = module.chapters.some((chapter) =>
+              isChapterUnlocked(chapter.id, resolvedFurthestChapterId),
+            );
 
             return (
-              <Link
+              <div
                 key={module.slug}
-                href={href}
                 className="block"
-                aria-label={module.title}
-                title={module.title}
               >
-                <div
-                  className={`lms-module-trigger flex h-12 items-center justify-center rounded-xl ${
-                    isActive ? "lms-module-trigger-open" : ""
-                  }`}
-                >
-                  <ModuleIcon className={`h-5 w-5 ${isActive ? "lms-success" : "lms-muted"}`} />
-                </div>
-              </Link>
+                {hasUnlockedChapter ? (
+                  <Link href={href} aria-label={module.title} title={module.title}>
+                    <div
+                      className={`lms-module-trigger flex h-12 items-center justify-center rounded-xl ${
+                        isActive ? "lms-module-trigger-open" : ""
+                      }`}
+                    >
+                      <ModuleIcon className={`h-5 w-5 ${isActive ? "lms-success" : "lms-muted"}`} />
+                    </div>
+                  </Link>
+                ) : (
+                  <div
+                    className="lms-module-trigger flex h-12 items-center justify-center rounded-xl opacity-45"
+                    aria-label={`${module.title} locked`}
+                    title={`${module.title} locked`}
+                  >
+                    <Lock className="h-5 w-5 lms-muted" />
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -76,10 +95,12 @@ export function ModuleList({ isCollapsed = false }: { isCollapsed?: boolean }) {
       {modules.map((module) => {
         const isOpen = openModule === module.slug;
         const ModuleIcon = module.icon || Car; // Fallback icon
-
         const completedCount = module.chapters.filter(
-          (chapter) => chapter.completed || chapter.title === "Traffic Lights & Signals",
+          (chapter) => getChapterIndex(chapter.id) <= furthestIndex,
         ).length;
+        const hasUnlockedChapter = module.chapters.some((chapter) =>
+          isChapterUnlocked(chapter.id, resolvedFurthestChapterId),
+        );
 
         return (
           <Collapsible
@@ -97,7 +118,11 @@ export function ModuleList({ isCollapsed = false }: { isCollapsed?: boolean }) {
                 }`}
               >
                 <div className="flex min-w-0 items-center gap-3">
-                  <ModuleIcon className={`h-5 w-5 ${isOpen ? "lms-success" : "lms-muted"}`} />
+                  {hasUnlockedChapter ? (
+                    <ModuleIcon className={`h-5 w-5 ${isOpen ? "lms-success" : "lms-muted"}`} />
+                  ) : (
+                    <Lock className="h-5 w-5 lms-muted" />
+                  )}
                   <TruncatedLabel text={module.title} className="lms-module-title text-left" />
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
@@ -113,12 +138,32 @@ export function ModuleList({ isCollapsed = false }: { isCollapsed?: boolean }) {
 
             <CollapsibleContent className="lms-border mt-1 ml-4 space-y-1 overflow-hidden border-l transition-all">
               {module.chapters.map((chapter) => {
-                // FIXED: TypeScript now knows 'lessons' and 'id' exist because of the Module interface
                 const firstLessonId = chapter.lessons?.[0]?.id || "pg1";
                 const href = `/lms-course/module/${module.id}/chapter/${chapter.id}/lesson/${firstLessonId}`;
                 const isActive = pathname.includes(`/chapter/${chapter.id}`);
-                
-                const isChapterDone = chapter.completed || chapter.title === "Traffic Lights & Signals";
+                const chapterIndex = getChapterIndex(chapter.id);
+                const isChapterDone = chapterIndex <= furthestIndex;
+                const chapterUnlocked = isChapterUnlocked(chapter.id, resolvedFurthestChapterId);
+
+                if (!chapterUnlocked) {
+                  return (
+                    <div
+                      key={chapter.id}
+                      className="lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-4 py-2.5 text-sm opacity-50"
+                      aria-label={`${chapter.title} locked`}
+                    >
+                      <div className="flex min-w-0 items-center gap-3">
+                        <Lock className="h-4 w-4 opacity-65" />
+                        <TruncatedLabel text={chapter.title} className="lms-chapter-title text-left" />
+                      </div>
+                      <TruncatedLabel
+                        text="locked"
+                        className="text-[9px] font-bold uppercase opacity-60"
+                        containerClassName="ml-3 max-w-20 shrink-0"
+                      />
+                    </div>
+                  );
+                }
 
                 return (
                   <Link
@@ -129,9 +174,7 @@ export function ModuleList({ isCollapsed = false }: { isCollapsed?: boolean }) {
                   >
                     <div
                       className={`lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-4 py-2.5 text-sm ${
-                        isActive
-                          ? "lms-chapter-item-active font-medium"
-                          : ""
+                        isActive ? "lms-chapter-item-active font-medium" : ""
                       }`}
                     >
                       <div className="flex min-w-0 items-center gap-3">

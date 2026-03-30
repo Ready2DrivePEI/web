@@ -1,5 +1,6 @@
 "use client";
-import { isSupabaseConfigured, supabase } from "lib/supabaseClient";
+import { isSupabaseConfigured, supabase } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
@@ -7,37 +8,157 @@ import Link from "next/link";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [newTask, setNewTask] = useState({password: "", email: ""}); 
+  const [rememberMe, setRememberMe] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("r2d-remember-me") !== "false";
+  });
   const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
- // Inserts into Supabase
-   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // prevent form from reloading the page
+ // Authenticates with Supabase Auth, then loads the linked profile
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isSubmitting) return;
     setSubmitError("");
+    setIsSubmitting(true);
 
     if (!supabase) {
       setSubmitError("Login service is not configured. Add Supabase env vars in Vercel project settings.");
+      setIsSubmitting(false);
       return;
     }
    
-    const { data, error } = await supabase
-      .from("profiles") // correct method
-      .insert([{ password: newTask.password, email: newTask.email }]);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const email = String(formData.get("email") ?? "").trim().toLowerCase();
+    const password = String(formData.get("password") ?? "");
 
-    if (error) {
-      console.error("Error inserting task:", error);
-      setSubmitError("Could not sign in right now. Please try again.");
-    } else {
-      console.log("Task added:", data);
-      setNewTask({ password: "", email: "" }); // reset form
+    if (!email || !password) {
+      setSubmitError("Please enter both email and password.");
+      setIsSubmitting(false);
+      return;
     }
-  }
+
+    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (authError) {
+      console.error("Login auth error:", authError);
+      if (authError.message.toLowerCase().includes("invalid login credentials")) {
+        setSubmitError(
+          "No Supabase Auth user matched that email/password. Create the user in Supabase Auth first, then try again."
+        );
+      } else {
+        setSubmitError(authError.message || "Could not sign in right now. Please try again.");
+      }
+      setIsSubmitting(false);
+      return;
+    }
+
+    const user = authData.user ?? authData.session?.user;
+
+    if (!user) {
+      setSubmitError("Login failed. Please try again.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("id, email, role, status, expires_at, user_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (profileError) {
+      console.error("Profile fetch error:", profileError);
+      if (profileError.message.toLowerCase().includes("row-level security")) {
+        setSubmitError("Profile access is blocked by RLS policy. Check your profiles SELECT policy.");
+      } else {
+        setSubmitError("Signed in, but profile lookup failed.");
+      }
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!profile) {
+      setSubmitError("Signed in, but no linked profile was found. Set profiles.user_id = auth.users.id.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (profile.status.toLowerCase() !== "active") {
+      setSubmitError("Your account is not active. Contact admin.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (profile.expires_at && new Date(profile.expires_at) < new Date()) {
+      setSubmitError("Your access has expired. Contact admin.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!profile.role) {
+      setSubmitError("Your account is missing a role. Contact admin.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    form.reset();
+    const authSnapshot = JSON.stringify({
+      profileId: profile.id,
+      role: profile.role,
+      email: profile.email,
+      signedInAt: new Date().toISOString(),
+    });
+
+    localStorage.setItem("r2d-remember-me", String(rememberMe));
+    if (rememberMe) {
+      localStorage.setItem("r2d-auth", authSnapshot);
+      sessionStorage.removeItem("r2d-auth");
+    } else {
+      sessionStorage.setItem("r2d-auth", authSnapshot);
+      localStorage.removeItem("r2d-auth");
+    }
+    setIsSubmitting(false);
+    if (profile.role === "admin") {
+      router.push("/admin");
+    } else {
+      router.push("/lms-course");
+    }
+  };
+
+
     useEffect(() => {
+      const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth");
+      if (authSnapshot) {
+        try {
+          const parsed = JSON.parse(authSnapshot) as { role?: string };
+          if (parsed.role === "admin") {
+            router.replace("/admin");
+            return;
+          }
+
+          router.replace("/lms-course");
+          return;
+        } catch {
+          localStorage.removeItem("r2d-auth");
+          sessionStorage.removeItem("r2d-auth");
+        }
+      }
+
+      if (localStorage.getItem("r2d-remember-me") === "false") {
+        void supabase?.auth.signOut();
+      }
+
       const visited = localStorage.getItem("r2d-visited");
       if (!visited) {
         localStorage.setItem("r2d-visited", "true");
       }
-    }, []);
+    }, [router]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 flex items-center justify-center px-6 py-24">
@@ -66,10 +187,13 @@ export default function LoginPage() {
             </label>
             <input
               id="email"
+              name="email"
               type="email"
               placeholder="you@example.com"
               required
-              onChange={(e) => setNewTask(newTask => ({...newTask,email: e.target.value}))}
+              autoComplete="email"
+              autoCapitalize="none"
+              spellCheck={false}
               className="w-full min-h-[48px] px-4 rounded-lg border border-neutral-300 bg-white text-sm text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition"
             />
           </div>
@@ -86,10 +210,11 @@ export default function LoginPage() {
             <div className="relative">
               <input
                 id="password"
+                name="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
                 required
-                onChange={(e) => setNewTask(newTask => ({...newTask,password: e.target.value}))}
+                autoComplete="current-password"
                 className="w-full min-h-[48px] px-4 pr-12 rounded-lg border border-neutral-300 bg-white text-blue-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition"
               />
 
@@ -133,6 +258,8 @@ export default function LoginPage() {
             <label className="flex items-center gap-2 text-neutral-600">
               <input
                 type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
                 className="h-4 w-4 rounded border-neutral-300 focus:ring-2 focus:ring-blue-600"
               />
               Remember me
@@ -149,10 +276,10 @@ export default function LoginPage() {
           {/* Submit */}
           <button
             type="submit"
-            disabled={!isSupabaseConfigured}
+            disabled={!isSupabaseConfigured || isSubmitting}
             className="w-full min-h-[48px] rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:hover:bg-blue-300"
           >
-            Log In
+            {isSubmitting ? "Signing in..." : "Log In"}
           </button>
           {submitError && (
             <p className="text-sm text-red-600">{submitError}</p>
