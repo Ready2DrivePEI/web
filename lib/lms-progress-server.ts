@@ -29,7 +29,23 @@ export async function getServerStudentProgress(): Promise<StudentProgressSnapsho
 }
 
 export async function getServerFurthestChapterId(): Promise<string | null> {
-  const snapshot = await getServerStudentProgress();
-  if (snapshot?.furthest_chapter_id) return snapshot.furthest_chapter_id;
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  // If server cannot resolve the signed-in user session (common when auth is client-only),
+  // do not force a redirect to chapter 1.
+  if (userError || !user) return null;
+
+  const { data, error } = await supabase
+    .from("student_progress")
+    .select("furthest_chapter_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (error) return null;
+  if (data?.furthest_chapter_id) return data.furthest_chapter_id;
   return getFirstChapterId();
 }

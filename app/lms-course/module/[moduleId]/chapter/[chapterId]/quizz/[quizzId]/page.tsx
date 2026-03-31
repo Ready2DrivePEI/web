@@ -1,11 +1,12 @@
 import { notFound, redirect } from "next/navigation";
 import { QuizClient } from "./quiz-client";
 import { chapter1Quiz } from "@/app/lms-course/data/modules/module1/chapter1quiz";
+import { chapter2Quiz } from "@/app/lms-course/data/modules/module1/chapter2quiz";
 import { getChapterHref, getNextChapter, isChapterUnlocked } from "@/app/lms-course/data/modules";
 import { getServerFurthestChapterId } from "@/lib/lms-progress-server";
 import { ChapterVisitTracker } from "@/app/lms-course/_components/chapter-visit-tracker";
 
-const quizzes = [chapter1Quiz];
+const quizzes = [chapter1Quiz, chapter2Quiz];
 
 function getNextChapterInfo(moduleId: string, chapterId: string): { nextChapterId: string | null; nextChapterHref: string | null } {
   const nextChapter = getNextChapter(chapterId);

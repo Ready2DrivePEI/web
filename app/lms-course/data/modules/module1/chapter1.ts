@@ -1,4 +1,5 @@
 import { IdCard, LucideIcon } from "lucide-react";
+import { chapter2 } from "./chapter2";
 
 export type ContentBlock =
   | { type: "image"; src: string; alt: string; layout?: "quarter" | "half" }
@@ -85,7 +86,12 @@ export const module1: Module = {
             },
             {
               type: "list",
-              items: ["Expired", "Suspended", "Cancelled", "Invalidated"],
+              items: [
+                "Expired (the date has passed)",
+                "Suspended (temporarily taken away)",
+                "Cancelled (completely removed)",
+                "Invalid for any reason",
+              ],
             },
             {
               type: "text",
@@ -158,5 +164,6 @@ export const module1: Module = {
         },
       ],
     },
+    chapter2,
   ],
 };

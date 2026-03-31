@@ -7,13 +7,21 @@ type ActiveProfile = Pick<
   "user_id" | "email" | "role" | "status" | "created_at" | "expires_at"
 >;
 
+function normalizeEnv(value: string | undefined): string | null {
+  const cleaned = value?.trim();
+  return cleaned ? cleaned : null;
+}
+
 function getSupabaseServerConfig() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL;
-  const serviceRoleKey =
+  const supabaseUrl = normalizeEnv(
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL,
+  );
+  const serviceRoleKey = normalizeEnv(
     process.env.SUPABASE_SERVICE_ROLE_KEY ??
-    process.env.SUPABASE_SERVICE_ROLE ??
-    process.env.SUPABASE_SECRET_KEY ??
-    process.env.SUPABASE_KEY;
+      process.env.SUPABASE_SERVICE_ROLE ??
+      process.env.SUPABASE_SECRET_KEY ??
+      process.env.SUPABASE_KEY,
+  );
 
   return { supabaseUrl, serviceRoleKey };
 }
@@ -59,8 +67,16 @@ export async function GET(request: Request) {
   const { supabaseUrl, serviceRoleKey } = getSupabaseServerConfig();
 
   if (!supabaseUrl || !serviceRoleKey) {
+    const missing: string[] = [];
+    if (!supabaseUrl) missing.push("NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL)");
+    if (!serviceRoleKey) {
+      missing.push(
+        "SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_SECRET_KEY / SUPABASE_KEY / SUPABASE_SERVICE_ROLE)",
+      );
+    }
+
     return NextResponse.json(
-      { error: "Server auth configuration missing for admin dashboard." },
+      { error: `Server auth configuration missing for admin dashboard: ${missing.join(", ")}.` },
       { status: 500 },
     );
   }
