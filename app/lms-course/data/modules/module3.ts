@@ -1,33 +1,13 @@
 import { ClipboardCheck } from "lucide-react";
 import { type Module } from "./module1/chapter1";
+import { m3chapter1 } from "@/app/lms-course/data/modules/module3/m3chapter1";
+import { m3chapter2 } from "@/app/lms-course/data/modules/module3/m3chapter2";
+import { m3chapter3 } from "@/app/lms-course/data/modules/module3/m3chapter3";
 
 export const module3: Module = {
   id: "module3",
-  title: "Safety & Maintenance",
-  slug: "safety-maintenance",
+  title: "Vehicle Control and Everyday Driving Skills",
+  slug: "vehicle-control-and-everyday-driving-skills",
   icon: ClipboardCheck,
-  chapters: [
-    {
-      id: "pre-trip",
-      title: "Pre-Trip Inspection",
-      type: "lesson",
-      slug: "pre-trip-check",
-      completed: false,
-      lessons: [
-        {
-          id: "m3-p1",
-          title: "Walk-Around Check",
-          content: [
-            { type: "text", value: "Before you start the engine, you should perform a basic safety check." },
-            {
-              type: "image",
-              src: "/module1/peidrivers-licence.jpg",
-              alt: "Diagram of car tire pressure check",
-            },
-            { type: "list", items: ["Check tire pressure", "Ensure lights are clean", "Look for fluid leaks under the car"] }
-          ]
-        }
-      ]
-    }
-  ]
+  chapters: [m3chapter1, m3chapter2, m3chapter3],
 };

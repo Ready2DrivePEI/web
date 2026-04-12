@@ -1,6 +1,6 @@
 import type { Database } from "@/database.types";
 import { createClient } from "@/lib/supabase/server";
-import { getFirstChapterId } from "@/app/lms-course/data/modules";
+import { getChapterIndex, getFirstChapterId } from "@/app/lms-course/data/modules";
 
 type StudentProgressRow = Database["public"]["Tables"]["student_progress"]["Row"];
 
@@ -46,6 +46,9 @@ export async function getServerFurthestChapterId(): Promise<string | null> {
     .maybeSingle();
 
   if (error) return null;
-  if (data?.furthest_chapter_id) return data.furthest_chapter_id;
+
+  const storedFurthest = data?.furthest_chapter_id ?? null;
+  if (storedFurthest && getChapterIndex(storedFurthest) >= 0) return storedFurthest;
+
   return getFirstChapterId();
 }

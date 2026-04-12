@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
+  <rect width="1280" height="720" fill="#0F172A"/>
+  <rect x="56" y="56" width="1168" height="608" rx="28" fill="#111C33" stroke="#2B3F66" stroke-width="2"/>
+  <rect x="112" y="108" width="760" height="504" rx="20" fill="#F8FAFC"/>
+  <rect x="904" y="108" width="264" height="240" rx="18" fill="#1D4ED8"/>
+  <rect x="904" y="372" width="264" height="240" rx="18" fill="#0EA5E9"/>
+  <text x="140" y="162" fill="#0F172A" font-size="42" font-family="Arial, sans-serif" font-weight="700">Knowledge Test Checklist</text>
+  <text x="140" y="210" fill="#334155" font-size="28" font-family="Arial, sans-serif">Traffic laws</text>
+  <circle cx="125" cy="201" r="10" fill="#22C55E"/>
+  <text x="140" y="258" fill="#334155" font-size="28" font-family="Arial, sans-serif">Safe driving practices</text>
+  <circle cx="125" cy="249" r="10" fill="#22C55E"/>
+  <text x="140" y="306" fill="#334155" font-size="28" font-family="Arial, sans-serif">Road sign recognition</text>
+  <circle cx="125" cy="297" r="10" fill="#22C55E"/>
+  <rect x="140" y="346" width="620" height="2" fill="#CBD5E1"/>
+  <text x="140" y="396" fill="#0F172A" font-size="32" font-family="Arial, sans-serif" font-weight="700">Vision Test Areas</text>
+  <text x="140" y="438" fill="#475569" font-size="26" font-family="Arial, sans-serif">• Visual acuity</text>
+  <text x="140" y="476" fill="#475569" font-size="26" font-family="Arial, sans-serif">• Field of vision</text>
+  <text x="140" y="514" fill="#475569" font-size="26" font-family="Arial, sans-serif">• Color recognition</text>
+  <text x="928" y="156" fill="#DBEAFE" font-size="24" font-family="Arial, sans-serif" font-weight="700">Road Signs</text>
+  <circle cx="1036" cy="238" r="56" fill="#FACC15"/>
+  <rect x="1000" y="202" width="72" height="72" rx="12" fill="#DC2626"/>
+  <polygon points="1036,392 1090,486 982,486" fill="#F97316"/>
+  <rect x="960" y="566" width="152" height="20" rx="10" fill="#BAE6FD"/>
+  <text x="946" y="604" fill="#E0F2FE" font-size="20" font-family="Arial, sans-serif">Study - Practice - Pass</text>
+</svg>

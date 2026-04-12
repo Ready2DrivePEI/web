@@ -15,30 +15,8 @@ export function StudentAccountMenu() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [cachedIdentity] = useState(() => {
-    if (typeof window === "undefined") {
-      return { displayName: "Student", email: null as string | null };
-    }
-
-    const localSnapshot = localStorage.getItem("r2d-auth");
-    const sessionSnapshot = sessionStorage.getItem("r2d-auth");
-    const snapshot = localSnapshot ?? sessionSnapshot;
-
-    if (!snapshot) {
-      return { displayName: "Student", email: null as string | null };
-    }
-
-    try {
-      const parsed = JSON.parse(snapshot) as { email?: string };
-      if (parsed.email) {
-        return { displayName: getEmailName(parsed.email), email: parsed.email };
-      }
-    } catch {}
-
-    return { displayName: "Student", email: null as string | null };
-  });
-  const [displayName, setDisplayName] = useState(cachedIdentity.displayName);
-  const [email, setEmail] = useState<string | null>(cachedIdentity.email);
+  const [displayName, setDisplayName] = useState("Student");
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;

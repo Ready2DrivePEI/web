@@ -26,7 +26,8 @@ function readLocalSnapshot(): StudentProgressSnapshot | null {
   if (!rawValue) return null;
 
   try {
-    return JSON.parse(rawValue) as StudentProgressSnapshot;
+    const parsed = JSON.parse(rawValue) as StudentProgressSnapshot;
+    return normalizeSnapshot(parsed);
   } catch {
     return null;
   }
@@ -35,6 +36,21 @@ function readLocalSnapshot(): StudentProgressSnapshot | null {
 function writeLocalSnapshot(snapshot: StudentProgressSnapshot) {
   if (typeof window === "undefined") return;
   window.localStorage.setItem(PROGRESS_SNAPSHOT_KEY, JSON.stringify(snapshot));
+}
+
+function normalizeSnapshot(snapshot: StudentProgressSnapshot): StudentProgressSnapshot {
+  const safeFurthest = getSafeFurthestChapterId(snapshot.furthest_chapter_id ?? null);
+  const safeLast =
+    snapshot.last_chapter_id && getChapterIndex(snapshot.last_chapter_id) >= 0
+      ? snapshot.last_chapter_id
+      : safeFurthest;
+
+  return {
+    ...snapshot,
+    last_chapter_id: safeLast,
+    furthest_chapter_id: safeFurthest,
+    progress_percent: getProgressPercentForChapter(safeFurthest),
+  };
 }
 
 type LastPathCache = {
@@ -208,13 +224,13 @@ export async function getStudentProgress(): Promise<StudentProgressSnapshot | nu
 
   const snapshot = await fetchProgressRow(userId);
   if (snapshot) {
-    const normalized: StudentProgressSnapshot = {
+    const normalized = normalizeSnapshot({
       user_id: snapshot.user_id,
       last_chapter_id: snapshot.last_chapter_id,
       furthest_chapter_id: snapshot.furthest_chapter_id,
       progress_percent: snapshot.progress_percent,
       updated_at: snapshot.updated_at,
-    };
+    });
     writeLocalSnapshot(normalized);
     return normalized;
   }
@@ -253,13 +269,14 @@ export async function handleQuizPassProgress(args: {
   const defaultFurthest = getSafeFurthestChapterId(current?.furthest_chapter_id ?? null);
   if (!defaultFurthest) return null;
 
-  const storedFurthest = current?.furthest_chapter_id ?? defaultFurthest;
+  const storedFurthest = getSafeFurthestChapterId(current?.furthest_chapter_id ?? null) ?? defaultFurthest;
   const storedFurthestIndex = getChapterIndex(storedFurthest);
-  const candidateFurthest = nextChapterId ?? currentChapterId;
+  const candidateFurthest = getSafeFurthestChapterId(nextChapterId ?? currentChapterId) ?? storedFurthest;
   const candidateIndex = getChapterIndex(candidateFurthest);
   const shouldAdvance = candidateIndex > storedFurthestIndex;
   const resolvedFurthest = shouldAdvance ? candidateFurthest : storedFurthest;
-  const resolvedLastVisited = nextChapterId ?? currentChapterId;
+  const resolvedLastVisited =
+    nextChapterId && getChapterIndex(nextChapterId) >= 0 ? nextChapterId : currentChapterId;
 
   const nextSnapshot = await saveProgressRow(userId, {
     last_chapter_id: resolvedLastVisited,

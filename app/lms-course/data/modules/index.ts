@@ -2,6 +2,9 @@ import { module1, type Module } from "@/app/lms-course/data/modules/module1/chap
 import { module2 } from "@/app/lms-course/data/modules/module2";
 import { module3 } from "@/app/lms-course/data/modules/module3";
 
+// Temporary default: keep locks bypassed unless explicitly set to "false".
+const LMS_BYPASS_LOCKS = process.env.NEXT_PUBLIC_LMS_BYPASS_LOCKS !== "false";
+
 export interface OrderedChapter {
   index: number;
   moduleId: string;
@@ -52,6 +55,8 @@ export function getNextChapter(currentChapterId: string): OrderedChapter | null 
 }
 
 export function isChapterUnlocked(chapterId: string, furthestChapterId: string | null): boolean {
+  if (LMS_BYPASS_LOCKS) return true;
+
   if (!furthestChapterId) {
     const firstChapterId = getFirstChapterId();
     return Boolean(firstChapterId && chapterId === firstChapterId);
@@ -61,6 +66,10 @@ export function isChapterUnlocked(chapterId: string, furthestChapterId: string |
   const chapterIndex = getChapterIndex(chapterId);
   if (furthestIndex < 0 || chapterIndex < 0) return false;
   return chapterIndex <= furthestIndex;
+}
+
+export function isLmsBypassLocksEnabled(): boolean {
+  return LMS_BYPASS_LOCKS;
 }
 
 export function getProgressPercentForChapter(chapterId: string | null): number {

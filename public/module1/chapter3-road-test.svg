@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
+  <rect width="1280" height="720" fill="#0B1326"/>
+  <rect x="56" y="56" width="1168" height="608" rx="28" fill="#10203C" stroke="#2A4674" stroke-width="2"/>
+  <rect x="108" y="108" width="684" height="504" rx="20" fill="#F8FAFC"/>
+  <rect x="824" y="108" width="348" height="504" rx="20" fill="#132A4D"/>
+  <text x="140" y="162" fill="#0F172A" font-size="40" font-family="Arial, sans-serif" font-weight="700">Road Test Day Essentials</text>
+  <text x="140" y="220" fill="#334155" font-size="28" font-family="Arial, sans-serif">Bring:</text>
+  <text x="140" y="264" fill="#475569" font-size="24" font-family="Arial, sans-serif">• Your own vehicle</text>
+  <text x="140" y="302" fill="#475569" font-size="24" font-family="Arial, sans-serif">• Licensed accompanying driver</text>
+  <text x="140" y="340" fill="#475569" font-size="24" font-family="Arial, sans-serif">• Proof of insurance</text>
+  <text x="140" y="378" fill="#475569" font-size="24" font-family="Arial, sans-serif">• Vehicle registration</text>
+  <rect x="140" y="410" width="610" height="2" fill="#CBD5E1"/>
+  <text x="140" y="458" fill="#0F172A" font-size="30" font-family="Arial, sans-serif" font-weight="700">Vehicle Pre-Check</text>
+  <text x="140" y="500" fill="#475569" font-size="24" font-family="Arial, sans-serif">Brakes • Lights • Horn • Tires • Mirrors</text>
+  <text x="140" y="538" fill="#475569" font-size="24" font-family="Arial, sans-serif">Wipers • Seat belts • Plate + inspection sticker</text>
+  <rect x="874" y="166" width="248" height="118" rx="20" fill="#1D4ED8"/>
+  <rect x="904" y="194" width="188" height="50" rx="14" fill="#DBEAFE"/>
+  <circle cx="930" cy="332" r="24" fill="#0EA5E9"/>
+  <circle cx="1068" cy="332" r="24" fill="#0EA5E9"/>
+  <path d="M906 320H1092L1048 286H950L906 320Z" fill="#60A5FA"/>
+  <rect x="886" y="364" width="228" height="8" rx="4" fill="#BFDBFE"/>
+  <text x="876" y="430" fill="#E2E8F0" font-size="28" font-family="Arial, sans-serif" font-weight="700">Examiner observes</text>
+  <text x="876" y="472" fill="#CBD5E1" font-size="22" font-family="Arial, sans-serif">• Starting and stopping</text>
+  <text x="876" y="506" fill="#CBD5E1" font-size="22" font-family="Arial, sans-serif">• Turning and parking</text>
+  <text x="876" y="540" fill="#CBD5E1" font-size="22" font-family="Arial, sans-serif">• Signal/sign response</text>
+  <text x="876" y="574" fill="#CBD5E1" font-size="22" font-family="Arial, sans-serif">• Hazard anticipation</text>
+</svg>

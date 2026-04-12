@@ -32,6 +32,14 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           );
         }
 
+        if (block.type === "heading") {
+          return (
+            <h2 key={idx} className="pt-2 text-xl font-semibold leading-tight sm:text-2xl">
+              {block.value}
+            </h2>
+          );
+        }
+
         if (block.type === "list") {
           return (
             <ul
@@ -61,6 +69,26 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                 className="h-auto w-full rounded-xl object-cover"
                 priority={idx === 0}
               />
+            </figure>
+          );
+        }
+
+        if (block.type === "imagePlaceholder") {
+          const layout = block.layout ?? "half";
+
+          return (
+            <figure
+              key={idx}
+              className={`lms-image-frame my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
+            >
+              <div className="flex min-h-44 flex-col items-center justify-center gap-3 rounded-xl border border-dashed px-5 py-8 text-center sm:min-h-52">
+                <p className="lms-muted text-xs font-semibold uppercase tracking-wide">
+                  Image Placeholder
+                </p>
+                <p className="max-w-[60ch] text-sm leading-6 sm:text-base">
+                  {block.prompt}
+                </p>
+              </div>
             </figure>
           );
         }

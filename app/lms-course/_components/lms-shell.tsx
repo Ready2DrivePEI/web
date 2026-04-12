@@ -18,11 +18,12 @@ import {
   subscribeToPreference,
 } from "@/app/lms-course/_components/lms-preferences"
 import { getCachedLastLmsPath, getStudentProgress, type StudentProgressSnapshot } from "@/lib/lms-progress"
-import { getChapterHref } from "@/app/lms-course/data/modules"
+import { getChapterHref, isLmsBypassLocksEnabled } from "@/app/lms-course/data/modules"
 import { ContinueCoursePrompt } from "@/app/lms-course/_components/continue-course-prompt"
 import { StudentAccountMenu } from "@/app/lms-course/_components/student-account-menu"
 
 export function LMSShell({ children }: { children: ReactNode }) {
+  const bypassLocksEnabled = isLmsBypassLocksEnabled()
   const pathname = usePathname()
   const router = useRouter()
   const isCollapsed = useSyncExternalStore(
@@ -148,6 +149,11 @@ export function LMSShell({ children }: { children: ReactNode }) {
           </button>
           <div className="ml-1 min-w-0 flex-1 sm:ml-2">
             <div className="mb-3 flex items-center justify-end gap-2">
+              {bypassLocksEnabled ? (
+                <span className="lms-progress-pill rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide">
+                  Dev Preview Mode
+                </span>
+              ) : null}
               <Link
                 href="/"
                 className="lms-module-trigger lms-button-outline lms-border inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium"
