@@ -1,0 +1,56 @@
+## General
+- Do not run lint or build.
+- Skip optional steps, suggestions, and confirmations.
+- No explanatory comments in output files.
+
+# MD to Chapter/Quiz TS Conversion Prompt Template
+
+Convert `m4chapter1.md` into `m4chapter1.ts` and `m4chapter1quiz.ts`.
+Follow the exact structure used by existing chapter/quiz TS files in this project.
+
+## Hard Rules
+- Do not rewrite content.
+- Do not summarize content.
+- Do not remove content.
+- Preserve wording exactly.
+- Preserve headings, body text, lists, tables, callouts, warnings, and table data exactly.
+- Keep chapter content and quiz content separate.
+
+## Conversion Rules
+1. Split lesson pages using `---` boundaries in the markdown.
+- Any line that starts with `---` is a page boundary (including forms like `---pg2`).
+- Each resulting page becomes a lesson with sequential ids (`..._pg1`, `..._pg2`, etc.).
+
+2. Map markdown into chapter content blocks using the existing TS schema.
+- Headings -> `heading`
+- Paragraphs -> `text`
+- Bullets/numbered lists -> `list`
+- Tables -> `table`
+- Callouts/warnings/notes -> `callout` with matching variant where possible
+- Image prompts -> `imagePlaceholder` where:
+  - `type: "imagePlaceholder"`
+  - `prompt` is the exact image prompt text
+  - remove label prefix like `IMAGE:` and keep only the prompt sentence
+
+3. Quiz handling
+- Move all quiz questions from markdown into TARGET_QUIZ_TS only.
+- Keep question and options text exactly.
+- Set `correctAnswerIndex` from the markdown answer key/correct answer marker. 
+- Set `sourceLessonId` to the lesson page containing the answer source.
+
+4. File outputs
+- Create/update both TS files.
+- Match naming/exports/import style exactly like neighboring files.
+- Do not modify unrelated files.
+
+## Fail Conditions
+- Any wording edits.
+- Any removed content.
+- Any collapsed sections.
+- Any rewritten callouts/warnings.
+- Any changed table values.
+
+## General
+- Do not run lint or build.
+- Skip optional steps, suggestions, and confirmations.
+- No explanatory comments in output files.

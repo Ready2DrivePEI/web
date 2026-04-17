@@ -74,9 +74,10 @@ export const chapter2: Chapter = {
         },
             {
  type: "image",
-  src: "/module1/m1ch2pg2.png",
+  src: "/module1/ch1pg3.png",
   alt: "Knowledge Test → Vision Test → Novice Driver Course, with short labels for each check.",
   layout: "half",
+  align: "left",
 }, 
         {
           type: "heading",

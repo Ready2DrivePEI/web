@@ -2,6 +2,9 @@ import Image from "next/image";
 import type { ContentBlock } from "@/app/lms-course/data/modules/module1/chapter1";
 
 type CalloutVariant = "info" | "warning" | "danger";
+type ImageLayout = "quarter" | "half" | "full";
+type ImageAlign = "left" | "center" | "right";
+type TableSize = "default" | "large";
 
 const calloutStyles: Record<CalloutVariant, string> = {
   info: "lms-callout-info",
@@ -15,10 +18,40 @@ const calloutLabels: Record<CalloutVariant, string> = {
   danger: "Critical",
 };
 
-const imageLayoutClasses: Record<"quarter" | "half", string> = {
-  quarter: "w-full lg:w-1/4 lg:ml-0 lg:mr-auto",
-  half: "w-full lg:w-1/2 mx-auto",
+const imageLayoutClasses: Record<ImageLayout, string> = {
+  quarter: "w-full lg:w-1/4",
+  half: "w-full lg:w-1/2",
+  full: "w-full",
 };
+
+const imageAlignClasses: Record<ImageAlign, string> = {
+  left: "justify-start",
+  center: "justify-center",
+  right: "justify-end",
+};
+
+function getImageAlignClass(align?: ImageAlign): string {
+  return imageAlignClasses[align ?? "center"];
+}
+
+const tableShellClasses: Record<TableSize, string> = {
+  default: "max-w-[72ch]",
+  large: "max-w-[92ch]",
+};
+
+const tableTextClasses: Record<TableSize, string> = {
+  default: "text-sm sm:text-base",
+  large: "text-sm sm:text-base lg:text-lg",
+};
+
+const tableCellClasses: Record<TableSize, string> = {
+  default: "px-4 py-2",
+  large: "px-4 py-2 lg:px-5 lg:py-3",
+};
+
+function getTableSize(size?: TableSize): TableSize {
+  return size ?? "default";
+}
 
 export function LessonView({ content }: { content: ContentBlock[] }) {
   return (
@@ -55,21 +88,23 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
 
         if (block.type === "image") {
           const layout = block.layout ?? "half";
+          const alignClass = getImageAlignClass(block.align);
 
           return (
-            <figure
-              key={idx}
-              className={`lms-image-frame my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
-            >
-              <Image
-                src={block.src}
-                alt={block.alt}
-                width={960}
-                height={640}
-                className="h-auto w-full rounded-xl object-cover"
-                priority={idx === 0}
-              />
-            </figure>
+            <div key={idx} className={`my-6 flex w-full ${alignClass}`}>
+              <figure
+                className={`lms-image-frame overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
+              >
+                <Image
+                  src={block.src}
+                  alt={block.alt}
+                  width={960}
+                  height={640}
+                  className="h-auto w-full rounded-xl object-cover"
+                  priority={idx === 0}
+                />
+              </figure>
+            </div>
           );
         }
 
@@ -94,18 +129,20 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
         }
 
         if (block.type === "table") {
+          const tableSize = getTableSize(block.size);
+
           return (
             <div
               key={idx}
-              className="lms-table-shell my-6 max-w-[72ch] overflow-x-auto rounded-2xl border"
+              className={`lms-table-shell my-6 overflow-x-auto rounded-2xl border ${tableShellClasses[tableSize]}`}
             >
-              <table className="w-full border-collapse text-left text-sm sm:text-base">
+              <table className={`w-full border-collapse text-left ${tableTextClasses[tableSize]}`}>
                 <thead>
                   <tr className="lms-table-head-row border-b">
                     {block.headers.map((header, i) => (
                       <th
                         key={i}
-                        className="lms-table-head-cell px-4 py-2 font-semibold"
+                        className={`lms-table-head-cell font-semibold ${tableCellClasses[tableSize]}`}
                       >
                         {header}
                       </th>
@@ -122,7 +159,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                       {row.map((cell, cellIndex) => (
                         <td
                           key={cellIndex}
-                          className={`px-4 py-2 align-top ${
+                          className={`${tableCellClasses[tableSize]} align-top ${
                             cellIndex === 0
                               ? "lms-table-cell-strong font-medium"
                               : "lms-table-cell"

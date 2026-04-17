@@ -535,6 +535,19 @@
     color: var(--lms-text-muted);
   }
 
+  .lms-shell[data-lms-theme="light"] .lms-table-shell {
+    background-color: #ffffff;
+    border-color: #cfddee;
+  }
+
+  .lms-shell[data-lms-theme="light"] .lms-table-head-row {
+    background-color: #f6faff;
+  }
+
+  .lms-shell[data-lms-theme="light"] .lms-table-cell {
+    color: #334155;
+  }
+
   .lms-quiz-option {
     border-color: transparent;
     background-color: transparent;
