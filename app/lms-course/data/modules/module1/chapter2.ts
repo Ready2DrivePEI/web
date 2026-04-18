@@ -2,26 +2,25 @@ import type { Chapter } from "./chapter1";
 
 export const chapter2: Chapter = {
   id: "chapter2",
-  title: "Eligibility, Testing, and Licence Maintenance",
+  title: "Documents, Eligibility, and Test-Day Readiness",
   type: "lesson",
-  slug: "eligibility-testing-licence-maintenance",
+  slug: "documents-eligibility-test-day-readiness",
   completed: false,
   lessons: [
     {
       id: "pg1",
-      title: "Eligibility and Documents (What You Need Before Testing)",
+      title: "Eligibility and Required Documents",
       content: [
-           {
+        {
           type: "image",
           src: "/module1/filling permit form.png",
-          alt: "PEI licence classes 1 through 9 overview",
+          alt: "Licence application form and identity documents",
           layout: "half",
-        }, 
+        },
         {
           type: "heading",
           value: "Check Eligibility First",
         },
-        
         {
           type: "table",
           headers: ["Requirement", "What to Confirm"],
@@ -61,7 +60,7 @@ export const chapter2: Chapter = {
     },
     {
       id: "pg2",
-      title: "The Test Journey (Knowledge, Vision, Novice Course)",
+      title: "Knowledge Test, Vision Test, and Novice Course",
       content: [
         {
           type: "heading",
@@ -72,18 +71,17 @@ export const chapter2: Chapter = {
           value:
             "Before road testing, PEI confirms that you understand rules, meet vision standards, and complete required safety learning.",
         },
-            {
- type: "image",
-  src: "/module1/ch1pg3.png",
-  alt: "Knowledge Test → Vision Test → Novice Driver Course, with short labels for each check.",
-  layout: "half",
-  align: "left",
-}, 
+        {
+          type: "image",
+          src: "/module1/ch1pg3.png",
+          alt: "Knowledge Test, Vision Test, and Novice Driver Course sequence",
+          layout: "half",
+          align: "left",
+        },
         {
           type: "heading",
           value: "What Each Requirement Checks",
         },
-        
         {
           type: "table",
           headers: ["Requirement", "What it checks", "Notes"],
@@ -91,7 +89,7 @@ export const chapter2: Chapter = {
             [
               "Knowledge test",
               "Road rules, safe driving practices, and sign recognition",
-              "Written or oral format; if unsuccessful you can rebook",
+              "Written or oral format; if unsuccessful, you can rebook",
             ],
             [
               "Vision test",
@@ -105,12 +103,29 @@ export const chapter2: Chapter = {
             ],
           ],
         },
-
-    ],
+        {
+          type: "heading",
+          value: "Extra Test-Day Readiness Notes",
+        },
+        {
+          type: "list",
+          items: [
+            "If reading is difficult, you may request an oral version of the knowledge test",
+            "If you do not pass the knowledge test, you can book another attempt for a later date",
+            "Vision testing may assess visual acuity, field of vision, and color recognition",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          value:
+            "These steps are not random barriers. They confirm that you can understand the rules, see properly, and enter the road test with the right preparation.",
+        },
+      ],
     },
     {
       id: "pg3",
-      title: "Road Test Day - What Happens and How to Pass the Process",
+      title: "Road Test Day Requirements and Vehicle Checks",
       content: [
         {
           type: "heading",
@@ -123,6 +138,7 @@ export const chapter2: Chapter = {
             ["Vehicle", "You provide the vehicle and it must pass safety/equipment checks"],
             ["Accompaniment", "You must arrive with a licensed driver"],
             ["Documents", "Bring proof of insurance (pink card) and valid registration"],
+            ["Passengers", "Additional passengers are not permitted during the road test"],
           ],
         },
         {
@@ -157,15 +173,14 @@ export const chapter2: Chapter = {
           type: "callout",
           variant: "warning",
           value:
-            "If you pass through driver education certification, obtain your Class 5 photo licence within 30 days or you may face retesting and additional fees.",
+            "If your vehicle fails required safety or legal checks, the road test will not proceed.",
         },
       ],
     },
     {
       id: "pg4",
-      title: "Keeping Your Licence Valid (Renewals, Updates, Duplicates)",
+      title: "Renewals, Updates, and Duplicate Licences",
       content: [
-        
         {
           type: "heading",
           value: "Validity Timelines",
@@ -212,7 +227,7 @@ export const chapter2: Chapter = {
     },
     {
       id: "pg5",
-      title: "Out-of-Province and Exchange Rules (What Transfers, What Doesn't)",
+      title: "Out-of-Province and Exchange Basics",
       content: [
         {
           type: "heading",
@@ -269,73 +284,6 @@ export const chapter2: Chapter = {
           variant: "warning",
           value:
             "Do not assume transferability. Confirm your exact case through current PEI channels before booking tests or travel.",
-        },
-      ],
-    },
-    {
-      id: "pg6",
-      title: "Your Personal Licensing Action Plan",
-      content: [
-        {
-          type: "heading",
-          value: "Step-by-Step Plan",
-        },
-        {
-          type: "table",
-          headers: ["Stage", "Action"],
-          rows: [
-            [
-              "1. Set your target",
-              "Most beginners follow Class 7 to Class 5",
-            ],
-            [
-              "2. Confirm eligibility",
-              "Check age, status, and under-18 consent needs",
-            ],
-            [
-              "3. Prepare documents",
-              "Gather identity and PEI residency proof before booking",
-            ],
-            [
-              "4. Complete pre-road requirements",
-              "Pass knowledge and vision testing, then complete the novice course",
-            ],
-            [
-              "5. Practice under Stage 1 rules",
-              "Follow supervision, BAC, and restriction requirements every drive",
-            ],
-            [
-              "6. Book and pass the road test",
-              "Attend with a compliant vehicle and required documents",
-            ],
-            [
-              "7. Finish post-pass steps",
-              "Complete photo licence issuance within the required timeline",
-            ],
-            [
-              "8. Stay compliant",
-              "Maintain renewals and update deadlines",
-            ],
-          ],
-        },
-        {
-          type: "heading",
-          value: "Self-Check Before Quiz",
-        },
-        {
-          type: "list",
-          items: [
-            "Can you explain the difference between Class 7 and Class 5?",
-            "Can you describe the key Stage 1 supervision and BAC rules?",
-            "Do you know which documents to bring for a first permit application?",
-            "Can you identify what can cancel a road test before it starts?",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "warning",
-          value:
-            "If you can answer the self-check confidently, you are ready to move into quiz mode with a full Chapter 2 mental map.",
         },
       ],
     },

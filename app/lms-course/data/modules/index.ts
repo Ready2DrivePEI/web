@@ -1,6 +1,9 @@
 import { module1, type Module } from "@/app/lms-course/data/modules/module1/chapter1";
 import { module2 } from "@/app/lms-course/data/modules/module2";
 import { module3 } from "@/app/lms-course/data/modules/module3";
+import { module4 } from "@/app/lms-course/data/modules/module4";
+import { module5 } from "@/app/lms-course/data/modules/module5";
+import { module6 } from "@/app/lms-course/data/modules/module6";
 
 // Temporary default: keep locks bypassed unless explicitly set to "false".
 const LMS_BYPASS_LOCKS = process.env.NEXT_PUBLIC_LMS_BYPASS_LOCKS !== "false";
@@ -14,7 +17,7 @@ export interface OrderedChapter {
   firstLessonId: string | null;
 }
 
-export const courseModules: Module[] = [module1, module2 as Module, module3 as Module];
+export const courseModules: Module[] = [module1, module2 as Module, module3 as Module, module4 as Module, module5 as Module, module6 as Module];
 
 export const orderedChapters: OrderedChapter[] = courseModules.flatMap((module, moduleIndex) =>
   module.chapters.map((chapter, chapterIndex) => ({

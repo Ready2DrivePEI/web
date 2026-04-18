@@ -1,6 +1,5 @@
 import { IdCard, LucideIcon } from "lucide-react";
 import { chapter2 } from "./chapter2";
-import { chapter3 } from "./chapter3";
 
 export type ContentBlock =
   | {
@@ -58,6 +57,11 @@ const chapter1: Chapter = {
   completed: false,
   lessons: [
     {
+      // Original pg1 split into pg1 + pg2
+      // Rationale: "What a licence is" and "what makes it invalid + class conditions"
+      // are three distinct concepts. The table, class rules text, and two callouts
+      // at the bottom of the original page belong to a separate mental model from
+      // the introductory licence definition at the top.
       id: "pg1",
       title: "What a Driver's Licence Really Means",
       content: [
@@ -82,6 +86,12 @@ const chapter1: Chapter = {
           value:
             "Think of your licence like a specialized tool that gives you privilege within specified limits.",
         },
+      ],
+    },
+    {
+      id: "pg2",
+      title: "Licence Validity and Class Conditions",
+      content: [
         {
           type: "heading",
           value: "When a Licence Is Not Valid",
@@ -90,7 +100,10 @@ const chapter1: Chapter = {
           type: "table",
           headers: ["Status", "What It Means for Driving"],
           rows: [
-            ["Expired", "The date has passed; you'll need to renew this before you can legally drive again."],
+            [
+              "Expired",
+              "The date has passed; you'll need to renew this before you can legally drive again.",
+            ],
             ["Suspended", "Driving privileges are temporarily paused."],
             ["Cancelled", "Driving privileges have been removed."],
             [
@@ -123,7 +136,11 @@ const chapter1: Chapter = {
       ],
     },
     {
-      id: "pg2",
+      // Original pg2 — kept as-is.
+      // Rationale: The beginner/commercial lists and the 9-row summary table are
+      // intentionally redundant. The lists build conceptual grouping; the table
+      // gives quick reference. Splitting them would break that reinforcement pattern.
+      id: "pg3",
       title: "PEI Licence Classes (Class 1-9) Made Simple",
       content: [
         {
@@ -176,7 +193,7 @@ const chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "At-a-Glance Class Table summary",
+          value: "At-a-Glance Class Table Summary",
         },
         {
           type: "table",
@@ -202,8 +219,12 @@ const chapter1: Chapter = {
       ],
     },
     {
-      id: "pg3",
-      title: "Your Beginner Pathway (GDL) From Day 1",
+      // Original pg3 split into pg4 + pg5
+      // Rationale: The 8-row GDL requirements table is the heaviest cognitive block
+      // in the chapter. Learners need a clean page boundary after absorbing it before
+      // moving on to "what happens next" and the closing summary list.
+      id: "pg4",
+      title: "Your Beginner Pathway (GDL): Stage 1 Rules",
       content: [
         {
           type: "heading",
@@ -244,12 +265,12 @@ const chapter1: Chapter = {
             [
               "Supervisor Standard",
               "Supervisor must have 4+ years of driving experience.",
-              "Ensures they are experinced enough.",
+              "Ensures they are experienced enough.",
             ],
             [
               "Vehicles Allowed",
               "Supervised driving in cars, motorcycles, or mopeds.",
-              "To keep early practice focused on commonly used vehicle types",
+              "To keep early practice focused on commonly used vehicle types.",
             ],
             [
               "Required Decal",
@@ -259,7 +280,7 @@ const chapter1: Chapter = {
             [
               "Core Restrictions",
               "Zero alcohol (BAC) and no handheld devices.",
-              "To reduce impairment and distraction during early driving practice",
+              "To reduce impairment and distraction during early driving practice.",
             ],
             [
               "Night Restriction",
@@ -274,10 +295,16 @@ const chapter1: Chapter = {
             [
               "Permit Validity",
               "Valid for two years from issue.",
-              "Gives you time to give the test when you're truly ready.",
+              "Gives you time to take the test when you're truly ready.",
             ],
           ],
         },
+      ],
+    },
+    {
+      id: "pg5",
+      title: "Completing Your GDL Journey",
+      content: [
         {
           type: "heading",
           value: "What Happens Next",
@@ -316,5 +343,5 @@ export const module1: Module = {
   title: "Your Driver's Licence",
   slug: "your-drivers-licence",
   icon: IdCard,
-  chapters: [chapter1, chapter2, chapter3],
+  chapters: [chapter1, chapter2],
 };

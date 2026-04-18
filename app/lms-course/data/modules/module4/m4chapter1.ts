@@ -11,7 +11,7 @@ export const m4chapter1: Chapter = {
       id: "m4ch1_pg1",
       title: "Driving Distractions and Aggressive Behavior",
       content: [
-        { type: "heading", value: "The Dangers of a Distracted Mind" },
+        { type: "heading", value: "🧠  The Dangers of a Distracted Mind" },
         {
           type: "text",
           value:
@@ -60,7 +60,7 @@ export const m4chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Q: Can I quickly check a text at a red light?** A: No. You are still considered to be \"driving\" while stopped at a red light. You must be legally parked to handle your phone.",
+            "**Q: Can I quickly check a text at a red light?**\nA: No. You are still considered to be \"driving\" while stopped at a red light. You must be legally parked to handle your phone.",
         },
       ],
     },
@@ -74,7 +74,7 @@ export const m4chapter1: Chapter = {
           prompt:
             "A side-by-side comparison showing two drivers approaching a stop. One reacts normally and stops in time, while the impaired driver reacts late and travels extra distance, nearly hitting an obstacle.",
         },
-        { type: "heading", value: "How Substances Affect Your Driving Abilities" },
+        { type: "heading", value: "💊 How Substances Affect Your Driving Abilities" },
         {
           type: "text",
           value:
@@ -113,7 +113,7 @@ export const m4chapter1: Chapter = {
       id: "m4ch1_pg3",
       title: "Severe Penalties, Zero Tolerance, and Drag Racing",
       content: [
-        { type: "heading", value: "The Legal Consequences of High-Risk Choices" },
+        { type: "heading", value: "⚖️ The Legal Consequences of High-Risk Choices" },
         {
           type: "text",
           value:

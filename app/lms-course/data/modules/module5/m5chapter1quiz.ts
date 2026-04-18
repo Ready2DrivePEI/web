@@ -1,0 +1,128 @@
+import type { ChapterQuiz } from "@/app/lms-course/data/modules/module1/chapter1quiz";
+
+export const m5chapter1Quiz: ChapterQuiz = {
+  id: "m5chapter1-quiz",
+  chapterId: "m5chapter1",
+  title: "Chapter Quiz",
+  description: "Cyclists and the Road — Equal Rights, Shared Space",
+  passRule: "all-correct",
+  questions: [
+    {
+      id: "q1",
+      question: "Under PEI law, cyclists are entitled to ride at least how far from the curb?",
+      options: [
+        "30 centimetres",
+        "Half a metre",
+        "One metre",
+        "Two metres",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m5ch1_pg2",
+    },
+    {
+      id: "q2",
+      question: "You are driving and about to make a right turn at an intersection. What specific danger should you check for involving cyclists?",
+      options: [
+        "Cyclists crossing from the opposite side of the road",
+        "Cyclists pulling up alongside your vehicle on the right — check your blind spots",
+        "Cyclists riding on the sidewalk next to the intersection",
+        "Cyclists making a U-turn behind you",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch1_pg2",
+    },
+    {
+      id: "q3",
+      question: "Why should you NOT blow your horn when passing a cyclist?",
+      options: [
+        "It is illegal to use your horn near any cyclist",
+        "The noise may frighten them and cause them to swerve into your path",
+        "Horns do not produce enough sound for cyclists to hear",
+        "It will distract other motor vehicle drivers behind you",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch1_pg2",
+    },
+    {
+      id: "q4",
+      question: "What equipment must a bicycle have for night riding under PEI law?",
+      options: [
+        "A front lamp visible from 150 metres, a rear red reflector visible from 90 metres, and a bell audible from 30 metres",
+        "A flashing blue light on the front and a white reflector on the rear",
+        "Only a rear red reflector visible from 300 metres",
+        "Front and rear headlamps plus a horn audible from 100 metres",
+      ],
+      correctAnswerIndex: 0,
+      explanation: "Correct Answer: A",
+      sourceLessonId: "m5ch1_pg4",
+    },
+    {
+      id: "q5",
+      question: "What is the legal classification of an E-bike in Prince Edward Island?",
+      options: [
+        "A standard bicycle with extra rules",
+        "A limited-speed motorcycle, classified as a moped — requiring a valid driver's licence",
+        "A motorized bicycle requiring only a bicycle helmet",
+        "An off-highway vehicle restricted to bike paths",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch1_pg5",
+    },
+    {
+      id: "q6",
+      question: "A cyclist is riding one metre from the curb and suddenly moves further into your lane. What is the most likely reason?",
+      options: [
+        "They are trying to block your lane on purpose",
+        "They are avoiding drainage grates, potholes, debris, or other road hazards",
+        "They are making an illegal lane change",
+        "They are preparing to make a left turn from the wrong lane",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch1_pg2",
+    },
+    {
+      id: "q7",
+      question: "You are parked on the curb and about to open your car door. Whose responsibility is it to check for approaching cyclists?",
+      options: [
+        "The cyclist's — they should be watching for parked car doors",
+        "No one's — it is an unavoidable accident",
+        "The driver's — it is your responsibility not to open the door into oncoming traffic",
+        "The city's — they should provide separate bike lanes",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m5ch1_pg2",
+    },
+    {
+      id: "q8",
+      question: "After a crash, what must you do with your bicycle helmet?",
+      options: [
+        "Clean it with soap and water and continue using it",
+        "Replace it — a bicycle helmet is designed for only one crash",
+        "Have it inspected at a bike shop to check for internal damage",
+        "Remove and replace only the foam padding inside",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch1_pg6",
+    },
+    {
+      id: "q9",
+      question: "(Tricky) A cyclist is making a left turn on a multi-lane road. Is this legal, and what should you as a driver do?",
+      options: [
+        "It is illegal — cyclists must always stay in the right lane",
+        "It is legal — cyclists can make left turns the same way motorists do; give them extra consideration since they are exposed",
+        "It is legal only if the cyclist has turn signal lights installed",
+        "It is legal, but only at intersections with dedicated bike signals",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch1_pg2",
+    }
+  ],
+};

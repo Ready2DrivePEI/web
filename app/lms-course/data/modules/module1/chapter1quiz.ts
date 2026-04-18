@@ -62,5 +62,33 @@ export const chapter1Quiz: ChapterQuiz = {
         "Stage 1 requires a qualified supervising driver beside the learner while driving.",
       sourceLessonId: "pg3",
     },
+    {
+      id: "q4",
+      question: "Which statement about licence conditions is correct?",
+      options: [
+        "Conditions are optional suggestions for new drivers only",
+        "Conditions only apply to commercial drivers",
+        "If your licence lists a condition like corrective lenses, you must follow it",
+        "Conditions stop applying after you pass your first road test",
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        "Licence conditions are part of your legal driving privilege and must be followed.",
+      sourceLessonId: "pg1",
+    },
+    {
+      id: "q5",
+      question: "When can a Class 7 driver usually become eligible for the Class 5 road test?",
+      options: [
+        "After 30 days of driving",
+        "After 365 days, or 275 days with driver education",
+        "As soon as the written test is passed",
+        "Only after turning 18",
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        "The waiting period is 365 days, or 275 days with driver education.",
+      sourceLessonId: "pg3",
+    },
   ],
 };

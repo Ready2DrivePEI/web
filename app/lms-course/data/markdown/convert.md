@@ -1,20 +1,21 @@
 ## General
 - Do not run lint or build.
-- Skip optional steps, suggestions, and confirmations.
+- Skip optional steps, text, completed and describing what you are going to do..(strict)
 - No explanatory comments in output files.
 
 # MD to Chapter/Quiz TS Conversion Prompt Template
 
-Convert `m4chapter1.md` into `m4chapter1.ts` and `m4chapter1quiz.ts`.
+Convert `m6chapter1.md` into `m6chapter1.ts` and `m6chapter1quiz.ts`.
 Follow the exact structure used by existing chapter/quiz TS files in this project.
 
 ## Hard Rules
 - Do not rewrite content.
-- Do not summarize content.
+- Do not summarize content.a
 - Do not remove content.
 - Preserve wording exactly.
 - Preserve headings, body text, lists, tables, callouts, warnings, and table data exactly.
 - Keep chapter content and quiz content separate.
+- Keep `Q:` and `A:` on separate lines whenever both appear.
 
 ## Conversion Rules
 1. Split lesson pages using `---` boundaries in the markdown.
@@ -23,6 +24,7 @@ Follow the exact structure used by existing chapter/quiz TS files in this projec
 
 2. Map markdown into chapter content blocks using the existing TS schema.
 - Headings -> `heading`
+- do not add any heading right after title at page start.
 - Paragraphs -> `text`
 - Bullets/numbered lists -> `list`
 - Tables -> `table`
@@ -31,6 +33,9 @@ Follow the exact structure used by existing chapter/quiz TS files in this projec
   - `type: "imagePlaceholder"`
   - `prompt` is the exact image prompt text
   - remove label prefix like `IMAGE:` and keep only the prompt sentence
+- Do not use em dashes (—) anywhere in the output.
+Replace all em dashes with commas, periods, or restructured sentences.
+Ensure no special dash characters (– —) appear in final text.
 
 3. Quiz handling
 - Move all quiz questions from markdown into TARGET_QUIZ_TS only.
@@ -42,6 +47,14 @@ Follow the exact structure used by existing chapter/quiz TS files in this projec
 - Create/update both TS files.
 - Match naming/exports/import style exactly like neighboring files.
 - Do not modify unrelated files.
+
+5. Mandatory LMS wiring (every conversion)
+- After creating chapter/quiz TS files, connect them to LMS routing and navigation in the same task.
+- Ensure a module definition file exists (`app/lms-course/data/modules/moduleX.ts`) and includes the new chapter in `chapters`.
+- Ensure `app/lms-course/data/modules/index.ts` imports the module and includes it in `courseModules` in the correct sequence.
+- Ensure the quiz route registry includes the new quiz in `app/lms-course/module/[moduleId]/chapter/[chapterId]/quizz/[quizzId]/page.tsx`.
+- Ensure chapter progression works across module boundaries: finishing the last chapter quiz of Module N should navigate to the first lesson of Module N+1.
+- Conversion is not complete unless module, chapter, quiz, and next-chapter navigation all resolve correctly in LMS paths.
 
 ## Fail Conditions
 - Any wording edits.

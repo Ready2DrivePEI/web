@@ -1,0 +1,113 @@
+import type { ChapterQuiz } from "@/app/lms-course/data/modules/module1/chapter1quiz";
+
+export const m4chapter2Quiz: ChapterQuiz = {
+  id: "m4chapter2-quiz",
+  chapterId: "m4chapter2",
+  title: "Chapter Quiz",
+  description: "Legal Consequences: Demerit Points, Penalties, and Interlocks",
+  passRule: "all-correct",
+  questions: [
+    {
+      id: "q1",
+      question: "How many demerit points trigger an automatic three-month suspension for an experienced driver?",
+      options: [
+        "6 points",
+        "9 points",
+        "12 points",
+        "15 points",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m4ch2_pg1",
+    },
+    {
+      id: "q2",
+      question: "During Stage 2 of the GDL program, at how many demerit points is your license suspended for one month?",
+      options: [
+        "3 points",
+        "6 points",
+        "9 points",
+        "12 points",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m4ch2_pg2",
+    },
+    {
+      id: "q3",
+      question: "What happens if a new driver in the GDL program receives a ticket for not wearing a seat belt?",
+      options: [
+        "They receive a warning letter.",
+        "They receive a $50 fine but no points.",
+        "Their license is immediately suspended.",
+        "They are sent to an interview.",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m4ch2_pg2",
+    },
+    {
+      id: "q4",
+      question: "True or False: Drivers under 19, or those who have had a license for less than 3 years, must have a \"0\" blood alcohol content while driving.",
+      options: [
+        "True",
+        "False",
+      ],
+      correctAnswerIndex: 0,
+      explanation: "Correct Answer: A",
+      sourceLessonId: "m4ch2_pg2",
+    },
+    {
+      id: "q5",
+      question: "At what point range is an experienced driver required to attend an interview to \"show cause\" why their license shouldn't be suspended?",
+      options: [
+        "3 to 5 points",
+        "6, 7, or 8 points",
+        "9, 10, or 11 points",
+        "12 points or more",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m4ch2_pg1",
+    },
+    {
+      id: "q6",
+      question: "What happens if a driver using an Ignition Interlock device fails a random breath test while the car is running?",
+      options: [
+        "The engine shuts off immediately while driving.",
+        "The device issues a warning, records the event, and activates vehicle alarms (like the horn).",
+        "The police are immediately dispatched to the GPS location.",
+        "The driver receives 5 demerit points.",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m4ch2_pg3",
+    },
+    {
+      id: "q7",
+      question: "How often must an installed Ignition Interlock device be serviced and calibrated?",
+      options: [
+        "Every 30 days",
+        "At least every 60 days",
+        "Every 6 months",
+        "Once a year",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m4ch2_pg3",
+    },
+    {
+      id: "q8",
+      question: "After returning from a demerit point suspension, how long is the experienced driver's probation period?",
+      options: [
+        "30 days",
+        "3 months",
+        "1 year",
+        "2 years",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m4ch2_pg1",
+    },
+  ],
+};

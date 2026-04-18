@@ -42,8 +42,12 @@ export const m2chapter2: Chapter = {
       ],
     },
     {
+      // Merged: pg2 (Right-of-Way Fundamentals) + pg3 (Stop Signs, Yield, Left Turns)
+      // Rationale: Both pages address right-of-way rules at intersections. pg2 introduces
+      // the concept and scanning behaviour; pg3 applies it to specific control types.
+      // The progression is continuous — no meaningful cognitive break between them.
       id: "m2ch2_pg2",
-      title: "Right-of-Way Fundamentals at Intersections",
+      title: "Right-of-Way Rules: Intersections, Signs, and Turns",
       content: [
         {
           type: "text",
@@ -74,12 +78,6 @@ export const m2chapter2: Chapter = {
           value:
             "Common mistake: assuming right-of-way means you can enter without checking.",
         },
-      ],
-    },
-    {
-      id: "m2ch2_pg3",
-      title: "Stop Signs, Yield Signs, and Left Turns",
-      content: [
         {
           type: "heading",
           value: "Stop sign",
@@ -116,7 +114,7 @@ export const m2chapter2: Chapter = {
       ],
     },
     {
-      id: "m2ch2_pg4",
+      id: "m2ch2_pg3",
       title: "Entering from Driveways, Lanes, and Alleys",
       content: [
         {
@@ -146,7 +144,7 @@ export const m2chapter2: Chapter = {
       ],
     },
     {
-      id: "m2ch2_pg5",
+      id: "m2ch2_pg4",
       title: "Special Right-of-Way: Emergency and Funeral Vehicles",
       content: [
         {
@@ -170,8 +168,12 @@ export const m2chapter2: Chapter = {
       ],
     },
     {
-      id: "m2ch2_pg6",
-      title: "Pedestrian Rights at Signalized and Unsignalized Intersections",
+      // Merged: pg6 (Pedestrian Rights) + pg7 (No-Pass Rule at Pedestrian Stops)
+      // Rationale: pg7 contains a single rule that is a direct behavioural extension of
+      // pedestrian crosswalk scenarios in pg6. It is too brief to justify a standalone page
+      // and reads as a natural "also note" addendum to the crosswalk section.
+      id: "m2ch2_pg5",
+      title: "Pedestrian Rights and the No-Pass Rule at Crossings",
       content: [
         {
           type: "text",
@@ -202,25 +204,14 @@ export const m2chapter2: Chapter = {
           prompt:
             "Create a simple SVG visual with two scenes: right-turn at walk signal and unsignalized crosswalk yield.",
         },
-      ],
-    },
-    {
-      id: "m2ch2_pg7",
-      title: "No-Pass Rule at Pedestrian Stops",
-      content: [
-        {
-          type: "text",
-          value:
-            "If a car ahead stops for a pedestrian, you must stay behind it and not pass.",
-        },
         {
           type: "heading",
-          value: "Why this rule exists",
+          value: "No-pass rule when a vehicle is stopped for a pedestrian",
         },
         {
           type: "text",
           value:
-            "Situation: A stopped vehicle blocks your view of the crosswalk. Action: remain behind and slow. Reason: a pedestrian may be hidden in front of that vehicle.",
+            "If a car ahead stops for a pedestrian, you must stay behind it and not pass. Situation: A stopped vehicle blocks your view of the crosswalk. Action: remain behind and slow. Reason: a pedestrian may be hidden in front of that vehicle.",
         },
         {
           type: "callout",
@@ -231,7 +222,7 @@ export const m2chapter2: Chapter = {
       ],
     },
     {
-      id: "m2ch2_pg8",
+      id: "m2ch2_pg6",
       title: "Chapter Wrap-Up: Intersection and Pedestrian Decision Flow",
       content: [
         {

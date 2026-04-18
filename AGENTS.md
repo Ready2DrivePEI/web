@@ -5,8 +5,9 @@ This project should prioritize clarity, trust, usability, and maintainable imple
 When making changes, prefer practical improvements that make the product easier to understand and easier to use.
 
 ## Project context
-- Stack: Next.js App Router + TypeScript + Tailwind CSS.
-- Product shape: marketing landing + online-course info + LMS experience.
+- Stack: Next.js App Router + TypeScript + Tailwind CSS + Supabase (auth + database).
+- UI: shadcn/ui component library.
+- Product shape: marketing landing + online-course info + LMS experience (driving school).
 - Priority: preserve continuity across these surfaces unless the task explicitly asks for a redesign.
 
 ## General behavior
@@ -90,6 +91,7 @@ When making changes, prefer practical improvements that make the product easier 
 - Dev: `npm run dev`
 - Build: `npm run build`
 - Lint: `npm run lint`
+- Typecheck: `npx tsc --noEmit`
 
 ## Definition of done
 A task is done when:

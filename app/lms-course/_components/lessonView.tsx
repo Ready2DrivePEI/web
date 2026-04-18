@@ -52,6 +52,22 @@ const tableCellClasses: Record<TableSize, string> = {
 function getTableSize(size?: TableSize): TableSize {
   return size ?? "default";
 }
+function renderFormattedText(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      const inner = part.slice(2, -2);
+      return (
+        <strong key={i} className="font-semibold">
+          {inner}
+        </strong>
+      );
+    }
+
+    return <span key={i}>{part}</span>;
+  });
+}
 
 export function LessonView({ content }: { content: ContentBlock[] }) {
   return (
@@ -60,7 +76,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
         if (block.type === "text") {
           return (
             <p key={idx} className="max-w-[72ch] text-balance">
-              {block.value}
+              {renderFormattedText(block.value)}
             </p>
           );
         }
@@ -80,7 +96,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
               className="lms-reading-list max-w-[72ch] list-disc space-y-1 pl-5"
             >
               {block.items.map((item, i) => (
-                <li key={i}>{item}</li>
+                <li key={i}>{renderFormattedText(item)}</li>
               ))}
             </ul>
           );

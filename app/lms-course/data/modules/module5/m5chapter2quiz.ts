@@ -1,0 +1,128 @@
+import type { ChapterQuiz } from "@/app/lms-course/data/modules/module1/chapter1quiz";
+
+export const m5chapter2Quiz: ChapterQuiz = {
+  id: "m5chapter2-quiz",
+  chapterId: "m5chapter2",
+  title: "Chapter Quiz",
+  description: "What Are Motorcycles and Mopeds?",
+  passRule: "all-correct",
+  questions: [
+    {
+      id: "q1",
+      question: "What percentage of a motorcycle's total stopping power comes from the front brake?",
+      options: [
+        "About 25%",
+        "About 50%",
+        "About 75%",
+        "About 90%",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m5ch2_pg5",
+    },
+    {
+      id: "q2",
+      question: "You are riding at 80 km/h and need to turn left. What technique must you use?",
+      options: [
+        "Turn the handlebars sharply to the left",
+        "Push forward on the left handlebar to make the bike lean left",
+        "Push forward on the right handlebar to make the bike lean left",
+        "Shift your body weight to the right side of the seat",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch2_pg4",
+    },
+    {
+      id: "q3",
+      question: "Your rear wheel locks up while braking hard in a straight line. What should you do?",
+      options: [
+        "Release the rear brake immediately and re-apply gently",
+        "Keep the rear brake locked until you come to a complete stop",
+        "Apply the front brake harder to compensate",
+        "Turn the handlebars in the opposite direction of the skid",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch2_pg5",
+    },
+    {
+      id: "q4",
+      question: "Why is the left tire track generally the best lane position for a motorcyclist?",
+      options: [
+        "It's closest to the shoulder for quick escapes",
+        "It avoids the centre-lane oil buildup, improves your visibility to other drivers, and discourages lane sharing",
+        "It lets you ride partially in the oncoming lane for a better view",
+        "It is required by PEI law",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch2_pg6",
+    },
+    {
+      id: "q5",
+      question: "At what speed does counter-steering become necessary on a motorcycle?",
+      options: [
+        "Below 10 km/h",
+        "Above 20 km/h",
+        "Above 50 km/h",
+        "Only on highways above 80 km/h",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch2_pg4",
+    },
+    {
+      id: "q6",
+      question: "You are riding and your front wheel suddenly starts wobbling violently from side to side at high speed. What is the correct response?",
+      options: [
+        "Accelerate hard to stabilize the bike",
+        "Brake firmly with the front brake",
+        "Grip the handlebars firmly, gradually close the throttle, and pull off the road",
+        "Shift down into a lower gear immediately",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m5ch2_pg7",
+    },
+    {
+      id: "q7",
+      question: "Which of these is a legal requirement for motorcycle passengers in PEI?",
+      options: [
+        "The passenger must hold onto the rider's waist at all times",
+        "The passenger must be at least 16 years old",
+        "Both the rider and passenger must wear approved helmets",
+        "The passenger must keep both feet on the ground at stops",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m5ch2_pg7",
+    },
+    {
+      id: "q8",
+      question: "Your throttle becomes stuck wide open while riding. What should you do first?",
+      options: [
+        "Squeeze the front brake as hard as possible",
+        "Use the engine stop switch and clutch together, then apply brakes",
+        "Shift into the highest gear and coast to a stop",
+        "Turn off the ignition key while riding",
+      ],
+      correctAnswerIndex: 1,
+      explanation: "Correct Answer: B",
+      sourceLessonId: "m5ch2_pg7",
+    },
+    {
+      id: "q9",
+      question: "A rider approaching an intersection should:",
+      options: [
+        "Speed up to clear the intersection quickly",
+        "Assume they have been seen if they have the right-of-way",
+        "Slow down before entering, even if other traffic must yield to them",
+        "Move to the centre of the lane for maximum visibility",
+      ],
+      correctAnswerIndex: 2,
+      explanation: "Correct Answer: C",
+      sourceLessonId: "m5ch2_pg6",
+    }
+  ],
+};
