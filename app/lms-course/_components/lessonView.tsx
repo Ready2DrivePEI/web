@@ -75,7 +75,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
       {content.map((block, idx) => {
         if (block.type === "text") {
           return (
-            <p key={idx} className="max-w-[72ch] text-balance">
+            <p key={idx} className="max-w-[72ch] whitespace-pre-wrap text-balance">
               {renderFormattedText(block.value)}
             </p>
           );
@@ -83,7 +83,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
 
         if (block.type === "heading") {
           return (
-            <h2 key={idx} className="pt-2 text-xl font-semibold leading-tight sm:text-2xl">
+            <h2 key={idx} className="whitespace-pre-wrap pt-2 text-xl font-semibold leading-tight sm:text-2xl">
               {block.value}
             </h2>
           );
@@ -96,7 +96,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
               className="lms-reading-list max-w-[72ch] list-disc space-y-1 pl-5"
             >
               {block.items.map((item, i) => (
-                <li key={i}>{renderFormattedText(item)}</li>
+                <li key={i} className="whitespace-pre-wrap">{renderFormattedText(item)}</li>
               ))}
             </ul>
           );
@@ -136,7 +136,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                 <p className="lms-muted text-xs font-semibold uppercase tracking-wide">
                   Image Placeholder
                 </p>
-                <p className="max-w-[60ch] text-sm leading-6 sm:text-base">
+                <p className="max-w-[60ch] whitespace-pre-wrap text-sm leading-6 sm:text-base">
                   {block.prompt}
                 </p>
               </div>
@@ -203,7 +203,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
               <p className="text-sm font-semibold uppercase tracking-wide">
                 {calloutLabels[variant]}
               </p>
-              <p className="mt-1 text-base leading-6">{block.value}</p>
+              <p className="mt-1 whitespace-pre-wrap text-base leading-6">{block.value}</p>
             </div>
           );
         }

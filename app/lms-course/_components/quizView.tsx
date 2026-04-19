@@ -67,7 +67,7 @@ export function QuizView({
               <p className="lms-muted text-[11px] font-semibold uppercase tracking-wide">
                 Question {idx + 1}
               </p>
-              <h2 className="text-base font-semibold leading-6 sm:text-lg">
+              <h2 className="whitespace-pre-wrap text-base font-semibold leading-6 sm:text-lg">
                 {question.question}
               </h2>
             </header>
@@ -106,7 +106,7 @@ export function QuizView({
                       />
                       <span className="flex min-w-0 gap-2">
                         <span className="font-medium">{optionLabel}.</span>
-                        <span className="min-w-0">{normalizedOption}</span>
+                        <span className="min-w-0 whitespace-pre-wrap">{normalizedOption}</span>
                       </span>
                     </label>
                   </li>
@@ -116,11 +116,11 @@ export function QuizView({
 
             {showFeedback && !isCorrect ? (
               <div className="lms-callout lms-callout-success space-y-3 rounded-xl border px-3 py-3 sm:px-4">
-                <p className="lms-feedback-explanation text-sm leading-6 sm:text-base">
+                <p className="lms-feedback-explanation whitespace-pre-wrap text-sm leading-6 sm:text-base">
                   <span className="lms-feedback-wrong font-semibold">Incorrect.</span>{" "}
                   {question.explanation}
                 </p>
-                <p className="lms-feedback-correct text-sm leading-6 sm:text-base">
+                <p className="lms-feedback-correct whitespace-pre-wrap text-sm leading-6 sm:text-base">
                   Correct answer: <span className="font-semibold">{correctOptionLabel}.</span>{" "}
                   {correctOptionText}
                 </p>

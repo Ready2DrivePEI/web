@@ -18,12 +18,12 @@ export const m2chapter2: Chapter = {
         },
         {
           type: "heading",
-          value: "Seat belts and child restraints in real life",
+          value: "👶 Seat belts and child restraints in real life",
         },
         {
           type: "text",
           value:
-            "Situation: You are about to start a short trip. Action: make sure everyone is properly restrained before moving. Reason: many serious injuries happen close to home at low-to-medium speed.",
+            "**Situation:** You are about to start a short trip.\n**Action:** Make sure everyone is properly restrained before moving.\n**Reason:** Many serious injuries happen close to home at low-to-medium speed.",
         },
         {
           type: "list",
@@ -56,21 +56,21 @@ export const m2chapter2: Chapter = {
         },
         {
           type: "heading",
-          value: "Same-time arrival at a 4-way stop",
+          value: "🤝 Same-time arrival at a 4-way stop",
         },
         {
           type: "text",
           value:
-            "Situation: You and another car stop at the same time. Action: if the other vehicle is on your right, let them go first. Reason: shared expectations reduce intersection confusion.",
+            "**Situation:** You and another car arrive at the same time.\n**Action:** If the other vehicle is on your right, let them go first.\n**Reason:** Shared expectations reduce intersection confusion.",
         },
         {
           type: "heading",
-          value: "When visibility is poor",
+          value: "🔍 When visibility is poor",
         },
         {
           type: "text",
           value:
-            "Situation: Parked vehicles block your view. Action: move only after slow, full scanning. Reason: priority means little if you cannot see conflicting road users.",
+            "**Situation:** Parked vehicles block your view.\n**Action:** Move only after slow, full scanning.\n**Reason:** Priority means little if you cannot see conflicting road users.",
         },
         {
           type: "callout",
@@ -80,36 +80,36 @@ export const m2chapter2: Chapter = {
         },
         {
           type: "heading",
-          value: "Stop sign",
+          value: "🛑 Stop sign",
         },
         {
           type: "text",
           value:
-            "Situation: Quiet neighborhood stop sign with no obvious traffic. Action: stop completely at the correct point, then continue when safe. Reason: full stops create predictable movement for all users.",
+            "**Situation:** Quiet neighbourhood stop sign with no obvious traffic.\n**Action:** Stop completely at the correct point, then continue when safe.\n**Reason:** Full stops create predictable movement for all users.",
         },
         {
           type: "heading",
-          value: "Yield sign",
+          value: "🔻 Yield sign",
         },
         {
           type: "text",
           value:
-            "Situation: You approach a merge or uncontrolled entry with yield sign. Action: slow enough to stop and enter only when a safe gap exists. Reason: forcing entry causes chain braking.",
+            "**Situation:** You approach a merge or uncontrolled entry with a yield sign.\n**Action:** Slow enough to stop and enter only when a safe gap exists.\n**Reason:** Forcing entry causes chain braking.",
         },
         {
           type: "heading",
-          value: "Left turn",
+          value: "⬅️ Left turn",
         },
         {
           type: "text",
           value:
-            "Situation: You turn left across oncoming lanes. Action: signal, choose proper lane, yield to traffic and pedestrians, then complete turn. Reason: left turns combine multiple conflict points at once.",
+            "**Situation:** You turn left across oncoming lanes.\n**Action:** Signal, choose the proper lane, yield to traffic and pedestrians, then complete the turn.\n**Reason:** Left turns combine multiple conflict points at once.",
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Common mistake: watching only oncoming cars and missing pedestrians in crosswalk.",
+            "Common mistake: watching only oncoming cars and missing pedestrians in the crosswalk.",
         },
       ],
     },
@@ -124,12 +124,12 @@ export const m2chapter2: Chapter = {
         },
         {
           type: "heading",
-          value: "Driveway entry sequence",
+          value: "🧭 Driveway entry sequence",
         },
         {
           type: "list",
           items: [
-            "Stop before entering roadway or crosswalk path",
+            "Stop before entering the roadway or crosswalk path",
             "Look both directions and check sidewalks",
             "Yield until entry can happen without forcing another road user to brake",
             "Join traffic smoothly once the gap is truly safe",
@@ -144,27 +144,57 @@ export const m2chapter2: Chapter = {
       ],
     },
     {
-      id: "m2ch2_pg4",
-      title: "Special Right-of-Way: Emergency and Funeral Vehicles",
-      content: [
-        {
-          type: "heading",
-          value: "Emergency vehicles",
-        },
-        {
-          type: "text",
-          value:
-            "Situation: You hear a siren and see flashing lights approaching. Action: clear the intersection, move to the side safely, and stop until they pass. Reason: response time is critical and blocked paths cost lives.",
-        },
-        {
-          type: "heading",
-          value: "Funeral processions",
-        },
-        {
-          type: "text",
-          value:
-            "Situation: A line of vehicles moves together as a procession. Action: do not cut through from behind; reduce speed and stay cautious. Reason: breaking the procession creates unpredictable crossing conflicts.",
-        },
+  id: "m2ch2_pg4",
+  title: "Special Right-of-Way: Emergency and Funeral Vehicles",
+  content: [
+    {
+      type: "heading",
+      value: "🚨 Emergency vehicles",
+    },
+    {
+      type: "text",
+      value:
+        "**Situation:** You hear a siren and see flashing lights coming toward you.\n**Action:** Get out of the intersection first, then pull to the right and stop until they pass.\n**Reason:** Every second counts for emergency responders, and a blocked road can cost someone their life.",
+    },
+    {
+      type: "list",
+      items: [
+        "Always pull to the right, not the left, even on a one-way road",
+        "Do not stop inside an intersection, clear it first and then pull over",
+        "Do not follow behind an emergency vehicle or drive in the path it just cleared",
+        "Stay stopped until the vehicle has fully passed you",
+      ],
+    },
+    {
+      type: "callout",
+      variant: "warning",
+      value:
+        "Common mistake: freezing and stopping inside the intersection because you panicked. Always clear it first, then pull over.",
+    },
+    {
+      type: "heading",
+      value: "⚰️ Funeral processions",
+    },
+    {
+      type: "text",
+      value:
+        "**Situation:** A long line of cars is driving together as a procession. You can usually spot one by headlights on during the day, hazard lights flashing, or a lead escort vehicle at the front.\n**Action:** Do not cut through the line of cars. Slow down and wait for the whole procession to pass.\n**Reason:** If you cut through, the cars behind you get separated at the intersection and have to stop in the middle of traffic, which causes confusion and risk for everyone.",
+    },
+    {
+      type: "list",
+      items: [
+        "Procession vehicles are allowed to go through red lights to stay together as a group",
+        "Do not pull into an intersection to cut through, even if your light is green",
+        "Pull to the side and wait until the last car in the procession has cleared",
+      ],
+    },
+    {
+      type: "callout",
+      variant: "warning",
+      value:
+        "Common mistake: thinking your green light gives you the right of way over a procession that is already moving through the intersection. It does not.",
+    },
+ 
       ],
     },
     {
@@ -182,21 +212,21 @@ export const m2chapter2: Chapter = {
         },
         {
           type: "heading",
-          value: "Signalized crossing example",
+          value: "🚦 Signalized crossing",
         },
         {
           type: "text",
           value:
-            "Situation: You want to turn right, and a pedestrian has a walk signal. Action: wait until your path is fully clear. Reason: turning across an active crossing is a common collision pattern.",
+            "**Situation:** You want to turn right and a pedestrian has a walk signal.\n**Action:** Wait until your path is fully clear.\n**Reason:** Turning across an active crossing is a common collision pattern.",
         },
         {
           type: "heading",
-          value: "Unsignalized crossing example",
+          value: "🚸 Unsignalized crossing",
         },
         {
           type: "text",
           value:
-            "Situation: A person steps into a marked crosswalk without traffic lights. Action: yield and stop as needed before the crossing. Reason: pedestrians have crossing priority here.",
+            "**Situation:** A person steps into a marked crosswalk without traffic lights.\n**Action:** Yield and stop as needed before the crossing.\n**Reason:** Pedestrians have crossing priority here.",
         },
         {
           type: "imagePlaceholder",
@@ -206,12 +236,12 @@ export const m2chapter2: Chapter = {
         },
         {
           type: "heading",
-          value: "No-pass rule when a vehicle is stopped for a pedestrian",
+          value: "⛔ No-pass rule when a vehicle is stopped for a pedestrian",
         },
         {
           type: "text",
           value:
-            "If a car ahead stops for a pedestrian, you must stay behind it and not pass. Situation: A stopped vehicle blocks your view of the crosswalk. Action: remain behind and slow. Reason: a pedestrian may be hidden in front of that vehicle.",
+            "**Situation:** A stopped vehicle ahead blocks your view of the crosswalk.\n**Action:** Remain behind and slow down — do not pass.\n**Reason:** A pedestrian may be hidden in front of that vehicle.",
         },
         {
           type: "callout",
@@ -232,7 +262,7 @@ export const m2chapter2: Chapter = {
         },
         {
           type: "heading",
-          value: "Practical 5-step flow",
+          value: "🔄 Practical 5-step flow",
         },
         {
           type: "list",

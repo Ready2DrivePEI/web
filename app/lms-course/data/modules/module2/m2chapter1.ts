@@ -18,12 +18,12 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "🚦 Traffic lights",
+          value: "🚥 Traffic lights",
         },
         {
           type: "text",
           value:
-            "Situation: You approach an intersection and the light changes. Action: decide immediately whether to stop or continue safely. Reason: late decisions cause sudden braking and rear-end crashes.",
+            "**Situation:** You approach an intersection and the light changes.\n**Action:** Decide immediately whether to stop or continue safely.\n**Reason:** Late decisions cause sudden braking and rear-end crashes.",
         },
         {
           type: "callout",
@@ -38,7 +38,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Situation: You see a STOP or YIELD sign. Action: follow exactly what the sign requires, even if the road looks empty. Reason: other drivers expect predictable behavior.",
+            "**Situation:** You see a STOP or YIELD sign.\n**Action:** Follow exactly what the sign requires, even if the road looks empty.\n**Reason:** Other drivers expect predictable behaviour.",
         },
         {
           type: "callout",
@@ -53,7 +53,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Situation: Lane lines or arrows guide your path. Action: stay in the legal lane and follow arrow direction. Reason: markings prevent side conflicts where traffic is tight.",
+            "**Situation:** Lane lines or arrows guide your path.\n**Action:** Stay in the legal lane and follow arrow direction.\n**Reason:** Markings prevent side conflicts where traffic is tight.",
         },
         {
           type: "callout",
@@ -68,7 +68,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Situation: Cones, temporary signs, or a flagperson change normal flow. Action: obey temporary controls first. Reason: normal lane patterns may be unsafe or closed.",
+            "**Situation:** Cones, temporary signs, or a flagperson change normal flow.\n**Action:** Obey temporary controls first.\n**Reason:** Normal lane patterns may be unsafe or closed.",
         },
         {
           type: "imagePlaceholder",
@@ -90,39 +90,39 @@ export const m2chapter1: Chapter = {
       content: [
         {
           type: "heading",
-          value: "Green light",
+          value: "🟢 Green light",
         },
         {
           type: "text",
           value:
-            "Situation: Your light is green, but pedestrians are still crossing. Action: continue only when your path is clear. Reason: green gives permission, not immunity.",
+            "**Situation:** Your light is green, but pedestrians are still crossing.\n**Action:** Continue only when your path is clear.\n**Reason:** Green gives permission, not immunity.",
         },
         {
           type: "heading",
-          value: "Amber light",
+          value: "🟡 Amber light",
         },
         {
           type: "text",
           value:
-            "Situation: Light turns amber as you approach. Action: if you can stop smoothly, stop; if stopping is unsafe, continue carefully. Reason: panic braking or panic acceleration both raise crash risk.",
+            "**Situation:** The light turns amber as you approach.\n**Action:** If you can stop smoothly, stop; if stopping is unsafe, continue carefully.\n**Reason:** Panic braking or panic acceleration both raise crash risk.",
         },
         {
           type: "heading",
-          value: "Red light",
+          value: "🔴 Red light",
         },
         {
           type: "text",
           value:
-            "Situation: Red signal ahead. Action: fully stop at the stop line, or before the crosswalk, or before entering the intersection. Reason: this protects crossing traffic and pedestrians.",
+            "**Situation:** Red signal ahead.\n**Action:** Fully stop at the stop line, or before the crosswalk, or before entering the intersection.\n**Reason:** This protects crossing traffic and pedestrians.",
         },
         {
           type: "heading",
-          value: "Right turn on red",
+          value: "➡️ Right turn on red",
         },
         {
           type: "text",
           value:
-            "Situation: You want to turn right while signal is red. Action: stop first, check signs, then yield to pedestrians and traffic before turning. Reason: a right turn on red is optional, never forced.",
+            "**Situation:** You want to turn right while the signal is red.\n**Action:** Stop first, check signs, then yield to pedestrians and traffic before turning.\n**Reason:** A right turn on red is optional, never forced.",
         },
         {
           type: "callout",
@@ -138,30 +138,30 @@ export const m2chapter1: Chapter = {
       content: [
         {
           type: "heading",
-          value: "Flashing red = stop",
+          value: "🔴 Flashing red = stop",
         },
         {
           type: "text",
           value:
-            "Situation: Intersection has flashing red instead of full signal cycle. Action: stop completely, then move when safe. Reason: it works like a stop sign and prevents crossing collisions.",
+            "**Situation:** The intersection has a flashing red instead of a full signal cycle.\n**Action:** Stop completely, then move when safe.\n**Reason:** It works like a stop sign and prevents crossing collisions.",
         },
         {
           type: "heading",
-          value: "Flashing amber = caution",
+          value: "🟡 Flashing amber = caution",
         },
         {
           type: "text",
           value:
-            "Situation: You see flashing amber near a crossing. Action: reduce speed and be ready to stop. Reason: hazards can appear faster than normal intersections.",
+            "**Situation:** You see flashing amber near a crossing.\n**Action:** Reduce speed and be ready to stop.\n**Reason:** Hazards can appear faster than at normal intersections.",
         },
         {
           type: "heading",
-          value: "School and crosswalk beacons",
+          value: "🚸 School and crosswalk beacons",
         },
         {
           type: "text",
           value:
-            "Situation: Signal is active near a school or marked crossing. Action: slow early and yield to people crossing. Reason: children and pedestrians are less protected and harder to predict.",
+            "**Situation:** A signal is active near a school or marked crossing.\n**Action:** Slow early and yield to people crossing.\n**Reason:** Children and pedestrians are less protected and harder to predict.",
         },
         {
           type: "imagePlaceholder",
@@ -188,26 +188,26 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "What to do on approach",
+          value: "🚆 What to do on approach",
         },
         {
           type: "list",
           items: [
             "Slow down when you see railway warning signs",
-            "Look and listen before entering track area",
+            "Look and listen before entering the track area",
             "Stop for flashing lights or bells and wait until warnings stop",
             "Check every track if there are multiple tracks",
           ],
         },
         {
           type: "heading",
-          value: "Distance rule in plain language",
+          value: "📐 Distance rule in plain language",
         },
         {
           type: "list",
           items: [
-            "Minimum stop distance: 5 m (about one car length) from nearest rail",
-            "Maximum stop distance: 15 m (about three car lengths) from nearest rail",
+            "Minimum stop distance: 5 m (about one car length) from the nearest rail",
+            "Maximum stop distance: 15 m (about three car lengths) from the nearest rail",
           ],
         },
         {
@@ -225,25 +225,25 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Painted road markings are legal movement guides. If you ignore them, your vehicle can enter another driver’s expected path.",
+            "Painted road markings are legal movement guides. If you ignore them, your vehicle can enter another driver's expected path.",
         },
         {
           type: "heading",
-          value: "Yellow lines (opposite direction traffic)",
+          value: "🟡 Yellow lines (opposite direction traffic)",
         },
         {
           type: "text",
           value:
-            "Situation: You see yellow center lines. Action: solid yellow means do not pass; broken yellow means pass only when clearly safe. Reason: yellow lines protect you from head-on conflicts.",
+            "**Situation:** You see yellow centre lines.\n**Action:** Solid yellow means do not pass; broken yellow means pass only when clearly safe.\n**Reason:** Yellow lines protect you from head-on conflicts.",
         },
         {
           type: "heading",
-          value: "White lines (same direction traffic)",
+          value: "⚪ White lines (same direction traffic)",
         },
         {
           type: "text",
           value:
-            "Situation: Multi-lane road with white lines. Action: solid white means stay in lane; broken white means lane changes are allowed when safe. Reason: lane discipline keeps traffic predictable.",
+            "**Situation:** Multi-lane road with white lines.\n**Action:** Solid white means stay in lane; broken white means lane changes are allowed when safe.\n**Reason:** Lane discipline keeps traffic predictable.",
         },
         {
           type: "heading",
@@ -252,7 +252,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Situation: Marked painted zone before a junction. Action: do not drive in crosshatch zones, stop at stop lines, and follow lane arrows exactly. Reason: these markings separate movements and reduce confusion.",
+            "**Situation:** Marked painted zone before a junction.\n**Action:** Do not drive in crosshatch zones, stop at stop lines, and follow lane arrows exactly.\n**Reason:** These markings separate movements and reduce confusion.",
         },
         {
           type: "imagePlaceholder",
@@ -273,32 +273,32 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "Regulatory signs",
+          value: "⚖️ Regulatory signs",
         },
         {
           type: "text",
           value:
-            "Situation: You see speed limit or no-turn signs. Action: follow as legal rules, not suggestions. Reason: regulatory signs define lawful behavior at that location.",
+            "**Situation:** You see speed limit or no-turn signs.\n**Action:** Follow them as legal rules, not suggestions.\n**Reason:** Regulatory signs define lawful behaviour at that location.",
         },
         {
           type: "heading",
-          value: "Warning signs",
+          value: "⚠️ Warning signs",
         },
         {
           type: "text",
           value:
-            "Situation: Curve or hazard sign appears ahead. Action: adjust speed and position early. Reason: warning time prevents late steering and hard braking.",
+            "**Situation:** A curve or hazard sign appears ahead.\n**Action:** Adjust speed and position early.\n**Reason:** Warning time prevents late steering and hard braking.",
         },
         {
           type: "heading",
-          value: "Shape cues that help beginners",
+          value: "🔷 Shape cues that help beginners",
         },
         {
           type: "list",
           items: [
-            "Octagon -> stop",
-            "Triangle -> yield",
-            "Vertical rectangle -> common regulatory information",
+            "🛑 Octagon → stop",
+            "🔻 Triangle → yield",
+            "⬛ Vertical rectangle → common regulatory information",
           ],
         },
         {
@@ -320,15 +320,15 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "Typical work-zone situations",
+          value: "🚧 Typical work-zone situations",
         },
         {
           type: "list",
           items: [
-            "Cones shift your lane path -> follow cone path smoothly",
-            "Flagperson gives stop/go signals -> obey immediately",
-            "Temporary speed sign appears -> maintain that speed through full zone",
-            "Loose gravel or uneven surface -> increase following distance",
+            "Cones shift your lane path → follow the cone path smoothly",
+            "Flagperson gives stop/go signals → obey immediately",
+            "Temporary speed sign appears → maintain that speed through the full zone",
+            "Loose gravel or uneven surface → increase following distance",
           ],
         },
         {
@@ -350,7 +350,7 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "Use this quick check while driving",
+          value: "🧠 Use this quick check while driving",
         },
         {
           type: "list",
