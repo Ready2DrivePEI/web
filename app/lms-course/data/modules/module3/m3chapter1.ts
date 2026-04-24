@@ -7,6 +7,8 @@ export const m3chapter1: Chapter = {
   slug: "speed-management-and-following-distance",
   completed: false,
   lessons: [
+
+    // PAGE 1
     {
       id: "m3ch1_pg1",
       title: "The Reality of Speed Limits",
@@ -15,19 +17,56 @@ export const m3chapter1: Chapter = {
         {
           type: "text",
           value:
-            "A speed limit is not a target you must hit. It is the absolute maximum speed allowed only under ideal, favourable driving conditions.",
+            "A speed limit is not a target you must hit. It is the absolute maximum speed allowed only under ideal conditions. Think of it as the ceiling, not the goal.",
         },
         {
           type: "text",
           value:
-            "The foundational rule of PEI driving is that you must never drive faster than is reasonable and prudent for the conditions. When weather, traffic, or visibility drops, your speed must drop too.",
+            "Real driving happens in imperfect conditions. Rain, darkness, traffic, road quality, and even your own mental state affect what speed is actually safe.",
         },
         {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "Create a visual showing a speed limit sign (80) with a sunny background, next to the same sign fading out in heavy rain with an arrow pointing down from 80.",
+          type: "text",
+          value:
+            "The rule is simple but strict: you must never drive faster than is reasonable for the conditions. If grip drops, your speed must drop. If visibility drops, your speed must drop. If your brain feels overloaded, your speed must drop.",
         },
+        {
+          type: "image",
+          src: "/module3/m3ch1pg1.png",
+          alt: "Speed limit visual showing lower safe speed in heavy rain",
+          layout: "threeQuarter",
+          align: "left",
+        },
+
+        {
+          type: "heading",
+          value: "🧠 Decision Scenario",
+        },
+        {
+          type: "text",
+          value:
+            "**Question:** The speed limit is 80 km/h, but it is raining heavily and visibility is low. What should you do?",
+        },
+        {
+          type: "text",
+          value:
+            "**Answer:** Reduce your speed below the limit.",
+        },
+        {
+          type: "text",
+          value:
+            "Why: The posted limit assumes dry roads and clear visibility. Rain reduces tire grip and increases stopping distance. Driving at the limit in poor conditions is effectively unsafe, even if it is technically legal.",
+        },
+
+        {
+          type: "heading",
+          value: "🧠 Hidden Risk Most People Miss",
+        },
+        {
+          type: "text",
+          value:
+            "Speed doesn’t just affect stopping distance. It reduces your thinking time. At higher speeds, your brain has less time to interpret situations, which means more mistakes happen before you even reach the brake.",
+        },
+
         {
           type: "heading",
           value: "PEI Default Speed Limits",
@@ -36,20 +75,23 @@ export const m3chapter1: Chapter = {
           type: "table",
           headers: ["Area / Condition", "Maximum Permitted Speed"],
           rows: [
-            ["Most municipalities / urban areas", "50 km/h (unless posted 40 km/h)"],
-            ["School zones (when children present)", "60 km/h"],
-            ["Most provincial highways", "80 km/h"],
-            ["Trans-Canada and designated highways", "90 km/h"],
+            ["Most municipalities", "50 km/h"],
+            ["School zones", "60 km/h"],
+            ["Highways", "80 km/h"],
+            ["Major highways", "90 km/h"],
           ],
         },
+
         {
           type: "callout",
           variant: "warning",
           value:
-            "The safest speed is not always the slowest. Driving dangerously slow can frustrate others and cause dangerous passing situations.",
+            "Driving slower than traffic without reason can also be dangerous. The goal is not slow driving. The goal is appropriate speed.",
         },
       ],
     },
+
+    // PAGE 2
     {
       id: "m3ch1_pg2",
       title: "The Physics of Stopping (Why You Can't Stop Instantly)",
@@ -58,33 +100,83 @@ export const m3chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Vehicles cannot stop instantly. A complete stop happens in three required phases. Understanding this is critical for passing the road test and staying safe.",
+            "Stopping is not one action. It is a sequence of events that takes time, whether you like it or not.",
         },
         {
           type: "list",
           items: [
-            "1. See the Problem: You must first recognize a reason to stop.",
-            "2. React: The average driver takes ¾ of a second just to move their foot to the brake.",
-            "3. Brake: The vehicle's mechanics take over, and stopping distance depends on speed, tires, and road conditions.",
+            "1. See the problem (visual detection)",
+            "2. React (brain → foot delay)",
+            "3. Brake (vehicle slows down physically)",
           ],
         },
+
+        {
+          type: "text",
+          value:
+            "Most drivers only think about braking. But the first two steps happen before braking even begins, and that’s where most accidents are decided.",
+        },
+
         {
           type: "callout",
           variant: "danger",
           value:
-            "At 50 km/h, your vehicle travels about 10 metres (two car lengths) just during your ¾ second reaction time, before you even touch the brake pedal.",
+            "At 50 km/h, your car travels about 10 metres before your foot even touches the brake.",
         },
+
         {
           type: "heading",
-          value: "Adverse Conditions Alter the Math",
+          value: "🧠 Decision Scenario",
         },
         {
           type: "text",
           value:
-            "Wet or icy roads drastically extend the third phase (braking distance). If your car does not have Anti-Lock Brakes (ABS), applying hard steady pressure will lock the wheels and cause a skid. You must pump the brakes instead.",
+            "**Question:** You are driving at 60 km/h and a car suddenly brakes ahead. What is the biggest delay before your car starts slowing down?",
+        },
+        {
+          type: "text",
+          value:
+            "**Answer:** Your reaction time.",
+        },
+        {
+          type: "text",
+          value:
+            "Why: Before braking begins, your brain must process the situation and send a signal to your foot. This delay exists no matter how good your brakes are.",
+        },
+
+        {
+          type: "heading",
+          value: "🧠 Decision Scenario",
+        },
+        {
+          type: "text",
+          value:
+            "**Question:** The road becomes wet but your speed stays the same. What changes the most?",
+        },
+        {
+          type: "text",
+          value:
+            "**Answer:** Your braking distance increases.",
+        },
+        {
+          type: "text",
+          value:
+            "Why: Wet roads reduce friction between tire and road. Less friction means longer stopping distance, even if your reaction time stays the same.",
+        },
+
+        {
+          type: "heading",
+          value: "🧠 Deeper Insight",
+        },
+        {
+          type: "text",
+          value:
+            "Speed increases stopping distance exponentially, not linearly. That means doubling your speed more than doubles your stopping distance. This is why small speed increases create big risk jumps.",
         },
       ],
     },
+
+    // PAGE 3
     {
       id: "m3ch1_pg3",
       title: "The 3-Second Rule (Time-Interval Formula)",
@@ -93,40 +185,105 @@ export const m3chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Because stopping takes time, you must maintain a safety gap between you and the car ahead. PEI uses the 3-Second Time-Interval Formula for normal driving conditions.",
+            "Distance is hard to judge with your eyes. Time is easier. That’s why we use seconds instead of metres.",
         },
         {
           type: "list",
           items: [
-            "Step 1: Pick a fixed marker ahead (a sign, pole, or shadow).",
-            "Step 2: When the rear of the car ahead passes it, count: 'one thousand and one, one thousand and two, one thousand and three'.",
-            "Step 3: If the front of your car reaches the marker before you finish counting, you are too close. Ease off the gas.",
+            "Pick a fixed object ahead",
+            "When the car ahead passes it, start counting",
+            "You should reach it after at least 3 seconds",
           ],
         },
+
         {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A diagram showing Car A and Car B travelling in the same direction. A tree acts as a marker. A countdown clock runs from 3 seconds between the two cars.",
+          type: "image",
+          src: "/module2/m2ch1pg3.png",
+          alt: "Following distance visual",
+          layout: "threeQuarter",
+          align: "left",
         },
+
         {
           type: "heading",
-          value: "When to Add More Time",
+          value: "🧠 Decision Scenario",
+        },
+        {
+          type: "text",
+          value:
+            "**Question:** You reach the marker in two seconds instead of three. What does this mean?",
+        },
+        {
+          type: "text",
+          value:
+            "**Answer:** You are following too closely.",
+        },
+        {
+          type: "text",
+          value:
+            "Why: Less than 3 seconds means you don’t have enough time to react and stop safely if the vehicle ahead brakes suddenly.",
+        },
+
+        {
+          type: "heading",
+          value: "🧠 Decision Scenario",
+        },
+        {
+          type: "text",
+          value:
+            "**Question:** You are following a motorcycle. Should you keep the same distance?",
+        },
+        {
+          type: "text",
+          value:
+            "**Answer:** No, you should increase your following distance.",
+        },
+        {
+          type: "text",
+          value:
+            "Why: Motorcycles can stop faster than cars. If you follow too closely, you may not be able to react in time.",
+        },
+
+        {
+          type: "heading",
+          value: "🧠 Decision Scenario",
+        },
+        {
+          type: "text",
+          value:
+            "**Question:** A car cuts into your safe gap. What should you do?",
+        },
+        {
+          type: "text",
+          value:
+            "**Answer:** Ease off the accelerator and rebuild your distance.",
+        },
+        {
+          type: "text",
+          value:
+            "Why: Safe gaps are not something you defend. They are something you maintain. Reacting emotionally makes the situation worse.",
+        },
+
+        {
+          type: "heading",
+          value: "🧠 When 3 Seconds Is Not Enough",
         },
         {
           type: "table",
           headers: ["Situation", "Required Adjustment"],
           rows: [
-            ["Pulling a trailer", "Increase to 4+ seconds (extra weight needs more stopping space)"],
-            ["Following a motorcycle", "Increase time (motorcycles can stop faster than cars)"],
-            ["Bad weather / poor visibility", "Increase to 4+ seconds (roads are slick and reaction is slower)"],
+            ["Bad weather", "4+ seconds"],
+            ["Towing trailer", "4+ seconds"],
+            ["Low visibility", "4+ seconds"],
+            ["Following large vehicle", "Increase distance to see ahead"],
           ],
         },
+
         {
           type: "callout",
           variant: "info",
           value:
-            "Every chapter completed marks progress toward passing your road test. The examiner will specifically watch for your 3-second gap in traffic to verify you understand these survival mechanics.",
+            "Think of following distance as time to think, not just space to stop.",
         },
       ],
     },

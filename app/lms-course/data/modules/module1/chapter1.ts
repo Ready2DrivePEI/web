@@ -6,13 +6,13 @@ export type ContentBlock =
       type: "image";
       src: string;
       alt: string;
-      layout?: "quarter" | "half" | "full";
+      layout?: "quarter" | "half" | "threeQuarter" | "full";
       align?: "left" | "center" | "right";
     }
   | {
       type: "imagePlaceholder";
       prompt: string;
-      layout?: "quarter" | "half" | "full";
+      layout?: "quarter" | "half" | "threeQuarter" | "full";
     }
   | { type: "heading"; value: string }
   | { type: "text"; value: string }
@@ -57,11 +57,6 @@ const chapter1: Chapter = {
   completed: false,
   lessons: [
     {
-      // Original pg1 split into pg1 + pg2
-      // Rationale: "What a licence is" and "what makes it invalid + class conditions"
-      // are three distinct concepts. The table, class rules text, and two callouts
-      // at the bottom of the original page belong to a separate mental model from
-      // the introductory licence definition at the top.
       id: "pg1",
       title: "What a Driver's Licence Really Means",
       content: [
@@ -75,6 +70,11 @@ const chapter1: Chapter = {
             "A driver's licence is more than just an ID. It's a legal agreement that you have the skills to drive specific vehicles under safe conditions. In PEI, keeping that privilege depends on following your class rules and making sure your licence stays in good standing.",
         },
         {
+          type: "text",
+          value:
+            "At a deeper level, a licence is a trust system. The government is not watching you every second. Instead, it assumes that you will follow the rules even when no one is around. That means driving is not just a skill, but a responsibility that depends on your decisions when no one is checking.",
+        },
+        {
           type: "image",
           src: "/module1/peidrivers-licence.jpg",
           alt: "Prince Edward Island driver's licence sample",
@@ -85,6 +85,12 @@ const chapter1: Chapter = {
           variant: "info",
           value:
             "Think of your licence like a specialized tool that gives you privilege within specified limits.",
+        },
+        {
+          type: "callout",
+          variant: "info",
+          value:
+            "Real-world thinking: A licence does not make you a safe driver. Your habits do. The licence just proves you reached the minimum standard once.",
         },
       ],
     },
@@ -114,6 +120,21 @@ const chapter1: Chapter = {
         },
         {
           type: "heading",
+          value: "Why Validity Matters More Than You Think",
+        },
+        {
+          type: "text",
+          value:
+            "Driving with an invalid licence is not just a technical issue. It means you are no longer recognized as a safe and approved driver under the law. This affects insurance, legal responsibility, and even how fault is determined in an accident.",
+        },
+        {
+          type: "callout",
+          variant: "danger",
+          value:
+            "If you're driving with an invalid licence and something goes wrong, you may be treated as if you should not have been driving at all.",
+        },
+        {
+          type: "heading",
           value: "Class Rules and Condition Rules",
         },
         {
@@ -136,10 +157,6 @@ const chapter1: Chapter = {
       ],
     },
     {
-      // Original pg2 — kept as-is.
-      // Rationale: The beginner/commercial lists and the 9-row summary table are
-      // intentionally redundant. The lists build conceptual grouping; the table
-      // gives quick reference. Splitting them would break that reinforcement pattern.
       id: "pg3",
       title: "PEI Licence Classes (Class 1-9) Made Simple",
       content: [
@@ -151,6 +168,11 @@ const chapter1: Chapter = {
           type: "text",
           value:
             "PEI uses classes to match your training with the vehicle's complexity. Each step up the ladder usually involves more weight or more passengers, which means a higher level of responsibility for you as a driver.",
+        },
+        {
+          type: "text",
+          value:
+            "Instead of memorizing all classes, think in terms of risk and responsibility. The heavier the vehicle or the more passengers it carries, the higher the class. This pattern helps you quickly understand any class even if you forget the exact number.",
         },
         {
           type: "image",
@@ -193,6 +215,24 @@ const chapter1: Chapter = {
         },
         {
           type: "heading",
+          value: "How to Remember the Pattern",
+        },
+        {
+          type: "list",
+          items: [
+            "Small vehicle means lower risk and usually a lower class",
+            "Heavy vehicle means more damage potential and usually a higher class",
+            "Passenger vehicles mean responsibility for other people, so training matters more",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          value:
+            "Mental shortcut: If a mistake could harm more people or cause more damage, it usually needs a higher licence class.",
+        },
+        {
+          type: "heading",
           value: "At-a-Glance Class Table Summary",
         },
         {
@@ -219,10 +259,6 @@ const chapter1: Chapter = {
       ],
     },
     {
-      // Original pg3 split into pg4 + pg5
-      // Rationale: The 8-row GDL requirements table is the heaviest cognitive block
-      // in the chapter. Learners need a clean page boundary after absorbing it before
-      // moving on to "what happens next" and the closing summary list.
       id: "pg4",
       title: "Your Beginner Pathway (GDL): Stage 1 Rules",
       content: [
@@ -265,7 +301,7 @@ const chapter1: Chapter = {
             [
               "Supervisor Standard",
               "Supervisor must have 4+ years of driving experience.",
-              "Ensures they are experienced enough.",
+              "Ensures they are experienced enough to guide a learner safely.",
             ],
             [
               "Vehicles Allowed",
@@ -299,6 +335,30 @@ const chapter1: Chapter = {
             ],
           ],
         },
+        {
+          type: "heading",
+          value: "Why These Restrictions Exist",
+        },
+        {
+          type: "text",
+          value:
+            "Each restriction in Stage 1 is based on real accident data and risk control. New drivers are more likely to make mistakes under pressure, at night, or when distracted. These rules reduce those high-risk situations while your brain is still building automatic driving habits.",
+        },
+        {
+          type: "list",
+          items: [
+            "Supervision reduces critical mistakes early",
+            "Night restriction avoids low-visibility risks",
+            "Zero alcohol removes impaired judgment",
+            "The decal alerts others to be more cautious around you",
+          ],
+        },
+        {
+          type: "callout",
+          variant: "info",
+          value:
+            "You're not being restricted because you're untrusted. You're being protected while your skill is still forming.",
+        },
       ],
     },
     {
@@ -307,7 +367,7 @@ const chapter1: Chapter = {
       content: [
         {
           type: "heading",
-          value: "What Happens Next",
+          value: "From Learner to Independent Driver",
         },
         {
           type: "text",
@@ -315,10 +375,41 @@ const chapter1: Chapter = {
             "Once you've completed your waiting period and feel confident in your skills, you can book your Class 5 road test. Success here is about showing you've developed the safe habits and maturity needed to drive on your own.",
         },
         {
+          type: "text",
+          value:
+            "Transitioning from Class 7 to Class 5 is not just about passing a test. It reflects a shift in responsibility. You move from guided decision-making to independent judgment, where every action depends on your awareness and habits.",
+        },
+        {
+          type: "heading",
+          value: "What Examiners Actually Look For",
+        },
+        {
+          type: "list",
+          items: [
+            "Consistent awareness of surroundings",
+            "Smooth and controlled vehicle handling",
+            "Correct decision-making at intersections",
+            "Ability to predict and react to other drivers",
+          ],
+        },
+        {
+          type: "heading",
+          value: "Common Mistakes New Drivers Make",
+        },
+        {
+          type: "list",
+          items: [
+            "Focusing too much on the car instead of the road",
+            "Reacting late instead of anticipating",
+            "Forgetting mirror checks under pressure",
+            "Driving correctly only when being watched",
+          ],
+        },
+        {
           type: "callout",
           variant: "warning",
           value:
-            "Remember, the GDL program is about quality practice. Following the restrictions now helps ensure you're truly ready for the road later.",
+            "Passing the test doesn't mean you've mastered driving. It means you've proven you're safe enough to continue learning on your own.",
         },
         {
           type: "heading",
@@ -327,11 +418,20 @@ const chapter1: Chapter = {
         {
           type: "list",
           items: [
-            "Class 7 is your learning phase.",
-            "Always drive with your supervisor.",
-            "Respect the safety restrictions; they are there for your protection.",
-            "Focus on experience, and Class 5 will follow naturally.",
+            "Class 7 is your learning phase",
+            "Always drive with your supervisor",
+            "Respect the safety restrictions because they protect you",
+            "Focus on experience, and Class 5 will follow naturally",
           ],
+        },
+        {
+          type: "heading",
+          value: "Final Mental Model",
+        },
+        {
+          type: "text",
+          value:
+            "Driving is a layered skill. At first, you consciously think about everything. Over time, actions become automatic. The goal of the GDL system is to move you from conscious effort to safe instinct.",
         },
       ],
     },

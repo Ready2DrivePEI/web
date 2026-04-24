@@ -22,6 +22,11 @@ export const chapter2: Chapter = {
           value: "Check Eligibility First",
         },
         {
+          type: "text",
+          value:
+            "Before you think about tests or driving, eligibility is the first gate. This step ensures that you are legally allowed to begin the process. Skipping this check leads to wasted time, rejected applications, or delays later.",
+        },
+        {
           type: "table",
           headers: ["Requirement", "What to Confirm"],
           rows: [
@@ -32,7 +37,27 @@ export const chapter2: Chapter = {
         },
         {
           type: "heading",
+          value: "Why Eligibility Exists",
+        },
+        {
+          type: "text",
+          value:
+            "Eligibility rules are not random. They exist to ensure that drivers entering the system meet basic legal and maturity requirements. For example, age requirements are tied to decision-making ability and risk awareness, not just time.",
+        },
+        {
+          type: "callout",
+          variant: "info",
+          value:
+            "Think of eligibility as a filter. It prevents unsafe or unprepared drivers from entering the system too early.",
+        },
+        {
+          type: "heading",
           value: "Bring the Right Documents",
+        },
+        {
+          type: "text",
+          value:
+            "Documents prove two things: who you are and where you live. Without both, the system cannot verify your identity or assign legal responsibility.",
         },
         {
           type: "table",
@@ -49,12 +74,24 @@ export const chapter2: Chapter = {
             ],
           ],
         },
-
+        {
+          type: "heading",
+          value: "Common Mistakes People Make",
+        },
+        {
+          type: "list",
+          items: [
+            "Bringing documents with outdated addresses",
+            "Forgetting second proof of residency",
+            "Assuming digital copies are accepted when originals are required",
+            "Not checking document validity before test day",
+          ],
+        },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Most test-day delays come from missing paperwork. Verify your document set before booking and before test day.",
+            "Most test-day delays come from missing or incorrect paperwork. Verify your documents before booking and again before test day.",
         },
       ],
     },
@@ -69,14 +106,14 @@ export const chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Before road testing, PEI confirms that you understand rules, meet vision standards, and complete required safety learning.",
+            "Before you are trusted on the road, the system checks three things: what you know, what you can see, and whether you understand risk. These checks prevent unsafe drivers from reaching real traffic situations too early.",
         },
         {
           type: "image",
-          src: "/module1/ch1pg3.png",
+          src: "/module1/m1ch2pg2.png",
           alt: "Knowledge Test, Vision Test, and Novice Driver Course sequence",
-          layout: "half",
-          align: "left",
+          layout: "threeQuarter",
+          align: "center",
         },
         {
           type: "heading",
@@ -105,21 +142,39 @@ export const chapter2: Chapter = {
         },
         {
           type: "heading",
+          value: "Why Vision Is Critical",
+        },
+        {
+          type: "text",
+          value:
+            "Driving is a visual task. You make decisions based on distance, speed, and movement. If your vision is limited, your reaction time and judgment are affected, even if your driving skills are good.",
+        },
+        {
+          type: "heading",
+          value: "Why the Knowledge Test Matters",
+        },
+        {
+          type: "text",
+          value:
+            "Rules reduce chaos. Without shared rules, every driver would behave differently, making roads unpredictable and dangerous. The knowledge test ensures you operate using the same system as everyone else.",
+        },
+        {
+          type: "heading",
           value: "Extra Test-Day Readiness Notes",
         },
         {
           type: "list",
           items: [
             "If reading is difficult, you may request an oral version of the knowledge test",
-            "If you do not pass the knowledge test, you can book another attempt for a later date",
-            "Vision testing may assess visual acuity, field of vision, and color recognition",
+            "If you do not pass the knowledge test, you can book another attempt",
+            "Vision testing may assess acuity, field of vision, and color recognition",
           ],
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "These steps are not random barriers. They confirm that you can understand the rules, see properly, and enter the road test with the right preparation.",
+            "These steps are not barriers. They are filters that ensure only prepared drivers move forward.",
         },
       ],
     },
@@ -130,6 +185,11 @@ export const chapter2: Chapter = {
         {
           type: "heading",
           value: "Before the Examiner Starts",
+        },
+        {
+          type: "text",
+          value:
+            "The road test is not just about driving. It is also about preparation. Examiners assess whether you can meet basic legal and safety requirements before even starting the vehicle.",
         },
         {
           type: "table",
@@ -155,10 +215,20 @@ export const chapter2: Chapter = {
           ],
         },
         {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "Create a road-test readiness card showing Vehicle, Documents, and Safety Checkpoints.",
+          type: "image",
+          src: "/module1/m1ch2pg3.png",
+          alt: "Vehicle inspection overview",
+          layout: "threeQuarter",
+          align: "center",
+        },
+        {
+          type: "heading",
+          value: "Why Vehicle Condition Matters",
+        },
+        {
+          type: "text",
+          value:
+            "Even a perfect driver cannot compensate for a faulty vehicle. Brake failure, poor visibility, or broken signals increase risk immediately. The test ensures both the driver and the machine are safe.",
         },
         {
           type: "heading",
@@ -167,13 +237,26 @@ export const chapter2: Chapter = {
         {
           type: "text",
           value:
-            "The road test checks safe operation in real traffic: starting, stopping, turning, parking, signal/sign compliance, intersection handling, and hazard awareness.",
+            "The road test checks safe operation in real traffic. This includes starting, stopping, turning, parking, obeying signs, handling intersections, and reacting to hazards.",
+        },
+        {
+          type: "heading",
+          value: "Common Failure Reasons",
+        },
+        {
+          type: "list",
+          items: [
+            "Not checking mirrors regularly",
+            "Rolling through stop signs",
+            "Poor lane positioning",
+            "Late or incorrect decisions",
+          ],
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "If your vehicle fails required safety or legal checks, the road test will not proceed.",
+            "If your vehicle fails safety checks, the test will not begin. Preparation matters as much as driving skill.",
         },
       ],
     },
@@ -192,6 +275,15 @@ export const chapter2: Chapter = {
             ["Driver licence expiry", "Expires at midnight on your birthday"],
             ["Class 7 permit validity", "Valid for two years from issue date"],
           ],
+        },
+        {
+          type: "heading",
+          value: "Why Timelines Exist",
+        },
+        {
+          type: "text",
+          value:
+            "Licences are time-limited to ensure that driver information stays accurate and that drivers remain accountable under current rules and standards.",
         },
         {
           type: "heading",
@@ -214,14 +306,14 @@ export const chapter2: Chapter = {
           items: [
             "Apply for a duplicate licence",
             "Pay the applicable fee",
-            "Bring licence details if available, or a birth certificate if details are missing",
+            "Bring licence details if available or a birth certificate",
           ],
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "Staying licensed is ongoing. Safe driving plus on-time admin updates keeps you legally compliant.",
+            "Staying licensed is an ongoing responsibility, not a one-time step.",
         },
       ],
     },
@@ -236,13 +328,13 @@ export const chapter2: Chapter = {
         {
           type: "text",
           value:
-            "If you are 16 or older with a valid licence from elsewhere, the handbook states you may drive in PEI for up to 120 days, subject to restrictions and class permissions.",
+            "If you are 16 or older with a valid licence from elsewhere, you may drive in PEI for up to 120 days, depending on your licence class and conditions.",
         },
         {
-          type: "imagePlaceholder",
+          type: "image",
+          src: "/module1/m1ch2pg5.png",
+          alt: "Licence exchange decision path",
           layout: "half",
-          prompt:
-            "Create a decision-tree visual for licence exchange paths: NS/NB, Other Canada/US, Foreign, and Class 7 permit exchange.",
         },
         {
           type: "heading",
@@ -252,19 +344,19 @@ export const chapter2: Chapter = {
           type: "table",
           headers: ["Current licence source", "Typical pathway"],
           rows: [
-            [
-              "NS/NB Class 5 (valid)",
-              "Handbook describes a no-charge exchange pathway",
-            ],
-            [
-              "Other Canadian or U.S. licence (expired less than 3 years)",
-              "Handbook describes exchange without written, vision, or road tests when documentation is complete",
-            ],
-            [
-              "Most foreign licences",
-              "Generally not directly exchangeable; testing pathway applies",
-            ],
+            ["NS/NB Class 5 (valid)", "Exchange without major testing"],
+            ["Other Canadian or U.S.", "Often exchangeable if valid and recent"],
+            ["Most foreign licences", "Testing required"],
           ],
+        },
+        {
+          type: "heading",
+          value: "Why Exchange Rules Differ",
+        },
+        {
+          type: "text",
+          value:
+            "Different regions have different training standards. Exchange rules exist to ensure that all drivers meet PEI safety expectations before being allowed full driving privileges.",
         },
         {
           type: "heading",
@@ -275,15 +367,14 @@ export const chapter2: Chapter = {
           items: [
             "Valid Canadian Class 7 permits may be exchangeable",
             "PEI residency is required",
-            "Additional waiting periods or course requirements may still apply",
-            "Only Canadian instruction permits are exchangeable",
+            "Additional requirements may still apply",
           ],
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Do not assume transferability. Confirm your exact case through current PEI channels before booking tests or travel.",
+            "Always confirm your specific case. Assumptions about exchange rules can lead to delays or denied applications.",
         },
       ],
     },

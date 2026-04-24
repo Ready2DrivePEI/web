@@ -11,17 +11,10 @@ similar to first page 2nd page
 - to give as example work
 
 - side bar sticky, mobile view
-- lock mechanism
-- back< from lms
-
-- auth login admin
-- auth generation new login id
-- watch day of creation
-
-- progress watch 
-- locking based on progress   
 
 - contact form working 
+- cant click next till scroll bottom. 
+- quizz completeion reward
 
 # Project AI Context — lms-ready2drive
 

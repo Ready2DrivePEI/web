@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ContentBlock } from "@/app/lms-course/data/modules/module1/chapter1";
 
 type CalloutVariant = "info" | "warning" | "danger";
-type ImageLayout = "quarter" | "half" | "full";
+type ImageLayout = "quarter" | "half" | "threeQuarter" | "full";
 type ImageAlign = "left" | "center" | "right";
 type TableSize = "default" | "large";
 
@@ -21,6 +21,7 @@ const calloutLabels: Record<CalloutVariant, string> = {
 const imageLayoutClasses: Record<ImageLayout, string> = {
   quarter: "w-full lg:w-1/4",
   half: "w-full lg:w-1/2",
+  threeQuarter: "w-full lg:w-3/4",
   full: "w-full",
 };
 

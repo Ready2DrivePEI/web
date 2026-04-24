@@ -7,86 +7,54 @@ export const m2chapter1: Chapter = {
   slug: "traffic-signs-signals-pavement-markings-work-zones",
   completed: false,
   lessons: [
+
+    // PAGE 1
     {
       id: "m2ch1_pg1",
-      title: "How Road Communication Works",
+      title: "How Road Communication Works (Advanced Driver Model)",
       content: [
         {
+          type: "image",
+          src: "/module2/m2ch1pg1.png",
+          alt: "Road scene showing signal, stop sign, lane marking, and work-zone cones",
+          layout: "threeQuarter",
+          align: "left",
+        },
+        {
           type: "text",
           value:
-            "When you drive, the road is constantly talking to you. Your job is to notice the message early, make one clear decision, and move smoothly.",
+            "Driving is not just control of a vehicle. It is constant communication between you, the road, and every other road user. Every signal, sign, and marking is part of a shared language designed to prevent conflict before it happens.",
         },
         {
           type: "heading",
-          value: "🚥 Traffic lights",
+          value: "🧠 The 3-step decision loop",
+        },
+        {
+          type: "list",
+          items: [
+            "Notice early → what is the road telling me?",
+            "Interpret correctly → what does this require me to do?",
+            "Act smoothly → can I do it without shocking other drivers?",
+          ],
         },
         {
           type: "text",
           value:
-            "**Situation:** You approach an intersection and the light changes.\n**Action:** Decide immediately whether to stop or continue safely.\n**Reason:** Late decisions cause sudden braking and rear-end crashes.",
-        },
-        {
-          type: "callout",
-          variant: "warning",
-          value:
-            "Common mistake: waiting too long, then rushing through an unsafe yellow.",
-        },
-        {
-          type: "heading",
-          value: "🛑 Traffic signs",
-        },
-        {
-          type: "text",
-          value:
-            "**Situation:** You see a STOP or YIELD sign.\n**Action:** Follow exactly what the sign requires, even if the road looks empty.\n**Reason:** Other drivers expect predictable behaviour.",
-        },
-        {
-          type: "callout",
-          variant: "warning",
-          value:
-            "Common mistake: slowing at a stop sign instead of fully stopping.",
-        },
-        {
-          type: "heading",
-          value: "🛣️ Pavement markings",
-        },
-        {
-          type: "text",
-          value:
-            "**Situation:** Lane lines or arrows guide your path.\n**Action:** Stay in the legal lane and follow arrow direction.\n**Reason:** Markings prevent side conflicts where traffic is tight.",
-        },
-        {
-          type: "callout",
-          variant: "warning",
-          value:
-            "Common mistake: changing lanes across a solid line near intersections.",
-        },
-        {
-          type: "heading",
-          value: "🚧 Work-zone controls",
-        },
-        {
-          type: "text",
-          value:
-            "**Situation:** Cones, temporary signs, or a flagperson change normal flow.\n**Action:** Obey temporary controls first.\n**Reason:** Normal lane patterns may be unsafe or closed.",
-        },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "Create a clean SVG-style scene of one road showing four cues: signal, stop sign, lane marking, and work-zone cones with labels.",
+            "Most crashes are not caused by lack of skill. They are caused by delayed decisions or misreading signals. The earlier you process information, the safer your actions become.",
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "Simple rule: notice early, decide once, move smoothly.",
+            "Advanced mindset: Don’t react to the road. Predict it 3–5 seconds ahead.",
         },
       ],
     },
+
+    // PAGE 2
     {
       id: "m2ch1_pg2",
-      title: "Traffic Signals: Green, Amber, Red, and Right-Turn-on-Red",
+      title: "Traffic Signals: Beyond Colors (Decision Logic)",
       content: [
         {
           type: "heading",
@@ -95,16 +63,22 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** Your light is green, but pedestrians are still crossing.\n**Action:** Continue only when your path is clear.\n**Reason:** Green gives permission, not immunity.",
+            "**Situation:** Light turns green but intersection is busy.\n**Action:** Move only if path is fully clear.\n**Reason:** Green gives legal permission, not physical safety.",
         },
         {
           type: "heading",
-          value: "🟡 Amber light",
+          value: "🟡 Amber light (decision trap)",
         },
         {
           type: "text",
           value:
-            "**Situation:** The light turns amber as you approach.\n**Action:** If you can stop smoothly, stop; if stopping is unsafe, continue carefully.\n**Reason:** Panic braking or panic acceleration both raise crash risk.",
+            "**Situation:** Light turns amber as you approach.\n**Action:** Decide instantly: brake smoothly or continue.\n**Reason:** Indecision causes rear-end crashes more than speed does.",
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          value:
+            "Hidden rule: If you’re asking yourself 'should I stop?', you probably had time to stop.",
         },
         {
           type: "heading",
@@ -113,7 +87,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** Red signal ahead.\n**Action:** Fully stop at the stop line, or before the crosswalk, or before entering the intersection.\n**Reason:** This protects crossing traffic and pedestrians.",
+            "**Situation:** Red ahead.\n**Action:** Stop before line, crosswalk, or intersection.\n**Reason:** These zones protect invisible risks like crossing pedestrians.",
         },
         {
           type: "heading",
@@ -122,155 +96,202 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** You want to turn right while the signal is red.\n**Action:** Stop first, check signs, then yield to pedestrians and traffic before turning.\n**Reason:** A right turn on red is optional, never forced.",
+            "**Situation:** Turning right at red.\n**Action:** Full stop → scan → yield → then move.\n**Reason:** You are entering someone else’s right-of-way.",
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Common mistake: treating right-turn-on-red like a rolling merge.",
+            "Most people treat this like merging. It is not. It is a controlled re-entry into traffic.",
         },
       ],
     },
+
+    // PAGE 3
     {
       id: "m2ch1_pg3",
-      title: "Flashing Signals and School/Special Signal Devices",
+      title: "Flashing Signals and Special Light Systems",
       content: [
         {
+          type: "image",
+          src: "/module2/m2ch1pg3.png",
+          alt: "Flashing signal comparison",
+          layout: "threeQuarter",
+        },
+        {
           type: "heading",
-          value: "🔴 Flashing red = stop",
+          value: "🔴 Flashing red",
         },
         {
           type: "text",
           value:
-            "**Situation:** The intersection has a flashing red instead of a full signal cycle.\n**Action:** Stop completely, then move when safe.\n**Reason:** It works like a stop sign and prevents crossing collisions.",
+            "**Situation:** Flashing red light.\n**Action:** Treat exactly like a STOP sign.\n**Reason:** Full stop ensures all drivers negotiate safely.",
         },
         {
           type: "heading",
-          value: "🟡 Flashing amber = caution",
+          value: "🟡 Flashing amber",
         },
         {
           type: "text",
           value:
-            "**Situation:** You see flashing amber near a crossing.\n**Action:** Reduce speed and be ready to stop.\n**Reason:** Hazards can appear faster than at normal intersections.",
+            "**Situation:** Flashing amber.\n**Action:** Slow down, proceed with caution.\n**Reason:** Danger exists, but traffic flow continues.",
         },
         {
           type: "heading",
-          value: "🚸 School and crosswalk beacons",
+          value: "🏫 School signals",
         },
         {
           type: "text",
           value:
-            "**Situation:** A signal is active near a school or marked crossing.\n**Action:** Slow early and yield to people crossing.\n**Reason:** Children and pedestrians are less protected and harder to predict.",
-        },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "Create a simple SVG card comparing flashing red, flashing amber, and school/crosswalk beacon actions.",
+            "**Situation:** Flashing school lights.\n**Action:** Reduce speed immediately and scan for children.\n**Reason:** Children behave unpredictably and may ignore traffic rules.",
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Common mistake: assuming flashing amber means keep speed and continue.",
+            "Adult logic fails here. Children don’t calculate speed, they run.",
         },
       ],
     },
+
+    // PAGE 4
     {
       id: "m2ch1_pg4",
-      title: "Railway Crossing Signals and Warning Sequence",
+      title: "Railway Crossings: High-Risk Decision Zones",
       content: [
         {
           type: "text",
           value:
-            "Railway crossings need early decisions. Trains cannot stop quickly, so your safety depends on slowing early and waiting when unsure.",
+            "Railway crossings are one of the few places where your mistake cannot be corrected. Trains cannot stop quickly, so your decision must happen early.",
         },
         {
           type: "heading",
-          value: "🚆 What to do on approach",
+          value: "🚆 Warning sequence",
         },
         {
           type: "list",
           items: [
-            "Slow down when you see railway warning signs",
-            "Look and listen before entering the track area",
-            "Stop for flashing lights or bells and wait until warnings stop",
-            "Check every track if there are multiple tracks",
+            "Advance sign → prepare to slow",
+            "Flashing lights → mandatory stop",
+            "Gate closing → do not cross under any condition",
           ],
         },
         {
           type: "heading",
-          value: "📐 Distance rule in plain language",
+          value: "🧠 Critical mistake pattern",
         },
         {
-          type: "list",
-          items: [
-            "Minimum stop distance: 5 m (about one car length) from the nearest rail",
-            "Maximum stop distance: 15 m (about three car lengths) from the nearest rail",
-          ],
+          type: "text",
+          value:
+            "Many drivers move after one train passes. This is dangerous because a second train may come from the opposite direction.",
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Common mistake: moving after one train passes without checking for a second train.",
+            "Rule: Never move until signals stop completely. Not when you feel safe.",
         },
       ],
     },
+
+    // PAGE 5
     {
       id: "m2ch1_pg5",
-      title: "Pavement Markings That Change Decisions",
+      title: "Pavement Markings: Hidden Control System",
       content: [
         {
-          type: "text",
-          value:
-            "Painted road markings are legal movement guides. If you ignore them, your vehicle can enter another driver's expected path.",
+          type: "image",
+          src: "/module2/m2ch1pg5.png",
+          alt: "Road markings legend",
+          layout: "threeQuarter",
         },
         {
           type: "heading",
-          value: "🟡 Yellow lines (opposite direction traffic)",
+          value: "🟡 Yellow lines (opposite traffic)",
         },
         {
           type: "text",
           value:
-            "**Situation:** You see yellow centre lines.\n**Action:** Solid yellow means do not pass; broken yellow means pass only when clearly safe.\n**Reason:** Yellow lines protect you from head-on conflicts.",
+            "Solid = no passing. Broken = pass only when fully safe.\n\nWhy: Opposite traffic creates highest fatal risk. These lines are strict for a reason.",
         },
         {
           type: "heading",
-          value: "⚪ White lines (same direction traffic)",
+          value: "⚪ White lines (same direction)",
         },
         {
           type: "text",
           value:
-            "**Situation:** Multi-lane road with white lines.\n**Action:** Solid white means stay in lane; broken white means lane changes are allowed when safe.\n**Reason:** Lane discipline keeps traffic predictable.",
+            "Solid = stay in lane. Broken = lane change allowed.\n\nWhy: Predictability prevents side collisions.",
         },
         {
           type: "heading",
-          value: "Crosshatch, stop lines, arrows",
+          value: "Crosshatch zones",
         },
         {
           type: "text",
           value:
-            "**Situation:** Marked painted zone before a junction.\n**Action:** Do not drive in crosshatch zones, stop at stop lines, and follow lane arrows exactly.\n**Reason:** These markings separate movements and reduce confusion.",
+            "Never enter or stop.\n\nWhy: These are buffer zones that keep traffic flows from blocking each other.",
         },
         {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "Create an SVG legend of solid/broken yellow and white lines, crosshatch, stop line, and lane arrows with plain labels.",
+          type: "heading",
+          value: "Arrows and stop lines",
+        },
+        {
+          type: "text",
+          value:
+            "Arrows = commit to direction. Stop line = legal stopping boundary.\n\nWhy: Prevents last-second chaos at intersections.",
         },
       ],
     },
+
+    // PAGE 6
     {
       id: "m2ch1_pg6",
-      title: "Sign Families and Sign Shapes",
+      title: "Crosswalks and Pedestrian Priority",
       content: [
+        {
+          type: "heading",
+          value: "🚶 Crosswalk types",
+        },
+        {
+          type: "list",
+          items: [
+            "Marked crosswalks → clearly painted",
+            "Unmarked crosswalks → exist at intersections",
+          ],
+        },
+        {
+          type: "heading",
+          value: "Action",
+        },
         {
           type: "text",
           value:
-            "You do not need to memorize every sign on day one. First learn sign families and shape shortcuts so you can react faster.",
+            "Always yield to pedestrians crossing legally, even if they move slowly or unexpectedly.",
         },
+        {
+          type: "heading",
+          value: "Reason",
+        },
+        {
+          type: "text",
+          value:
+            "Pedestrians are the most vulnerable road users. Law prioritizes their safety over vehicle flow.",
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          value:
+            "Hidden danger: A car stopped in another lane may be hiding a pedestrian.",
+        },
+      ],
+    },
+
+    // PAGE 7
+    {
+      id: "m2ch1_pg7",
+      title: "Sign Systems: Shapes, Colors, and Meaning",
+      content: [
         {
           type: "heading",
           value: "⚖️ Regulatory signs",
@@ -278,7 +299,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** You see speed limit or no-turn signs.\n**Action:** Follow them as legal rules, not suggestions.\n**Reason:** Regulatory signs define lawful behaviour at that location.",
+            "These are laws. Ignoring them is not a mistake, it’s an offence.",
         },
         {
           type: "heading",
@@ -287,87 +308,121 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** A curve or hazard sign appears ahead.\n**Action:** Adjust speed and position early.\n**Reason:** Warning time prevents late steering and hard braking.",
+            "These prepare you for hazards ahead. They are early signals, not immediate commands.",
         },
         {
           type: "heading",
-          value: "🔷 Shape cues that help beginners",
+          value: "🟧 Construction signs",
+        },
+        {
+          type: "text",
+          value:
+            "Temporary but higher priority than permanent signs.",
+        },
+        {
+          type: "heading",
+          value: "Shape shortcuts",
         },
         {
           type: "list",
           items: [
-            "🛑 Octagon → stop",
-            "🔻 Triangle → yield",
-            "⬛ Vertical rectangle → common regulatory information",
+            "Octagon → STOP",
+            "Triangle → YIELD",
+            "Diamond → WARNING",
           ],
-        },
-        {
-          type: "callout",
-          variant: "info",
-          value:
-            "Fast shape recognition gives you extra reaction time.",
         },
       ],
     },
+
+    // PAGE 8
     {
-      id: "m2ch1_pg7",
-      title: "Work Zones and Temporary Traffic Control",
+      id: "m2ch1_pg8",
+      title: "Work Zones: Temporary Reality Shift",
       content: [
         {
           type: "text",
           value:
-            "Work zones are dynamic. The road you used yesterday may not be safe today, so temporary controls must be treated as primary instructions.",
-        },
-        {
-          type: "heading",
-          value: "🚧 Typical work-zone situations",
+            "Work zones override normal driving rules. Think of them as a temporary new road.",
         },
         {
           type: "list",
           items: [
-            "Cones shift your lane path → follow the cone path smoothly",
-            "Flagperson gives stop/go signals → obey immediately",
-            "Temporary speed sign appears → maintain that speed through the full zone",
-            "Loose gravel or uneven surface → increase following distance",
+            "Follow cones as lane boundaries",
+            "Obey flagperson instantly",
+            "Maintain reduced speed throughout",
           ],
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Common mistake: speeding because workers are not visible at that moment.",
+            "Danger illusion: Just because workers aren’t visible doesn’t mean the risk is gone.",
         },
       ],
     },
+
+    // PAGE 9
     {
-      id: "m2ch1_pg8",
-      title: "Chapter Wrap-Up: Build the Road-Language Habit",
+      id: "m2ch1_pg9",
+      title: "Advance Warning Signs and Anticipation",
       content: [
         {
           type: "text",
           value:
-            "You are building a repeatable decision habit, not memorizing random labels.",
+            "Advance warning signs exist to shift your thinking before the hazard appears.",
         },
         {
           type: "heading",
-          value: "🧠 Use this quick check while driving",
+          value: "Examples",
         },
         {
           type: "list",
           items: [
-            "What controls me now (light/sign)?",
-            "What lane movement is legal here (markings)?",
-            "Is there a temporary change (work/school/rail)?",
-            "Will my next move force someone else to brake suddenly?",
+            "Curve ahead → reduce speed early",
+            "Railway crossing ahead → prepare to stop",
+            "Construction ahead → expect lane change",
           ],
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "If your move is legal, smooth, and predictable, you made a defensive decision.",
+            "Best drivers don’t react late. They prepare early.",
         },
       ],
     },
+
+    // PAGE 10
+    {
+      id: "m2ch1_pg10",
+      title: "Chapter Wrap-Up: Predictive Driving Habit",
+      content: [
+        {
+          type: "heading",
+          value: "🧠 Final decision checklist",
+        },
+        {
+          type: "list",
+          items: [
+            "What is controlling me right now?",
+            "What is likely to happen next?",
+            "Am I forcing someone else to react suddenly?",
+            "Is my move predictable to others?",
+          ],
+        },
+        {
+          type: "text",
+          value:
+            "Driving well is not about being fast or confident. It is about being predictable, smooth, and early in every decision.",
+        },
+        {
+          type: "callout",
+          variant: "info",
+          value:
+            "If others don’t need to adjust because of you, you are driving correctly.",
+        },
+      ],
+    },
+
   ],
 };
