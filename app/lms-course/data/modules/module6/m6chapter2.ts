@@ -14,145 +14,262 @@ export const m6chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Driving ability depends on performance, not age. Physical changes can happen gradually, so the priority is to notice them early and adjust your driving habits.",
+            "Driving ability is not defined by age. It is defined by performance in real conditions. Some drivers improve with experience. Others decline due to physical or cognitive changes. The road does not care about your age. It only responds to what you do in the moment.",
         },
         {
           type: "text",
-          value: "Focus on these areas:",
+          value:
+            "Experience gives older drivers an advantage. Studies show they are more likely to follow rules, avoid risky behaviour like speeding, and take impaired driving seriously. This creates a strong safety foundation.",
+        },
+        {
+          type: "text",
+          value:
+            "However, the human system changes over time. These changes are subtle and slow, which makes them dangerous. You do not notice them clearly until a situation exposes them.",
+        },
+        {
+          type: "heading",
+          value: "What actually changes",
         },
         {
           type: "list",
           items: [
-            "**Sight**: Reduced night vision and slower glare recovery can make hazards harder to see.",
-            "**Hearing**: You may miss horns, sirens, or warning sounds.",
-            "**Judgment**: Complex traffic decisions may take longer.",
-            "**Reflexes**: Response time to sudden events can slow down.",
+            "**Sight**: Reduced night vision, glare sensitivity, and slower focus adjustment.",
+            "**Hearing**: Difficulty detecting horns, sirens, or subtle warning sounds.",
+            "**Judgment**: Slower decision-making in complex traffic situations.",
+            "**Reflexes**: Increased reaction time during sudden events.",
+            "**Attention**: Harder to track multiple moving elements at once.",
           ],
         },
         {
           type: "text",
-          value: "Action to take:",
-        },
-        {
-          type: "list",
-          items: [
-            "Track where you feel delayed or uncertain.",
-            "Choose lower-stress driving conditions when needed.",
-            "Use vehicle features and refresher training to compensate.",
-          ],
-        },
-        { type: "heading", value: "Key Concepts" },
-        {
-          type: "list",
-          items: [
-            "**Performance First**: Safe driving is based on current ability in real traffic.",
-            "**Physical Shifts**: Sight, hearing, judgment, and reflexes can change over time.",
-            "**Compensation**: Adjust habits and vehicle setup to stay safe.",
-          ],
+          value:
+            "These changes matter because driving is not one skill. It is a coordination of perception, decision-making, and motor response. If even one slows down, the whole system becomes less stable.",
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "Insight\nWhat matters is how well you handle current traffic conditions, then adapt when your abilities change.",
+            "Mental model: driving is a chain. See → Decide → Act. If any link slows down, the entire chain weakens.",
+        },
+        {
+          type: "table",
+          headers: ["Scenario", "Question", "Answer"],
+          rows: [
+            [
+              "A driver sees a pedestrian later than expected at night.",
+              "What likely caused this?",
+              "Reduced night vision and slower visual processing.",
+            ],
+            [
+              "A driver hesitates at a busy intersection they used to handle easily.",
+              "What does this indicate?",
+              "Slower judgment processing, not lack of knowledge.",
+            ],
+          ],
         },
       ],
     },
     {
       id: "m6ch2_pg2",
-      title: "Performance Assessment and Safe Adaptations",
+      title: "Self-Assessment and Warning Signs",
       content: [
         {
           type: "text",
           value:
-            "Now that we understand the balance of experience and aging, it is important to monitor your own driving ability regularly. Because changes happen slowly, they can be hard to notice unless you look for specific signs.",
+            "The real danger is not decline. It is unawareness of decline. Because changes happen gradually, most drivers adapt unconsciously until a failure happens.",
         },
         {
           type: "text",
           value:
-            "A self-assessment helps you identify when you might need to adjust your driving habits or take a refresher course.",
+            "Self-assessment forces awareness. It turns vague discomfort into specific signals you can act on.",
         },
-        { type: "heading", value: "Common Mistakes" },
+        {
+          type: "heading",
+          value: "Warning signs to watch for",
+        },
         {
           type: "list",
           items: [
-            "**Ignoring \"Surprise\" Events**: Being frequently surprised by pedestrians or other vehicles.",
-            "**Hesitation**: Feeling unsure about right-of-way decisions you once handled easily.",
-            "**Getting Lost**: Losing your way on familiar routes or feeling nervous in traffic.",
+            "Difficulty handling turns or intersections.",
+            "Hesitation in right-of-way decisions.",
+            "Being surprised by nearby vehicles or pedestrians.",
+            "Frequent honking or negative reactions from other drivers.",
+            "Poor night visibility.",
+            "Getting lost on familiar routes.",
+            "Feeling stressed, tired, or overwhelmed after driving.",
+            "Traffic violations or fault in collisions.",
           ],
+        },
+        {
+          type: "text",
+          value:
+            "Each of these signals points to a breakdown in one part of the driving system. Ignore them, and they stack. Eventually, the system fails under pressure.",
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Listen to Feedback\nIf you receive negative feedback from other drivers (like honking) or find yourself at fault in minor collisions, treat these as critical signals to assess your driving performance.",
+            "Feedback is data. If other drivers react negatively to you often, that is not random. It is a pattern worth investigating.",
+        },
+        {
+          type: "heading",
+          value: "Why this matters",
         },
         {
           type: "text",
           value:
-            "Once you identify areas that challenge you, the next step is to adapt your driving environment to fit your needs. You can significantly reduce your risk by choosing when and where you drive.",
+            "Drivers often assume experience compensates for decline. That is only partially true. Experience helps prediction, but it cannot fix slower reaction time or reduced vision.",
         },
         {
-          type: "text",
-          value:
-            "Adaptive driving is about working smarter, not harder. By avoiding high-stress situations, you can continue to enjoy the freedom of mobility safely.",
-        },
-        { type: "heading", value: "Restrictions" },
-        {
-          type: "list",
-          items: [
-            "**Daylight-Only**: Limit trips to daytime if you have difficulty seeing at night.",
-            "**Avoid Rush Hour**: Schedule errands when traffic is light to reduce stress and complexity.",
-            "**Fair Weather**: Stay off the road during adverse weather like heavy rain or snow.",
-            "**Simple Routes**: Choose well-marked, well-lit roads with easy-to-reach parking.",
+          type: "table",
+          headers: ["Scenario", "Question", "Answer"],
+          rows: [
+            [
+              "A driver gets honked at frequently in traffic.",
+              "Is this just bad luck?",
+              "No. It likely indicates delayed reactions or poor positioning.",
+            ],
+            [
+              "A driver feels exhausted after short trips.",
+              "What does this suggest?",
+              "Driving is requiring more mental effort than before.",
+            ],
           ],
         },
       ],
     },
     {
       id: "m6ch2_pg3",
-      title: "Proactive Safety",
+      title: "Smart Adaptation and Risk Reduction",
       content: [
         {
           type: "text",
           value:
-            "Adaptive driving habits are enhanced when you use the right tools and keep your skills sharp. Choosing a vehicle that fits your physical needs and taking refresher courses are great ways to stay proactive.",
+            "Once you identify limitations, the goal is not to stop driving. The goal is to adapt intelligently. Think of it like playing to your strengths while avoiding unnecessary risk.",
+        },
+        {
+          type: "heading",
+          value: "Adaptive driving strategies",
+        },
+        {
+          type: "list",
+          items: [
+            "**Daylight driving**: reduces visual strain and improves hazard detection.",
+            "**Avoid rush hours**: lowers decision complexity and reaction pressure.",
+            "**Fair weather driving**: removes low-traction and low-visibility risks.",
+            "**Simpler routes**: reduces navigation stress and cognitive load.",
+          ],
         },
         {
           type: "text",
           value:
-            "Modern technology and specialized training can help you maintain your independence for as long as possible.",
-        },
-        { type: "heading", value: "How It Works" },
-        {
-          type: "list",
-          items: [
-            "**Refresher Courses**: Programs like the \"55 Alive\" course help update your knowledge on traffic laws and new technology.",
-            "**Vehicle Choice**: Selecting a car with adjustable seats, large mirrors, and legible instruments makes driving more comfortable and safe.",
-            "**Health Checks**: Regular eye exams and discussions with your doctor about medication side effects are essential for safe driving.",
-          ],
+            "These adjustments work because they reduce the number of variables you need to process. Fewer variables means faster decisions and fewer mistakes.",
         },
         {
-          type: "imagePlaceholder",
-          prompt:
-            "Driver's-seat POV showing large side and rearview mirrors and a well-lit, legible dashboard instrument panel.",
+          type: "text",
+          value:
+            "This is not limitation. It is optimization. You are shaping the environment to match your current performance level.",
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "Refresher Benefits\nCourses like \"55 Alive\" identify bad habits and build confidence by teaching you how to anticipate other drivers' actions.",
+            "High-skill drivers control risk by controlling conditions, not by reacting faster.",
+        },
+        {
+          type: "table",
+          headers: ["Scenario", "Question", "Answer"],
+          rows: [
+            [
+              "A driver struggles at night but drives anyway.",
+              "What is the smarter move?",
+              "Limit driving to daylight conditions.",
+            ],
+            [
+              "A driver feels overwhelmed in heavy traffic.",
+              "What should they change?",
+              "Drive during low-traffic hours.",
+            ],
+          ],
         },
       ],
     },
     {
       id: "m6ch2_pg4",
-      title: "Summary",
+      title: "Proactive Safety and Long-Term Driving Ability",
       content: [
         {
           type: "text",
           value:
-            "Safe driving is a lifelong journey of adaptation. By balancing your years of experience with regular self-monitoring and smart adjustments to your habits, you can maintain your independence and safety on the road.",
+            "Good drivers do not wait for problems. They actively maintain their ability. This is where health, training, and tools come in.",
+        },
+        {
+          type: "heading",
+          value: "Key ways to stay sharp",
+        },
+        {
+          type: "list",
+          items: [
+            "**Regular health checks**: vision, hearing, and cognitive function directly affect driving.",
+            "**Medication awareness**: even common drugs can cause drowsiness or slow reactions.",
+            "**Refresher courses**: update knowledge and correct bad habits.",
+            "**Vehicle choice**: select cars that reduce physical strain and improve visibility.",
+          ],
+        },
+        {
+          type: "text",
+          value:
+            "Vehicle design matters more than people think. A well-designed car reduces effort, improves visibility, and compensates for physical limitations.",
+        },
+        {
+          type: "list",
+          items: [
+            "Adjustable seats and steering wheel.",
+            "Large, clear mirrors.",
+            "Simple, readable dashboard.",
+            "Reduced blind spots.",
+          ],
+        },
+        {
+          type: "text",
+          value:
+            "Courses like refresher programs help rebuild awareness. They are not for beginners. They are for correcting invisible mistakes that develop over time.",
+        },
+        {
+          type: "callout",
+          variant: "warning",
+          value:
+            "Medication is a hidden risk. Even over-the-counter drugs can slow reaction time or blur vision.",
+        },
+        {
+          type: "heading",
+          value: "Final perspective",
+        },
+        {
+          type: "text",
+          value:
+            "Aging is unavoidable. Decline is manageable. The difference between a risky driver and a safe one is awareness and adaptation.",
+        },
+        {
+          type: "text",
+          value:
+            "The goal is not to drive forever. The goal is to drive safely for as long as your performance allows.",
+        },
+        {
+          type: "table",
+          headers: ["Scenario", "Question", "Answer"],
+          rows: [
+            [
+              "A driver ignores medication side effects.",
+              "What is the risk?",
+              "Slower reactions and impaired judgment without realizing it.",
+            ],
+            [
+              "A driver upgrades to a car with better visibility.",
+              "Why does this help?",
+              "It compensates for reduced vision and improves awareness.",
+            ],
+          ],
         },
       ],
     },

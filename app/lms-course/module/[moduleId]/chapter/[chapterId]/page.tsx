@@ -30,9 +30,11 @@ export default async function ChapterOverviewPage({
   const furthestIndex = furthestChapterId ? getChapterIndex(furthestChapterId) : -1;
 
   const firstLessonId = activeChapter.lessons[0]?.id;
-  const startHref = firstLessonId
-    ? `/lms-course/module/${currentModule.id}/chapter/${activeChapter.id}/lesson/${firstLessonId}`
-    : `/lms-course/module/${currentModule.id}`;
+  const startHref =
+    getChapterHref(activeChapter.id) ??
+    (firstLessonId
+      ? `/lms-course/module/${currentModule.id}/chapter/${activeChapter.id}/lesson/${firstLessonId}`
+      : `/lms-course/module/${currentModule.id}`);
 
   return (
     <div className="lms-lesson-shell relative flex min-h-[80vh] flex-col px-4 py-8 sm:px-6 sm:py-10">
@@ -56,9 +58,11 @@ export default async function ChapterOverviewPage({
       <div className="mb-12 grid w-full max-w-4xl grid-cols-1 gap-5 self-center sm:grid-cols-2">
         {currentModule.chapters.map((chapter, index) => {
           const chapterLessonId = chapter.lessons[0]?.id;
-          const chapterHref = chapterLessonId
-            ? `/lms-course/module/${currentModule.id}/chapter/${chapter.id}/lesson/${chapterLessonId}`
-            : `/lms-course/module/${currentModule.id}`;
+          const chapterHref =
+            getChapterHref(chapter.id) ??
+            (chapterLessonId
+              ? `/lms-course/module/${currentModule.id}/chapter/${chapter.id}/lesson/${chapterLessonId}`
+              : `/lms-course/module/${currentModule.id}`);
           const isActive = chapter.id === activeChapter.id;
           const chapterIndex = getChapterIndex(chapter.id);
           const chapterUnlocked = isChapterUnlocked(chapter.id, furthestChapterId);

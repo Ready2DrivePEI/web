@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -39,6 +40,13 @@ export function QuizView({
   submitDisabled = false,
   nextChapterHref,
 }: QuizViewProps) {
+  const imageLayoutClassMap: Record<NonNullable<QuizQuestion["layout"]>, string> = {
+    quarter: "w-full sm:w-1/4",
+    half: "w-full sm:w-1/2",
+    threeQuarter: "w-full sm:w-3/4",
+    full: "w-full",
+  };
+
   const answeredCount = questions.filter((question) =>
     Number.isInteger(selectedAnswers[question.id]),
   ).length;
@@ -70,6 +78,21 @@ export function QuizView({
               <h2 className="whitespace-pre-wrap text-base font-semibold leading-6 sm:text-lg">
                 {question.question}
               </h2>
+              {question.imageSrc ? (
+                <figure
+                  className={`mt-3 overflow-hidden rounded-xl border ${
+                    imageLayoutClassMap[question.layout ?? "full"]
+                  }`}
+                >
+                  <Image
+                    src={question.imageSrc}
+                    alt={question.imageAlt ?? "Question image"}
+                    width={960}
+                    height={540}
+                    className="h-auto w-full object-cover"
+                  />
+                </figure>
+              ) : null}
             </header>
 
             <ul className="space-y-2">

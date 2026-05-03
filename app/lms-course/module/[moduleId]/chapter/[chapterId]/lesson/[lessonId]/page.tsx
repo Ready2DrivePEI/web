@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { courseModules } from "@/app/lms-course/data/modules";
 import { LessonView } from "@/app/lms-course/_components/lessonView";
 import { ChapterVisitTracker } from "@/app/lms-course/_components/chapter-visit-tracker";
+import { ScrollAwareNextButton } from "@/app/lms-course/_components/scroll-aware-next-button";
 import { getChapterHref, isChapterUnlocked } from "@/app/lms-course/data/modules";
 import { getServerFurthestChapterId } from "@/lib/lms-progress-server";
 
@@ -83,12 +84,11 @@ export default async function LessonPage({
 
           <div className="min-h-9 flex justify-end">
             {nextLesson ? (
-              <Button asChild>
-                <Link href={`${basePath}/${nextLesson.id}`}>
-                  Next Lesson
-                  <ChevronRight />
-                </Link>
-              </Button>
+              <ScrollAwareNextButton
+                pageId={`${moduleId}/${chapterId}/${lessonId}`}
+                href={`${basePath}/${nextLesson.id}`}
+                label="Next Lesson"
+              />
             ) : (
               <Button asChild>
                 <Link href={quizHref}>

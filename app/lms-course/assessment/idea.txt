@@ -1,0 +1,15 @@
+- The sem exam will use quizview in comeponents to display,
+- update quizz view to be able display img along with question
+- add an example qqustion in Semquestion to use, it should contain an image from public and a questioning like in mcq
+
+- in folder assesement>sem add the tsx file that will displayed
+- it will have inside it calling quizz from every quizz.tsx before moudle 4 and till moduele3
+- it will also call the file in the same folder called Semquestion
+- the sem questions will not be all questions from where its called, it randomly choose which to display except for questionbs from sem question
+
+- the sem exam will be displayed alongside side bar modules. 
+- clicking on it opens the quizz after prompting the user with start quizz
+
+ui/ux
+- it looks other modules except without 0/n , it should look like a breakpoint 
+- it should be bit more distinct and stand out a bit more to help cchunk the module into2 

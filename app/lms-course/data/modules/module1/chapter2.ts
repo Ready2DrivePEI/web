@@ -334,7 +334,7 @@ export const chapter2: Chapter = {
           type: "image",
           src: "/module1/m1ch2pg5.png",
           alt: "Licence exchange decision path",
-          layout: "half",
+          layout: "threeQuarter",
         },
         {
           type: "heading",

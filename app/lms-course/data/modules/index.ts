@@ -1,9 +1,11 @@
 import { module1, type Module } from "@/app/lms-course/data/modules/module1/chapter1";
 import { module2 } from "@/app/lms-course/data/modules/module2";
 import { module3 } from "@/app/lms-course/data/modules/module3";
+import { MIDSEM_ASSESSMENT_HREF, MIDSEM_CHAPTER_ID, midSemModule } from "@/app/lms-course/data/modules/midsem-assessment";
 import { module4 } from "@/app/lms-course/data/modules/module4";
 import { module5 } from "@/app/lms-course/data/modules/module5";
 import { module6 } from "@/app/lms-course/data/modules/module6";
+import { FINAL_ASSESSMENT_HREF, FINAL_CHAPTER_ID, finalAssessmentModule } from "@/app/lms-course/data/modules/final-assessment";
 
 // Temporary default: keep locks bypassed unless explicitly set to "false".
 const LMS_BYPASS_LOCKS = process.env.NEXT_PUBLIC_LMS_BYPASS_LOCKS !== "false";
@@ -17,7 +19,16 @@ export interface OrderedChapter {
   firstLessonId: string | null;
 }
 
-export const courseModules: Module[] = [module1, module2 as Module, module3 as Module, module4 as Module, module5 as Module, module6 as Module];
+export const courseModules: Module[] = [
+  module1,
+  module2 as Module,
+  module3 as Module,
+  midSemModule,
+  module4 as Module,
+  module5 as Module,
+  module6 as Module,
+  finalAssessmentModule,
+];
 
 export const orderedChapters: OrderedChapter[] = courseModules.flatMap((module, moduleIndex) =>
   module.chapters.map((chapter, chapterIndex) => ({
@@ -46,6 +57,9 @@ export function getChapterById(chapterId: string): OrderedChapter | null {
 }
 
 export function getChapterHref(chapterId: string): string | null {
+  if (chapterId === MIDSEM_CHAPTER_ID) return MIDSEM_ASSESSMENT_HREF;
+  if (chapterId === FINAL_CHAPTER_ID) return FINAL_ASSESSMENT_HREF;
+
   const chapter = getChapterById(chapterId);
   if (!chapter?.firstLessonId) return null;
   return `/lms-course/module/${chapter.moduleId}/chapter/${chapter.chapterId}/lesson/${chapter.firstLessonId}`;

@@ -421,7 +421,7 @@ export const m5chapter2: Chapter = {
           type: "imagePlaceholder",
           layout: "half",
           prompt:
-            "A motorcycle leaning into a turn with a rider using counter-steering, showing the motorcycle angle and the direction of the push on the handlebars.",
+              "A motorcycle leaning into a turn with a rider using counter-steering, showing the motorcycle angle and the direction of the push on the handlebars.",
         },
         {
           type: "table",

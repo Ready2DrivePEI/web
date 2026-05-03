@@ -70,14 +70,51 @@ function renderFormattedText(text: string) {
   });
 }
 
+function getYouTubeEmbedUrl(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, "");
+
+    if (host === "youtube.com" || host === "m.youtube.com") {
+      const videoId = parsed.searchParams.get("v");
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    }
+
+    if (host === "youtu.be") {
+      const videoId = parsed.pathname.replace("/", "");
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
 export function LessonView({ content }: { content: ContentBlock[] }) {
   return (
     <div className="lms-reading space-y-5 pt-3 text-base leading-7 sm:pt-4 sm:text-lg">
       {content.map((block, idx) => {
         if (block.type === "text") {
+          const nextBlock = content[idx + 1];
+          const inlineLink = nextBlock?.type === "link" && nextBlock.inline ? nextBlock : null;
+
           return (
             <p key={idx} className="max-w-[72ch] whitespace-pre-wrap text-balance">
               {renderFormattedText(block.value)}
+              {inlineLink ? (
+                <>
+                  {" "}
+                  <a
+                    href={inlineLink.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-[#0000EE] underline underline-offset-4"
+                  >
+                    {inlineLink.label}
+                  </a>
+                </>
+              ) : null}
             </p>
           );
         }
@@ -205,6 +242,42 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                 {calloutLabels[variant]}
               </p>
               <p className="mt-1 whitespace-pre-wrap text-base leading-6">{block.value}</p>
+            </div>
+          );
+        }
+
+        if (block.type === "link") {
+          const previousBlock = content[idx - 1];
+          if (block.inline && previousBlock?.type === "text") return null;
+
+          return (
+            <p key={idx} className="max-w-[72ch]">
+              <a
+                href={block.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-[#0000EE] underline underline-offset-4"
+              >
+                {block.label}
+              </a>
+            </p>
+          );
+        }
+
+        if (block.type === "video") {
+          const embedUrl = getYouTubeEmbedUrl(block.url);
+          if (!embedUrl) return null;
+
+          return (
+            <div key={idx} className="max-w-[72ch] overflow-hidden rounded-xl border">
+              <iframe
+                src={embedUrl}
+                title={block.title ?? "Lesson video"}
+                className="aspect-video w-full"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
           );
         }

@@ -19,7 +19,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { TruncatedLabel } from "./truncated-label";
-import { courseModules, getChapterIndex, getFirstChapterId, isChapterUnlocked } from "@/app/lms-course/data/modules";
+import { courseModules, getChapterHref, getChapterIndex, getFirstChapterId, isChapterUnlocked } from "@/app/lms-course/data/modules";
 import type { Module } from "@/app/lms-course/data/modules/module1/chapter1";
 
 const modules: Module[] = courseModules.map((module) => {
@@ -51,9 +51,10 @@ export function ModuleList({
             const firstChapterId = module.chapters[0]?.id
             const firstLessonId = module.chapters[0]?.lessons?.[0]?.id || "pg1"
             const href = firstChapterId
-              ? `/lms-course/module/${module.id}/chapter/${firstChapterId}/lesson/${firstLessonId}`
+              ? (getChapterHref(firstChapterId) ??
+                `/lms-course/module/${module.id}/chapter/${firstChapterId}/lesson/${firstLessonId}`)
               : `/lms-course/module/${module.id}`
-            const isActive = pathname.includes(`/module/${module.id}/`);
+            const isActive = pathname.startsWith(href) || pathname.includes(`/module/${module.id}/`);
             const hasUnlockedChapter = module.chapters.some((chapter) =>
               isChapterUnlocked(chapter.id, resolvedFurthestChapterId),
             );
@@ -139,8 +140,10 @@ export function ModuleList({
             <CollapsibleContent className="lms-border mt-1 ml-4 space-y-1 overflow-hidden border-l transition-all">
               {module.chapters.map((chapter) => {
                 const firstLessonId = chapter.lessons?.[0]?.id || "pg1";
-                const href = `/lms-course/module/${module.id}/chapter/${chapter.id}/lesson/${firstLessonId}`;
-                const isActive = pathname.includes(`/chapter/${chapter.id}`);
+                const href =
+                  getChapterHref(chapter.id) ??
+                  `/lms-course/module/${module.id}/chapter/${chapter.id}/lesson/${firstLessonId}`;
+                const isActive = pathname.startsWith(href) || pathname.includes(`/chapter/${chapter.id}`);
                 const chapterIndex = getChapterIndex(chapter.id);
                 const isChapterDone = chapterIndex <= furthestIndex;
                 const chapterUnlocked = isChapterUnlocked(chapter.id, resolvedFurthestChapterId);

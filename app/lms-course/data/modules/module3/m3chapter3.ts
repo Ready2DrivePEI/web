@@ -93,7 +93,13 @@ export const m3chapter3: Chapter = {
           value:
             "That means your normal safe habits become unsafe. A 3-second following distance? Not even close in winter.",
         },
-
+  {
+          type: "image",
+          src: "/module3/m3ch3pg2(2).png",
+          alt: "A diagram showing a car's mirrors and the red shaded blind spot areas over the driver's left and right shoulders where another car can hide",
+          layout: "quarter",
+          align: "left",
+        },
         { type: "heading", value: "Hidden Hazards" },
         {
           type: "list",
@@ -109,7 +115,13 @@ export const m3chapter3: Chapter = {
           value:
             "Black ice is dangerous because it removes feedback. You don’t feel it building. You just lose control suddenly.",
         },
-
+  {
+          type: "image",
+          src: "/module3/m3ch3pg2.png",
+          alt: "A diagram showing a car's mirrors and the red shaded blind spot areas over the driver's left and right shoulders where another car can hide",
+          layout: "threeQuarter",
+          align: "left",
+        },
         {
           type: "heading",
           value: "🧠 Decision Scenario",
@@ -129,13 +141,8 @@ export const m3chapter3: Chapter = {
           value:
             "Why: Your eyes cannot reliably detect black ice. Defensive driving assumes worst-case when conditions allow it.",
         },
-
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "Split comparison showing wet road vs black ice, visually similar, with one car maintaining control and the other beginning to skid",
-        },
+   
+       
       ],
     },
 

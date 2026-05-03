@@ -3,6 +3,9 @@ export type QuizPassRule = "all-correct";
 export interface QuizQuestion {
   id: string;
   question: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  layout?: "quarter" | "half" | "threeQuarter" | "full";
   options: string[];
   correctAnswerIndex: number;
   explanation: string;

@@ -26,11 +26,12 @@ function getNextChapterInfo(moduleId: string, chapterId: string): { nextChapterI
     return { nextChapterId: null, nextChapterHref: null };
   }
 
-  if (!nextChapter.firstLessonId) return { nextChapterId: null, nextChapterHref: null };
+  const chapterHref = getChapterHref(nextChapter.chapterId);
+  if (!chapterHref) return { nextChapterId: null, nextChapterHref: null };
 
   return {
     nextChapterId: nextChapter.chapterId,
-    nextChapterHref: `/lms-course/module/${nextChapter.moduleId}/chapter/${nextChapter.chapterId}/lesson/${nextChapter.firstLessonId}`,
+    nextChapterHref: chapterHref,
   };
 }
 

@@ -43,6 +43,14 @@ export const m3chapter2: Chapter = {
           value:
             "Examiners will notice immediately if you rely only on mirrors. A shoulder check is not optional theatre. It is the difference between a clean lane change and a blind-side crash.",
         },
+            {
+          type: "image",
+          src: "/module3/m3ch2pg1.png",
+          alt: "A diagram showing a car's mirrors and the red shaded blind spot areas over the driver's left and right shoulders where another car can hide",
+          layout: "half",
+          align: "left",
+        },
+      
         {
           type: "heading",
           value: "🧠 Decision Scenario",
@@ -62,12 +70,7 @@ export const m3chapter2: Chapter = {
           value:
             "Why: A car or motorcycle can sit in the blind spot even when the mirrors look empty. Mirrors show the past and the sides poorly, shoulder checking catches the missing slice of reality.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A diagram showing a car's mirrors and the red shaded blind spot areas over the driver's left and right shoulders where another car can hide.",
-        },
+     
       ],
     },
     {

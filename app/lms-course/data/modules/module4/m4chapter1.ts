@@ -11,6 +11,13 @@ export const m4chapter1: Chapter = {
       id: "m4ch1_pg1",
       title: "Driving Distractions and Aggressive Behavior",
       content: [
+           {
+          type: "image",
+          src: "/module4/m4ch1pg1.png",
+          alt:  "A driver looking at their phone while the car ahead brakes suddenly, showing the missed reaction and near collision.",
+          layout: "half",
+          align: "left",
+        },
         { type: "heading", value: "🧠 The Danger of a Distracted Mind" },
         {
           type: "text",
@@ -47,12 +54,8 @@ export const m4chapter1: Chapter = {
           value:
             "Most distractions are choices, not accidents. Good drivers remove the temptation before it gets a chance to become a mistake.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A driver looking at their phone while the car ahead brakes suddenly, showing the missed reaction and near collision.",
-        },
+    
+       
         {
           type: "heading",
           value: "🧠 Decision Scenario",
@@ -94,11 +97,13 @@ export const m4chapter1: Chapter = {
       title: "Impaired Driving (Alcohol and Drugs)",
       content: [
         {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A side-by-side comparison showing two drivers approaching a stop. One reacts normally and stops in time, while the impaired driver reacts late and travels extra distance, nearly hitting an obstacle.",
+          type: "image",
+          src: "/module4/m4ch1pg1.jpg",
+          alt: "A side-by-side comparison showing two drivers approaching a stop. One reacts normally and stops in time, while the impaired driver reacts late and travels extra distance, nearly hitting an obstacle.",
+          layout: "threeQuarter",
+          align: "left",
         },
+       
         { type: "heading", value: "💊 How Substances Affect Your Driving Abilities" },
         {
           type: "text",

@@ -16,6 +16,8 @@ export type ContentBlock =
     }
   | { type: "heading"; value: string }
   | { type: "text"; value: string }
+  | { type: "link"; label: string; href: string; inline?: boolean }
+  | { type: "video"; url: string; title?: string }
   | { type: "list"; items: string[] }
   | { type: "callout"; value: string; variant?: "info" | "warning" | "danger" }
   | {
@@ -250,6 +252,15 @@ const chapter1: Chapter = {
             ["9", "Farm tractors", "Essential agricultural operation"],
           ],
         },
+          {
+          type: "text",
+          value:"Classes of Driver Licenses",        },
+         {
+          type: "link",
+          label: "Read more",
+          href: "https://www.princeedwardisland.ca/en/information/transportation-and-infrastructure/classes-of-driver-licenses",
+          inline: true,
+        },
         {
           type: "callout",
           variant: "info",
@@ -353,6 +364,18 @@ const chapter1: Chapter = {
             "The decal alerts others to be more cautious around you",
           ],
         },
+   {
+          type: "text",
+          value:
+            "Graduated Driver Licensing Program ",
+        },
+
+    {
+          type: "link",
+          label: "(official details)",
+          href: "",
+          inline: true,
+        },
         {
           type: "callout",
           variant: "info",
@@ -432,6 +455,21 @@ const chapter1: Chapter = {
           type: "text",
           value:
             "Driving is a layered skill. At first, you consciously think about everything. Over time, actions become automatic. The goal of the GDL system is to move you from conscious effort to safe instinct.",
+        },
+        {
+          type: "text",
+          value: "Getting a PEI Driver’s License",
+        },
+        {
+          type: "link",
+          label: "Read more",
+          href: "https://www.princeedwardisland.ca/en/information/transportation-and-infrastructure/getting-a-pei-drivers-license",
+          inline: true,
+        },
+        {
+          type: "video",
+          url: "https://www.youtube.com/watch?v=FbamQg8q8OQ",
+          title: "Getting a PEI Driver's License",
         },
       ],
     },
