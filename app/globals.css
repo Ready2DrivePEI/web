@@ -615,5 +615,33 @@
   .lms-progress-fill {
     background: linear-gradient(90deg, var(--lms-accent), var(--lms-accent-2));
   }
+
+  /* Custom sleek sidebar scrollbar */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--lms-accent) 25%, transparent) transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--lms-accent) 25%, transparent);
+    border-radius: 9999px;
+    border: 5px solid transparent;
+    background-clip: padding-box;
+    transition: background-color 200ms ease-in-out, border-width 200ms ease-in-out;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--lms-accent) 45%, transparent);
+    border-width: 4px;
+    background-clip: padding-box;
+  }
 }
 

@@ -9,5 +9,5 @@ export const module3: Module = {
   title: "Vehicle Control and Everyday Driving Skills",
   slug: "vehicle-control-and-everyday-driving-skills",
   icon: ClipboardCheck,
-  chapters: [m3chapter1, m3chapter2, m3chapter3],
+  chapters: [m3chapter1, m3chapter2, m3chapter3], 
 };

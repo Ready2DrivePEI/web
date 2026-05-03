@@ -21,6 +21,7 @@ import { getCachedLastLmsPath, getStudentProgress, type StudentProgressSnapshot 
 import { getChapterHref, isLmsBypassLocksEnabled } from "@/app/lms-course/data/modules"
 import { ContinueCoursePrompt } from "@/app/lms-course/_components/continue-course-prompt"
 import { StudentAccountMenu } from "@/app/lms-course/_components/student-account-menu"
+import { CourseCompletionModal } from "@/app/lms-course/_components/course-completion-modal"
 
 export function LMSShell({ children }: { children: ReactNode }) {
   const bypassLocksEnabled = isLmsBypassLocksEnabled()
@@ -39,6 +40,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
   )
   const [progressSnapshot, setProgressSnapshot] = useState<StudentProgressSnapshot | null>(null)
   const [showContinuePrompt, setShowContinuePrompt] = useState(false)
+  const [showTestModal, setShowTestModal] = useState(false)
 
   const toggleCollapse = () => {
     const next = !isCollapsed
@@ -150,9 +152,18 @@ export function LMSShell({ children }: { children: ReactNode }) {
           <div className="ml-1 min-w-0 flex-1 sm:ml-2">
             <div className="mb-3 flex items-center justify-end gap-2">
               {bypassLocksEnabled ? (
-                <span className="lms-progress-pill rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide">
-                  Dev Preview Mode
-                </span>
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setShowTestModal(true)}
+                    className="rounded-full bg-purple-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-purple-700 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-400 dark:hover:bg-purple-900/50 transition-colors"
+                  >
+                    Test Modal
+                  </button>
+                  <span className="lms-progress-pill rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide">
+                    Dev Preview Mode
+                  </span>
+                </>
               ) : null}
               <Link
                 href="/"
@@ -167,6 +178,11 @@ export function LMSShell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </main>
+
+      <CourseCompletionModal 
+        isOpen={showTestModal} 
+        onClose={() => setShowTestModal(false)} 
+      />
     </div>
   )
 }
