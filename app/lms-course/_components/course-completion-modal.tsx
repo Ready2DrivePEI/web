@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle, Download, Copy, PartyPopper, X, Loader2 } from "lucide-react";
+import { useCertificateStatus } from "../_hooks/useCertificateStatus";
 import { Button } from "@/components/ui/button";
 
 interface CourseCompletionModalProps {
@@ -19,14 +20,14 @@ export function CourseCompletionModal({
 }: CourseCompletionModalProps) {
   const [isCopied, setIsCopied] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [certificateUrl, setCertificateUrl] = useState<string | null>(null);
-  const [exists, setExists] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [requestId, setRequestId] = useState(0);
-
-  const currentRequestIdRef = useRef(0);
-  const abortControllerRef = useRef<AbortController | null>(null);
+  
+  const { 
+    loading, 
+    error, 
+    exists, 
+    certificateUrl, 
+    refetch 
+  } = useCertificateStatus(isOpen);
 
   useEffect(() => {
     setIsMounted(true);
@@ -37,76 +38,11 @@ export function CourseCompletionModal({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-      abortControllerRef.current?.abort();
-      setLoading(false);
+      setIsCopied(false);
     }
     return () => {
       document.body.style.overflow = "unset";
-      abortControllerRef.current?.abort();
     };
-  }, [isOpen]);
-
-  const checkCertificateStatus = async () => {
-    abortControllerRef.current?.abort();
-
-    const controller = new AbortController();
-    abortControllerRef.current = controller;
-
-    const nextRequestId = currentRequestIdRef.current + 1;
-    currentRequestIdRef.current = nextRequestId;
-    setRequestId(nextRequestId);
-
-    setLoading(true);
-    setError(null);
-    setIsCopied(false);
-
-    try {
-      const response = await fetch("/api/certificate", {
-        method: "GET",
-        signal: controller.signal,
-      });
-
-      if (!response.ok) {
-        throw new Error("Request failed");
-      }
-
-      const data: { exists?: boolean; url?: string } = await response.json();
-
-      if (controller.signal.aborted || currentRequestIdRef.current !== nextRequestId || !isOpen) {
-        return;
-      }
-
-      if (data.exists === true && typeof data.url === "string" && data.url.length > 0) {
-        setExists(true);
-        setCertificateUrl(data.url);
-        setLoading(false);
-        return;
-      }
-
-      if (data.exists === false) {
-        setExists(false);
-        setCertificateUrl(null);
-        setLoading(false);
-        return;
-      }
-
-      throw new Error("Invalid response");
-    } catch {
-      if (controller.signal.aborted || currentRequestIdRef.current !== nextRequestId || !isOpen) {
-        return;
-      }
-      setError("Failed to fetch certificate status");
-      setExists(false);
-      setCertificateUrl(null);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (!isOpen) return;
-    checkCertificateStatus();
-    // Intentionally only when opening state changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   if (!isMounted || !isOpen) return null;
@@ -117,10 +53,9 @@ export function CourseCompletionModal({
     try {
       await navigator.clipboard.writeText(certificateUrl);
       setIsCopied(true);
-      setError(null);
       setTimeout(() => setIsCopied(false), 2000);
     } catch {
-      setError("Failed to copy certificate link");
+      // Error handling for copy is local to the component
     }
   };
 
@@ -143,10 +78,7 @@ export function CourseCompletionModal({
 
   const handleRetry = () => {
     if (loading) return;
-    setError(null);
-    setCertificateUrl(null);
-    setExists(false);
-    checkCertificateStatus();
+    refetch();
   };
 
   const displayDate = completionDate || new Date().toLocaleDateString("en-US", {
@@ -279,7 +211,7 @@ export function CourseCompletionModal({
                   </div>
                 )}
 
-                <p className="sr-only">Request ID: {requestId}</p>
+
               </div>
             )}
           </div>

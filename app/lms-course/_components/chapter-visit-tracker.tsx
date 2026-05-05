@@ -13,6 +13,6 @@ export function ChapterVisitTracker({ chapterId }: { chapterId: string }) {
       cacheLastLmsPath({ chapterId, path: pathname });
     }
   }, [chapterId, pathname]);
-
+  
   return null;
 }

@@ -331,6 +331,17 @@ export const m2chapter1: Chapter = {
             "Diamond → WARNING",
           ],
         },
+        {
+          type: "callout",
+          variant: "info",
+          value:
+            "Recommended resource: Practice identifying road signs with the ICBC Road Signs flash card deck linked below. Recognizing signs instantly is a tested skill on the road exam.",
+        },
+        {
+          type: "link",
+          href: "https://quizlet.com/ca/146626303/icbc-road-signs-flash-cards/",
+          label: "📖 ICBC Road Signs Flash Cards — Quizlet",
+        },
       ],
     },
 

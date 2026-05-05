@@ -67,6 +67,12 @@ When making changes, prefer practical improvements that make the product easier 
 - Prefer copy that explains what the user gets, where the action leads, and why it matters.
 - Keep wording concise, but not cold.
 
+## LMS Content and Multimedia Standards
+- When adding videos, use the `video` block type in the module data.
+- Always include contextual intro text or a heading before a video to explain its purpose (e.g., "Watch the video below to get a better idea...").
+- For external educational resources (like Quizlet flashcards), use the `link` block type and label them as "Recommended Resource".
+- Group related multimedia items under a single clear heading if they cover the same topic.
+
 ## Debugging rules
 - Inspect the relevant code before changing things.
 - Search broadly enough to understand how the feature is wired.

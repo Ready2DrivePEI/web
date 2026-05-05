@@ -363,6 +363,16 @@ export const m3chapter2: Chapter = {
           ],
         },
         {
+          type: "text",
+          value:
+            "Watch the video below to see how common parking rules work in practice and what mistakes to avoid.",
+        },
+        {
+          type: "video",
+          url: "https://youtu.be/MxbsBnPfHd8",
+          title: "Parking Regulations Explained",
+        },
+        {
           type: "heading", value: "Pulling Away from the Curb" },
         {
           type: "text",
@@ -390,6 +400,16 @@ export const m3chapter2: Chapter = {
             "Turn sharply left when the rear car’s left headlight becomes visible.",
             "Turn right again and pull forward into the centre of the space.",
           ],
+        },
+        {
+          type: "text",
+          value:
+            "The steps above can be hard to picture from text alone. Watch this video to see a full parallel park from start to finish.",
+        },
+        {
+          type: "video",
+          url: "https://youtu.be/FjEmxM2PMv8",
+          title: "How to Parallel Park",
         },
         { type: "heading", value: "Angle Parking" },
         {
@@ -508,6 +528,22 @@ export const m3chapter2: Chapter = {
           type: "text",
           value:
             "Pedestrians at modern roundabouts may have to cross in two stages. They should make eye contact with drivers and ensure both lanes are yielding before crossing the second part. Cyclists can either ride through like vehicles or dismount and cross as pedestrians.",
+        },
+        { type: "heading", value: "How to Drive Through a Roundabout" },
+        {
+          type: "text",
+          value:
+            "Roundabouts can feel confusing the first few times. Watch these two short videos to see exactly how to enter, signal, and exit safely.",
+        },
+        {
+          type: "video",
+          url: "https://youtu.be/46mOPz3rhHs",
+          title: "How to Navigate a Roundabout",
+        },
+        {
+          type: "video",
+          url: "https://youtu.be/sCXtcXD17qU",
+          title: "Roundabout Rules and Lane Use",
         },
         { type: "heading", value: "Night Driving" },
         {
