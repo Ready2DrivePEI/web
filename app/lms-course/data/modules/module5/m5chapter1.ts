@@ -26,12 +26,15 @@ export const m5chapter1: Chapter = {
           value:
             "Why does this matter? Because most bicycle crashes are not random acts of chaos. They happen when a driver assumes the cyclist will disappear, or when a cyclist assumes the driver saw them. Road safety is a negotiation with physics, not wishful thinking. Physics, annoyingly, always wins.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A clean educational street scene showing a cyclist riding on the right side of the road with a car safely passing wide, illustrating that bicycles and vehicles share the same roadway.",
+      {
+          type: "image",
+          src: "/module5/leave space for 2 wheelers.png",
+          alt:    "A clean educational street scene showing a cyclist riding on the right side of the road with a car safely passing wide, illustrating that bicycles and vehicles share the same roadway.",
+
+          layout: "threeQuarter",
+          align: "left",
         },
+
         {
           type: "callout",
           variant: "info",
@@ -80,11 +83,20 @@ export const m5chapter1: Chapter = {
           value:
             "The most dangerous mistakes for drivers are dooring, cutting off a cyclist while turning right, and passing too closely. These are not minor errors, they are collision generators.",
         },
-        {
-          type: "imagePlaceholder",
+     
+      {
+          type: "image",
+          src: "/module5/leave space to open door cyclist.jpg",
+          alt:   "A driving safety illustration showing a parked car door opening into the path of an approaching cyclist, with a clear focus on checking before opening the door.",
           layout: "half",
-          prompt:
-            "A driving safety illustration showing a parked car door opening into the path of an approaching cyclist, with a clear focus on checking before opening the door.",
+          align: "left",
+        },
+               {
+          type: "image",
+          src: "/module5/m5.jpg",
+          alt:   "A driving safety illustration showing a parked car door opening into the path of an approaching cyclist, with a clear focus on checking before opening the door.",
+          layout: "half",
+          align: "left",
         },
         {
           type: "text",
@@ -189,12 +201,14 @@ export const m5chapter1: Chapter = {
           value:
             "Scenario: You are cycling toward an intersection and a vehicle is beside you on the right. What is the danger?\nAnswer: The driver may turn right and squeeze you against the curb. The cyclist must stay alert, and the driver must check blind spots before turning.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A road intersection scene showing a cyclist approaching while a car prepares to turn right, with visual emphasis on the blind spot and curb squeeze danger.",
+      {
+          type: "image",
+          src: "/module5/m5ch1pg4(22).png",
+          alt:             "A road intersection scene showing a cyclist approaching while a car prepares to turn right, with visual emphasis on the blind spot and curb squeeze danger.",
+          layout: "threeQuarter",
+          align: "left",
         },
+        
         {
           type: "text",
           value:
@@ -239,12 +253,15 @@ export const m5chapter1: Chapter = {
           value:
             "Why does this equipment matter? Because drivers need time to see you, judge your speed, and react. A light and reflector give a cyclist presence in a way that human eyesight alone cannot guarantee in darkness.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A bicycle displayed from the side with clear labeled callouts for the front lamp, rear red reflector, bell, and reflective clothing for night riding safety.",
+      {
+          type: "image",
+          src: "/module5/m5ch1pg5.jpg",
+          alt:  "A bicycle displayed from the side with clear labeled callouts for the front lamp, rear red reflector, bell, and reflective clothing for night riding safety.",
+
+          layout: "threeQuarter",
+          align: "left",
         },
+
         {
           type: "text",
           value:
@@ -363,12 +380,14 @@ export const m5chapter1: Chapter = {
           value:
             "Can you wear a bicycle helmet for in-line skating? Yes.\nCan you use the same helmet for a skateboard? No, skateboarders need a different helmet because the crash pattern is different.",
         },
-        {
-          type: "imagePlaceholder",
+    {
+          type: "image",
+          src: "/module5/m5ch2.jpg",
+          alt:             "A close-up educational image of a bicycle helmet interior showing a CPSC sticker and foam padding, with a focus on proper safety certification and fit.",
           layout: "half",
-          prompt:
-            "A close-up educational image of a bicycle helmet interior showing a CPSC sticker and foam padding, with a focus on proper safety certification and fit.",
+          align: "left",
         },
+
       ],
     },
     {
@@ -412,11 +431,12 @@ export const m5chapter1: Chapter = {
           value:
             "Tighten the chin strap as snugly as possible. Adjust the junction of the front and back straps so it sits just under the ears. Secure the back strap without putting pressure on the front strap.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A side-view illustration of a person wearing a bicycle helmet correctly, with the helmet sitting level, low on the forehead, and the strap junction just below the ear.",
+    {
+          type: "image",
+          src: "/module5/m5ch1.png",
+          alt: "A side-view illustration of a person wearing a bicycle helmet correctly, with the helmet sitting level, low on the forehead, and the strap junction just below the ear.",
+          layout: "threeQuarter",
+          align: "left",
         },
       ],
     },

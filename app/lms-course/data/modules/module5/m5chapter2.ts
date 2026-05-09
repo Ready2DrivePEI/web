@@ -64,11 +64,12 @@ export const m5chapter2: Chapter = {
           value:
             "Mental model: a motorcycle should feel like it fits you, not like you are wrestling a metal animal. If it feels oversized on day one, it will not magically become obedient on day two.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A rider straddling a properly sized motorcycle with one foot flat on the ground, arms slightly bent, showing correct fit and comfortable control reach.",
+      {
+          type: "image",
+          src: "/module5/motor riding position.png",
+          alt:             "A rider straddling a properly sized motorcycle with one foot flat on the ground, arms slightly bent, showing correct fit and comfortable control reach.",
+          layout: "threeQuarter",
+          align: "left",
         },
         {
           type: "table",
@@ -148,13 +149,15 @@ export const m5chapter2: Chapter = {
           value:
             "Eye protection is not optional in practice, even where a windshield is present. Wind, rain, bugs, and debris can blur vision or force a rider to blink at the wrong moment. That tiny moment can be enough for a crash.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A helmet, goggles, gloves, boots, and reflective jacket arranged beside a motorcycle to show essential motorcycle safety gear.",
+    {
+          type: "image",
+          src: "/module5/ch5ch2.png",
+          alt:            "A helmet, goggles, gloves, boots, and reflective jacket arranged beside a motorcycle to show essential motorcycle safety gear.",
+
+          layout: "threeQuarter",
+          align: "left",
         },
-        {
+        { 
           type: "table",
           headers: ["Scenario", "Question", "Answer"],
           rows: [
@@ -417,11 +420,12 @@ export const m5chapter2: Chapter = {
             "If the skid is a slight rear-wheel skid from over-braking, steer in the direction of the skid and slowly let up on the brake.",
           ],
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-              "A motorcycle leaning into a turn with a rider using counter-steering, showing the motorcycle angle and the direction of the push on the handlebars.",
+    {
+          type: "image",
+          src: "/module5/m5ch2.png",
+          alt: " A motorcycle leaning into a turn with a rider using counter-steering, showing the motorcycle angle and the direction of the push on the handlebars",
+          layout: "threeQuarter",
+          align: "left",
         },
         {
           type: "table",

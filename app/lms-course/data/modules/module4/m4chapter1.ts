@@ -75,6 +75,7 @@ export const m4chapter1: Chapter = {
           value:
             "Why: Emotional distraction is still distraction. The road does not care whether the problem is a phone, a sandwich, or a dramatic verbal knife fight in the front seat.",
         },
+        
         {
           type: "heading",
           value: "Hand-Held Cell Phone Ban",
@@ -83,6 +84,13 @@ export const m4chapter1: Chapter = {
           type: "text",
           value:
             "The handbook’s rule is simple: do not use a hand-held device while driving. That includes texting, calling, searching, or interacting with a device in a way that takes your attention or hands away from the task of driving. The right time to handle the phone is when the vehicle is safely stopped and you are not actively driving.",
+        },
+             {
+          type: "image",
+          src: "/module4/m4ch1pg1.jpg",
+          alt: "A side-by-side comparison showing two drivers approaching a stop. One reacts normally and stops in time, while the impaired driver reacts late and travels extra distance, nearly hitting an obstacle.",
+          layout: "half",
+          align: "left",
         },
         {
           type: "callout",
@@ -96,15 +104,16 @@ export const m4chapter1: Chapter = {
       id: "m4ch1_pg2",
       title: "Impaired Driving (Alcohol and Drugs)",
       content: [
-        {
+   
+           {
           type: "image",
-          src: "/module4/m4ch1pg1.jpg",
+          src: "/module4/m4ch1pg2.png",
           alt: "A side-by-side comparison showing two drivers approaching a stop. One reacts normally and stops in time, while the impaired driver reacts late and travels extra distance, nearly hitting an obstacle.",
           layout: "threeQuarter",
           align: "left",
         },
-       
         { type: "heading", value: "💊 How Substances Affect Your Driving Abilities" },
+        
         {
           type: "text",
           value:
@@ -130,6 +139,7 @@ export const m4chapter1: Chapter = {
             "Prescription and over-the-counter medication can also impair driving ability.",
           ],
         },
+     
         {
           type: "heading",
           value: "The Multiplier Effect of Mixing Substances",

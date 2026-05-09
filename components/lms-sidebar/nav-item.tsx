@@ -59,6 +59,8 @@ export function ModuleList({
               isChapterUnlocked(chapter.id, resolvedFurthestChapterId),
             );
 
+            const isAssessment = module.id === "midsem" || module.id === "final";
+
             return (
               <div
                 key={module.slug}
@@ -67,11 +69,10 @@ export function ModuleList({
                 {hasUnlockedChapter ? (
                   <Link href={href} aria-label={module.title} title={module.title}>
                     <div
-                      className={`lms-module-trigger flex h-12 items-center justify-center rounded-xl ${
-                        isActive ? "lms-module-trigger-open" : ""
-                      }`}
+                      className={`lms-module-trigger flex h-12 items-center justify-center rounded-xl ${isActive ? "lms-module-trigger-open" : ""
+                        }`}
                     >
-                      <ModuleIcon className={`h-5 w-5 ${isActive ? "lms-success" : "lms-muted"}`} />
+                      <ModuleIcon className={`h-5 w-5 shrink-0 ${isActive ? (isAssessment ? "lms-warning" : "lms-success") : "lms-muted"}`} />
                     </div>
                   </Link>
                 ) : (
@@ -103,6 +104,8 @@ export function ModuleList({
           isChapterUnlocked(chapter.id, resolvedFurthestChapterId),
         );
 
+        const isAssessment = module.id === "midsem" || module.id === "final";
+
         return (
           <Collapsible
             key={module.slug}
@@ -114,22 +117,27 @@ export function ModuleList({
               <button
                 type="button"
                 aria-label={module.title}
-                className={`lms-module-trigger group/module flex w-full items-center justify-between rounded-xl px-3 py-3 text-[0.95rem] font-semibold ${
-                  isOpen ? "lms-module-trigger-open" : ""
-                }`}
+                className={`lms-module-trigger group/module flex w-full items-center justify-between rounded-xl px-3 py-3 text-[0.95rem] font-semibold ${isOpen ? "lms-module-trigger-open" : ""
+                  }`}
               >
                 <div className="flex min-w-0 items-center gap-3">
                   {hasUnlockedChapter ? (
-                    <ModuleIcon className={`h-5 w-5 ${isOpen ? "lms-success" : "lms-muted"}`} />
+                    <ModuleIcon className={`h-5 w-5 shrink-0 ${isOpen ? (isAssessment ? "lms-warning" : "lms-success") : "lms-muted"}`} />
                   ) : (
-                    <Lock className="h-5 w-5 lms-muted" />
+                    <Lock className="h-5 w-5 shrink-0 lms-muted" />
                   )}
                   <TruncatedLabel text={module.title} className="lms-module-title text-left" />
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
-                  <span className="lms-count-chip rounded px-1.5 py-0.5 text-[10px]" aria-hidden="true">
-                    {completedCount}/{module.chapters.length}
-                  </span>
+                  {isAssessment ? (
+                    <span className="lms-accent rounded bg-[var(--lms-active-bg)] px-1 py-[1px] text-[9px] font-medium tracking-wider" aria-hidden="true">
+                      EXAM
+                    </span>
+                  ) : (
+                    <span className="lms-count-chip rounded px-1.5 py-0.5 text-[10px]" aria-hidden="true">
+                      {completedCount}/{module.chapters.length}
+                    </span>
+                  )}
                   <ChevronRight
                     className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
                   />
@@ -156,7 +164,7 @@ export function ModuleList({
                       aria-label={`${chapter.title} locked`}
                     >
                       <div className="flex min-w-0 items-center gap-3">
-                        <Lock className="h-4 w-4 opacity-65" />
+                        <Lock className="h-4 w-4 shrink-0 opacity-65" />
                         <TruncatedLabel text={chapter.title} className="lms-chapter-title text-left" />
                       </div>
                       <TruncatedLabel
@@ -176,21 +184,22 @@ export function ModuleList({
                     aria-label={`${chapter.title} (${chapter.type})`}
                   >
                     <div
-                      className={`lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-4 py-2.5 text-sm ${
-                        isActive ? "lms-chapter-item-active font-medium" : ""
-                      }`}
+                      className={`lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-4 py-2.5 text-sm ${isActive ? "lms-chapter-item-active font-medium" : ""
+                        }`}
                     >
                       <div className="flex min-w-0 items-center gap-3">
                         {isChapterDone ? (
-                          <CheckCircle2 className="lms-success h-4 w-4" />
+                          <CheckCircle2 className="lms-success h-4 w-4 shrink-0" />
                         ) : (
-                          <Circle className="h-4 w-4 opacity-35" />
+                          <Circle className="h-4 w-4 shrink-0 opacity-35" />
                         )}
                         <TruncatedLabel text={chapter.title} className="lms-chapter-title text-left" />
                       </div>
                       <TruncatedLabel
                         text={chapter.type}
-                        className="text-[9px] font-bold uppercase opacity-60 transition-opacity group-hover/item:opacity-100"
+                        className={`text-[9px] font-medium uppercase transition-opacity group-hover/item:opacity-100 ${
+                          isAssessment ? "text-[var(--lms-text)] opacity-80" : "opacity-60"
+                        }`}
                         containerClassName="ml-3 max-w-20 shrink-0"
                       />
                     </div>

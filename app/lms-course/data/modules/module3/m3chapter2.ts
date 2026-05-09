@@ -37,19 +37,20 @@ export const m3chapter2: Chapter = {
           value:
             "The handbook makes clear that lane changes require a rear-view mirror check, side-view mirror check, signal, and a shoulder check. Blind spots exist in the right and left rear corners, so mirrors alone are not enough. If your front bumper is even with, or past, your rear bumper in the other lane, that vehicle is in your blind spot zone and can disappear from mirror view.",
         },
-        {
-          type: "callout",
-          variant: "warning",
-          value:
-            "Examiners will notice immediately if you rely only on mirrors. A shoulder check is not optional theatre. It is the difference between a clean lane change and a blind-side crash.",
-        },
-            {
+               {
           type: "image",
           src: "/module3/m3ch2pg1.png",
           alt: "A diagram showing a car's mirrors and the red shaded blind spot areas over the driver's left and right shoulders where another car can hide",
           layout: "half",
           align: "left",
         },
+        {
+          type: "callout",
+          variant: "warning",
+          value:
+            "Examiners will notice immediately if you rely only on mirrors. A shoulder check is not optional theatre. It is the difference between a clean lane change and a blind-side crash.",
+        },
+     
       
         {
           type: "heading",
@@ -110,6 +111,14 @@ export const m3chapter2: Chapter = {
             "Stop or slow signal, arm bent downward",
           ],
         },
+ {
+          type: "image",
+          src: "/module3/hand.jpg",
+          alt:             "A driving record graphic showing a gauge that goes from green (0 points) to red (12 points), with the suspension zone highlighted at the red end.",
+
+          layout: "half",
+          align: "left",
+        },
         {
           type: "callout",
           variant: "info",
@@ -138,69 +147,81 @@ export const m3chapter2: Chapter = {
       ],
     },
     {
-      id: "m3ch2_pg3",
+  id: "m3ch2_pg3",
+  title: "Turning at Intersections",
+  content: [
+    {
+      type: "text",
+      value:
+        "Turns are high-risk because they concentrate movement into a small space where pedestrians, oncoming traffic, parked vehicles, and lane changes can all overlap. A rushed turn is often just a fancy name for a bad decision.",
+    },
+    {
+      type: "heading",
+      value: "Displaced Left Turns",
+    },
+    {
+      type: "text",
+      value:
+    "This video explains a displaced left turn intersection, a special road design that reduces dangerous crash points and improves traffic flow by separating left-turning vehicles from oncoming traffic before they reach the main intersection.",},
+    {
+      type: "video",
+      url: "https://www.youtube.com/watch?v=BIdDSlpnwBY",
       title: "Turning at Intersections",
-      content: [
-        {
-          type: "text",
-          value:
-            "Turns are high-risk because they concentrate movement into a small space where pedestrians, oncoming traffic, parked vehicles, and lane changes can all overlap. A rushed turn is often just a fancy name for a bad decision.",
-        },
-        { type: "heading", value: "Turning at Intersections" },
-        {
-          type: "list",
-          items: [
-            "Prepare for the turn before you get there.",
-            "Get into the correct lane as early as possible.",
-            "Look behind and on both sides before turning.",
-            "Signal clearly before changing lanes or turning.",
-            "Slow before the crosswalk if you are going too fast to make the turn safely.",
-            "Finish the turn in the proper lane.",
-          ],
-        },
-        {
-          type: "text",
-          value:
-            "The handbook says not to have the brake or clutch pedal pushed down, and not to shift gears while actually turning, although you should be prepared to do so. The point is to avoid unstable vehicle control in the middle of the turn.",
-        },
-        {
-          type: "heading", value: "Left Turns" },
-        {
-          type: "text",
-          value:
-            "Drivers making left turns must watch oncoming traffic, pedestrians in crosswalks, and any vehicle entering the intersection. Oncoming vehicles have the right-of-way even if you reached the turning point first.",
-        },
-        {
-          type: "text",
-          value:
-            "If you are waiting to turn left, do not turn the steering wheel left until you are ready to complete the movement. If you are rear-ended while your wheels are already turned, your vehicle can be pushed into oncoming traffic. That is the kind of mistake that turns one impact into two.",
-        },
-        {
-          type: "heading",
-          value: "Right Turns on a Red Light",
-        },
-        {
-          type: "text",
-          value:
-            "Unless a sign forbids it, a right turn on red is allowed only after a full stop, a scan for pedestrians and traffic, and a careful yield to anyone who already has the right-of-way. It is dangerous and illegal to roll into the turn without stopping first.",
-        },
-        {
-          type: "heading",
-          value: "Making U-Turns",
-        },
-        {
-          type: "text",
-          value:
-            "U-turns are hazardous because they reverse the direction of travel across active traffic. They are only allowed in the places described by the handbook, and never where a sign prohibits them, at light-controlled intersections in a municipality, on curves, near hill crests, or anywhere the turn would interfere with other traffic.",
-        },
-        {
-          type: "callout",
-          variant: "warning",
-          value:
-            "Common mistake: staring at the gap ahead and forgetting pedestrians or a vehicle already approaching from the side. Turning safely means scanning the whole picture, not worshipping one empty lane.",
-        },
+    },
+    { type: "heading", value: "Turning at Intersections" },
+    {
+      type: "list",
+      items: [
+        "Prepare for the turn before you get there.",
+        "Get into the correct lane as early as possible.",
+        "Look behind and on both sides before turning.",
+        "Signal clearly before changing lanes or turning.",
+        "Slow before the crosswalk if you are going too fast to make the turn safely.",
+        "Finish the turn in the proper lane.",
       ],
     },
+    {
+      type: "text",
+      value:
+        "The handbook says not to have the brake or clutch pedal pushed down, and not to shift gears while actually turning, although you should be prepared to do so. The point is to avoid unstable vehicle control in the middle of the turn.",
+    },
+    { type: "heading", value: "Left Turns" },
+    {
+      type: "text",
+      value:
+        "Drivers making left turns must watch oncoming traffic, pedestrians in crosswalks, and any vehicle entering the intersection. Oncoming vehicles have the right-of-way even if you reached the turning point first.",
+    },
+    {
+      type: "text",
+      value:
+        "If you are waiting to turn left, do not turn the steering wheel left until you are ready to complete the movement. If you are rear-ended while your wheels are already turned, your vehicle can be pushed into oncoming traffic. That is the kind of mistake that turns one impact into two.",
+    },
+    {
+      type: "heading",
+      value: "Right Turns on a Red Light",
+    },
+    {
+      type: "text",
+      value:
+        "Unless a sign forbids it, a right turn on red is allowed only after a full stop, a scan for pedestrians and traffic, and a careful yield to anyone who already has the right-of-way. It is dangerous and illegal to roll into the turn without stopping first.",
+    },
+    {
+      type: "heading",
+      value: "Making U-Turns",
+    },
+    {
+      type: "text",
+      value:
+        "U-turns are hazardous because they reverse the direction of travel across active traffic. They are only allowed in the places described by the handbook, and never where a sign prohibits them, at light-controlled intersections in a municipality, on curves, near hill crests, or anywhere the turn would interfere with other traffic.",
+    },
+    {
+      type: "callout",
+      variant: "warning",
+      value:
+        "Common mistake: staring at the gap ahead and forgetting pedestrians or a vehicle already approaching from the side. Turning safely means scanning the whole picture, not worshipping one empty lane.",
+    },
+  ],
+},
     {
       id: "m3ch2_pg4",
       title: "Passing Other Vehicles and the Responsibilities of the Driver Being Passed",
@@ -539,11 +560,6 @@ export const m3chapter2: Chapter = {
           type: "video",
           url: "https://youtu.be/46mOPz3rhHs",
           title: "How to Navigate a Roundabout",
-        },
-        {
-          type: "video",
-          url: "https://youtu.be/sCXtcXD17qU",
-          title: "Roundabout Rules and Lane Use",
         },
         { type: "heading", value: "Night Driving" },
         {

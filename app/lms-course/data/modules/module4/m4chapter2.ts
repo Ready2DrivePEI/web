@@ -28,6 +28,12 @@ export const m4chapter2: Chapter = {
         {
           type: "heading",
           value: "Key Thresholds for Experienced Drivers",
+        },    {
+          type: "image",
+          src: "/module4/ch4ch2.png",
+          alt:  "A driving record graphic showing a gauge that goes from green (0 points) to red (12 points), with the suspension zone highlighted at the red end.",
+          layout: "threeQuarter",
+          align: "left",
         },
         {
           type: "list",
@@ -96,12 +102,7 @@ export const m4chapter2: Chapter = {
           value:
             "Why: The point system is designed to interrupt a dangerous pattern before it turns into a crash pattern. The higher the total, the less the system trusts the driver to self-correct.",
         },
-        {
-          type: "imagePlaceholder",
-          layout: "half",
-          prompt:
-            "A driving record graphic showing a gauge that goes from green (0 points) to red (12 points), with the suspension zone highlighted at the red end.",
-        },
+ 
       ],
     },
     {
@@ -332,12 +333,20 @@ export const m4chapter2: Chapter = {
           value:
             "If the device is not serviced on time, it can lock itself and the vehicle may not start. Repeated failures can lead Highway Safety to remove the device and restore the suspension period.",
         },
+              {
+          type: "image",
+          src: "/module4/ignitionm4.png",
+          alt: "A side-by-side comparison showing two drivers approaching a stop. One reacts normally and stops in time, while the impaired driver reacts late and travels extra distance, nearly hitting an obstacle.",
+          layout: "quarter",
+          align: "left",
+        },
         {
           type: "callout",
           variant: "info",
           value:
             "The interlock is not forgiveness. It is supervision with a steering wheel.",
         },
+     
         {
           type: "heading",
           value: "🧠 Decision Scenario",

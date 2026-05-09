@@ -4,6 +4,7 @@ import { chapter1Quiz } from "@/app/lms-course/data/modules/module1/chapter1quiz
 import { chapter2Quiz } from "@/app/lms-course/data/modules/module1/chapter2quiz";
 import { m2chapter1Quiz } from "@/app/lms-course/data/modules/module2/m2chapter1quiz";
 import { m2chapter2Quiz } from "@/app/lms-course/data/modules/module2/m2chapter2quiz";
+import { m2chapter3Quiz } from "@/app/lms-course/data/modules/module2/m2chapter3quiz";
 import { m3chapter1Quiz } from "@/app/lms-course/data/modules/module3/m3chapter1quiz";
 import { m3chapter2Quiz } from "@/app/lms-course/data/modules/module3/m3chapter2quiz";
 import { m3chapter3Quiz } from "@/app/lms-course/data/modules/module3/m3chapter3quiz";
@@ -18,7 +19,7 @@ import { getChapterHref, getNextChapter, isChapterUnlocked } from "@/app/lms-cou
 import { getServerFurthestChapterId } from "@/lib/lms-progress-server";
 import { ChapterVisitTracker } from "@/app/lms-course/_components/chapter-visit-tracker";
 
-const quizzes = [chapter1Quiz, chapter2Quiz, m2chapter1Quiz, m2chapter2Quiz, m3chapter1Quiz, m3chapter2Quiz, m3chapter3Quiz, m4chapter1Quiz, m4chapter2Quiz, m4chapter3Quiz, m5chapter1Quiz, m5chapter2Quiz, m6chapter1Quiz, m6chapter2Quiz];
+const quizzes = [chapter1Quiz, chapter2Quiz, m2chapter1Quiz, m2chapter2Quiz, m2chapter3Quiz, m3chapter1Quiz, m3chapter2Quiz, m3chapter3Quiz, m4chapter1Quiz, m4chapter2Quiz, m4chapter3Quiz, m5chapter1Quiz, m5chapter2Quiz, m6chapter1Quiz, m6chapter2Quiz];
 
 function getNextChapterInfo(moduleId: string, chapterId: string): { nextChapterId: string | null; nextChapterHref: string | null } {
   const nextChapter = getNextChapter(chapterId);

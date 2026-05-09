@@ -87,6 +87,14 @@ export const m6chapter2: Chapter = {
           type: "heading",
           value: "Warning signs to watch for",
         },
+         {
+          type: "image",
+          src: "/module6/m6ch2.png",
+          alt:             "A driving record graphic showing a gauge that goes from green (0 points) to red (12 points), with the suspension zone highlighted at the red end.",
+
+          layout: "half",
+          align: "left",
+        },
         {
           type: "list",
           items: [

@@ -75,14 +75,6 @@ export const m2chapter1Quiz: ChapterQuiz = {
     },
     {
       id: "q6",
-      question: "The shape that always identifies a stop sign is:",
-      options: ["Triangle", "Rectangle", "Octagon", "Circle"],
-      correctAnswerIndex: 2,
-      explanation: "Stop signs are uniquely octagonal for fast recognition.",
-      sourceLessonId: "m2ch1_pg6",
-    },
-    {
-      id: "q7",
       question: "Construction-zone speed limits apply:",
       options: [
         "Only when workers are visibly present",
@@ -96,7 +88,7 @@ export const m2chapter1Quiz: ChapterQuiz = {
       sourceLessonId: "m2ch1_pg7",
     },
     {
-      id: "q8",
+      id: "q7",
       question:
         "Best sequence for making a safe approach at a complex intersection is:",
       options: [
@@ -108,7 +100,7 @@ export const m2chapter1Quiz: ChapterQuiz = {
       correctAnswerIndex: 1,
       explanation:
         "A full scan across signal, sign, marking, and zone context supports safer, earlier decisions.",
-      sourceLessonId: "m2ch1_pg8",
+      sourceLessonId: "m2ch1_pg9",
     },
   ],
 };

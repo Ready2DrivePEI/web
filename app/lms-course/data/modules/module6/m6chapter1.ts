@@ -82,10 +82,19 @@ export const m6chapter1: Chapter = {
           value:
             "If you arrive first at a collision, your role is not to be a hero. It is to prevent the situation from getting worse. Most secondary injuries happen because the scene is not controlled.",
         },
+              {
+          type: "image",
+          src: "/module6/m3ch2pg2.png",
+          alt:             "A driving record graphic showing a gauge that goes from green (0 points) to red (12 points), with the suspension zone highlighted at the red end.",
+
+          layout: "half",
+          align: "left",
+        },
         {
           type: "heading",
           value: "Step 1: Secure the scene",
         },
+    
         {
           type: "list",
           items: [
@@ -94,6 +103,7 @@ export const m6chapter1: Chapter = {
             "Turn on hazard lights if available.",
           ],
         },
+       
         {
           type: "heading",
           value: "Step 2: Call for help",

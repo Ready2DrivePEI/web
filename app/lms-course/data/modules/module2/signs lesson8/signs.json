@@ -1,0 +1,1121 @@
+[
+  {
+    "type": "text",
+    "text": "Please log in for full account access."
+  },
+  {
+    "type": "text",
+    "text": "Traffic signs give you important information about the law, warn you about dangerous conditions and help you find your way. Signs use different symbols, colours and shapes for easy identification."
+  },
+  {
+    "type": "text",
+    "text": "Here are some of the many signs you will see on Ontario roads:"
+  },
+  {
+    "type": "text",
+    "text": "A stop sign is eight-sided and has a red background with white letters. It means you must come to a complete stop. Stop at the stop line if it is marked on the pavement. If there is no stop line, stop at the crosswalk. If there is no crosswalk, stop at the edge of the sidewalk. If there is no sidewalk, stop at the edge of the intersection. Wait until the way is clear before entering the intersection."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-stop-sign.jpg",
+    "alt": "a stop sign"
+  },
+  {
+    "type": "text",
+    "text": "A school zone sign is five-sided and has a fluorescent yellow/green background with black symbols. It warns that you are coming to a school zone. Slow down, drive with extra caution and watch for children."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-school-zone-sign.jpg",
+    "alt": "a school zone sign"
+  },
+  {
+    "type": "text",
+    "text": "A yield sign is a triangle with a white background and a red border. It means you must let traffic in the intersection or close to it go first. Stop if necessary and go only when the way is clear."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-yield-sign.jpg",
+    "alt": "a yield sign"
+  },
+  {
+    "type": "text",
+    "text": "A railway crossing sign is X-shaped with a white background and red outline. It warns that railway tracks cross the road. Watch for this sign. Slow down and look both ways for trains. Be prepared to stop."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-railway-crossing-sign.jpg",
+    "alt": "a railway crossing sign"
+  },
+  {
+    "type": "text",
+    "text": "There are four other kinds of signs: regulatory, warning, temporary conditions and information and direction."
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Regulatory signs"
+  },
+  {
+    "type": "text",
+    "text": "These signs give a direction that must be obeyed. They are usually rectangular or square with a white or black background and black, white or coloured letters. A sign with a green circle means you may or must do the activity shown inside the ring. A red circle with a line through it means the activity shown is not allowed."
+  },
+  {
+    "type": "heading",
+    "level": "h3",
+    "text": "Here are some common regulatory signs:"
+  },
+  {
+    "type": "text",
+    "text": "This road is an official bicycle route. Watch for cyclists and be prepared to share the road with them."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "You may park in the area between the signs during the times posted. (Used in pairs or groups.)"
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-2.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Snowmobiles may use this road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-3.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not enter this road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-4.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not stop in the area between the signs. This means you may not stop your vehicle in this area, even for a moment. (Used in pairs or groups.)"
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-5.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not stand in the area between the signs. This means you may not stop your vehicle in this area except while loading or unloading passengers. (Used in pairs or groups.)"
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-6.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not park in the area between the signs. This means you may not stop your vehicle except to load or unload passengers or merchandise. (Used in pairs or groups.)"
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-7.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not turn left at the intersection."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-8.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not drive through the intersection."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-9.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not turn to go in the opposite direction. (U-turn)"
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-10.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not turn right when facing a red light at the intersection."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-11.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not turn left during the times shown."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-12.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "This parking space is only for vehicles displaying a valid Accessible Parking Permit."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-13.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "No bicycles allowed on this road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-14.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "No pedestrians allowed on this road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-15.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Keep to the right of the traffic island."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-16.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Speed limit changes ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-17.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not pass on this road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-18.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Slow traffic on multi-lane roads must keep right."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-19.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Indicates areas where the community has identified that there is a special risk to pedestrians. Traffic related offences committed within the zone are subject to increased fines."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-20.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "The speed limit in this zone is lower during school hours. Observe the speed limit shown when the yellow lights are flashing."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-21.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Stop for school bus when signals are flashing."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-22.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "This sign is installed on multi-lane highways with no centre median divider. It informs drivers approaching from both directions that they must stop for a school bus when its signal lights are flashing."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-23.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "These signs, above the road or on the pavement before an intersection, tell drivers the direction they must travel. For example: the driver in lane one must turn left; the driver in lane two must turn left or go straight ahead; and the driver in lane three must turn right."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-24.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Traffic may travel in one direction only."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-25.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "This is a pedestrian crossover. Be prepared to stop and yield right-of-way to pedestrians."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-26.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "This sign, above the road or on the ground, means the lane is only for two-way left turns."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-27.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "This sign reserves curb area for vehicles displaying a valid Accessible Person Parking Permit picking up and dropping off passengers with disabilities."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-28.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "These signs mean lanes are only for specific types of vehicles, either all the time or during certain hours. Different symbols are used for the different types of vehicles. They include: buses, taxis, vehicles with three or more people and bicycles."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-29.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Keep to the right lane except when passing on two-lane sections where climbing or passing lanes are provided."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-30.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "This sign on the back of transit buses serves as a reminder to motorists of the law requiring vehicles approaching a bus stopped at a dedicated Bus Stop to yield to the bus, once the bus has signalled its intent to return to the lane."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-31.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Road forks to the right."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-32.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "text",
+    "text": "Marks a zone within which school buses load or unload passengers without using the red alternating lights and stop arm."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-regulatory-sign-33.jpg",
+    "alt": "a regulatory sign"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "High Occupancy Vehicle (HOV) signs"
+  },
+  {
+    "type": "text",
+    "text": "Only public vehicles such as buses, or passenger vehicles carrying a specified minimum number of passengers, may use this lane."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-high-occupancy-vehicle-lane-sign.jpg",
+    "alt": "a high occupancy vehicle lane sign"
+  },
+  {
+    "type": "text",
+    "text": "Vehicles cannot change lanes into or out of a high-occupancy vehicle lane in this area."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-high-occupancy-vehicle-lane-sign-2.jpg",
+    "alt": "a high occupancy vehicle lane sign"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Warning signs"
+  },
+  {
+    "type": "text",
+    "text": "These signs warn of dangerous or unusual conditions ahead such as a curve, turn, dip or sideroad. They are usually diamond-shaped and have a yellow background with black letters or symbols."
+  },
+  {
+    "type": "heading",
+    "level": "h3",
+    "text": "Here are some common warning signs:"
+  },
+  {
+    "type": "text",
+    "text": "Narrow bridge ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Road branching off ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-2.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Intersection ahead. The arrow shows which direction of traffic has the right-of-way."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-3.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Roundabout Ahead. Reduce Speed. The counter-clockwise arrows show the direction of vehicle traffic within the roundabout."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-4.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Drivers on the sideroad at the intersection ahead don't have a clear view of traffic."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-5.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Pavement narrows ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-6.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Slight bend or curve in the road ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-7.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Posted under a curve warning, this sign shows the maximum safe speed for the curve."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-8.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Sharp bend or turn in the road ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-9.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Chevron (arrowhead) signs are posted in groups to guide drivers around sharp curves in the road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-10.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Winding road ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-11.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "The bridge ahead lifts or swings to let boats pass."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-12.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Paved surface ends ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-13.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Bicycle crossing ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-14.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Stop sign ahead. Slow down."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-15.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Share the road with oncoming traffic."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-16.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "The share the road sign is used to warn motorists that they are to provide safe space on the road for cyclists and other vehicles. This sign also warns motorists and cyclists to exercise additional caution on the upcoming section of road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-17.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Pavement is slippery when wet. Slow down and drive with caution."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-18.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Hazard close to the edge of the road. The downward lines show the side on which you may safely pass."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-19.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Divided highway begins: traffic travels in both directions on separated roads ahead. Keep to the right-hand road. Each road carries one-way traffic."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-20.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Right lane ends ahead. If you are in the right-hand lane, you must merge safely with traffic in the lane to the left."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-21.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Traffic lights ahead. Slow down."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-22.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Steep hill ahead. You may need to use a lower gear."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-23.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Two roads going in the same direction are about to join into one. Drivers on both roads are equally responsible for seeing that traffic merges smoothly and safely."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-24.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Snowmobiles cross this road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-25.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Divided highway ends: traffic travels in both directions on the same road ahead. Keep to the right-hand road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-26.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Underpass ahead. Take care if you are driving a tall vehicle. Sign shows how much room you have."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-27.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Bump or uneven pavement on the road ahead. Slow down and keep control of your vehicle."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-28.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Railway crossing ahead. Be alert for trains. This sign also shows the angle at which the railway tracks cross the road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-29.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Sharp turn or bend in the road in the direction of the arrow. The checkerboard border warns of danger. Slow down; be careful."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-30.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Deer regularly cross this road; be alert for animals."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-31.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Truck entrance on the right side of the road ahead. If the sign shows the truck on the left, the entrance is on the left side of the road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-32.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Shows maximum safe speed on ramp."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-33.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Watch for pedestrians and be prepared to share the road with them."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-34.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Watch for fallen rock and be prepared to avoid a collision."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-35.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "There may be water flowing over the road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-36.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "This sign warns you that you are coming to a hidden school bus stop. Slow down, drive with extra caution, watch for children and for a school bus with flashing red lights."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-37.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Indicates an upcoming bus entrance on the right and vehicles should be prepared to yield to buses entering the roadway."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-38.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "Indicates an upcoming fire truck entrance on the right and vehicles should be prepared to yield to fire trucks entering the roadway."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-39.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "text",
+    "text": "These signs warn of a school crossing. Watch for children and follow the directions of the crossing guard or school safety patroller."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-warning-sign-40.jpg",
+    "alt": "a warning sign"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Temporary condition signs"
+  },
+  {
+    "type": "text",
+    "text": "These signs warn of unusual temporary conditions such as road work zones, diversions, detours, lane closures or traffic control people on the road. They are usually diamond-shaped with an orange background and black letters or symbols."
+  },
+  {
+    "type": "heading",
+    "level": "h3",
+    "text": "Here are some common temporary condition signs:"
+  },
+  {
+    "type": "text",
+    "text": "Construction work one kilometre ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Road work ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-2.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Survey crew working on the road ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-3.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Traffic control person ahead. Drive slowly and watch for instructions."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-4.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "You are entering a construction zone. Drive with extra caution and be prepared for a lower speed limit."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-5.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Temporary detour from normal traffic route."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-6.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Flashing lights on the arrows show the direction to follow."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-7.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Pavement has been milled or grooved. Your vehicle's stopping ability may be affected so obey the speed limit and drive with extra caution. Motorcyclists may experience reduced traction on these surfaces."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-8.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Lane ahead is closed for roadwork. Obey the speed limit and merge with traffic in the open lane."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-9.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Closed lane. Adjust speed to merge with traffic in lane indicated by arrow."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-10.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Do not pass the pilot vehicle or pace vehicle bearing this sign."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-11.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Reduce speed and be prepared to stop."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-12.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Follow detour marker until you return to regular route."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-13.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "text",
+    "text": "Enforces doubling the HTA fines for speeding in a designated construction zone when there are workers present."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-temporary-condition-sign-14.jpg",
+    "alt": "a temporary condition sign"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Information and direction signs"
+  },
+  {
+    "type": "text",
+    "text": "These signs tell you about distances and destinations. They are usually rectangular with a green background and white letters. Other signs with different colours guide you to facilities, services and attractions."
+  },
+  {
+    "type": "heading",
+    "level": "h3",
+    "text": "Here are some common information and direction signs:"
+  },
+  {
+    "type": "text",
+    "text": "Shows directions to nearby towns and cities."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Shows the distances in kilometres to towns and cities on the road."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-2.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Various exit signs are used on freeways. In urban areas, many exit ramps have more than one lane. Overhead and ground-mounted signs help drivers choose the correct lane to exit or stay on the freeway."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-3.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Advance signs use arrows to show which lanes lead off the freeway. Signs are also posted at the exit."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-4.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Sometimes one or more lanes may lead off the freeway. The arrows matching the exit lanes are shown on the advance sign in a yellow box with the word ‘exit' under them."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-5.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Freeway interchanges or exits have numbers that correspond to the distance from the beginning of the freeway. For example, interchange number 204 on Highway 401 is 204 kilometres from Windsor, where the freeway begins. Distances can be calculated by subtracting one interchange number from another."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-6.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "The term 'VIA' is used to describe the roads that must be followed to reach a destination."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-7.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Shows the upcoming roundabout exits and where they will take you."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-8.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "These signs change according to traffic conditions to give drivers current information on delays and lane closures ahead."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-9.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Shows off-road facilities such as hospitals, airports, universities or carpool lots."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-10.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Shows route to passenger railway station."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-11.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Shows route to airport."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-12.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "Shows facilities that are accessible by wheelchair."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-13.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "text",
+    "text": "D sign – Oversize load"
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-information-or-direction-sign-14.jpg",
+    "alt": "an information or direction sign"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Other signs"
+  },
+  {
+    "type": "heading",
+    "level": "h3",
+    "text": "Here are some other common signs:"
+  },
+  {
+    "type": "text",
+    "text": "The “slow-moving vehicle” sign is an orange triangle with a red border. It alerts other drivers that the vehicle ahead will be travelling at 40 km/h or less. When on a road, farm tractors, farm implements/machinery, and vehicles not capable of sustaining speeds over 40 km/h must display the slow moving vehicle sign. Watch for these slow moving vehicles and reduce your speed as necessary."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-slow-moving-vehicle-sign.jpg",
+    "alt": "a slow-moving vehicle sign"
+  },
+  {
+    "type": "text",
+    "text": "EDR signs are used during the unscheduled closure of a provincial highway when OPP detour all traffic off the highway. The EDR markers are located along alternative routes and provide direction to motorists around the closure and back onto the highway."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-edr-sign.jpg",
+    "alt": "an EDR sign"
+  },
+  {
+    "type": "heading",
+    "level": "h3",
+    "text": "Long commercial vehicle (LCV)"
+  },
+  {
+    "type": "text",
+    "text": "This placard indicates a long commercial vehicle, which is a double trailer and can be up to 40 metres in length. It is important to be able to recognize an LCV on the highway, based on rear signage, and anticipate both the extended length and limited speed when preparing to pass one on the highway."
+  },
+  {
+    "type": "image",
+    "src": "/signs/title-long-commercial-vehicle-lcv---description-long-commercial-vehicle-lcv.jpg",
+    "alt": "Title: Long commercial vehicle (LCV) - Description: Long commercial vehicle (LCV)"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Emergency response signs"
+  },
+  {
+    "type": "text",
+    "text": "Some informa­tion signs include a numbering system along the bottom of the sign to assist emergency vehicles and drivers in determining an appropriate route."
+  },
+  {
+    "type": "image",
+    "src": "/signs/an-emergency-response-sign.jpg",
+    "alt": "an emergency response sign"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Bilingual signs"
+  },
+  {
+    "type": "text",
+    "text": "Watch for these signs when driving in designated bilingual areas. Read the messages in the language you understand best. Bilingual messages may be together on the same sign or separate, with an English sign immediately followed by a French sign."
+  },
+  {
+    "type": "image",
+    "src": "/signs/a-bilingual-sign.jpg",
+    "alt": "a bilingual sign"
+  },
+  {
+    "type": "heading",
+    "level": "h2",
+    "text": "Summary"
+  },
+  {
+    "type": "text",
+    "text": "By the end of this section, you should know:"
+  }
+]

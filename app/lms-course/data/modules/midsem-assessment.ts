@@ -5,6 +5,7 @@ import { chapter1Quiz } from "@/app/lms-course/data/modules/module1/chapter1quiz
 import { chapter2Quiz } from "@/app/lms-course/data/modules/module1/chapter2quiz";
 import { m2chapter1Quiz } from "@/app/lms-course/data/modules/module2/m2chapter1quiz";
 import { m2chapter2Quiz } from "@/app/lms-course/data/modules/module2/m2chapter2quiz";
+import { m2chapter3Quiz } from "@/app/lms-course/data/modules/module2/m2chapter3quiz";
 import { m3chapter1Quiz } from "@/app/lms-course/data/modules/module3/m3chapter1quiz";
 import { m3chapter2Quiz } from "@/app/lms-course/data/modules/module3/m3chapter2quiz";
 import { m3chapter3Quiz } from "@/app/lms-course/data/modules/module3/m3chapter3quiz";
@@ -28,6 +29,7 @@ const previousQuizSources: QuizSource[] = [
   { moduleId: "module1", chapterId: "chapter2", quiz: chapter2Quiz },
   { moduleId: "module2", chapterId: "m2chapter1", quiz: m2chapter1Quiz },
   { moduleId: "module2", chapterId: "m2chapter2", quiz: m2chapter2Quiz },
+  { moduleId: "module2", chapterId: "m2chapter3", quiz: m2chapter3Quiz },
   { moduleId: "module3", chapterId: "m3chapter1", quiz: m3chapter1Quiz },
   { moduleId: "module3", chapterId: "m3chapter2", quiz: m3chapter2Quiz },
   { moduleId: "module3", chapterId: "m3chapter3", quiz: m3chapter3Quiz },

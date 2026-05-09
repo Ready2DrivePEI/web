@@ -358,17 +358,25 @@ export const m4chapter3: Chapter = {
           value:
             "Only qualified people may transport dangerous goods. In the handbook, these materials are treated as a special risk category because a crash, fire, spill, or leak can become a community-level emergency very quickly.",
         },
+     
         {
           type: "text",
           value:
             "Dangerous goods include classes such as explosives, compressed gases, flammable liquids, poisonous substances, radioactive materials, oxidizers, corrosives, and other regulated products. Ordinary drivers are not permitted to haul them casually in a personal vehicle.",
+        },
+          {
+          type: "image",
+          src: "/module4/m4ch3.png",
+          alt:    "A driving record graphic showing a gauge that goes from green (0 points) to red (12 points), with the suspension zone highlighted at the red end.",
+          layout: "half",
+          align: "left",
         },
         {
           type: "callout",
           variant: "danger",
           value:
             "Illegal Transportation Risk Never agree to carry hazardous, toxic, or dangerous materials unless you are specifically qualified and authorized to do so.",
-        },
+        },  
         {
           type: "heading", value: "Flares, Lanterns, and Fire Extinguishers" },
         {

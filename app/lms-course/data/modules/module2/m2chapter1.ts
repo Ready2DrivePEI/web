@@ -2,9 +2,9 @@ import type { Chapter } from "@/app/lms-course/data/modules/module1/chapter1";
 
 export const m2chapter1: Chapter = {
   id: "m2chapter1",
-  title: "Traffic Signs, Signals, Pavement Markings and Work Zones",
+  title: "Traffic Signals, Pavement Markings and Work Zones",
   type: "lesson",
-  slug: "traffic-signs-signals-pavement-markings-work-zones",
+  slug: "traffic-signals-pavement-markings-work-zones",
   completed: false,
   lessons: [
 
@@ -27,7 +27,7 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "🧠 The 3-step decision loop",
+          value: "⚙️ The 3-step decision loop",
         },
         {
           type: "list",
@@ -120,7 +120,7 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "🔴 Flashing red",
+          value: "🚨 Flashing red",
         },
         {
           type: "text",
@@ -207,7 +207,7 @@ export const m2chapter1: Chapter = {
         },
         {
           type: "heading",
-          value: "🟡 Yellow lines (opposite traffic)",
+          value: "🛣️ Yellow lines (opposite traffic)",
         },
         {
           type: "text",
@@ -243,197 +243,223 @@ export const m2chapter1: Chapter = {
         },
       ],
     },
-
     // PAGE 6
     {
       id: "m2ch1_pg6",
       title: "Crosswalks and Pedestrian Priority",
       content: [
         {
+          type: "text",
+          value:
+            "A crosswalk is where small driver mistakes become life-changing injuries. Pedestrians are unpredictable because they make human decisions, not traffic decisions. Someone can step off the curb while looking at a phone, chasing a child, or assuming you will stop. Seeing a pedestrian near a crosswalk is like seeing a football near a child: your brain should already expect sudden movement.",
+        },
+        {
           type: "heading",
-          value: "🚶 Crosswalk types",
+          value: "What Most Drivers Get Wrong",
         },
         {
           type: "list",
           items: [
-            "Marked crosswalks → clearly painted",
-            "Unmarked crosswalks → exist at intersections",
+            "They look only at the person they can see, not the person hidden behind a parked SUV or van",
+            "They pass a vehicle that has stopped at a crosswalk, not realizing that vehicle may be yielding to a pedestrian",
+            "They assume eye contact means the pedestrian will wait",
+            "They keep rolling because the crosswalk looks empty for one second",
           ],
         },
         {
           type: "heading",
-          value: "Action",
+          value: "Hidden Dangers You Must Predict",
         },
         {
           type: "text",
           value:
-            "Always yield to pedestrians crossing legally, even if they move slowly or unexpectedly.",
+            "**Parked-car blind spots:** A person can appear with almost no warning from between parked vehicles.\n\n**Multi-lane crosswalk trap:** If one lane stops and another lane keeps moving, the moving lane is often the impact lane.\n\n**School-zone behavior:** Children can run backward, sideways, or suddenly return for something they dropped. Do not assume linear movement.",
         },
         {
           type: "heading",
-          value: "Reason",
+          value: "Practical Yielding Technique",
         },
         {
-          type: "text",
-          value:
-            "Pedestrians are the most vulnerable road users. Law prioritizes their safety over vehicle flow.",
+          type: "list",
+          items: [
+            "Lift off the accelerator early when approaching any crosswalk with people nearby",
+            "Cover the brake before the conflict point so your stop is smooth, not panicked",
+            "Stop early enough that drivers behind you can understand your intention",
+            "Wait until the pedestrian has clearly finished crossing your path before continuing",
+          ],
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Hidden danger: A car stopped in another lane may be hiding a pedestrian.",
+            "Do not trust eye contact alone. People make unpredictable moves under stress, in rain, at night, and in school areas. Drive based on space and risk, not assumptions.",
         },
       ],
     },
-
     // PAGE 7
     {
       id: "m2ch1_pg7",
-      title: "Sign Systems: Shapes, Colors, and Meaning",
-      content: [
-        {
-          type: "heading",
-          value: "⚖️ Regulatory signs",
-        },
-        {
-          type: "text",
-          value:
-            "These are laws. Ignoring them is not a mistake, it’s an offence.",
-        },
-        {
-          type: "heading",
-          value: "⚠️ Warning signs",
-        },
-        {
-          type: "text",
-          value:
-            "These prepare you for hazards ahead. They are early signals, not immediate commands.",
-        },
-        {
-          type: "heading",
-          value: "🟧 Construction signs",
-        },
-        {
-          type: "text",
-          value:
-            "Temporary but higher priority than permanent signs.",
-        },
-        {
-          type: "heading",
-          value: "Shape shortcuts",
-        },
-        {
-          type: "list",
-          items: [
-            "Octagon → STOP",
-            "Triangle → YIELD",
-            "Diamond → WARNING",
-          ],
-        },
-        {
-          type: "callout",
-          variant: "info",
-          value:
-            "Recommended resource: Practice identifying road signs with the ICBC Road Signs flash card deck linked below. Recognizing signs instantly is a tested skill on the road exam.",
-        },
-        {
-          type: "link",
-          href: "https://quizlet.com/ca/146626303/icbc-road-signs-flash-cards/",
-          label: "📖 ICBC Road Signs Flash Cards — Quizlet",
-        },
-      ],
-    },
-
-    // PAGE 8
-    {
-      id: "m2ch1_pg8",
       title: "Work Zones: Temporary Reality Shift",
       content: [
         {
           type: "text",
           value:
-            "Work zones override normal driving rules. Think of them as a temporary new road.",
+            "Work zones feel confusing because your normal road map no longer applies. Lane lines may disappear, cones create temporary lanes, and traffic can compress suddenly. Treat a work zone as a temporary reality shift: same vehicle, different rules, less margin for error.",
+        },
+        {
+          type: "heading",
+          value: "Why Drivers Misjudge Work Zones",
         },
         {
           type: "list",
           items: [
-            "Follow cones as lane boundaries",
-            "Obey flagperson instantly",
-            "Maintain reduced speed throughout",
+            "Temporary lanes feel wider or safer than they are, so speed creeps up without noticing",
+            "Cones look light and harmless, so drivers underestimate how little room remains",
+            "When workers are not visible, drivers assume danger is gone even though road geometry is still unstable",
+            "The flow seems smooth for a moment, creating a false sense of safety",
+          ],
+        },
+        {
+          type: "heading",
+          value: "Cone-Following and Lane Psychology",
+        },
+        {
+          type: "text",
+          value:
+            "In work zones, cones are the lane boundaries. Your job is to follow the path early and smoothly, not make late corrections. Last-second lane shifts force chain reactions behind you and can push nearby vehicles toward barriers or workers.",
+        },
+        {
+          type: "heading",
+          value: "Worker Exposure and Blind Spots",
+        },
+        {
+          type: "text",
+          value:
+            "Workers may be near equipment, behind barriers, or stepping between machines where they cannot see you. Large trucks and machinery also create blind zones where your car can disappear. Reduced speed is not just a legal request; it is extra decision time for everyone in a constrained space.",
+        },
+        {
+          type: "heading",
+          value: "How to Drive It Correctly",
+        },
+        {
+          type: "list",
+          items: [
+            "Read the zone early and pick your lane before the taper begins",
+            "Hold steady spacing and avoid unnecessary lane changes",
+            "Keep speed consistently reduced all the way through, not only at the first sign",
+            "Treat every flagger instruction as immediate traffic control, not optional guidance",
           ],
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Danger illusion: Just because workers aren’t visible doesn’t mean the risk is gone.",
+            "Construction-zone illusion: \"It looks clear, so I can speed up.\" This is where many crashes start. In work zones, visual calm can hide sudden lane shifts, debris, and human movement.",
         },
       ],
     },
-
-    // PAGE 9
+    // PAGE 8
     {
-      id: "m2ch1_pg9",
+      id: "m2ch1_pg8",
       title: "Advance Warning Signs and Anticipation",
       content: [
         {
           type: "text",
           value:
-            "Advance warning signs exist to shift your thinking before the hazard appears.",
+            "Anticipation is a survival skill, not an advanced bonus. Warning signs are placed before danger so you can prepare while you still have options. If you wait until the hazard is visible, your choices shrink to hard braking or risky swerving.",
         },
         {
           type: "heading",
-          value: "Examples",
+          value: "Why Early Information Matters",
         },
         {
           type: "list",
           items: [
-            "Curve ahead → reduce speed early",
-            "Railway crossing ahead → prepare to stop",
-            "Construction ahead → expect lane change",
+            "At 50 km/h, each second of delay carries you much farther than most beginners realize",
+            "Your reaction time and braking distance stack together, especially on wet or loose surfaces",
+            "Early adjustment is smooth and controlled; late adjustment is abrupt and unstable",
+          ],
+        },
+        {
+          type: "heading",
+          value: "How Expert Drivers Think 5 Seconds Ahead",
+        },
+        {
+          type: "list",
+          items: [
+            "Scan far ahead for the next change in road condition or traffic behavior",
+            "Convert early clues into a plan: slow, cover brake, change lane, or increase space",
+            "Confirm mirrors before you need them, not during panic",
+            "Arrive at hazards prepared, not surprised",
+          ],
+        },
+        {
+          type: "heading",
+          value: "Real Situations",
+        },
+        {
+          type: "list",
+          items: [
+            "Road work ahead: late lane changes cause side-swipe crashes and sudden braking waves",
+            "Sharp curve ahead: entering too fast leads to overcorrection and lane departure",
+            "Railway crossing ahead: delayed preparation causes rushed stops on slippery surfaces",
+            "Pedestrian activity ahead: late recognition turns a controlled yield into an emergency stop",
           ],
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "Best drivers don’t react late. They prepare early.",
+            "Predictive rule: Every warning sign is a countdown, not decoration. Use it to set speed, space, and attention before the road demands it.",
         },
       ],
     },
-
-    // PAGE 10
+    // PAGE 9
     {
-      id: "m2ch1_pg10",
+      id: "m2ch1_pg9",
       title: "Chapter Wrap-Up: Predictive Driving Habit",
       content: [
         {
           type: "heading",
-          value: "🧠 Final decision checklist",
-        },
-        {
-          type: "list",
-          items: [
-            "What is controlling me right now?",
-            "What is likely to happen next?",
-            "Am I forcing someone else to react suddenly?",
-            "Is my move predictable to others?",
-          ],
+          value: "The Predictive Driver Framework",
         },
         {
           type: "text",
           value:
-            "Driving well is not about being fast or confident. It is about being predictable, smooth, and early in every decision.",
+            "Strong drivers do not wait to be surprised. They run a short mental loop all the time: **read early, predict early, act early**. This chapter is not about memorizing isolated rules. It is about building a thinking pattern you can use under pressure.",
+        },
+        {
+          type: "heading",
+          value: "Use This 5-Step Checklist in Real Time",
+        },
+        {
+          type: "list",
+          items: [
+            "What is controlling my movement right now? (signal, marking, temporary lane, crosswalk activity)",
+            "What is the most likely conflict in the next 3 to 5 seconds?",
+            "Where is my escape space if something changes suddenly?",
+            "What can I do now to make my next move smooth and obvious?",
+            "Will my action reduce stress for everyone around me or create it?",
+          ],
+        },
+        {
+          type: "heading",
+          value: "Memory Anchor",
+        },
+        {
+          type: "text",
+          value:
+            "If you can predict it, you can manage it. If you wait to react, the road manages you.",
         },
         {
           type: "callout",
           variant: "info",
           value:
-            "If others don’t need to adjust because of you, you are driving correctly.",
+            "The goal of skilled driving is simple: be early, be smooth, be predictable. When others do not need to make emergency adjustments because of you, your decisions are working.",
+
         },
       ],
     },
-
   ],
 };
+
