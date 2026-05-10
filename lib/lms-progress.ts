@@ -110,11 +110,16 @@ function getSafeFurthestChapterId(candidate: string | null): string | null {
   return getDefaultFurthestChapterId();
 }
 
+function isExpiredAuthError(message: string): boolean {
+  const lowered = message.toLowerCase();
+  return lowered.includes("token is expired") || lowered.includes("jwt expired");
+}
+
 async function getCurrentUserId() {
   if (!supabase) return null;
   const { data, error } = await supabase.auth.getUser();
   if (error || !data.user) {
-    if (error) {
+    if (error && !isExpiredAuthError(error.message)) {
       console.error("[lms-progress] auth user lookup failed:", error.message);
     }
     return null;

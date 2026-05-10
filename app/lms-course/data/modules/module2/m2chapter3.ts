@@ -14,7 +14,7 @@ export const m2chapter3: Chapter = {
         {
           type: "text",
           value:
-            "Defensive driving starts before the car moves. Safety inside the vehicle is not a side topic, it is the first legal and practical duty of the driver.",
+            "Defensive driving starts before the car moves. Safety inside the vehicle is not a side topic, it is the **first legal and practical duty** of the driver.",
         },
         {
           type: "heading",
@@ -42,7 +42,7 @@ export const m2chapter3: Chapter = {
         {
           type: "text",
           value:
-            "A belt worn badly is a false sense of security. The handbook says lap belts should sit snugly and low across the hips, shoulder belts should never be worn without a lap belt, and there should be about a fist’s width between the chest and the belt. Shoulder belts are not recommended for a child or adult under 140 cm in height.",
+            "A belt worn badly is a **false sense of security**. The handbook says lap belts should sit snugly and low across the hips, shoulder belts should never be worn without a lap belt, and there should be about a fist’s width between the chest and the belt. Shoulder belts are not recommended for a child or adult under 140 cm in height.",
         },
         {
           type: "heading",
@@ -64,7 +64,7 @@ export const m2chapter3: Chapter = {
         {
           type: "text",
           value:
-            "Air bags protect the head and upper body, but they do not replace seat belts. They deploy in frontal impacts, not in rear-end collisions, side impacts, or rollovers. That means the seat belt is the body restraint and the air bag is the impact cushion. One without the other is weaker than people like to pretend.",
+            "Air bags protect the head and upper body, but they do not replace seat belts. They deploy in frontal impacts, not in rear-end collisions, side impacts, or rollovers. That means the seat belt is the body restraint and the air bag is the impact cushion.",
         },
         {
           type: "callout",
@@ -74,6 +74,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg2",
       title: "Right-of-Way Fundamentals: Intersections and Shared Space",
@@ -88,7 +89,7 @@ export const m2chapter3: Chapter = {
         {
           type: "text",
           value:
-            "Right-of-way decides who should move first, but safe driving still requires scanning for hazards before you go. Legal priority is not the same thing as physical safety.",
+            "Right-of-way decides who should move first, but safe driving still requires scanning for hazards before you go. **Legal priority is not the same thing as physical safety.**",
         },
         {
           type: "heading",
@@ -125,6 +126,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg3",
       title: "Stop Signs, Yield Signs, and Left Turns",
@@ -145,7 +147,7 @@ export const m2chapter3: Chapter = {
             "In rural areas, stop before entering the roadway",
             "Look carefully in both directions, then look again",
             "Yield to traffic that is close enough to create danger",
-            "Rolling a stop sign is illegal",
+            "**Rolling a stop sign is illegal**",
           ],
         },
         {
@@ -190,6 +192,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg4",
       title: "Special Right-of-Way: Emergency and Funeral Vehicles",
@@ -238,6 +241,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg5",
       title: "Pedestrian Rights at Signals and Crossings",
@@ -252,7 +256,7 @@ export const m2chapter3: Chapter = {
         {
           type: "text",
           value:
-            "Pedestrians are less protected than vehicle occupants. At crossings, your lane priority is secondary to pedestrian safety. The road is shared space, not a demolition derby with turn signals.",
+            "Pedestrians are less protected than vehicle occupants. At crossings, your lane priority is secondary to pedestrian safety.",
         },
         {
           type: "heading",
@@ -270,7 +274,7 @@ export const m2chapter3: Chapter = {
         {
           type: "text",
           value:
-            "When a pedestrian enters the crosswalk with a walk or green signal, the pedestrian has the right-of-way over vehicles. A pedestrian must still avoid stepping into the path of a vehicle that cannot safely yield, but the driver’s duty is to wait until the crossing is safe and complete.",
+            "When a pedestrian enters the crosswalk with a walk or green signal, the pedestrian has the **right-of-way** over vehicles. A pedestrian must still avoid stepping into the path of a vehicle that cannot safely yield, but the driver’s duty is to wait until the crossing is safe and complete.",
         },
         {
           type: "heading",
@@ -289,6 +293,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg6",
       title: "Flashing Red, Flashing Amber, and No-Signal Intersections",
@@ -318,7 +323,7 @@ export const m2chapter3: Chapter = {
         {
           type: "text",
           value:
-            "Pedestrians have the right-of-way within a marked or unmarked crosswalk at an intersection with a stop sign or yield sign, and at an open intersection. Drivers must yield. Pedestrians should still exercise caution because not every driver is awake enough to deserve trust.",
+            "Pedestrians have the right-of-way within a marked or unmarked crosswalk at an intersection with a stop sign or yield sign, and at an open intersection. Drivers must yield.",
         },
         {
           type: "heading",
@@ -331,6 +336,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg7",
       title: "Vehicles Stopped for Pedestrians and the No-Pass Rule",
@@ -366,6 +372,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg8",
       title: "Advice to Pedestrians and Drivers",
@@ -413,6 +420,7 @@ export const m2chapter3: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch3_pg9",
       title: "Chapter Wrap-Up: Intersection and Pedestrian Decision Flow",
@@ -460,4 +468,3 @@ export const m2chapter3: Chapter = {
     },
   ],
 };
-

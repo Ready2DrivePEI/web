@@ -101,6 +101,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
   } as CSSProperties;
 
   useEffect(() => {
+    if (!authChecked) return;
     if (!pathname.startsWith("/lms-course")) return;
 
     let active = true;
@@ -117,7 +118,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
     return () => {
       active = false;
     };
-  }, [pathname]);
+  }, [authChecked, pathname]);
 
   const lastChapterHref = progressSnapshot?.last_chapter_id
     ? getChapterHref(progressSnapshot.last_chapter_id)

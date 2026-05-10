@@ -7,11 +7,10 @@ export const m2chapter1: Chapter = {
   slug: "traffic-signals-pavement-markings-work-zones",
   completed: false,
   lessons: [
-
     // PAGE 1
     {
       id: "m2ch1_pg1",
-      title: "How Road Communication Works (Advanced Driver Model)",
+      title: "How Road Communication Works",
       content: [
         {
           type: "image",
@@ -23,7 +22,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Driving is not just control of a vehicle. It is constant communication between you, the road, and every other road user. Every signal, sign, and marking is part of a shared language designed to prevent conflict before it happens.",
+            "Driving is not just control of a vehicle. It is constant communication between you, the road, and every other road user. Every signal, sign, and marking is part of a **shared language** designed to **prevent conflict before it happens**.",
         },
         {
           type: "heading",
@@ -32,9 +31,9 @@ export const m2chapter1: Chapter = {
         {
           type: "list",
           items: [
-            "Notice early → what is the road telling me?",
-            "Interpret correctly → what does this require me to do?",
-            "Act smoothly → can I do it without shocking other drivers?",
+            "**Notice early** → what is the road telling me?",
+            "**Interpret correctly** → what does this require me to do?",
+            "**Act smoothly** → can I do it without shocking other drivers?",
           ],
         },
         {
@@ -46,7 +45,7 @@ export const m2chapter1: Chapter = {
           type: "callout",
           variant: "info",
           value:
-            "Advanced mindset: Don’t react to the road. Predict it 3–5 seconds ahead.",
+            "Advanced mindset: Don’t react to the road. **Predict it 3–5 seconds ahead**.",
         },
       ],
     },
@@ -57,13 +56,28 @@ export const m2chapter1: Chapter = {
       title: "Traffic Signals: Beyond Colors (Decision Logic)",
       content: [
         {
+          type: "image",
+          src: "/module2/green light.png",
+          alt: "Green light traffic signal",
+          layout: "half",
+          align: "left",
+        },
+        {
           type: "heading",
           value: "🟢 Green light",
         },
         {
           type: "text",
           value:
-            "**Situation:** Light turns green but intersection is busy.\n**Action:** Move only if path is fully clear.\n**Reason:** Green gives legal permission, not physical safety.",
+            "**Situation:** Light turns green but intersection is busy.\n**Action:** **Move only if path is fully clear.**\n**Reason:** Green gives legal permission, not physical safety.",
+        },
+
+        {
+          type: "image",
+          src: "/module2/yellow amber light.png",
+          alt: "Yellow/Amber light traffic signal",
+          layout: "half",
+          align: "left",
         },
         {
           type: "heading",
@@ -72,7 +86,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** Light turns amber as you approach.\n**Action:** Decide instantly: brake smoothly or continue.\n**Reason:** Indecision causes rear-end crashes more than speed does.",
+            "**Situation:** Light turns amber as you approach.\n**Action:** **Decide instantly: brake smoothly or continue.**\n**Reason:** Indecision causes rear-end crashes more than speed does.",
         },
         {
           type: "callout",
@@ -81,13 +95,20 @@ export const m2chapter1: Chapter = {
             "Hidden rule: If you’re asking yourself 'should I stop?', you probably had time to stop.",
         },
         {
+          type: "image",
+          src: "/module2/red light.png",
+          alt: "Red light traffic signal",
+          layout: "half",
+          align: "left",
+        },
+        {
           type: "heading",
           value: "🔴 Red light",
         },
         {
           type: "text",
           value:
-            "**Situation:** Red ahead.\n**Action:** Stop before line, crosswalk, or intersection.\n**Reason:** These zones protect invisible risks like crossing pedestrians.",
+            "**Situation:** Red ahead.\n**Action:** **Stop before line, crosswalk, or intersection.**\n**Reason:** These zones protect invisible risks like crossing pedestrians.",
         },
         {
           type: "heading",
@@ -96,13 +117,13 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** Turning right at red.\n**Action:** Full stop → scan → yield → then move.\n**Reason:** You are entering someone else’s right-of-way.",
+            "**Situation:** Turning right at red.\n**Action:** **Full stop → scan → yield → then move.**\n**Reason:** You are entering someone else’s right-of-way.",
         },
         {
           type: "callout",
           variant: "warning",
           value:
-            "Most people treat this like merging. It is not. It is a controlled re-entry into traffic.",
+            "Most people treat this like merging. It is not. It is a **controlled re-entry into traffic**.",
         },
       ],
     },
@@ -125,7 +146,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** Flashing red light.\n**Action:** Treat exactly like a STOP sign.\n**Reason:** Full stop ensures all drivers negotiate safely.",
+            "**Situation:** Flashing red light.\n**Action:** **Treat exactly like a STOP sign.**\n**Reason:** Full stop ensures all drivers negotiate safely.",
         },
         {
           type: "heading",
@@ -134,7 +155,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** Flashing amber.\n**Action:** Slow down, proceed with caution.\n**Reason:** Danger exists, but traffic flow continues.",
+            "**Situation:** Flashing amber.\n**Action:** **Slow down, proceed with caution.**\n**Reason:** Danger exists, but traffic flow continues.",
         },
         {
           type: "heading",
@@ -143,7 +164,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "**Situation:** Flashing school lights.\n**Action:** Reduce speed immediately and scan for children.\n**Reason:** Children behave unpredictably and may ignore traffic rules.",
+            "**Situation:** Flashing school lights.\n**Action:** **Reduce speed immediately and scan for children.**\n**Reason:** Children behave unpredictably and may ignore traffic rules.",
         },
         {
           type: "callout",
@@ -171,9 +192,9 @@ export const m2chapter1: Chapter = {
         {
           type: "list",
           items: [
-            "Advance sign → prepare to slow",
-            "Flashing lights → mandatory stop",
-            "Gate closing → do not cross under any condition",
+            "**Advance sign** → prepare to slow",
+            "**Flashing lights** → mandatory stop",
+            "**Gate closing** → do not cross under any condition",
           ],
         },
         {
@@ -212,7 +233,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Solid = no passing. Broken = pass only when fully safe.\n\nWhy: Opposite traffic creates highest fatal risk. These lines are strict for a reason.",
+            "**Solid** = no passing. **Broken** = pass only when fully safe.\n\nWhy: Opposite traffic creates highest fatal risk. These lines are strict for a reason.",
         },
         {
           type: "heading",
@@ -221,7 +242,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Solid = stay in lane. Broken = lane change allowed.\n\nWhy: Predictability prevents side collisions.",
+            "**Solid** = stay in lane. **Broken** = lane change allowed.\n\nWhy: Predictability prevents side collisions.",
         },
         {
           type: "heading",
@@ -230,7 +251,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Never enter or stop.\n\nWhy: These are buffer zones that keep traffic flows from blocking each other.",
+            "**Never enter or stop.**\n\nWhy: These are buffer zones that keep traffic flows from blocking each other.",
         },
         {
           type: "heading",
@@ -239,10 +260,11 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Arrows = commit to direction. Stop line = legal stopping boundary.\n\nWhy: Prevents last-second chaos at intersections.",
+            "**Arrows** = commit to direction. **Stop line** = legal stopping boundary.\n\nWhy: Prevents last-second chaos at intersections.",
         },
       ],
     },
+
     // PAGE 6
     {
       id: "m2ch1_pg6",
@@ -282,10 +304,10 @@ export const m2chapter1: Chapter = {
         {
           type: "list",
           items: [
-            "Lift off the accelerator early when approaching any crosswalk with people nearby",
-            "Cover the brake before the conflict point so your stop is smooth, not panicked",
-            "Stop early enough that drivers behind you can understand your intention",
-            "Wait until the pedestrian has clearly finished crossing your path before continuing",
+            "**Lift off the accelerator early** when approaching any crosswalk with people nearby",
+            "**Cover the brake** before the conflict point so your stop is smooth, not panicked",
+            "**Stop early enough** that drivers behind you can understand your intention",
+            "**Wait until the pedestrian has clearly finished crossing your path** before continuing",
           ],
         },
         {
@@ -296,6 +318,7 @@ export const m2chapter1: Chapter = {
         },
       ],
     },
+
     // PAGE 7
     {
       id: "m2ch1_pg7",
@@ -304,7 +327,7 @@ export const m2chapter1: Chapter = {
         {
           type: "text",
           value:
-            "Work zones feel confusing because your normal road map no longer applies. Lane lines may disappear, cones create temporary lanes, and traffic can compress suddenly. Treat a work zone as a temporary reality shift: same vehicle, different rules, less margin for error.",
+            "Work zones feel confusing because your normal road map no longer applies. Lane lines may disappear, cones create temporary lanes, and traffic can compress suddenly. Treat a work zone as a **temporary reality shift**: same vehicle, different rules, less margin for error.",
         },
         {
           type: "heading",
@@ -344,10 +367,10 @@ export const m2chapter1: Chapter = {
         {
           type: "list",
           items: [
-            "Read the zone early and pick your lane before the taper begins",
-            "Hold steady spacing and avoid unnecessary lane changes",
-            "Keep speed consistently reduced all the way through, not only at the first sign",
-            "Treat every flagger instruction as immediate traffic control, not optional guidance",
+            "**Read the zone early** and pick your lane before the taper begins",
+            "**Hold steady spacing** and avoid unnecessary lane changes",
+            "**Keep speed consistently reduced** all the way through, not only at the first sign",
+            "**Treat every flagger instruction as immediate traffic control**, not optional guidance",
           ],
         },
         {
@@ -358,6 +381,7 @@ export const m2chapter1: Chapter = {
         },
       ],
     },
+
     // PAGE 8
     {
       id: "m2ch1_pg8",
@@ -377,7 +401,7 @@ export const m2chapter1: Chapter = {
           items: [
             "At 50 km/h, each second of delay carries you much farther than most beginners realize",
             "Your reaction time and braking distance stack together, especially on wet or loose surfaces",
-            "Early adjustment is smooth and controlled; late adjustment is abrupt and unstable",
+            "**Early adjustment** is smooth and controlled; late adjustment is abrupt and unstable",
           ],
         },
         {
@@ -387,10 +411,10 @@ export const m2chapter1: Chapter = {
         {
           type: "list",
           items: [
-            "Scan far ahead for the next change in road condition or traffic behavior",
-            "Convert early clues into a plan: slow, cover brake, change lane, or increase space",
-            "Confirm mirrors before you need them, not during panic",
-            "Arrive at hazards prepared, not surprised",
+            "**Scan far ahead** for the next change in road condition or traffic behavior",
+            "**Convert early clues into a plan**: slow, cover brake, change lane, or increase space",
+            "**Confirm mirrors before you need them**, not during panic",
+            "**Arrive at hazards prepared**, not surprised",
           ],
         },
         {
@@ -414,6 +438,7 @@ export const m2chapter1: Chapter = {
         },
       ],
     },
+
     // PAGE 9
     {
       id: "m2ch1_pg9",
@@ -435,11 +460,11 @@ export const m2chapter1: Chapter = {
         {
           type: "list",
           items: [
-            "What is controlling my movement right now? (signal, marking, temporary lane, crosswalk activity)",
-            "What is the most likely conflict in the next 3 to 5 seconds?",
-            "Where is my escape space if something changes suddenly?",
-            "What can I do now to make my next move smooth and obvious?",
-            "Will my action reduce stress for everyone around me or create it?",
+            "**What is controlling my movement right now?** (signal, marking, temporary lane, crosswalk activity)",
+            "**What is the most likely conflict in the next 3 to 5 seconds?**",
+            "**Where is my escape space** if something changes suddenly?",
+            "**What can I do now to make my next move smooth and obvious?**",
+            "**Will my action reduce stress for everyone around me or create it?**",
           ],
         },
         {
@@ -456,10 +481,8 @@ export const m2chapter1: Chapter = {
           variant: "info",
           value:
             "The goal of skilled driving is simple: be early, be smooth, be predictable. When others do not need to make emergency adjustments because of you, your decisions are working.",
-
         },
       ],
     },
   ],
 };
-

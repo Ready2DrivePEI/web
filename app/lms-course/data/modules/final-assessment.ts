@@ -86,7 +86,7 @@ const uniqueFinalQuestions: QuizQuestion[] = [
   },
 {
   id: "scenario-q3",
-  imageSrc: "/final/q3.png",
+  imageSrc: "/finalsem/q3final.png",
   imageAlt: "Driver's view approaching an intersection with heavy traffic. The intersection ahead is blocked by stationary vehicles, creating a gridlock situation.",
   question: "Scenario: You are approaching a green light at a busy intersection, but you can see that the intersection is already blocked by vehicles on the other side (gridlock). What should you do?",
   options: [
@@ -129,7 +129,7 @@ const uniqueFinalQuestions: QuizQuestion[] = [
   },
   {
     id: "scenario-q6",
-    imageSrc: "/final/q6.png",
+    imageSrc: "/finalsem/q6final.png",
     imageAlt: "Driver's perspective waiting to turn left at an intersection. A single motorcycle approaches from the opposite direction with its right turn signal blinking.",
     question: "Scenario: You are waiting to turn left at an open intersection. A motorcycle is approaching from the opposite direction with its turn signal flashing. What should you do?",
     options: [

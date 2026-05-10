@@ -53,7 +53,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Safe driving depends on reacting early, not late. The faster your brain recognizes a sign, the more time you have to make safe decisions.",
+            "Safe driving depends on **reacting early**, not late. The faster your brain recognizes a sign, the more time you have to make safe decisions.",
         },
         {
           type: "callout",
@@ -63,22 +63,22 @@ export const m2chapter2: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch2_pg2",
       title: "Mandatory Signs: Stop, Yield, School, Railway",
       content: [
-      
         {
           type: "heading",
           value: "Stop sign",
         },
-        
+
         {
           type: "text",
           value:
-            "You must come to a complete stop and check all directions before moving. Rolling through is a common beginner mistake because the brain confuses slow with safe.",
+            "You must come to a **complete stop** and check all directions before moving. Rolling through is a common beginner mistake because the brain confuses slow with safe.",
         },
-          {
+        {
           type: "image",
           src: "/signs/a-stop-sign.jpg",
           alt: "Stop sign",
@@ -92,7 +92,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Yield means let other traffic go first. You may continue only when safely clear. Many crashes happen when drivers treat yield like a speed challenge instead of a judgement test.",
+            "Yield means **let other traffic go first**. You may continue only when safely clear. Many crashes happen when drivers treat yield like a speed challenge instead of a judgement test.",
         },
         {
           type: "image",
@@ -108,7 +108,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "School zones require expecting sudden child movement. ",
+            "School zones require expecting sudden child movement.",
         },
         {
           type: "image",
@@ -117,7 +117,7 @@ export const m2chapter2: Chapter = {
           layout: "quarter",
           align: "left",
         },
-           {
+        {
           type: "text",
           value:
             "Railway signs mean tracks ahead where trains cannot stop quickly, so your patience matters more than your momentum.",
@@ -131,6 +131,7 @@ export const m2chapter2: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch2_pg3",
       title: "Regulatory Signs and Legal Duties",
@@ -138,7 +139,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Regulatory signs tell you what you must or must not do. These are legal instructions, not suggestions.",
+            "Regulatory signs tell you what you must or must not do. These are **legal instructions**, not suggestions.",
         },
         {
           type: "callout",
@@ -149,7 +150,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Do Not Enter means opposing traffic flow and severe head-on collision risk. ",
+            "**Do Not Enter** means opposing traffic flow and severe head-on collision risk.",
         },
         {
           type: "image",
@@ -158,7 +159,7 @@ export const m2chapter2: Chapter = {
           layout: "quarter",
           align: "left",
         },
-            {
+        {
           type: "text",
           value:
             "Turn-restriction signs exist where visibility or traffic conflict makes those turns unsafe.",
@@ -171,10 +172,10 @@ export const m2chapter2: Chapter = {
           align: "left",
         },
         {
-  type: "text",
-  value:
-    "No U-turn signs indicate that making a U-turn at this location is not permitted due to safety or traffic flow restrictions.",
-},
+          type: "text",
+          value:
+            "**No U-turn** signs indicate that making a U-turn at this location is not permitted due to safety or traffic flow restrictions.",
+        },
         {
           type: "image",
           src: "/signs/a-regulatory-sign-10.jpg",
@@ -194,10 +195,10 @@ export const m2chapter2: Chapter = {
           layout: "quarter",
           align: "left",
         },
-          {
+        {
           type: "text",
           value:
-            "Keep right traffic sign, used to ensure traffic flows in the correct direction.",
+            "**Keep right** traffic sign, used to ensure traffic flows in the correct direction.",
         },
         {
           type: "image",
@@ -236,7 +237,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "These signs indicate areas with high pedestrian vulnerability, like schools or parks. The immediate behavioral change required is hyper-awareness and strict speed compliance, as fines are doubled for offenses here.",
+            "These signs indicate areas with high pedestrian vulnerability, like schools or parks. The immediate behavioral change required is **hyper-awareness** and strict speed compliance, as fines are doubled for offenses here.",
         },
         {
           type: "image",
@@ -247,6 +248,7 @@ export const m2chapter2: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch2_pg4",
       title: "Warning Signs and Predictive Driving",
@@ -265,7 +267,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Curve signs warn about grip limits. ",
+            "Curve signs warn about grip limits.",
         },
         {
           type: "image",
@@ -274,10 +276,10 @@ export const m2chapter2: Chapter = {
           layout: "quarter",
           align: "left",
         },
-         {
+        {
           type: "text",
           value:
-            "Slippery-when-wet signs warn that traction falls quickly, especially at the start of rain.",
+            "**Slippery-when-wet** signs warn that traction falls quickly, especially at the start of rain.",
         },
         {
           type: "image",
@@ -330,6 +332,7 @@ export const m2chapter2: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch2_pg5",
       title: "Interactive Drill: What Danger Is Coming in the Next 5 Seconds?",
@@ -346,24 +349,24 @@ export const m2chapter2: Chapter = {
           align: "left",
         },
         {
-  type: "text",
-  value:
-    "Before you reach this sign, your job is not to react, but to predict.\n\nAsk yourself:\n**What could change in the next 5 seconds if I keep moving at this speed?**",
-},
-{
-  type: "text",
-  value:
-    "Do not look for one fixed answer. Look for possible risk shifts like:\n• A signal turning from green to yellow\n• Vehicles ahead slowing suddenly\n• Cross traffic preparing to enter\n• Pedestrians stepping off the curb late",
-},
-{
-  type: "list",
-  items: [
-    "Ease off the accelerator early to buy reaction time",
-    "Cover the brake so stopping becomes instant if needed",
-    "Scan far ahead, not just the vehicle in front",
-    "Check mirrors before approaching the conflict zone",
-  ],
-},
+          type: "text",
+          value:
+            "Before you reach this sign, your job is not to react, but to predict.\n\nAsk yourself:\n**What could change in the next 5 seconds if I keep moving at this speed?**",
+        },
+        {
+          type: "text",
+          value:
+            "Do not look for one fixed answer. Look for possible risk shifts like:\n• A signal turning from green to yellow\n• Vehicles ahead slowing suddenly\n• Cross traffic preparing to enter\n• Pedestrians stepping off the curb late",
+        },
+        {
+          type: "list",
+          items: [
+            "**Ease off the accelerator early** to buy reaction time",
+            "**Cover the brake** so stopping becomes instant if needed",
+            "**Scan far ahead**, not just the vehicle in front",
+            "**Check mirrors** before approaching the conflict zone",
+          ],
+        },
         {
           type: "callout",
           variant: "warning",
@@ -372,6 +375,7 @@ export const m2chapter2: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch2_pg6",
       title: "Temporary Condition Signs and Construction Reality",
@@ -402,7 +406,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "Lane closed ahead means merge early and smoothly. Flag person ahead means a human may directly control traffic flow and must be obeyed immediately.",
+            "**Lane closed ahead** means merge early and smoothly. **Flag person ahead** means a human may directly control traffic flow and must be obeyed immediately.",
         },
         {
           type: "image",
@@ -420,6 +424,7 @@ export const m2chapter2: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch2_pg7",
       title: "Information Signs and Better Route Decisions",
@@ -455,6 +460,7 @@ export const m2chapter2: Chapter = {
         },
       ],
     },
+
     {
       id: "m2ch2_pg8",
       title: "Other Important Signs and Closing Summary",

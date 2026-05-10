@@ -58,10 +58,22 @@ const chapter1: Chapter = {
   slug: "how-pei-licensing-works",
   completed: false,
   lessons: [
+
     {
       id: "pg1",
       title: "What a Driver's Licence Really Means",
-      content: [
+      content: [  
+            {
+  type: "text",
+  value:
+    "All content in this LMS is based on the official driving handbook. You can view or download the official handbook", 
+},
+  {
+          type: "link",
+          label: "here.",
+          href: "https://www.princeedwardisland.ca/en/publication/drivers-handbook",
+          inline: true,
+        },
         {
           type: "heading",
           value: "Licence Basics",
@@ -192,15 +204,15 @@ const chapter1: Chapter = {
           type: "heading",
           value: "Beginner and Personal Classes",
         },
-        {
-          type: "list",
-          items: [
-            "Class 7: Instruction Driver's Permit (Your starting point)",
-            "Class 5: Standard cars and light trucks",
-            "Class 6: Motorcycles",
-            "Class 8: Mopeds or motor-assisted pedal bicycles",
-            "Class 9: Farm tractors",
-          ],
+    {
+  type: "list",
+  items: [
+    "**Class 7:** Instruction Driver's Permit (Your starting point)",
+    "**Class 5:** Standard cars and light trucks",
+    "**Class 6:** Motorcycles",
+    "**Class 8:** Mopeds or motor-assisted pedal bicycles",
+    "**Class 9:** Farm tractors",
+  ],
         },
         {
           type: "heading",
@@ -208,12 +220,12 @@ const chapter1: Chapter = {
         },
         {
           type: "list",
-          items: [
-            "Class 1: Large truck tractor and trailer combinations",
-            "Class 2: Large buses (over 24 passengers), including school buses",
-            "Class 3: Heavy trucks over 14,000 kg",
-            "Class 4: Taxis, ambulances, vans, or small buses",
-          ],
+       items: [
+    "**Class 1:** Large truck tractor and trailer combinations",
+    "**Class 2:** Large buses (over 24 passengers), including school buses",
+    "**Class 3:** Heavy trucks over 14,000 kg",
+    "**Class 4:** Taxis, ambulances, vans, or small buses",
+  ],
         },
         {
           type: "heading",

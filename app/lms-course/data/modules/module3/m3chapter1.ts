@@ -7,7 +7,6 @@ export const m3chapter1: Chapter = {
   slug: "speed-management-and-following-distance",
   completed: false,
   lessons: [
-
     // PAGE 1
     {
       id: "m3ch1_pg1",
@@ -17,7 +16,7 @@ export const m3chapter1: Chapter = {
         {
           type: "text",
           value:
-            "A speed limit is not a target you must hit. It is the absolute maximum speed allowed only under ideal conditions. Think of it as the ceiling, not the goal.",
+            "A speed limit is **not a target** you must hit. It is the absolute maximum speed allowed only under ideal conditions. Think of it as the ceiling, not the goal.",
         },
         {
           type: "text",
@@ -59,12 +58,12 @@ export const m3chapter1: Chapter = {
 
         {
           type: "heading",
-          value: "🧠 Hidden Risk Most People Miss",
+          value: "🚨 Hidden Risk Most People Miss",
         },
         {
           type: "text",
           value:
-            "Speed doesn’t just affect stopping distance. It reduces your thinking time. At higher speeds, your brain has less time to interpret situations, which means more mistakes happen before you even reach the brake.",
+            "Speed doesn’t just affect **stopping distance**. It also reduces your thinking time. At higher speeds, your brain has less time to interpret situations, which means more mistakes happen before you even reach the brake.",
         },
 
         {
@@ -192,7 +191,7 @@ export const m3chapter1: Chapter = {
           items: [
             "Pick a fixed object ahead",
             "When the car ahead passes it, start counting",
-            "You should reach it after at least 3 seconds",
+            "You should reach it after at least **3 seconds**",
           ],
         },
 

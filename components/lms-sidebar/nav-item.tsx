@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
   ChevronRight,
   CheckCircle2,
@@ -36,10 +37,11 @@ export function ModuleList({
   furthestChapterId?: string | null;
 }) {
   const pathname = usePathname();
+  const [manuallyOpenModules, setManuallyOpenModules] = useState<Record<string, boolean>>({});
   const fallbackFurthestChapterId = getFirstChapterId();
   const resolvedFurthestChapterId = furthestChapterId ?? fallbackFurthestChapterId;
   const furthestIndex = resolvedFurthestChapterId ? getChapterIndex(resolvedFurthestChapterId) : -1;
-  const openModule = modules.find((module) => pathname.includes(`/module/${module.id}/`))?.slug ?? modules[0]?.slug ?? null;
+  const activeModuleSlug = modules.find((module) => pathname.includes(`/module/${module.id}/`))?.slug ?? null;
 
   if (isCollapsed) {
     return (
@@ -94,7 +96,7 @@ export function ModuleList({
   return (
     <nav className="custom-scrollbar flex-1 space-y-2 overflow-y-auto px-4 py-6">
       {modules.map((module) => {
-        const isOpen = openModule === module.slug;
+        const isOpen = Boolean(manuallyOpenModules[module.slug]) || activeModuleSlug === module.slug;
         const ModuleIcon = module.icon || Car; // Fallback icon
         const completedCount = module.chapters.filter(
           (chapter) => getChapterIndex(chapter.id) <= furthestIndex,
@@ -109,6 +111,12 @@ export function ModuleList({
           <Collapsible
             key={module.slug}
             open={isOpen}
+            onOpenChange={(open) => {
+              setManuallyOpenModules((prev) => ({
+                ...prev,
+                [module.slug]: open,
+              }));
+            }}
             className="group"
           >
             <CollapsibleTrigger asChild>
