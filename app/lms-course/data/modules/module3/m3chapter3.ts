@@ -11,7 +11,14 @@ export const m3chapter3: Chapter = {
       id: "m3ch3_pg1",
       title: "Night Driving and Headlight Limitations",
       content: [
-        { type: "heading", value: "The Danger of the Dark" },
+        {
+          type: "image",
+          src: "/module2/dangeres of the dark,ch3pg1.png",
+          alt: "Driving at night showing headlight limitations and reduced visibility",
+          layout: "half",
+          align: "left",
+        },
+        { type: "heading", value: "Dangers of the Dark" },
         {
           type: "text",
           value:

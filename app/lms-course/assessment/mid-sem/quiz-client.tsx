@@ -72,7 +72,24 @@ export function MidSemQuizClient({ nextChapterId, nextChapterHref }: MidSemQuizC
     [],
   );
 
-  const [randomSelectionIds, setRandomSelectionIds] = useState<string[]>(() => readCachedRandomIds());
+  const [randomSelectionIds, setRandomSelectionIds] = useState<string[]>(() => {
+    const cached = readCachedRandomIds();
+    // Validate cached IDs against the pool
+    const poolIds = new Set(getMidSemRandomPool().map(q => q.id));
+    const validIds = cached.filter(id => poolIds.has(id));
+
+    if (validIds.length === MIDSEM_RANDOM_COUNT) {
+      return validIds;
+    }
+
+    // Regenerate if invalid or count mismatch
+    const nextIds = pickRandomQuestionIds(getMidSemRandomPool(), MIDSEM_RANDOM_COUNT);
+    // Note: writing to localStorage in initializer is okay for client-side initialization
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(MIDSEM_RANDOM_SELECTION_STORAGE_KEY, JSON.stringify(nextIds));
+    }
+    return nextIds;
+  });
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [result, setResult] = useState<QuizResult | undefined>(undefined);
   const [isSavingPass, setIsSavingPass] = useState(false);
@@ -81,20 +98,10 @@ export function MidSemQuizClient({ nextChapterId, nextChapterHref }: MidSemQuizC
     return window.localStorage.getItem(passStorageKey) === "true";
   });
 
+  // Ensure cached IDs are in sync with localStorage if they were regenerated
   useEffect(() => {
-    const validIds = randomSelectionIds.filter((id) => poolById.has(id));
-    if (validIds.length === MIDSEM_RANDOM_COUNT) {
-      if (validIds.length !== randomSelectionIds.length) {
-        setRandomSelectionIds(validIds);
-        writeCachedRandomIds(validIds);
-      }
-      return;
-    }
-
-    const nextIds = pickRandomQuestionIds(randomPool, MIDSEM_RANDOM_COUNT);
-    setRandomSelectionIds(nextIds);
-    writeCachedRandomIds(nextIds);
-  }, [poolById, randomPool, randomSelectionIds]);
+    writeCachedRandomIds(randomSelectionIds);
+  }, [randomSelectionIds]);
 
   const selectedRandomQuestions = useMemo(
     () =>
@@ -163,20 +170,23 @@ export function MidSemQuizClient({ nextChapterId, nextChapterHref }: MidSemQuizC
       window.localStorage.setItem(passStorageKey, "true");
       setAlreadyPassed(true);
       setIsSavingPass(true);
-
-      await handleQuizPassProgress({
+      void handleQuizPassProgress({
         currentChapterId: MIDSEM_CHAPTER_ID,
         nextChapterId,
       });
-
-      setIsSavingPass(false);
       if (nextChapterHref) {
         router.push(nextChapterHref);
+        router.refresh();
         return;
       }
 
       router.push("/lms-course");
+      router.refresh();
+      setIsSavingPass(false);
+      return;
     }
+
+    setIsSavingPass(false);
   };
 
   const handleRetake = () => {
@@ -202,7 +212,7 @@ export function MidSemQuizClient({ nextChapterId, nextChapterHref }: MidSemQuizC
           Pass rule: at least 40/50 ans
           wers must be correct to unlock the next chapter.
         </p>
-      </header> 
+      </header>
 
       <main className="flex-grow py-3 sm:py-4">
         {alreadyPassed && !result?.submitted ? (
@@ -241,4 +251,3 @@ export function MidSemQuizClient({ nextChapterId, nextChapterHref }: MidSemQuizC
     </div>
   );
 }
-

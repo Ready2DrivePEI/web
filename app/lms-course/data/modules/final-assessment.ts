@@ -60,8 +60,6 @@ const previousQuizSources: QuizSource[] = [
 const uniqueFinalQuestions: QuizQuestion[] = [
   {
     id: "scenario-q1",
-    imageSrc: "/final/q1.png",
-    imageAlt: "A driver's view from inside a car in heavy traffic, a large SUV is tailgating extremely close behind, visible in the rearview mirror",
     question: "Scenario: You are driving in moderate traffic and the vehicle behind you is tailgating aggressively and flashing its headlights. How should you respond defensively?",
     options: [
       "Lightly tap your brakes to warn them to back off",
@@ -86,19 +84,21 @@ const uniqueFinalQuestions: QuizQuestion[] = [
     explanation: "Graduated licensing programs strictly mandate zero blood alcohol concentration. Even a small amount of alcohol violates this rule and carries severe licence suspensions.",
     sourceLessonId: "lms-course/assessment/final",
   },
-  {
-    id: "scenario-q3",
-    question: "Scenario: A fully licensed (Class 5) driver is pulled over by law enforcement and their breathalyzer test registers a Blood Alcohol Concentration (BAC) over the legal limit. What happens immediately at the roadside?",
-    options: [
-      "They receive a severe warning and must arrange for another driver",
-      "Their vehicle is impounded for 24 hours, but they keep their physical licence",
-      "Their licence is suspended for 24 hours and they receive a court summons",
-      "Their driver's licence is suspended immediately, and their vehicle is impounded",
-    ],
-    correctAnswerIndex: 3,
-    explanation: "Failing a breathalyzer test results in immediate, mandatory roadside administrative penalties, which include immediate licence suspension and vehicle impoundment before any criminal conviction.",
-    sourceLessonId: "lms-course/assessment/final",
-  },
+{
+  id: "scenario-q3",
+  imageSrc: "/final/q3.png",
+  imageAlt: "Driver's view approaching an intersection with heavy traffic. The intersection ahead is blocked by stationary vehicles, creating a gridlock situation.",
+  question: "Scenario: You are approaching a green light at a busy intersection, but you can see that the intersection is already blocked by vehicles on the other side (gridlock). What should you do?",
+  options: [
+    "Proceed into the intersection because you have a green light",
+    "Enter slowly and try to find space inside the intersection",
+    "Wait before the intersection until there is enough space on the other side to clear it completely",
+    "Honk aggressively to force vehicles ahead to move forward"
+  ],
+  correctAnswerIndex: 2,
+  explanation: "Even with a green light, you must not enter an intersection unless you can fully clear it. Blocking the intersection creates dangerous gridlock and prevents cross traffic from moving.",
+  sourceLessonId: "lms-course/assessment/final",
+},
   {
     id: "scenario-q4",
     imageSrc: "/final/q4.png",
@@ -185,8 +185,6 @@ const uniqueFinalQuestions: QuizQuestion[] = [
   },
   {
     id: "scenario-q10",
-    imageSrc: "/final/q10.png",
-    imageAlt: "A driver's view at night in heavy rain, following a large transport truck. The truck's tires are throwing up a massive cloud of water spray, severely reducing visibility.",
     question: "Scenario: It is raining heavily at night. You are driving behind a large transport truck that is throwing up a massive cloud of water spray, drastically reducing your visibility. What is the safest action?",
     options: [
       "Follow closer so your headlights can better illuminate the back of the truck trailer",

@@ -18,10 +18,16 @@ import {
   subscribeToPreference,
 } from "@/app/lms-course/_components/lms-preferences"
 import { getCachedLastLmsPath, getStudentProgress, type StudentProgressSnapshot } from "@/lib/lms-progress"
-import { getChapterHref, isLmsBypassLocksEnabled } from "@/app/lms-course/data/modules"
+import {
+  getChapterHref,
+  getChapterIndex,
+  getProgressPercentForChapter,
+  isLmsBypassLocksEnabled,
+} from "@/app/lms-course/data/modules"
 import { ContinueCoursePrompt } from "@/app/lms-course/_components/continue-course-prompt"
 import { StudentAccountMenu } from "@/app/lms-course/_components/student-account-menu"
 import { CourseCompletionModal } from "@/app/lms-course/_components/course-completion-modal"
+import { supabase } from "@/lib/supabase/client"
 
 export function LMSShell({ children }: { children: ReactNode }) {
   const bypassLocksEnabled = isLmsBypassLocksEnabled()
@@ -38,9 +44,45 @@ export function LMSShell({ children }: { children: ReactNode }) {
     getThemeSnapshot,
     () => "light" as LMSTheme,
   )
-  const [progressSnapshot, setProgressSnapshot] = useState<StudentProgressSnapshot | null>(null)
+  const [progressSnapshot, setProgressSnapshot] = useState<StudentProgressSnapshot | null>(() => {
+    if (typeof window === "undefined") return null
+    const raw = localStorage.getItem("r2d:progress:snapshot")
+    if (!raw) return null
+    try {
+      return JSON.parse(raw) as StudentProgressSnapshot
+    } catch {
+      return null
+    }
+  })
   const [showContinuePrompt, setShowContinuePrompt] = useState(false)
   const [showTestModal, setShowTestModal] = useState(false)
+  const [authChecked, setAuthChecked] = useState(false)
+
+  useEffect(() => {
+    let active = true
+    void (async () => {
+      const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth")
+      if (!authSnapshot || !supabase) {
+        if (!active) return
+        setAuthChecked(true)
+        router.replace("/login")
+        return
+      }
+
+      const { data } = await supabase.auth.getSession()
+      if (!active) return
+      if (!data.session) {
+        setAuthChecked(true)
+        router.replace("/login")
+        return
+      }
+      setAuthChecked(true)
+    })()
+
+    return () => {
+      active = false
+    }
+  }, [router])
 
   const toggleCollapse = () => {
     const next = !isCollapsed
@@ -80,8 +122,17 @@ export function LMSShell({ children }: { children: ReactNode }) {
   const lastChapterHref = progressSnapshot?.last_chapter_id
     ? getChapterHref(progressSnapshot.last_chapter_id)
     : null;
-  const furthestChapterHref = progressSnapshot?.furthest_chapter_id
-    ? getChapterHref(progressSnapshot.furthest_chapter_id)
+  const pathChapterIdMatch = pathname.match(/\/chapter\/([^/]+)/)
+  const pathChapterId = pathChapterIdMatch?.[1] ?? null
+  const pathChapterIndex = getChapterIndex(pathChapterId ?? "")
+  const snapshotFurthestId = progressSnapshot?.furthest_chapter_id ?? null
+  const snapshotFurthestIndex = getChapterIndex(snapshotFurthestId ?? "")
+  const effectiveFurthestChapterId =
+    pathChapterIndex > snapshotFurthestIndex ? pathChapterId : snapshotFurthestId
+  const effectiveProgressPercent = getProgressPercentForChapter(effectiveFurthestChapterId)
+
+  const furthestChapterHref = effectiveFurthestChapterId
+    ? getChapterHref(effectiveFurthestChapterId)
     : null;
 
   const showFurthestOption = Boolean(
@@ -116,14 +167,18 @@ export function LMSShell({ children }: { children: ReactNode }) {
     router.push(furthestChapterHref);
   };
 
+  if (!authChecked) {
+    return null
+  }
+
   return (
     <div className="lms-shell flex min-h-screen" data-lms-theme={theme} style={shellStyle}>
       <Sidebar
         isCollapsed={isCollapsed}
         theme={theme}
         onToggleTheme={toggleTheme}
-        progressPercent={progressSnapshot?.progress_percent ?? 0}
-        furthestChapterId={progressSnapshot?.furthest_chapter_id ?? null}
+        progressPercent={effectiveProgressPercent}
+        furthestChapterId={effectiveFurthestChapterId}
       />
 
       <ContinueCoursePrompt

@@ -147,7 +147,7 @@ export async function POST(request: Request) {
   const profilePayload: Database["public"]["Tables"]["profiles"]["Insert"] = {
     created_at: `${accessStart}T00:00:00.000Z`,
     user_id: userId,
-    email,
+    full_name: fullName || email,
     password: "__managed_by_supabase_auth__",
     role,
     status,
@@ -160,7 +160,7 @@ export async function POST(request: Request) {
     const { error: updateError } = await adminSupabase
       .from("profiles")
       .update(profilePayload)
-      .eq("email", email);
+      .eq("user_id", userId);
 
     if (updateError) {
       await adminSupabase.auth.admin.deleteUser(userId);

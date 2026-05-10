@@ -79,6 +79,13 @@ export const m2chapter3: Chapter = {
       title: "Right-of-Way Fundamentals: Intersections and Shared Space",
       content: [
         {
+          type: "image",
+          src: "/module3/Turning at Intersectionsch2.png",
+          alt: "Diagram showing right-of-way at intersections",
+          layout: "threeQuarter",
+          align: "left",
+        },
+        {
           type: "text",
           value:
             "Right-of-way decides who should move first, but safe driving still requires scanning for hazards before you go. Legal priority is not the same thing as physical safety.",
@@ -153,6 +160,13 @@ export const m2chapter3: Chapter = {
         {
           type: "heading",
           value: "⬅️ Left turn",
+        },
+        {
+          type: "image",
+          src: "/module3/Left Turnsch2.png",
+          alt: "Diagram showing correct positioning for left turns",
+          layout: "threeQuarter",
+          align: "left",
         },
         {
           type: "text",

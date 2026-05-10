@@ -170,6 +170,13 @@ export const m3chapter2: Chapter = {
     },
     { type: "heading", value: "Turning at Intersections" },
     {
+      type: "image",
+      src: "/module3/Turning at Intersectionsch2.png",
+      alt: "Diagram showing right-of-way and positioning at intersections",
+      layout: "threeQuarter",
+      align: "left",
+    },
+    {
       type: "list",
       items: [
         "Prepare for the turn before you get there.",
@@ -186,6 +193,13 @@ export const m3chapter2: Chapter = {
         "The handbook says not to have the brake or clutch pedal pushed down, and not to shift gears while actually turning, although you should be prepared to do so. The point is to avoid unstable vehicle control in the middle of the turn.",
     },
     { type: "heading", value: "Left Turns" },
+    {
+      type: "image",
+      src: "/module3/Left Turnsch2.png",
+      alt: "Diagram showing correct positioning and path for left turns",
+      layout: "threeQuarter",
+      align: "left",
+    },
     {
       type: "text",
       value:

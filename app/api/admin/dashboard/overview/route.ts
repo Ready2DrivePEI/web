@@ -4,7 +4,7 @@ import type { Database } from "@/database.types";
 
 type ActiveProfile = Pick<
   Database["public"]["Tables"]["profiles"]["Row"],
-  "user_id" | "email" | "role" | "status" | "created_at" | "expires_at"
+  "user_id" | "full_name" | "role" | "status" | "created_at" | "expires_at"
 >;
 
 function normalizeEnv(value: string | undefined): string | null {
@@ -111,7 +111,7 @@ export async function GET(request: Request) {
 
   const { data: activeProfilesData, error: activeProfilesError } = await adminSupabase
     .from("profiles")
-    .select("user_id, email, role, status, created_at, expires_at")
+    .select("user_id, full_name, role, status, created_at, expires_at")
     .eq("status", "active")
     .in("role", ["student", "admin"])
     .order("created_at", { ascending: false });
@@ -153,8 +153,8 @@ export async function GET(request: Request) {
 
     return {
       userId: item.user_id ?? "",
-      displayName: getDisplayName(item.email, fullName),
-      email: item.email,
+      displayName: getDisplayName(item.full_name || "", fullName),
+      email: item.full_name || "",
       role: item.role,
       status: item.status,
       accessStart: item.created_at,

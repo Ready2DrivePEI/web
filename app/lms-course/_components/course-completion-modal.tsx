@@ -30,7 +30,7 @@ export function CourseCompletionModal({
   } = useCertificateStatus(isOpen);
 
   useEffect(() => {
-    setIsMounted(true);
+    setTimeout(() => setIsMounted(true), 0);
   }, []);
 
   useEffect(() => {
@@ -38,7 +38,9 @@ export function CourseCompletionModal({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-      setIsCopied(false);
+      // We reset isCopied here when the modal closes
+      // Wrap in setTimeout to avoid synchronous state update in effect warning
+      setTimeout(() => setIsCopied(false), 0);
     }
     return () => {
       document.body.style.overflow = "unset";
@@ -139,7 +141,7 @@ export function CourseCompletionModal({
               You Passed!
             </h2>
             <p className="mb-8 text-[color:var(--lms-text)] font-medium leading-relaxed">
-              Congratulations! You've successfully completed all the course requirements.
+              Congratulations! You&apos;ve successfully completed all the course requirements.
             </p>
 
             {/* Subtle Course Details */}

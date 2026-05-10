@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import {
   ChevronRight,
   CheckCircle2,
@@ -37,10 +36,10 @@ export function ModuleList({
   furthestChapterId?: string | null;
 }) {
   const pathname = usePathname();
-  const [openModule, setOpenModule] = useState<string | null>(modules[0]?.slug ?? null);
   const fallbackFurthestChapterId = getFirstChapterId();
   const resolvedFurthestChapterId = furthestChapterId ?? fallbackFurthestChapterId;
   const furthestIndex = resolvedFurthestChapterId ? getChapterIndex(resolvedFurthestChapterId) : -1;
+  const openModule = modules.find((module) => pathname.includes(`/module/${module.id}/`))?.slug ?? modules[0]?.slug ?? null;
 
   if (isCollapsed) {
     return (
@@ -110,7 +109,6 @@ export function ModuleList({
           <Collapsible
             key={module.slug}
             open={isOpen}
-            onOpenChange={() => setOpenModule(isOpen ? null : module.slug)}
             className="group"
           >
             <CollapsibleTrigger asChild>

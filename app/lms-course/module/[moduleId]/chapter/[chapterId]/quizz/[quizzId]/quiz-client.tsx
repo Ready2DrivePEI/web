@@ -89,20 +89,23 @@ export function QuizClient({
       window.localStorage.setItem(passStorageKey, "true");
       setAlreadyPassed(true);
       setIsSavingPass(true);
-
-      await handleQuizPassProgress({
+      void handleQuizPassProgress({
         currentChapterId: chapterId,
         nextChapterId,
       });
-
-      setIsSavingPass(false);
       if (nextChapterHref) {
         router.push(nextChapterHref);
+        router.refresh();
         return;
       }
 
       router.push("/lms-course");
+      router.refresh();
+      setIsSavingPass(false);
+      return;
     }
+
+    setIsSavingPass(false);
   };
 
   const handleRetake = () => {

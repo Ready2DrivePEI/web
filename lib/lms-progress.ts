@@ -53,6 +53,19 @@ function normalizeSnapshot(snapshot: StudentProgressSnapshot): StudentProgressSn
   };
 }
 
+function pickFurthestSnapshot(
+  primary: StudentProgressSnapshot | null,
+  secondary: StudentProgressSnapshot | null,
+): StudentProgressSnapshot | null {
+  if (!primary) return secondary;
+  if (!secondary) return primary;
+
+  const primaryIndex = getChapterIndex(primary.furthest_chapter_id ?? "");
+  const secondaryIndex = getChapterIndex(secondary.furthest_chapter_id ?? "");
+  if (secondaryIndex > primaryIndex) return secondary;
+  return primary;
+}
+
 type LastPathCache = {
   chapterId: string;
   path: string;
@@ -219,23 +232,27 @@ async function saveProgressRow(
 }
 
 export async function getStudentProgress(): Promise<StudentProgressSnapshot | null> {
+  const localSnapshot = readLocalSnapshot();
   const userId = await getCurrentUserId();
-  if (!userId) return readLocalSnapshot();
+  if (!userId) return localSnapshot;
 
   const snapshot = await fetchProgressRow(userId);
   if (snapshot) {
-    const normalized = normalizeSnapshot({
+    const serverSnapshot = normalizeSnapshot({
       user_id: snapshot.user_id,
       last_chapter_id: snapshot.last_chapter_id,
       furthest_chapter_id: snapshot.furthest_chapter_id,
       progress_percent: snapshot.progress_percent,
       updated_at: snapshot.updated_at,
     });
-    writeLocalSnapshot(normalized);
-    return normalized;
+    const resolvedSnapshot = pickFurthestSnapshot(serverSnapshot, localSnapshot);
+    if (resolvedSnapshot) {
+      writeLocalSnapshot(resolvedSnapshot);
+    }
+    return resolvedSnapshot;
   }
 
-  return readLocalSnapshot();
+  return localSnapshot;
 }
 
 export async function trackLastVisitedChapter(chapterId: string): Promise<StudentProgressSnapshot | null> {
@@ -243,7 +260,11 @@ export async function trackLastVisitedChapter(chapterId: string): Promise<Studen
   if (!userId) return null;
 
   const current = await fetchProgressRow(userId);
-  const furthestChapterId = getSafeFurthestChapterId(current?.furthest_chapter_id ?? null);
+  const storedFurthest = getSafeFurthestChapterId(current?.furthest_chapter_id ?? null);
+  const storedFurthestIndex = getChapterIndex(storedFurthest ?? "");
+  const visitedChapterIndex = getChapterIndex(chapterId);
+  const furthestChapterId =
+    visitedChapterIndex > storedFurthestIndex ? chapterId : storedFurthest;
 
   if (!furthestChapterId) return null;
 
@@ -278,6 +299,17 @@ export async function handleQuizPassProgress(args: {
   const resolvedLastVisited =
     nextChapterId && getChapterIndex(nextChapterId) >= 0 ? nextChapterId : currentChapterId;
 
+  // Optimistically update local snapshot so sidebar lock/progress UI updates immediately
+  // even if backend save is delayed or fails.
+  const optimisticSnapshot: StudentProgressSnapshot = {
+    user_id: userId,
+    last_chapter_id: resolvedLastVisited,
+    furthest_chapter_id: resolvedFurthest,
+    progress_percent: getProgressPercentForChapter(resolvedFurthest),
+    updated_at: new Date().toISOString(),
+  };
+  writeLocalSnapshot(optimisticSnapshot);
+
   const nextSnapshot = await saveProgressRow(userId, {
     last_chapter_id: resolvedLastVisited,
     furthest_chapter_id: resolvedFurthest,
@@ -285,5 +317,5 @@ export async function handleQuizPassProgress(args: {
     updated_at: new Date().toISOString(),
   });
 
-  return nextSnapshot;
+  return nextSnapshot ?? optimisticSnapshot;
 }

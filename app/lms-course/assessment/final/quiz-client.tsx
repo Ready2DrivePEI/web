@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { QuizView, type QuizResult, type SelectedAnswers } from "@/app/lms-course/_components/quizView";
 import { QuizSkeleton } from "@/app/lms-course/_components/quiz-skeleton";
@@ -58,7 +57,6 @@ function writeCachedRandomIds(ids: string[]) {
 }
 
 export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizClientProps) {
-  const router = useRouter();
   const passStorageKey = `r2d:quiz:passed:${FINAL_MODULE_ID}:${FINAL_CHAPTER_ID}`;
   const reviewLessonBasePath = "";
 
@@ -72,7 +70,24 @@ export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizCli
     [],
   );
 
-  const [randomSelectionIds, setRandomSelectionIds] = useState<string[]>(() => readCachedRandomIds());
+  const [randomSelectionIds, setRandomSelectionIds] = useState<string[]>(() => {
+    const cached = readCachedRandomIds();
+    // Validate cached IDs against the pool
+    const poolIds = new Set(getFinalRandomPool().map(q => q.id));
+    const validIds = cached.filter(id => poolIds.has(id));
+
+    if (validIds.length === FINAL_RANDOM_COUNT) {
+      return validIds;
+    }
+
+    // Regenerate if invalid or count mismatch
+    const nextIds = pickRandomQuestionIds(getFinalRandomPool(), FINAL_RANDOM_COUNT);
+    // Note: writing to localStorage in initializer is okay for client-side initialization
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(FINAL_RANDOM_SELECTION_STORAGE_KEY, JSON.stringify(nextIds));
+    }
+    return nextIds;
+  });
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [result, setResult] = useState<QuizResult | undefined>(undefined);
   const [isSavingPass, setIsSavingPass] = useState(false);
@@ -81,20 +96,10 @@ export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizCli
     return window.localStorage.getItem(passStorageKey) === "true";
   });
 
+  // Ensure cached IDs are in sync with localStorage if they were regenerated
   useEffect(() => {
-    const validIds = randomSelectionIds.filter((id) => poolById.has(id));
-    if (validIds.length === FINAL_RANDOM_COUNT) {
-      if (validIds.length !== randomSelectionIds.length) {
-        setRandomSelectionIds(validIds);
-        writeCachedRandomIds(validIds);
-      }
-      return;
-    }
-
-    const nextIds = pickRandomQuestionIds(randomPool, FINAL_RANDOM_COUNT);
-    setRandomSelectionIds(nextIds);
-    writeCachedRandomIds(nextIds);
-  }, [poolById, randomPool, randomSelectionIds]);
+    writeCachedRandomIds(randomSelectionIds);
+  }, [randomSelectionIds]);
 
   const selectedRandomQuestions = useMemo(
     () =>
@@ -197,7 +202,7 @@ export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizCli
         <p className="lms-muted mt-2.5 text-sm sm:text-base">
           Pass rule: at least 40/50 answers must be correct to pass the course.
         </p>
-      </header> 
+      </header>
 
       <main className="flex-grow py-3 sm:py-4">
         {alreadyPassed && !result?.submitted ? (

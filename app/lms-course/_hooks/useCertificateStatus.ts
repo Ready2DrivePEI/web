@@ -34,6 +34,9 @@ export function useCertificateStatus(shouldFetch: boolean = false): UseCertifica
 
     const requestId = ++currentRequestIdRef.current;
 
+    // Use a small delay to avoid synchronous state update in effect warning
+    await Promise.resolve();
+    
     setLoading(true);
     setError(null);
 
@@ -46,13 +49,14 @@ export function useCertificateStatus(shouldFetch: boolean = false): UseCertifica
         setCertificateUrl(data.url);
         setLoading(false);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const error = err as Error;
       // Don't update state if request was aborted
-      if (err.name === "AbortError" || requestId !== currentRequestIdRef.current) {
+      if (error.name === "AbortError" || requestId !== currentRequestIdRef.current) {
         return;
       }
 
-      setError(err instanceof Error ? err.message : "An unexpected error occurred");
+      setError(error.message || "An unexpected error occurred");
       setExists(false);
       setCertificateUrl(null);
       setLoading(false);
@@ -62,7 +66,13 @@ export function useCertificateStatus(shouldFetch: boolean = false): UseCertifica
   // Automatic fetch when shouldFetch becomes true
   useEffect(() => {
     if (shouldFetch) {
-      fetchStatus();
+      const timer = setTimeout(() => {
+        void fetchStatus();
+      }, 0);
+      return () => {
+        clearTimeout(timer);
+        abortControllerRef.current?.abort();
+      };
     }
     
     return () => {

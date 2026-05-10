@@ -16,7 +16,7 @@ export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
- // Authenticates with Supabase Auth, then loads the linked profile
+  // Authenticates via server-side route that resolves full_name → email
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isSubmitting) return;
@@ -24,70 +24,75 @@ export default function LoginPage() {
     setIsSubmitting(true);
 
     if (!supabase) {
-      setSubmitError("Login service is not configured. Add Supabase env vars in Vercel project settings.");
+      setSubmitError("Login service is not configured.");
       setIsSubmitting(false);
       return;
     }
-   
+
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const email = String(formData.get("email") ?? "").trim().toLowerCase();
+    const fullName = String(formData.get("fullName") ?? "").trim();
     const password = String(formData.get("password") ?? "");
 
-    if (!email || !password) {
-      setSubmitError("Please enter both email and password.");
+    if (!fullName || !password) {
+      setSubmitError("Please enter both your name and password.");
       setIsSubmitting(false);
       return;
     }
 
-    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+    // Call server-side login route (resolves full_name → email, then authenticates)
+    let loginResult: {
+      access_token?: string;
+      refresh_token?: string;
+      error?: string;
+      profile?: {
+        id: number;
+        role: string;
+        full_name: string;
+        status: string;
+        expires_at: string | null;
+      };
+    };
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, password }),
+      });
+      loginResult = (await response.json()) as typeof loginResult;
+
+      if (!response.ok) {
+        setSubmitError(loginResult?.error ?? "Could not sign in. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
+    } catch {
+      setSubmitError("Network error. Please check your connection and try again.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!loginResult.access_token || !loginResult.refresh_token || !loginResult.profile) {
+      setSubmitError("Login succeeded but session data was incomplete. Try again.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Set the Supabase session on the client
+    const { error: sessionError } = await supabase.auth.setSession({
+      access_token: loginResult.access_token,
+      refresh_token: loginResult.refresh_token,
     });
 
-    if (authError) {
-      console.error("Login auth error:", authError);
-      if (authError.message.toLowerCase().includes("invalid login credentials")) {
-        setSubmitError(
-          "No Supabase Auth user matched that email/password. Create the user in Supabase Auth first, then try again."
-        );
-      } else {
-        setSubmitError(authError.message || "Could not sign in right now. Please try again.");
-      }
+    if (sessionError) {
+      console.error("Session set error:", sessionError);
+      setSubmitError("Signed in, but could not establish local session.");
       setIsSubmitting(false);
       return;
     }
 
-    const user = authData.user ?? authData.session?.user;
-
-    if (!user) {
-      setSubmitError("Login failed. Please try again.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
-      .select("id, email, role, status, expires_at, user_id")
-      .eq("user_id", user.id)
-      .maybeSingle();
-
-    if (profileError) {
-      console.error("Profile fetch error:", profileError);
-      if (profileError.message.toLowerCase().includes("row-level security")) {
-        setSubmitError("Profile access is blocked by RLS policy. Check your profiles SELECT policy.");
-      } else {
-        setSubmitError("Signed in, but profile lookup failed.");
-      }
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!profile) {
-      setSubmitError("Signed in, but no linked profile was found. Set profiles.user_id = auth.users.id.");
-      setIsSubmitting(false);
-      return;
-    }
+    const profile = loginResult.profile;
 
     if (profile.status.toLowerCase() !== "active") {
       setSubmitError("Your account is not active. Contact admin.");
@@ -111,7 +116,7 @@ export default function LoginPage() {
     const authSnapshot = JSON.stringify({
       profileId: profile.id,
       role: profile.role,
-      email: profile.email,
+      full_name: profile.full_name,
       signedInAt: new Date().toISOString(),
     });
 
@@ -131,34 +136,33 @@ export default function LoginPage() {
     }
   };
 
-
-    useEffect(() => {
-      const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth");
-      if (authSnapshot) {
-        try {
-          const parsed = JSON.parse(authSnapshot) as { role?: string };
-          if (parsed.role === "admin") {
-            router.replace("/admin");
-            return;
-          }
-
-          router.replace("/lms-course");
+  useEffect(() => {
+    const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth");
+    if (authSnapshot) {
+      try {
+        const parsed = JSON.parse(authSnapshot) as { role?: string };
+        if (parsed.role === "admin") {
+          router.replace("/admin");
           return;
-        } catch {
-          localStorage.removeItem("r2d-auth");
-          sessionStorage.removeItem("r2d-auth");
         }
-      }
 
-      if (localStorage.getItem("r2d-remember-me") === "false") {
-        void supabase?.auth.signOut();
+        router.replace("/lms-course");
+        return;
+      } catch {
+        localStorage.removeItem("r2d-auth");
+        sessionStorage.removeItem("r2d-auth");
       }
+    }
 
-      const visited = localStorage.getItem("r2d-visited");
-      if (!visited) {
-        localStorage.setItem("r2d-visited", "true");
-      }
-    }, [router]);
+    if (localStorage.getItem("r2d-remember-me") === "false") {
+      void supabase?.auth.signOut();
+    }
+
+    const visited = localStorage.getItem("r2d-visited");
+    if (!visited) {
+      localStorage.setItem("r2d-visited", "true");
+    }
+  }, [router]);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 flex items-center justify-center px-6 py-24">
@@ -177,22 +181,22 @@ export default function LoginPage() {
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
 
-          {/* Email */}
+          {/* Full Name */}
           <div className="space-y-2">
             <label
-              htmlFor="email"
+              htmlFor="fullName"
               className="text-sm font-medium text-neutral-700"
             >
-              Email Address
+              Full Name
             </label>
             <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="you@example.com"
+              id="fullName"
+              name="fullName"
+              type="text"
+              placeholder="Enter your full name"
               required
-              autoComplete="email"
-              autoCapitalize="none"
+              autoComplete="name"
+              autoCapitalize="words"
               spellCheck={false}
               className="w-full min-h-[48px] px-4 rounded-lg border border-neutral-300 bg-white text-sm text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition"
             />
