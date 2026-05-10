@@ -187,16 +187,16 @@ export default function LoginPage() {
               htmlFor="fullName"
               className="text-sm font-medium text-neutral-700"
             >
-              Full Name
+              Email / Full Name
             </label>
             <input
               id="fullName"
               name="fullName"
               type="text"
-              placeholder="Enter your full name"
+              placeholder="Enter email or full name"
               required
-              autoComplete="name"
-              autoCapitalize="words"
+              autoComplete="username"
+              autoCapitalize="none"
               spellCheck={false}
               className="w-full min-h-[48px] px-4 rounded-lg border border-neutral-300 bg-white text-sm text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition"
             />

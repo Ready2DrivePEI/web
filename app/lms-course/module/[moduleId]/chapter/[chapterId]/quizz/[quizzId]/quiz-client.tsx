@@ -8,6 +8,7 @@ import { QuizView, type QuizResult, type SelectedAnswers } from "@/app/lms-cours
 import type { ChapterQuiz } from "@/app/lms-course/data/modules/module1/chapter1quiz";
 import { getChapterIndex } from "@/app/lms-course/data/modules";
 import { getStudentProgress, handleQuizPassProgress } from "@/lib/lms-progress";
+import { QuizSuccessModal } from "@/app/lms-course/_components/quiz-success-modal";
 
 interface QuizClientProps {
   moduleId: string;
@@ -31,6 +32,7 @@ export function QuizClient({
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [result, setResult] = useState<QuizResult | undefined>(undefined);
   const [isSavingPass, setIsSavingPass] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [alreadyPassed, setAlreadyPassed] = useState(() => {
     if (typeof window === "undefined") return false;
     return window.localStorage.getItem(passStorageKey) === "true";
@@ -93,20 +95,26 @@ export function QuizClient({
         currentChapterId: chapterId,
         nextChapterId,
       });
-      if (nextChapterHref) {
-        router.push(nextChapterHref);
-        router.refresh();
-        return;
-      }
-
-      router.push("/lms-course");
-      router.refresh();
+      setShowSuccessModal(true);
       setIsSavingPass(false);
       return;
     }
 
     setIsSavingPass(false);
   };
+
+  const handleContinue = () => {
+    setShowSuccessModal(false);
+    if (nextChapterHref) {
+      router.push(nextChapterHref);
+      router.refresh();
+      return;
+    }
+    router.push("/lms-course");
+    router.refresh();
+  };
+
+  const handleReview = () => setShowSuccessModal(false);
 
   const handleRetake = () => {
     setResult(undefined);
@@ -115,6 +123,13 @@ export function QuizClient({
 
   return (
     <div className="lms-lesson-shell flex min-h-[80vh] flex-col px-1 py-0 sm:px-2 sm:py-1">
+      <QuizSuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        onContinue={handleContinue}
+        onReview={handleReview}
+        chapterTitle={quiz.title}
+      />
       <header className="lms-lesson-header pb-3">
         <p className="lms-lesson-eyebrow text-xs font-semibold uppercase">{quiz.description}</p>
         <h1 className="lms-lesson-title mt-2 text-3xl font-bold leading-tight sm:text-4xl">

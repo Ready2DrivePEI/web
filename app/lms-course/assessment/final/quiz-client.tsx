@@ -18,6 +18,7 @@ import {
 import { getChapterIndex } from "@/app/lms-course/data/modules";
 import type { QuizQuestion } from "@/app/lms-course/data/modules/module1/chapter1quiz";
 import { getStudentProgress, handleQuizPassProgress } from "@/lib/lms-progress";
+import { QuizSuccessModal } from "@/app/lms-course/_components/quiz-success-modal";
 
 interface FinalQuizClientProps {
   nextChapterId: string | null;
@@ -91,6 +92,7 @@ export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizCli
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [result, setResult] = useState<QuizResult | undefined>(undefined);
   const [isSavingPass, setIsSavingPass] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [alreadyPassed, setAlreadyPassed] = useState(() => {
     if (typeof window === "undefined") return false;
     return window.localStorage.getItem(passStorageKey) === "true";
@@ -174,11 +176,18 @@ export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizCli
         nextChapterId,
       });
 
+      setShowSuccessModal(true);
       setIsSavingPass(false);
-      // Removed the router.push because this is the final exam.
-      // Wait for the popup implementation or just stay on this page for now.
     }
   };
+
+  const handleContinue = () => {
+    setShowSuccessModal(false);
+    router.push("/lms-course");
+    router.refresh();
+  };
+
+  const handleReview = () => setShowSuccessModal(false);
 
   const handleRetake = () => {
     setResult(undefined);
@@ -194,6 +203,13 @@ export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizCli
 
   return (
     <div className="lms-lesson-shell flex min-h-[80vh] flex-col px-1 py-0 sm:px-2 sm:py-1">
+      <QuizSuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        onContinue={handleContinue}
+        onReview={handleReview}
+        chapterTitle="Final Assessment"
+      />
       <header className="lms-lesson-header pb-3">
         <p className="lms-lesson-eyebrow text-xs font-semibold uppercase">{quiz.description}</p>
         <h1 className="lms-lesson-title mt-2 text-3xl font-bold leading-tight sm:text-4xl">
@@ -217,18 +233,6 @@ export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizCli
           </div>
         ) : null}
 
-        {result?.submitted && result.passed && !alreadyPassed ? (
-          <div className="lms-callout lms-callout-success mb-6 rounded-2xl border border-green-500/30 bg-green-500/10 px-4 py-3 sm:px-5 sm:py-4">
-            <h2 className="font-semibold text-green-700 dark:text-green-400 text-lg">Congratulations! 🎉</h2>
-            <p className="mt-1 text-green-700/80 dark:text-green-400/80">You have passed the final assessment and completed the course.</p>
-            {/* Placeholder for the popup window that will be designed later */}
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href="/lms-course">Return to Dashboard</Link>
-              </Button>
-            </div>
-          </div>
-        ) : null}
 
         {!randomReady || !uniqueReady ? (
           <QuizSkeleton count={3} />

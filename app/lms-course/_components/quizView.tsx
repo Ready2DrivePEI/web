@@ -137,20 +137,24 @@ export function QuizView({
               })}
             </ul>
 
-            {showFeedback && !isCorrect ? (
-              <div className="lms-callout lms-callout-success space-y-3 rounded-xl border px-3 py-3 sm:px-4">
+            {showFeedback ? (
+              <div className={`lms-callout space-y-3 rounded-xl border px-3 py-3 sm:px-4 ${isCorrect ? 'lms-callout-success' : 'lms-callout-danger'}`}>
                 <p className="lms-feedback-explanation whitespace-pre-wrap text-sm leading-6 sm:text-base">
-                  <span className="lms-feedback-wrong font-semibold">Incorrect.</span>{" "}
+                  <span className={`font-semibold ${!isCorrect ? 'lms-feedback-wrong' : ''}`}>
+                    {isCorrect ? 'Correct.' : 'Incorrect.'}
+                  </span>{" "}
                   {question.explanation}
                 </p>
-                <p className="lms-feedback-correct whitespace-pre-wrap text-sm leading-6 sm:text-base">
-                  Correct answer: <span className="font-semibold">{correctOptionLabel}.</span>{" "}
-                  {correctOptionText}
-                </p>
+                {!isCorrect ? (
+                  <p className="lms-feedback-correct whitespace-pre-wrap text-sm leading-6 sm:text-base">
+                    Correct answer: <span className="font-semibold">{correctOptionLabel}.</span>{" "}
+                    {correctOptionText}
+                  </p>
+                ) : null}
                 <div>
                   <Button variant="outline" asChild className="lms-button-outline text-black hover:text-black">
                     <Link href={`${reviewLessonBasePath}/${question.sourceLessonId}`}>
-                      Go to lesson
+                      {isCorrect ? 'Review lesson' : 'Go to lesson'}
                     </Link>
                   </Button>
                 </div>
