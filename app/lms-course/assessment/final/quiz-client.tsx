@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { QuizView, type QuizResult, type SelectedAnswers } from "@/app/lms-course/_components/quizView";
 import { QuizSkeleton } from "@/app/lms-course/_components/quiz-skeleton";
@@ -58,6 +59,7 @@ function writeCachedRandomIds(ids: string[]) {
 }
 
 export function FinalQuizClient({ nextChapterId, nextChapterHref }: FinalQuizClientProps) {
+  const router = useRouter();
   const passStorageKey = `r2d:quiz:passed:${FINAL_MODULE_ID}:${FINAL_CHAPTER_ID}`;
   const reviewLessonBasePath = "";
 

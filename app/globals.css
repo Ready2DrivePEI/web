@@ -181,6 +181,20 @@
   .lms-shell {
     background: radial-gradient(circle at 10% 0%, var(--lms-shell-glow) 0%, var(--lms-bg) 35%);
     color: var(--lms-text);
+    --lms-sidebar-width: min(85vw, 22rem);
+  }
+
+  .lms-shell[data-sidebar-collapsed="true"] {
+    --lms-sidebar-width: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .lms-shell {
+      --lms-sidebar-width: 20rem;
+    }
+    .lms-shell[data-sidebar-collapsed="true"] {
+      --lms-sidebar-width: 5rem;
+    }
   }
 
   .lms-shell[data-lms-theme="dark"] {
@@ -325,6 +339,44 @@
   .lms-lesson-shell {
     max-width: 64rem;
     margin-inline: 0;
+  }
+
+  @media (min-width: 640px) {
+    .lms-shell[data-sidebar-collapsed="true"] .lms-lesson-shell {
+      max-width: 82rem;
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-media-block {
+      max-width: min(100%, 82rem);
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-image-frame.lms-media-block {
+      max-width: min(100%, 82rem);
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-image-frame.lms-media-block[data-lms-media-layout="quarter"] {
+      width: min(100%, 34rem);
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-image-frame.lms-media-block[data-lms-media-layout="half"] {
+      width: min(100%, 56rem);
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-image-frame.lms-media-block[data-lms-media-layout="threeQuarter"] {
+      width: min(100%, 72rem);
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-image-frame.lms-media-block[data-lms-media-layout="full"] {
+      width: min(100%, 82rem);
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-table-shell.lms-media-block {
+      max-width: min(100%, 78rem);
+    }
+
+    .lms-shell[data-sidebar-collapsed="true"] .lms-nav-footer {
+      max-width: min(100%, 82rem);
+    }
   }
 
   .lms-lesson-header {

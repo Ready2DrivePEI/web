@@ -147,7 +147,8 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <div key={idx} className={`my-6 flex w-full ${alignClass}`}>
               <figure
-                className={`lms-image-frame overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
+                data-lms-media-layout={layout}
+                className={`lms-image-frame lms-media-block overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
               >
                 <Image
                   src={block.src}
@@ -168,7 +169,8 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <figure
               key={idx}
-              className={`lms-image-frame my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
+              data-lms-media-layout={layout}
+              className={`lms-image-frame lms-media-block my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
             >
               <div className="flex min-h-44 flex-col items-center justify-center gap-3 rounded-xl border border-dashed px-5 py-8 text-center sm:min-h-52">
                 <p className="lms-muted text-xs font-semibold uppercase tracking-wide">
@@ -188,7 +190,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           return (
             <div
               key={idx}
-              className={`lms-table-shell my-6 overflow-x-auto rounded-2xl border ${tableShellClasses[tableSize]}`}
+              className={`lms-table-shell lms-media-block my-6 overflow-x-auto rounded-2xl border ${tableShellClasses[tableSize]}`}
             >
               <table className={`w-full border-collapse text-left ${tableTextClasses[tableSize]}`}>
                 <thead>
@@ -269,7 +271,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
           if (!embedUrl) return null;
 
           return (
-            <div key={idx} className="max-w-[72ch] overflow-hidden rounded-xl border">
+            <div key={idx} className="lms-media-block max-w-[72ch] overflow-hidden rounded-xl border">
               <iframe
                 src={embedUrl}
                 title={block.title ?? "Lesson video"}

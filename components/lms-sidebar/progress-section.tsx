@@ -22,10 +22,10 @@ export function ProgressFooter({
 
   if (isCollapsed) {
     return (
-      <div className="lms-surface relative mt-auto border-t px-3 py-4">
-        <div className="flex flex-col items-center gap-2">
-          <span className="lms-progress-value text-xs font-black">{percentage}%</span>
-          <div className="lms-progress-track h-1.5 w-full overflow-hidden rounded-full">
+      <div className="lms-surface relative mt-auto border-t px-1.5 sm:px-3 py-3 sm:py-4">
+        <div className="flex flex-col items-center gap-1.5 sm:gap-2">
+          <span className="lms-progress-value text-[10px] sm:text-xs font-black">{percentage}%</span>
+          <div className="lms-progress-track h-1 sm:h-1.5 w-full overflow-hidden rounded-full">
             <div
               className="lms-progress-fill h-full rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${percentage}%` }}
@@ -37,17 +37,17 @@ export function ProgressFooter({
   }
 
   return (
-    <div className="lms-surface relative mt-auto border-t p-6">
-      <div className="flex justify-between items-end mb-3">
-        <div>
-          <p className="lms-muted text-xs font-medium tracking-wide uppercase">Overall Course</p>
-          <p className="text-sm font-bold">Your Progress</p>
+    <div className="lms-surface relative mt-auto border-t p-3 sm:p-6">
+      <div className="flex justify-between items-end mb-2 sm:mb-3">
+        <div className="min-w-0">
+          <p className="lms-muted text-[9px] sm:text-xs font-medium tracking-wide uppercase truncate">Overall Course</p>
+          <p className="text-xs sm:text-sm font-bold truncate">Progress</p>
         </div>
-        <span className="lms-progress-value text-lg font-black">{percentage}%</span>
+        <span className="lms-progress-value text-sm sm:text-lg font-black shrink-0">{percentage}%</span>
       </div>
       
       {/* Progress Bar Track */}
-      <div className="lms-progress-track h-2 overflow-hidden rounded-full">
+      <div className="lms-progress-track h-1.5 sm:h-2 overflow-hidden rounded-full">
         {/* Progress Bar Fill: 
             The 'duration-1000' ensures a smooth slide animation 
             when the percentage state changes.
@@ -58,18 +58,18 @@ export function ProgressFooter({
         />
       </div>
       
-      <div className="mt-3 flex items-center justify-between gap-2">
-        <p className="lms-muted text-[10px] italic">
+      <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-1 sm:gap-2">
+        <p className="lms-muted text-[10px] italic hidden sm:block">
           Begin your first lesson to start tracking progress
         </p>
         <button
           type="button"
           onClick={onToggleTheme}
-          className="lms-theme-toggle-icon"
+          className="lms-theme-toggle-icon ml-auto sm:ml-0"
           aria-label={themeActionLabel}
           title={themeActionLabel}
         >
-          <ThemeIcon className="h-4 w-4" />
+          <ThemeIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </button>
       </div>
     </div>

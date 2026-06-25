@@ -32,9 +32,11 @@ const modules: Module[] = courseModules.map((module) => {
 export function ModuleList({
   isCollapsed = false,
   furthestChapterId = null,
+  onNavigate,
 }: {
   isCollapsed?: boolean;
   furthestChapterId?: string | null;
+  onNavigate?: () => void;
 }) {
   const pathname = usePathname();
   const [manuallyOpenModules, setManuallyOpenModules] = useState<Record<string, boolean>>({});
@@ -45,7 +47,7 @@ export function ModuleList({
 
   if (isCollapsed) {
     return (
-      <nav className="custom-scrollbar flex-1 overflow-y-auto px-2 py-4">
+      <nav className="custom-scrollbar flex-1 overflow-y-auto px-1 sm:px-2 py-3 sm:py-4">
         <div className="space-y-2">
           {modules.map((module) => {
             const ModuleIcon = module.icon || Car
@@ -68,7 +70,7 @@ export function ModuleList({
                 className="block"
               >
                 {hasUnlockedChapter ? (
-                  <Link href={href} aria-label={module.title} title={module.title}>
+                  <Link href={href} aria-label={module.title} title={module.title} onClick={onNavigate}>
                     <div
                       className={`lms-module-trigger flex h-12 items-center justify-center rounded-xl ${isActive ? "lms-module-trigger-open" : ""
                         }`}
@@ -94,7 +96,7 @@ export function ModuleList({
   }
 
   return (
-    <nav className="custom-scrollbar flex-1 space-y-2 overflow-y-auto px-4 py-6">
+    <nav className="custom-scrollbar flex-1 space-y-2 overflow-y-auto px-2 py-3 sm:px-4 sm:py-6">
       {modules.map((module) => {
         const isOpen = Boolean(manuallyOpenModules[module.slug]) || activeModuleSlug === module.slug;
         const ModuleIcon = module.icon || Car; // Fallback icon
@@ -123,35 +125,35 @@ export function ModuleList({
               <button
                 type="button"
                 aria-label={module.title}
-                className={`lms-module-trigger group/module flex w-full items-center justify-between rounded-xl px-3 py-3 text-[0.95rem] font-semibold ${isOpen ? "lms-module-trigger-open" : ""
+                className={`lms-module-trigger group/module flex w-full items-center justify-between rounded-xl px-1.5 py-2.5 sm:px-3 sm:py-3 text-xs sm:text-[0.95rem] font-semibold ${isOpen ? "lms-module-trigger-open" : ""
                   }`}
               >
-                <div className="flex min-w-0 items-center gap-3">
+                <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
                   {hasUnlockedChapter ? (
-                    <ModuleIcon className={`h-5 w-5 shrink-0 ${isOpen ? (isAssessment ? "lms-warning" : "lms-success") : "lms-muted"}`} />
+                    <ModuleIcon className={`h-4 w-4 sm:h-5 sm:w-5 shrink-0 ${isOpen ? (isAssessment ? "lms-warning" : "lms-success") : "lms-muted"}`} />
                   ) : (
-                    <Lock className="h-5 w-5 shrink-0 lms-muted" />
+                    <Lock className="h-4 w-4 sm:h-5 sm:w-5 shrink-0 lms-muted" />
                   )}
                   <TruncatedLabel text={module.title} className="lms-module-title text-left" />
                 </div>
-                <div className="flex shrink-0 items-center gap-2">
+                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
                   {isAssessment ? (
-                    <span className="lms-accent rounded bg-[var(--lms-active-bg)] px-1 py-[1px] text-[9px] font-medium tracking-wider" aria-hidden="true">
+                    <span className="lms-accent rounded bg-[var(--lms-active-bg)] px-1 py-[1px] text-[8px] sm:text-[9px] font-medium tracking-wider" aria-hidden="true">
                       EXAM
                     </span>
                   ) : (
-                    <span className="lms-count-chip rounded px-1.5 py-0.5 text-[10px]" aria-hidden="true">
+                    <span className="lms-count-chip rounded px-1.5 py-0.5 text-[9px] sm:text-[10px]" aria-hidden="true">
                       {completedCount}/{module.chapters.length}
                     </span>
                   )}
                   <ChevronRight
-                    className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
+                    className={`h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`}
                   />
                 </div>
               </button>
             </CollapsibleTrigger>
 
-            <CollapsibleContent className="lms-border mt-1 ml-4 space-y-1 overflow-hidden border-l transition-all">
+            <CollapsibleContent className="lms-border mt-1 ml-2 sm:ml-4 space-y-1 overflow-hidden border-l transition-all">
               {module.chapters.map((chapter) => {
                 const firstLessonId = chapter.lessons?.[0]?.id || "pg1";
                 const href =
@@ -166,17 +168,17 @@ export function ModuleList({
                   return (
                     <div
                       key={chapter.id}
-                      className="lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-4 py-2.5 text-sm opacity-50"
+                      className="lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm opacity-50"
                       aria-label={`${chapter.title} locked`}
                     >
-                      <div className="flex min-w-0 items-center gap-3">
-                        <Lock className="h-4 w-4 shrink-0 opacity-65" />
+                      <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
+                        <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 opacity-65" />
                         <TruncatedLabel text={chapter.title} className="lms-chapter-title text-left" />
                       </div>
                       <TruncatedLabel
                         text="locked"
-                        className="text-[9px] font-bold uppercase opacity-60"
-                        containerClassName="ml-3 max-w-20 shrink-0"
+                        className="text-[8px] sm:text-[9px] font-bold uppercase opacity-60"
+                        containerClassName="ml-1 sm:ml-3 max-w-10 sm:max-w-20 shrink-0"
                       />
                     </div>
                   );
@@ -188,25 +190,26 @@ export function ModuleList({
                     href={href}
                     className="block group/item"
                     aria-label={`${chapter.title} (${chapter.type})`}
+                    onClick={onNavigate}
                   >
                     <div
-                      className={`lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-4 py-2.5 text-sm ${isActive ? "lms-chapter-item-active font-medium" : ""
+                      className={`lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm ${isActive ? "lms-chapter-item-active font-medium" : ""
                         }`}
                     >
-                      <div className="flex min-w-0 items-center gap-3">
+                      <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
                         {isChapterDone ? (
-                          <CheckCircle2 className="lms-success h-4 w-4 shrink-0" />
+                          <CheckCircle2 className="lms-success h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
                         ) : (
-                          <Circle className="h-4 w-4 shrink-0 opacity-35" />
+                          <Circle className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 opacity-35" />
                         )}
                         <TruncatedLabel text={chapter.title} className="lms-chapter-title text-left" />
                       </div>
                       <TruncatedLabel
                         text={chapter.type}
-                        className={`text-[9px] font-medium uppercase transition-opacity group-hover/item:opacity-100 ${
+                        className={`text-[8px] sm:text-[9px] font-medium uppercase transition-opacity group-hover/item:opacity-100 ${
                           isAssessment ? "text-[var(--lms-text)] opacity-80" : "opacity-60"
                         }`}
-                        containerClassName="ml-3 max-w-20 shrink-0"
+                        containerClassName="ml-1 sm:ml-3 max-w-10 sm:max-w-20 shrink-0"
                       />
                     </div>
                   </Link>
