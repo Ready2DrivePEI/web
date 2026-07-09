@@ -399,8 +399,8 @@ export default function HomePage() {
           )}
         </header>
 
-        <section className="mx-auto flex max-w-7xl flex-col gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-26 md:gap-16 md:pt-32 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
-          <RevealOnScroll className="order-1 min-w-0 space-y-6 sm:space-y-8">
+        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-26 md:gap-16 md:pt-32 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <RevealOnScroll className="min-w-0 space-y-6 sm:space-y-8">
             {/* Badge — sparkles icon hidden on mobile for cleaner look */}
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#4285F4] shadow-sm">
               <Sparkles className="hidden h-3.5 w-3.5 sm:block" />
@@ -436,10 +436,25 @@ export default function HomePage() {
                  <span className="hidden sm:inline">Explore the New Online Course</span>
                </Link>
              </div>
+
+             {/* Desktop/Tablet: original 3 cards block inside the left column (exactly as original) */}
+             <div className="hidden sm:grid sm:grid-cols-3 sm:gap-2.5 sm:overflow-visible sm:px-0 sm:pb-0 text-sm text-slate-600">
+               <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
+                 <p className="text-sm font-semibold text-slate-900">One-on-one coaching</p>
+                 <p className="mt-1 text-slate-600">Personalized road training</p>
+               </div>
+               <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
+                 <p className="text-sm font-semibold text-slate-900">Offline-first path</p>
+                 <p className="mt-1 text-slate-600">Practical skills prioritized</p>
+               </div>
+               <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
+                 <p className="text-sm font-semibold text-slate-900">Online reinforcement</p>
+                 <p className="mt-1 text-slate-600">Theory support at home</p>
+               </div>
+             </div>
            </RevealOnScroll>
 
-           {/* Hero Image — order-2 on mobile (below CTAs), stays in grid position on desktop */}
-           <RevealOnScroll className="relative order-2 min-w-0 lg:order-none" delayMs={120}>
+           <RevealOnScroll className="relative min-w-0" delayMs={120}>
              <SubtleFloat className="relative" maxShiftPx={6} speed={0.68}>
                <div className="mx-auto w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_28px_65px_rgba(15,23,42,0.17)]">
                  <Image
@@ -464,8 +479,8 @@ export default function HomePage() {
              </SubtleFloat>
            </RevealOnScroll>
 
-           {/* Mobile Benefit Points: 2x2 Micro-Grid Capsule Layout */}
-           <div className="order-3 rounded-2xl border border-blue-100/80 bg-white/90 p-4 shadow-sm lg:hidden">
+           {/* Mobile Benefit Points: 2x2 Micro-Grid Capsule Layout — hidden on sm and above */}
+           <div className="rounded-2xl border border-blue-100/80 bg-white/90 p-4 shadow-sm sm:hidden">
              <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
                {[
                  "One-on-one coaching",
@@ -480,24 +495,6 @@ export default function HomePage() {
                ))}
              </div>
            </div>
-
-          {/* Desktop-only: card grid for benefits (unchanged from original) */}
-          <div className="order-3 hidden lg:col-span-2 lg:block">
-            <div className="grid grid-cols-3 gap-2.5 text-sm text-slate-600">
-              <div className="rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
-                <p className="text-sm font-semibold text-slate-900">One-on-one coaching</p>
-                <p className="mt-1 text-slate-600">Personalized road training</p>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
-                <p className="text-sm font-semibold text-slate-900">Offline-first path</p>
-                <p className="mt-1 text-slate-600">Practical skills prioritized</p>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
-                <p className="text-sm font-semibold text-slate-900">Online reinforcement</p>
-                <p className="mt-1 text-slate-600">Theory support at home</p>
-              </div>
-            </div>
-          </div>
         </section>
       </div>
 
