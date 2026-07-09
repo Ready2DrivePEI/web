@@ -410,67 +410,76 @@ export default function HomePage() {
             <h1 className="font-[var(--font-landing-display)] text-[1.95rem] leading-[1.1] tracking-tight text-slate-950 sm:text-5xl sm:leading-[1.03] lg:text-7xl">
               Practical driving lessons built for confidence on real roads
             </h1>
-            <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:text-xl sm:leading-[1.72]">
-              Train one-on-one with a focused instructor, then reinforce what you learn with our
-              online theory modules. One calm, complete path from first drive to test day 
-            </p>
+             {/* Mobile: simplified, punchier subtext; Desktop: original detailed paragraph */}
+             <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:hidden">
+               One-on-one PEI road lessons backed by online theory. A calm, complete path from first drive to test day.
+             </p>
+             <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 hidden sm:block sm:text-xl sm:leading-[1.72]">
+               Train one-on-one with a focused instructor, then reinforce what you learn with our
+               online theory modules. One calm, complete path from first drive to test day 
+             </p>
 
-            <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
-              <a
-                href="#plans"
-                className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl bg-[#4285F4] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-lg shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
-              >
-                <span className="sm:hidden">See Offline Plans</span>
-                <span className="hidden sm:inline">See Offline Lesson Plans</span>
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </a>
-              <Link
-                href="/online-course-info"
-                className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl border border-blue-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-[#2563eb] transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
-              >
-                <span className="sm:hidden">Explore Online Course</span>
-                <span className="hidden sm:inline">Explore the New Online Course</span>
-              </Link>
-            </div>
-          </RevealOnScroll>
+             <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
+               <a
+                 href="#plans"
+                 className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl bg-[#4285F4] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-lg shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+               >
+                 <span className="sm:hidden">See Offline Plans</span>
+                 <span className="hidden sm:inline">See Offline Lesson Plans</span>
+                 <ChevronRight className="ml-2 h-4 w-4" />
+               </a>
+               <Link
+                 href="/online-course-info"
+                 className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl border border-blue-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-[#2563eb] transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+               >
+                 <span className="sm:hidden">Explore Online Course</span>
+                 <span className="hidden sm:inline">Explore the New Online Course</span>
+               </Link>
+             </div>
+           </RevealOnScroll>
 
-          {/* Hero Image — order-2 on mobile (below CTAs), stays in grid position on desktop */}
-          <RevealOnScroll className="relative order-2 min-w-0 lg:order-none" delayMs={120}>
-            <SubtleFloat className="relative" maxShiftPx={6} speed={0.68}>
-              <div className="mx-auto w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_28px_65px_rgba(15,23,42,0.17)]">
-                <Image
-                  src="/landing/hero-offline-premium.png"
-                  alt="Editorial wide-angle photo of a calm professional driving instructor coaching a young adult in a modern car on a clean Prince Edward Island suburban street during golden hour, natural light, authentic candid style, high detail, trust-focused composition."
-                  width={1200}
-                  height={900}
-                  priority
-                  sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) 80vw, 44vw"
-                  className="aspect-[4/3] w-full object-cover object-center sm:aspect-[5/4]"
-                />
-              </div>
-              {/* Desktop-only floating caption */}
-              <div className="absolute -bottom-8 left-5 hidden rounded-2xl border border-blue-100 bg-white/95 px-5 py-4 shadow-xl backdrop-blur-sm sm:left-8 sm:block">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
-                  Instructor-Led
-                </p>
-                <p className="mt-1 text-sm font-semibold text-slate-900">
-                  Real-road sessions tailored to your learning pace.
-                </p>
-              </div>
-            </SubtleFloat>
-          </RevealOnScroll>
+           {/* Hero Image — order-2 on mobile (below CTAs), stays in grid position on desktop */}
+           <RevealOnScroll className="relative order-2 min-w-0 lg:order-none" delayMs={120}>
+             <SubtleFloat className="relative" maxShiftPx={6} speed={0.68}>
+               <div className="mx-auto w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_28px_65px_rgba(15,23,42,0.17)]">
+                 <Image
+                   src="/landing/hero-offline-premium.png"
+                   alt="Editorial wide-angle photo of a calm professional driving instructor coaching a young adult in a modern car on a clean Prince Edward Island suburban street during golden hour, natural light, authentic candid style, high detail, trust-focused composition."
+                   width={1200}
+                   height={900}
+                   priority
+                   sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) 80vw, 44vw"
+                   className="aspect-[4/3] w-full object-cover object-center sm:aspect-[5/4]"
+                 />
+               </div>
+               {/* Desktop-only floating caption */}
+               <div className="absolute -bottom-8 left-5 hidden rounded-2xl border border-blue-100 bg-white/95 px-5 py-4 shadow-xl backdrop-blur-sm sm:left-8 sm:block">
+                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
+                   Instructor-Led
+                 </p>
+                 <p className="mt-1 text-sm font-semibold text-slate-900">
+                   Real-road sessions tailored to your learning pace.
+                 </p>
+               </div>
+             </SubtleFloat>
+           </RevealOnScroll>
 
-          {/* Benefit points — vertical list on mobile, desktop grid unchanged */}
-          <div className="order-3 lg:col-span-2 lg:hidden">
-            <div className="space-y-2 text-sm text-slate-700">
-              {["One-on-one coaching — personalized road training", "Offline-first path — practical skills prioritized", "Online reinforcement — theory support at home"].map((point) => (
-                <div key={point} className="flex items-center gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                  <span>{point}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+           {/* Mobile Benefit Points: 2x2 Micro-Grid Capsule Layout */}
+           <div className="order-3 rounded-2xl border border-blue-100/80 bg-white/90 p-4 shadow-sm lg:hidden">
+             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+               {[
+                 "One-on-one coaching",
+                 "Offline-first path",
+                 "Online reinforcement",
+                 "PEI licensed instruction",
+               ].map((point) => (
+                 <div key={point} className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                   <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb]" />
+                   <span>{point}</span>
+                 </div>
+               ))}
+             </div>
+           </div>
 
           {/* Desktop-only: card grid for benefits (unchanged from original) */}
           <div className="order-3 hidden lg:col-span-2 lg:block">
@@ -502,10 +511,10 @@ export default function HomePage() {
             <h2 className="font-[var(--font-landing-display)] text-3xl leading-tight text-slate-950 sm:text-4xl md:text-5xl">
               Pick the lesson package that matches where you are today.
             </h2>
-            <p className="text-lg leading-relaxed text-slate-700">
-              Each package leads to direct instructor guidance. Start with the right practical
-              level, then continue to contact for scheduling and package details.
-            </p>
+             <p className="text-lg leading-relaxed text-slate-700 hidden sm:block">
+               Each package leads to direct instructor guidance. Start with the right practical
+               level, then continue to contact for scheduling and package details.
+             </p>
             <div className="flex items-center gap-3 pt-1">
               <span className="h-px w-14 bg-blue-300" />
               <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
@@ -533,10 +542,10 @@ export default function HomePage() {
                   <h3 className="font-[var(--font-landing-display)] text-2xl text-slate-900">
                     Learn with direct, in-car feedback from your instructor.
                   </h3>
-                  <p className="leading-relaxed text-slate-600">
-                    Build lane control and confident decision-making through calm, structured
-                    in-car coaching.
-                  </p>
+                   <p className="leading-relaxed text-slate-600 hidden sm:block">
+                     Build lane control and confident decision-making through calm, structured
+                     in-car coaching.
+                   </p>
 
                   {/* Mobile Tab Switcher: Curriculum | Levels */}
                   <div className="sm:hidden">
@@ -707,10 +716,13 @@ export default function HomePage() {
                   <h2 className="font-[var(--font-landing-display)] text-3xl leading-tight text-slate-950 sm:text-4xl md:text-5xl">
                     Online theory course that complements your road sessions.
                   </h2>
-                  <p className="text-base leading-relaxed text-slate-700 sm:text-lg">
-                    Continue learning off the road with guided modules, quizzes, and
-                    certificate-focused progression that supports your practical driving training.
-                  </p>
+                   <p className="text-base leading-relaxed text-slate-700 sm:hidden">
+                     Study for your PEI license test at home with interactive modules and practice quizzes.
+                   </p>
+                   <p className="text-base leading-relaxed text-slate-700 hidden sm:block sm:text-lg">
+                     Continue learning off the road with guided modules, quizzes, and
+                     certificate-focused progression that supports your practical driving training.
+                   </p>
 
                   <div className="space-y-5">
                     {/* Mobile: clean vertical checklist */}
@@ -788,16 +800,19 @@ export default function HomePage() {
 
       <section id="contact" className="scroll-mt-0 bg-[#eaf1fa] py-10 md:scroll-mt-0 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="rounded-[2.2rem] border border-blue-100 bg-[#f4f8fe] p-3 sm:rounded-[2.4rem] sm:p-6 md:p-8">
-            {/* Mobile: 2x2 Micro-Grid (Tight & Symmetrical); Desktop: original card grid */}
-            <div className="mb-4 grid grid-cols-2 gap-x-4 gap-y-2 border-b border-blue-100/50 pb-4 sm:hidden">
+          {/* Mobile: 2x2 Micro-Grid in its own white capsule */}
+          <div className="rounded-2xl border border-blue-100 bg-white/95 p-4 mb-4 shadow-[0_4px_12px_rgba(15,23,42,0.03)] sm:hidden">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {contactNotes.map((note) => (
-                <div key={note} className="flex items-start gap-1.5 text-xs text-slate-700">
+                <div key={note} className="flex items-start gap-1.5 text-xs font-semibold text-slate-700">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb] mt-0.5" />
                   <span className="leading-tight">{note}</span>
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="rounded-[2.2rem] border border-blue-100 bg-[#f4f8fe] p-3 sm:rounded-[2.4rem] sm:p-6 md:p-8">
             <div className="mb-3 hidden grid-cols-2 gap-2 sm:grid md:gap-2.5 xl:grid-cols-4">
               {contactNotes.map((note) => (
                 <div
