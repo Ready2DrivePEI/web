@@ -49,6 +49,7 @@ export type Database = {
       }
       student_progress: {
         Row: {
+          completion_email_sent: boolean
           furthest_chapter_id: string | null
           id: number
           last_chapter_id: string | null
@@ -57,6 +58,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          completion_email_sent?: boolean
           furthest_chapter_id?: string | null
           id?: number
           last_chapter_id?: string | null
@@ -65,6 +67,7 @@ export type Database = {
           user_id?: string
         }
         Update: {
+          completion_email_sent?: boolean
           furthest_chapter_id?: string | null
           id?: number
           last_chapter_id?: string | null

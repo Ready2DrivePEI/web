@@ -6,7 +6,7 @@ type StudentProgressRow = Database["public"]["Tables"]["student_progress"]["Row"
 
 export type StudentProgressSnapshot = Pick<
   StudentProgressRow,
-  "user_id" | "last_chapter_id" | "furthest_chapter_id" | "progress_percent" | "updated_at"
+  "user_id" | "last_chapter_id" | "furthest_chapter_id" | "progress_percent" | "updated_at" | "completion_email_sent"
 >;
 
 export async function getServerStudentProgress(): Promise<StudentProgressSnapshot | null> {
@@ -20,7 +20,7 @@ export async function getServerStudentProgress(): Promise<StudentProgressSnapsho
 
   const { data, error } = await supabase
     .from("student_progress")
-    .select("user_id,last_chapter_id,furthest_chapter_id,progress_percent,updated_at")
+    .select("user_id,last_chapter_id,furthest_chapter_id,progress_percent,updated_at,completion_email_sent")
     .eq("user_id", user.id)
     .maybeSingle();
 

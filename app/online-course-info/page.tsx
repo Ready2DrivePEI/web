@@ -84,7 +84,7 @@ export default function OnlineCoursePage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_6%,rgba(66,133,244,0.18),transparent_42%),radial-gradient(circle_at_92%_2%,rgba(15,23,42,0.08),transparent_32%),linear-gradient(180deg,#f8fbff_0%,#fdfefe_45%,#f8fbff_100%)]" />
         <Navbar />
 
-        <main className="mx-auto max-w-6xl space-y-20 px-6 pb-20 pt-12 md:space-y-24 md:pt-16">
+        <main className="mx-auto max-w-6xl space-y-20 px-6 pb-20 pt-28 md:space-y-24 md:pt-36">
           <section className="mx-auto max-w-3xl space-y-8 pt-6 text-center md:pt-8">
             <RevealOnScroll>
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-sm font-semibold text-[#4285F4] shadow-sm">
@@ -120,7 +120,7 @@ export default function OnlineCoursePage() {
             </RevealOnScroll>
           </section>
 
-          <section id="about" className="grid scroll-mt-28 gap-6 md:grid-cols-3 md:scroll-mt-32">
+          <section id="about" className="grid scroll-mt-20 gap-6 md:grid-cols-3 md:scroll-mt-20">
             <RevealOnScroll delayMs={40}>
               <article className="rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
                 <PlayCircle className="mb-4 text-[#4285F4]" size={32} />
@@ -157,7 +157,7 @@ export default function OnlineCoursePage() {
 
           <section
             id="price"
-            className="grid scroll-mt-28 items-center gap-8 rounded-[2rem] border border-blue-100 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.1)] md:grid-cols-2 md:scroll-mt-32 md:p-12"
+            className="grid scroll-mt-20 items-center gap-8 rounded-[2rem] border border-blue-100 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.1)] md:grid-cols-2 md:scroll-mt-20 md:p-12"
           >
             <RevealOnScroll delayMs={80}>
               <div className="space-y-6">
@@ -189,7 +189,7 @@ export default function OnlineCoursePage() {
                   <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
                     Complete Access
                   </h3>
-                  <p className="mt-3 font-[var(--font-landing-display)] text-5xl text-slate-900">$4,000</p>
+                  <p className="mt-3 font-[var(--font-landing-display)] text-5xl text-slate-900">$499</p>
                   <p className="mt-4 text-slate-600">One-time payment. Full 90-day access.</p>
                   <Link
                     href="/lms-course"
@@ -202,7 +202,7 @@ export default function OnlineCoursePage() {
             </RevealOnScroll>
           </section>
 
-          <section id="faq" className="mx-auto max-w-5xl scroll-mt-28 space-y-14 pb-16 md:scroll-mt-32">
+          <section id="faq" className="mx-auto max-w-5xl scroll-mt-20 space-y-14 pb-16 md:scroll-mt-20">
             <RevealOnScroll>
               <div className="mb-14 space-y-3 text-center">
                 <div className="flex items-center justify-center gap-3">

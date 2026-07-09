@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
+import type React from "react";
 import type { FormEvent } from "react";
 import {
   Award,
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 import RevealOnScroll from "./components/motion/reveal-on-scroll";
 import SubtleFloat from "./components/motion/subtle-float";
+import BrandLogo from "@/components/brand-logo";
 
 const displayFont = Playfair_Display({
   subsets: ["latin"],
@@ -142,40 +144,33 @@ export default function HomePage() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [messageDraft, setMessageDraft] = useState("");
+
+  // Sliding pill state
+  const [pillStyle, setPillStyle] = useState<React.CSSProperties>({ left: 0, width: 0, opacity: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
   const messageRef = useRef<HTMLTextAreaElement | null>(null);
   const lastScrollY = useRef(0);
   const navDirection = useRef<"up" | "down" | null>(null);
   const directionalDistance = useRef(0);
 
+  // Page-load entrance animation
   useEffect(() => {
-    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+    const frame = requestAnimationFrame(() => setIsMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
-    const updateActiveSection = () => {
-      const probePosition = window.scrollY + 160;
-      let nextActive = sectionIds[0];
-
-      for (const id of sectionIds) {
-        const section = document.getElementById(id);
-        if (!section) {
-          continue;
-        }
-
-        if (probePosition >= section.offsetTop) {
-          nextActive = id;
-        }
-      }
-
-      setActiveSection((current) => (current === nextActive ? current : nextActive));
-    };
-
+  // Scroll tracking: hide/show header
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY.current;
       const absDelta = Math.abs(delta);
 
-      updateActiveSection();
       setIsScrolled(currentScrollY > 16);
 
       if (isMobileMenuOpen || currentScrollY < 24) {
@@ -213,6 +208,53 @@ export default function HomePage() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobileMenuOpen]);
+
+  // Intersection Observer for scroll-spy active section highlighting
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      const intersecting = entries.find((entry) => entry.isIntersecting);
+      if (intersecting) {
+        setActiveSection(intersecting.target.id);
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      rootMargin: "-40% 0px -40% 0px", // active zone is 20% band in middle of screen
+      threshold: 0,
+    });
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Sliding pill coordinate calculation (scroll-based only)
+  useEffect(() => {
+    if (!activeSection) {
+      setPillStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+    const index = navItems.findIndex((item) => item.href.slice(1) === activeSection);
+    if (index !== -1 && linkRefs.current[index]) {
+      const el = linkRefs.current[index]!;
+      const rect = el.getBoundingClientRect();
+      const parentRect = containerRef.current?.getBoundingClientRect();
+      if (parentRect) {
+        setPillStyle({
+          left: rect.left - parentRect.left,
+          width: rect.width,
+          opacity: 1,
+        });
+      }
+    } else {
+      setPillStyle((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -253,38 +295,33 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_8%,rgba(66,133,244,0.16),transparent_44%),radial-gradient(circle_at_90%_4%,rgba(15,23,42,0.08),transparent_30%),linear-gradient(180deg,#f6f9fd_0%,#fdfefe_42%,#f6f9fd_100%)]" />
 
         <header
-          className={`fixed inset-x-0 top-0 z-[100] border-b transform-gpu transition-[transform,opacity,background-color,border-color,box-shadow] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
-            isNavVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-          } ${
-            isScrolled
+          className={`fixed inset-x-0 top-0 z-[100] border-b transform-gpu motion-safe:transition-[transform,opacity,background-color,border-color,box-shadow] motion-safe:duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+            isMounted && isNavVisible ? "translate-y-0 opacity-100" : !isMounted ? "-translate-y-2 opacity-0" : "-translate-y-full opacity-0"
+            } ${isScrolled
               ? "border-blue-100 bg-white/88 shadow-[0_10px_35px_rgba(15,23,42,0.1)] backdrop-blur-xl"
               : "border-transparent bg-white/70 backdrop-blur-lg"
-          }`}
+            }`}
         >
-          <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-blue-100 bg-blue-50">
-                <CarFront className="h-[18px] w-[18px] text-[#4285F4]" />
-              </div>
-              <div className="leading-none">
-                <span className="block text-[1.03rem] font-semibold tracking-tight text-slate-900">
-                  Ready2Drive <span className="text-[#4285F4]">PEI</span>
-                </span>
-                <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-500">
-                  Driver Training
-                </span>
-              </div>
-            </Link>
+          <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
+            <BrandLogo />
 
-            <nav className="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
-              {navItems.map((item) => (
+            <nav
+              ref={containerRef}
+              className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-2 text-sm font-semibold md:flex"
+            >
+              {/* Sliding background pill */}
+              <div
+                className="absolute top-1 bottom-1 rounded-lg bg-blue-100/60 will-change-[left,width] motion-safe:transition-[left,width,opacity] motion-safe:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={pillStyle}
+              />
+              {navItems.map((item, idx) => (
                 <a
                   key={item.label}
+                  ref={(el) => { linkRefs.current[idx] = el; }}
                   href={item.href}
-                  aria-current={activeSection === item.href.slice(1) ? "page" : undefined}
-                  className={`rounded-lg px-2 py-1 transition-colors focus-visible:outline-none ${
+                  className={`relative z-10 rounded-lg px-3 py-1.5 focus-visible:outline-none motion-safe:transition-colors ${
                     activeSection === item.href.slice(1)
-                      ? "bg-blue-50 text-[#2563eb]"
+                      ? "text-[#2563eb]"
                       : "text-slate-600 hover:text-[#4285F4] focus-visible:text-[#4285F4]"
                   }`}
                 >
@@ -302,7 +339,7 @@ export default function HomePage() {
               </Link>
               <a
                 href="#plans"
-                className="rounded-xl bg-[#4285F4] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                className="rounded-xl bg-[#4285F4] px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-200 motion-safe:transition-[transform,box-shadow] motion-safe:duration-200 hover:scale-[1.02] hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 View Plans
               </a>
@@ -332,11 +369,10 @@ export default function HomePage() {
                     href={item.href}
                     aria-current={activeSection === item.href.slice(1) ? "page" : undefined}
                     onClick={closeMobileMenu}
-                    className={`block min-h-12 rounded-xl px-4 py-3.5 text-sm font-semibold transition-colors ${
-                      activeSection === item.href.slice(1)
+                    className={`block min-h-12 rounded-xl px-4 py-3.5 text-sm font-semibold transition-colors ${activeSection === item.href.slice(1)
                         ? "bg-blue-50 text-[#2563eb]"
                         : "text-slate-700 hover:bg-blue-50 hover:text-[#4285F4]"
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </a>
@@ -362,7 +398,7 @@ export default function HomePage() {
           )}
         </header>
 
-        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-24 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-28 md:gap-16 md:pt-36 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-26 md:gap-16 md:pt-32 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <RevealOnScroll className="min-w-0 space-y-6 sm:space-y-8">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#4285F4] shadow-sm">
               <Sparkles className="h-3.5 w-3.5" />
@@ -370,11 +406,11 @@ export default function HomePage() {
               <span className="hidden sm:inline">Licensed Driving Instruction in PEI</span>
             </div>
             <h1 className="font-[var(--font-landing-display)] text-[1.95rem] leading-[1.1] tracking-tight text-slate-950 sm:text-5xl sm:leading-[1.03] lg:text-7xl">
-              Practical driving lessons built for confidence on real roads.
+              Practical driving lessons built for confidence on real roads
             </h1>
             <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:text-xl sm:leading-[1.72]">
               Train one-on-one with a focused instructor, then reinforce what you learn with our
-              online theory modules. One calm, complete path from first drive to test day.
+              online theory modules. One calm, complete path from first drive to test day 
             </p>
 
             <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
@@ -445,7 +481,7 @@ export default function HomePage() {
         </section>
       </div>
 
-      <section id="plans" className="relative scroll-mt-28 bg-[linear-gradient(180deg,#edf3fb_0%,#eef4fb_100%)] pb-16 pt-12 md:scroll-mt-32 md:pb-24 md:pt-20">
+      <section id="plans" className="relative scroll-mt-0 bg-[linear-gradient(180deg,#edf3fb_0%,#eef4fb_100%)] pb-16 pt-12 md:scroll-mt-0 md:pb-24 md:pt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <RevealOnScroll className="relative mb-12 max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3.5 py-1.5 text-sm font-semibold uppercase tracking-[0.14em] text-[#2563eb]">
@@ -536,55 +572,54 @@ export default function HomePage() {
               {offlinePlans.map((plan) => (
                 <article
                   key={plan.title}
-                  className={`rounded-3xl border p-5 sm:p-7 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.14)] ${
-                    plan.recommended
+                  className={`rounded-3xl border p-5 sm:p-7 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.14)] ${plan.recommended
                       ? "border-blue-300 bg-blue-50/60"
                       : "border-slate-200 bg-white"
-                  }`}
+                    }`}
                 >
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#2563eb] sm:text-xs sm:tracking-[0.16em]">
-                            {plan.duration}
-                          </p>
-                          {plan.recommended && (
-                            <span className="rounded-full border border-blue-300 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1d4ed8] sm:text-[11px] sm:tracking-[0.12em]">
-                              Recommended
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="mt-2 text-2xl font-semibold text-slate-900">{plan.title}</h3>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#2563eb] sm:text-xs sm:tracking-[0.16em]">
+                          {plan.duration}
+                        </p>
+                        {plan.recommended && (
+                          <span className="rounded-full border border-blue-300 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1d4ed8] sm:text-[11px] sm:tracking-[0.12em]">
+                            Recommended
+                          </span>
+                        )}
                       </div>
-                      <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold text-slate-700 sm:text-xs">
-                        {plan.pricingLabel}
-                      </span>
+                      <h3 className="mt-2 text-2xl font-semibold text-slate-900">{plan.title}</h3>
                     </div>
+                    <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold text-slate-700 sm:text-xs">
+                      {plan.pricingLabel}
+                    </span>
+                  </div>
 
-                    <p className="mt-4 leading-relaxed text-slate-700">{plan.description}</p>
+                  <p className="mt-4 leading-relaxed text-slate-700">{plan.description}</p>
 
-                    {plan.bestFor && (
-                      <p className="mt-4 rounded-xl border border-blue-200 bg-white/75 px-4 py-3 text-sm leading-relaxed text-slate-700">
-                        <span className="font-semibold text-slate-900">Best for:</span> {plan.bestFor}
-                      </p>
-                    )}
+                  {plan.bestFor && (
+                    <p className="mt-4 rounded-xl border border-blue-200 bg-white/75 px-4 py-3 text-sm leading-relaxed text-slate-700">
+                      <span className="font-semibold text-slate-900">Best for:</span> {plan.bestFor}
+                    </p>
+                  )}
 
-                    <ul className="mt-5 space-y-2.5">
-                      {plan.points.map((point) => (
-                        <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-slate-700">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#2563eb]" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
+                  <ul className="mt-5 space-y-2.5">
+                    {plan.points.map((point) => (
+                      <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-slate-700">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#2563eb]" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
 
-                    <a
-                      href="#contact"
-                      className="mt-6 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                    >
-                      Continue to Contact Form
-                      <ChevronRight className="ml-1.5 h-4 w-4" />
-                    </a>
+                  <a
+                    href="#contact"
+                    className="mt-6 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                  >
+                    Continue to Contact Form
+                    <ChevronRight className="ml-1.5 h-4 w-4" />
+                  </a>
                 </article>
               ))}
             </div>
@@ -592,7 +627,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="online-course" className="scroll-mt-28 bg-white py-12 md:scroll-mt-32 md:py-20">
+      <section id="online-course" className="scroll-mt-0 bg-white py-12 md:scroll-mt-0 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <RevealOnScroll>
             <div className="relative overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white shadow-[0_20px_50px_rgba(15,23,42,0.1)]">
@@ -667,14 +702,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="scroll-mt-28 bg-[#eaf1fa] py-8 md:scroll-mt-32 md:py-12">
+      <section id="contact" className="scroll-mt-0 bg-[#eaf1fa] py-8 md:scroll-mt-0 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="rounded-[2.2rem] border border-blue-100 bg-[#f4f8fe] p-3 sm:rounded-[2.4rem] sm:p-6 md:p-8">
             <div className="mb-3 grid grid-cols-2 gap-2 md:grid-cols-2 md:gap-2.5 xl:grid-cols-4">
               {contactNotes.map((note) => (
                 <div
                   key={note}
-                  className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[13px] font-medium text-slate-700 shadow-sm sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
+                  className="rounded-xl border border-slate-200 bg-white px-3 py-2.5  text-[13px] font-medium text-slate-700 shadow-sm sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
                 >
                   {note}
                 </div>
@@ -687,13 +722,13 @@ export default function HomePage() {
                     Contact
                   </p>
                   <h2 className="mt-3 font-[var(--font-landing-display)] text-3xl leading-tight text-slate-950 sm:mt-4 sm:text-4xl">
-                    Tell us your current stage. We will guide your next lesson.
+                    Tell us your current stage. We will guide your next steps
                   </h2>
                   <p className="mt-4 leading-relaxed text-slate-700">
                     Choose a starter below and click it. We will auto-fill your message box so
                     you can send your inquiry faster.
                   </p>
-                  <div className="mt-auto space-y-2 pt-5">
+                  <div className="mt-7 space-y-3 pt-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
                       Quick message starters
                     </p>

@@ -10,14 +10,45 @@ type StudentProgressRow = Database["public"]["Tables"]["student_progress"]["Row"
 
 export type StudentProgressSnapshot = Pick<
   StudentProgressRow,
-  "user_id" | "last_chapter_id" | "furthest_chapter_id" | "progress_percent" | "updated_at"
+  "user_id" | "last_chapter_id" | "furthest_chapter_id" | "progress_percent" | "updated_at" | "completion_email_sent"
 >;
 type StudentProgressRowWithId = StudentProgressSnapshot & { id: number };
 
 const PROGRESS_SNAPSHOT_KEY = "r2d:progress:snapshot";
 const LAST_PATH_KEY = "r2d:progress:last-path";
 const PROGRESS_SELECT_FIELDS =
-  "id,user_id,last_chapter_id,furthest_chapter_id,progress_percent,updated_at";
+  "id,user_id,last_chapter_id,furthest_chapter_id,progress_percent,updated_at,completion_email_sent";
+
+/**
+ * One-time course completion detection.
+ * The frontend guard (!completion_email_sent) is a performance filter — it prevents
+ * unnecessary API calls for students already marked as complete. The backend
+ * (POST /api/course-completion) is the sole authority on whether to actually send the email.
+ */
+function checkCourseCompletion(snapshot: StudentProgressSnapshot) {
+  if (snapshot.progress_percent === 100 && !snapshot.completion_email_sent) {
+    // Fetch the active session token to authenticate the request.
+    const sendTrigger = async () => {
+      if (!supabase) return;
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData?.session?.access_token;
+      if (!token) return;
+
+      await fetch("/api/course-completion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({ user_id: snapshot.user_id }),
+      });
+    };
+
+    sendTrigger().catch((err) => {
+      console.warn("[lms-progress] Completion trigger failed:", err);
+    });
+  }
+}
 
 function readLocalSnapshot(): StudentProgressSnapshot | null {
   if (typeof window === "undefined") return null;
@@ -174,8 +205,10 @@ async function saveProgressRow(
       furthest_chapter_id: row.furthest_chapter_id,
       progress_percent: row.progress_percent,
       updated_at: row.updated_at,
+      completion_email_sent: row.completion_email_sent,
     };
     writeLocalSnapshot(snapshot);
+    checkCourseCompletion(snapshot);
     return snapshot;
   }
 
@@ -200,8 +233,10 @@ async function saveProgressRow(
         furthest_chapter_id: row.furthest_chapter_id,
         progress_percent: row.progress_percent,
         updated_at: row.updated_at,
+        completion_email_sent: row.completion_email_sent,
       };
       writeLocalSnapshot(snapshot);
+      checkCourseCompletion(snapshot);
       return snapshot;
     }
 
@@ -231,8 +266,10 @@ async function saveProgressRow(
     furthest_chapter_id: insertedRow.furthest_chapter_id,
     progress_percent: insertedRow.progress_percent,
     updated_at: insertedRow.updated_at,
+    completion_email_sent: insertedRow.completion_email_sent,
   };
   writeLocalSnapshot(insertedSnapshot);
+  checkCourseCompletion(insertedSnapshot);
   return insertedSnapshot;
 }
 
@@ -249,6 +286,7 @@ export async function getStudentProgress(): Promise<StudentProgressSnapshot | nu
       furthest_chapter_id: snapshot.furthest_chapter_id,
       progress_percent: snapshot.progress_percent,
       updated_at: snapshot.updated_at,
+      completion_email_sent: snapshot.completion_email_sent,
     });
     const resolvedSnapshot = pickFurthestSnapshot(serverSnapshot, localSnapshot);
     if (resolvedSnapshot) {
@@ -312,6 +350,7 @@ export async function handleQuizPassProgress(args: {
     furthest_chapter_id: resolvedFurthest,
     progress_percent: getProgressPercentForChapter(resolvedFurthest),
     updated_at: new Date().toISOString(),
+    completion_email_sent: current?.completion_email_sent ?? false,
   };
   writeLocalSnapshot(optimisticSnapshot);
 

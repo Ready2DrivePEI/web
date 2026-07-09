@@ -1,16 +1,76 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { CarFront } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import type React from "react";
+import BrandLogo from "@/components/brand-logo";
+
+const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Price", href: "#price" },
+  { label: "FAQ", href: "#faq" },
+];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState("");
+  const [isMounted, setIsMounted] = useState(false);
   const [user] = useState<{ name: string } | null>(null);
 
+  // Sliding pill state
+  const [pillStyle, setPillStyle] = useState<React.CSSProperties>({ left: 0, width: 0, opacity: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const lastScrollY = useRef(0);
+  const navDirection = useRef<"up" | "down" | null>(null);
+  const directionalDistance = useRef(0);
+
+  // Page-load entrance animation
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setIsMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  // Scroll tracking: hide/show header
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+      const absDelta = Math.abs(delta);
+
+      setIsScrolled(currentScrollY > 16);
+
+      if (currentScrollY < 24) {
+        setIsNavVisible(true);
+        directionalDistance.current = 0;
+        navDirection.current = null;
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      if (absDelta < 2) {
+        return;
+      }
+
+      const direction = delta > 0 ? "down" : "up";
+      if (direction !== navDirection.current) {
+        navDirection.current = direction;
+        directionalDistance.current = 0;
+      }
+
+      directionalDistance.current += absDelta;
+
+      if (direction === "down" && directionalDistance.current > 140 && currentScrollY > 240) {
+        setIsNavVisible(false);
+        directionalDistance.current = 0;
+      } else if (direction === "up" && directionalDistance.current > 70) {
+        setIsNavVisible(true);
+        directionalDistance.current = 0;
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
     handleScroll();
@@ -18,42 +78,92 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Intersection Observer for scroll-spy active section highlighting
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      const intersecting = entries.find((entry) => entry.isIntersecting);
+      if (intersecting) {
+        setActiveSection(intersecting.target.id);
+      }
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      rootMargin: "-40% 0px -40% 0px", // active zone is 20% band in middle of screen
+      threshold: 0,
+    });
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Sliding pill coordinate calculation (scroll-based only)
+  useEffect(() => {
+    if (!activeSection) {
+      setPillStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+    const index = navItems.findIndex((item) => item.href.slice(1) === activeSection);
+    if (index !== -1 && linkRefs.current[index]) {
+      const el = linkRefs.current[index]!;
+      const rect = el.getBoundingClientRect();
+      const parentRect = containerRef.current?.getBoundingClientRect();
+      if (parentRect) {
+        setPillStyle({
+          left: rect.left - parentRect.left,
+          width: rect.width,
+          opacity: 1,
+        });
+      }
+    } else {
+      setPillStyle((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [activeSection]);
+
   return (
     <header
-      className={`sticky top-0 z-[90] border-b transition-[background-color,border-color,box-shadow] duration-500 ${
+      className={`fixed inset-x-0 top-0 z-[90] border-b transform-gpu motion-safe:transition-[transform,opacity,background-color,border-color,box-shadow] motion-safe:duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+        isMounted && isNavVisible ? "translate-y-0 opacity-100" : !isMounted ? "-translate-y-2 opacity-0" : "-translate-y-full opacity-0"
+      } ${
         isScrolled
           ? "border-blue-100 bg-white/85 shadow-[0_10px_28px_rgba(15,23,42,0.1)] backdrop-blur-xl"
           : "border-transparent bg-white/60 backdrop-blur-lg"
       }`}
     >
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2.5">
-          <div className="rounded-xl border border-blue-100 bg-blue-50 p-2">
-            <CarFront className="h-5 w-5 text-[#4285F4]" />
-          </div>
-          <div className="leading-none">
-            <span className="block text-base font-semibold tracking-tight text-slate-900">
-              Ready2Drive <span className="text-[#4285F4]">PEI</span>
-            </span>
-            <span className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
-              Driver Training
-            </span>
-          </div>
-        </Link>
+      <nav className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
+        <BrandLogo />
 
-        <div className="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex">
-          <Link href="#about" className="transition-colors hover:text-[#4285F4]">
-            About
-          </Link>
-          <Link href="#price" className="transition-colors hover:text-[#4285F4]">
-            Price
-          </Link>
-          <Link href="#faq" className="transition-colors hover:text-[#4285F4]">
-            FAQ
-          </Link>
+        <div
+          ref={containerRef}
+          className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-2 text-sm font-semibold md:flex"
+        >
+          {/* Sliding background pill */}
+          <div
+            className="absolute top-1 bottom-1 rounded-lg bg-blue-100/60 will-change-[left,width] motion-safe:transition-[left,width,opacity] motion-safe:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            style={pillStyle}
+          />
+          {navItems.map((item, idx) => (
+            <Link
+              key={item.label}
+              ref={(el) => { linkRefs.current[idx] = el; }}
+              href={item.href}
+              className={`relative z-10 rounded-lg px-3 py-1.5 focus-visible:outline-none motion-safe:transition-colors ${
+                activeSection === item.href.slice(1)
+                  ? "text-[#2563eb]"
+                  : "text-slate-600 hover:text-[#4285F4] focus-visible:text-[#4285F4]"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
 
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-4">
           {user ? (
             <div className="flex items-center gap-3 rounded-full border border-blue-100 bg-white px-4 py-2 shadow-sm">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#4285F4] text-sm font-bold text-white">
@@ -65,13 +175,13 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="hidden text-sm font-semibold text-slate-600 transition-colors hover:text-[#4285F4] sm:block"
+                className="hidden rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:block"
               >
                 Student Login
               </Link>
               <Link
                 href="/lms-course"
-                className="inline-flex items-center justify-center rounded-xl bg-[#4285F4] px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:px-6"
+                className="rounded-xl bg-[#4285F4] px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-200 motion-safe:transition-[transform,box-shadow] motion-safe:duration-200 hover:scale-[1.02] hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 Enroll Now
               </Link>
