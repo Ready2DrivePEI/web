@@ -143,15 +143,15 @@ const lessonCards = [
 const getLessonIcon = (title: string) => {
   switch (title) {
     case "Beginner":
-      return <Sparkles className="h-4 w-4 text-[#2563eb] shrink-0" />;
+      return <Sparkles className="h-4 w-4 text-[#2563eb]/70 shrink-0" />;
     case "Defensive":
-      return <ShieldCheck className="h-4 w-4 text-[#2563eb] shrink-0" />;
+      return <ShieldCheck className="h-4 w-4 text-[#2563eb]/70 shrink-0" />;
     case "Refresher":
-      return <RefreshCw className="h-4 w-4 text-[#2563eb] shrink-0" />;
+      return <RefreshCw className="h-4 w-4 text-[#2563eb]/70 shrink-0" />;
     case "Advanced":
-      return <Award className="h-4 w-4 text-[#2563eb] shrink-0" />;
+      return <Award className="h-4 w-4 text-[#2563eb]/70 shrink-0" />;
     default:
-      return <CheckCircle2 className="h-4 w-4 text-[#2563eb] shrink-0" />;
+      return <CheckCircle2 className="h-4 w-4 text-[#2563eb]/70 shrink-0" />;
   }
 };
 
@@ -540,7 +540,7 @@ export default function HomePage() {
             </div>
           </RevealOnScroll>
 
-          <div className="relative grid items-start gap-7 sm:gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="relative grid items-stretch gap-7 sm:gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <RevealOnScroll delayMs={120} className="h-full">
               <article className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
                 <Image
@@ -633,9 +633,9 @@ export default function HomePage() {
                   </details>
 
                   <details className="group mt-3 hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block">
-                    <summary className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700 transition-all hover:bg-blue-50/40 hover:text-[#2563eb]">
+                    <summary className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-500 transition-all hover:bg-blue-50/40 hover:text-[#2563eb]">
                       <span>Lessons & Skill Levels</span>
-                      <ChevronRight className="h-4 w-4 text-[#2563eb] transition-transform duration-200 group-open:rotate-90" />
+                      <ChevronRight className="h-4 w-4 text-[#2563eb]/70 transition-transform duration-200 group-open:rotate-90" />
                     </summary>
                     <div className="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out group-open:max-h-80">
                       <div className="bg-white px-4 py-4">
@@ -643,15 +643,15 @@ export default function HomePage() {
                           {lessonCards.map((lesson) => (
                             <div
                               key={lesson.title}
-                              className="rounded-xl border border-slate-100 bg-[#2563eb]/[0.02] px-3.5 py-3 hover:border-slate-300 transition-colors"
+                              className="rounded-xl border border-slate-100 bg-[#2563eb]/[0.01] px-3.5 py-3 hover:border-slate-300 transition-colors"
                             >
                               <div className="flex items-center gap-2">
                                 {getLessonIcon(lesson.title)}
-                                <p className="text-sm font-semibold text-slate-800">
+                                <p className="text-sm font-semibold text-slate-600">
                                   {lesson.title}
                                 </p>
                               </div>
-                              <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
+                              <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
                                 {lesson.description}
                               </p>
                             </div>
@@ -664,11 +664,11 @@ export default function HomePage() {
               </article>
             </RevealOnScroll>
 
-             <div className="grid gap-6">
+             <div className="flex flex-col justify-between h-full gap-4">
                {offlinePlans.map((plan) => (
                  <article
                    key={plan.title}
-                   className={`rounded-3xl border p-4 sm:p-5.5 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.14)] ${plan.recommended
+                   className={`rounded-3xl border p-5 sm:p-6 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.14)] ${plan.recommended
                        ? "border-blue-300 bg-blue-50/60"
                        : "border-slate-200 bg-white"
                      }`}
@@ -692,15 +692,15 @@ export default function HomePage() {
                      </span>
                    </div>
 
-                   <p className="mt-3 leading-relaxed text-slate-700">{plan.description}</p>
+                   <p className="mt-3.5 leading-relaxed text-slate-700">{plan.description}</p>
 
                    {plan.bestFor && (
-                     <p className="mt-3 rounded-xl border border-blue-200 bg-white/75 px-4 py-2.5 text-sm leading-relaxed text-slate-700">
+                     <p className="mt-3.5 rounded-xl border border-blue-200 bg-white/75 px-4 py-2.5 text-sm leading-relaxed text-slate-700">
                        <span className="font-semibold text-slate-900">Best for:</span> {plan.bestFor}
                      </p>
                    )}
 
-                   <ul className="mt-4 space-y-2">
+                   <ul className="mt-4.5 space-y-2">
                      {plan.points.map((point) => (
                        <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-slate-700">
                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#2563eb]" />
@@ -711,7 +711,7 @@ export default function HomePage() {
 
                    <a
                      href="#contact"
-                     className="mt-4 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                     className="mt-5 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                    >
                      Continue to Contact Form
                      <ChevronRight className="ml-1.5 h-4 w-4" />
@@ -831,15 +831,15 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-
           <div className="rounded-[2.2rem] border border-blue-100 bg-[#f4f8fe] p-3 sm:rounded-[2.4rem] sm:p-6 md:p-8">
-            <div className="mb-3 hidden grid-cols-2 gap-2 sm:grid md:gap-2.5 xl:grid-cols-4">
+            <div className="mb-4 hidden grid-cols-2 gap-3 sm:grid md:gap-4 xl:grid-cols-4">
               {contactNotes.map((note) => (
                 <div
                   key={note}
-                  className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm"
+                  className="flex items-center gap-2.5 rounded-2xl border border-slate-200/70 bg-white px-5 py-3.5 text-sm font-semibold text-slate-700 shadow-[0_2px_8px_rgba(15,23,42,0.02)] transition-colors hover:border-slate-300"
                 >
-                  {note}
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb]/70" />
+                  <span className="leading-tight">{note}</span>
                 </div>
               ))}
             </div>
