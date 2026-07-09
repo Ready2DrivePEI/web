@@ -147,6 +147,7 @@ export default function HomePage() {
   const [isMounted, setIsMounted] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [messageDraft, setMessageDraft] = useState("");
+  const [mobileTab, setMobileTab] = useState<"curriculum" | "levels">("curriculum");
 
   // Sliding pill state
   const [pillStyle, setPillStyle] = useState<React.CSSProperties>({ left: 0, width: 0, opacity: 0 });
@@ -398,10 +399,11 @@ export default function HomePage() {
           )}
         </header>
 
-        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-26 md:gap-16 md:pt-32 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-          <RevealOnScroll className="min-w-0 space-y-6 sm:space-y-8">
+        <section className="mx-auto flex max-w-7xl flex-col gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-26 md:gap-16 md:pt-32 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
+          <RevealOnScroll className="order-1 min-w-0 space-y-6 sm:space-y-8">
+            {/* Badge — sparkles icon hidden on mobile for cleaner look */}
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#4285F4] shadow-sm">
-              <Sparkles className="h-3.5 w-3.5" />
+              <Sparkles className="hidden h-3.5 w-3.5 sm:block" />
               <span className="sm:hidden">Licensed in PEI</span>
               <span className="hidden sm:inline">Licensed Driving Instruction in PEI</span>
             </div>
@@ -430,24 +432,10 @@ export default function HomePage() {
                 <span className="hidden sm:inline">Explore the New Online Course</span>
               </Link>
             </div>
-
-            <div className="flex snap-x snap-mandatory gap-2.5 overflow-x-auto px-0.5 pb-1 text-sm text-slate-600 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0">
-              <div className="min-w-[185px] snap-start rounded-full border border-slate-200 bg-white/95 px-3.5 py-2 shadow-sm sm:min-w-0 sm:rounded-2xl sm:px-4 sm:py-3">
-                <p className="text-xs font-semibold text-slate-900 sm:text-sm">One-on-one coaching</p>
-                <p className="mt-1 hidden text-slate-600 sm:block">Personalized road training</p>
-              </div>
-              <div className="min-w-[185px] snap-start rounded-full border border-slate-200 bg-white/95 px-3.5 py-2 shadow-sm sm:min-w-0 sm:rounded-2xl sm:px-4 sm:py-3">
-                <p className="text-xs font-semibold text-slate-900 sm:text-sm">Offline-first path</p>
-                <p className="mt-1 hidden text-slate-600 sm:block">Practical skills prioritized</p>
-              </div>
-              <div className="min-w-[185px] snap-start rounded-full border border-slate-200 bg-white/95 px-3.5 py-2 shadow-sm sm:min-w-0 sm:rounded-2xl sm:px-4 sm:py-3">
-                <p className="text-xs font-semibold text-slate-900 sm:text-sm">Online reinforcement</p>
-                <p className="mt-1 hidden text-slate-600 sm:block">Theory support at home</p>
-              </div>
-            </div>
           </RevealOnScroll>
 
-          <RevealOnScroll className="relative min-w-0" delayMs={120}>
+          {/* Hero Image — order-2 on mobile (below CTAs), stays in grid position on desktop */}
+          <RevealOnScroll className="relative order-2 min-w-0 lg:order-none" delayMs={120}>
             <SubtleFloat className="relative" maxShiftPx={6} speed={0.68}>
               <div className="mx-auto w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_28px_65px_rgba(15,23,42,0.17)]">
                 <Image
@@ -460,14 +448,7 @@ export default function HomePage() {
                   className="aspect-[4/3] w-full object-cover object-center sm:aspect-[5/4]"
                 />
               </div>
-              <div className="mt-3 rounded-xl border border-blue-100 bg-white/95 px-4 py-3 shadow-sm sm:hidden">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
-                  Instructor-Led
-                </p>
-                <p className="mt-1 text-sm font-semibold text-slate-900">
-                  Real-road sessions tailored to your learning pace.
-                </p>
-              </div>
+              {/* Desktop-only floating caption */}
               <div className="absolute -bottom-8 left-5 hidden rounded-2xl border border-blue-100 bg-white/95 px-5 py-4 shadow-xl backdrop-blur-sm sm:left-8 sm:block">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
                   Instructor-Led
@@ -478,6 +459,36 @@ export default function HomePage() {
               </div>
             </SubtleFloat>
           </RevealOnScroll>
+
+          {/* Benefit points — vertical list on mobile, desktop grid unchanged */}
+          <div className="order-3 lg:col-span-2 lg:hidden">
+            <div className="space-y-2 text-sm text-slate-700">
+              {["One-on-one coaching — personalized road training", "Offline-first path — practical skills prioritized", "Online reinforcement — theory support at home"].map((point) => (
+                <div key={point} className="flex items-center gap-2.5">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb]" />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop-only: card grid for benefits (unchanged from original) */}
+          <div className="order-3 hidden lg:col-span-2 lg:block">
+            <div className="grid grid-cols-3 gap-2.5 text-sm text-slate-600">
+              <div className="rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
+                <p className="text-sm font-semibold text-slate-900">One-on-one coaching</p>
+                <p className="mt-1 text-slate-600">Personalized road training</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
+                <p className="text-sm font-semibold text-slate-900">Offline-first path</p>
+                <p className="mt-1 text-slate-600">Practical skills prioritized</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
+                <p className="text-sm font-semibold text-slate-900">Online reinforcement</p>
+                <p className="mt-1 text-slate-600">Theory support at home</p>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
@@ -526,7 +537,63 @@ export default function HomePage() {
                     Build lane control and confident decision-making through calm, structured
                     in-car coaching.
                   </p>
-                  <details className="group overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/80">
+
+                  {/* Mobile Tab Switcher: Curriculum | Levels */}
+                  <div className="sm:hidden">
+                    <div className="flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+                      <button
+                        type="button"
+                        onClick={() => setMobileTab("curriculum")}
+                        className={`flex-1 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                          mobileTab === "curriculum"
+                            ? "bg-white text-[#2563eb] shadow-sm"
+                            : "text-slate-600"
+                        }`}
+                      >
+                        Curriculum
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setMobileTab("levels")}
+                        className={`flex-1 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+                          mobileTab === "levels"
+                            ? "bg-white text-[#2563eb] shadow-sm"
+                            : "text-slate-600"
+                        }`}
+                      >
+                        Levels
+                      </button>
+                    </div>
+                    {mobileTab === "curriculum" ? (
+                      <div className="mt-3 space-y-2 text-sm text-slate-700">
+                        {drivingProgramTopics.map((topic) => (
+                          <div key={topic} className="flex items-start gap-2">
+                            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2563eb]" />
+                            <span>{topic}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="mt-3 space-y-2">
+                        {lessonCards.map((lesson) => (
+                          <div
+                            key={lesson.title}
+                            className="rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5"
+                          >
+                            <p className="text-sm font-semibold text-slate-800">
+                              {lesson.title}
+                            </p>
+                            <p className="mt-0.5 text-xs leading-relaxed text-slate-600">
+                              {lesson.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Desktop: original accordion + lesson grid (unchanged) */}
+                  <details className="group hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/80 sm:block">
                     <summary className="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700">
                       <span>Our Driving Program</span>
                       <span className="text-base text-[#2563eb] transition-transform group-open:rotate-90">
@@ -544,7 +611,7 @@ export default function HomePage() {
                       </div>
                     </div>
                   </details>
-                  <div className="mt-auto rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700">
+                  <div className="mt-auto hidden rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 sm:block">
                     <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
                       Lessons
                     </p>
@@ -646,7 +713,23 @@ export default function HomePage() {
                   </p>
 
                   <div className="space-y-5">
-                    <ul className="grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                    {/* Mobile: clean vertical checklist */}
+                    <ul className="space-y-2 text-sm text-slate-700 sm:hidden">
+                      {[
+                        { icon: BookOpenCheck, text: "Structured multi-module lessons" },
+                        { icon: CheckCircle2, text: "Unlimited quiz attempts" },
+                        { icon: Award, text: "Completion certificate" },
+                        { icon: ShieldCheck, text: "Progress saved automatically" },
+                      ].map(({ icon: Icon, text }) => (
+                        <li key={text} className="flex items-center gap-2.5">
+                          <Icon className="h-4 w-4 shrink-0 text-[#2563eb]" />
+                          {text}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Desktop: original card grid (unchanged) */}
+                    <ul className="hidden gap-3 text-sm text-slate-700 sm:grid sm:grid-cols-2">
                       <li className="flex items-center gap-2 rounded-xl border border-blue-100 bg-white px-3 py-2">
                         <BookOpenCheck className="h-4 w-4 text-[#2563eb]" />
                         Structured multi-module lessons
@@ -665,6 +748,7 @@ export default function HomePage() {
                       </li>
                     </ul>
 
+                    {/* Mobile: single CTA; Desktop: both buttons */}
                     <div className="grid gap-3 sm:grid-cols-2">
                       <Link
                         href="/online-course-info"
@@ -674,7 +758,7 @@ export default function HomePage() {
                       </Link>
                       <Link
                         href="/lms-course"
-                        className="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-[#2563eb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                        className="hidden w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-[#2563eb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:inline-flex"
                       >
                         Go to Course Dashboard
                       </Link>
@@ -702,26 +786,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="scroll-mt-0 bg-[#eaf1fa] py-8 md:scroll-mt-0 md:py-12">
+      <section id="contact" className="scroll-mt-0 bg-[#eaf1fa] py-10 md:scroll-mt-0 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="rounded-[2.2rem] border border-blue-100 bg-[#f4f8fe] p-3 sm:rounded-[2.4rem] sm:p-6 md:p-8">
-            <div className="mb-3 grid grid-cols-2 gap-2 md:grid-cols-2 md:gap-2.5 xl:grid-cols-4">
+            {/* Mobile: 2x2 Micro-Grid (Tight & Symmetrical); Desktop: original card grid */}
+            <div className="mb-4 grid grid-cols-2 gap-x-4 gap-y-2 border-b border-blue-100/50 pb-4 sm:hidden">
+              {contactNotes.map((note) => (
+                <div key={note} className="flex items-start gap-1.5 text-xs text-slate-700">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb] mt-0.5" />
+                  <span className="leading-tight">{note}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mb-3 hidden grid-cols-2 gap-2 sm:grid md:gap-2.5 xl:grid-cols-4">
               {contactNotes.map((note) => (
                 <div
                   key={note}
-                  className="rounded-xl border border-slate-200 bg-white px-3 py-2.5  text-[13px] font-medium text-slate-700 shadow-sm sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
+                  className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm"
                 >
                   {note}
                 </div>
               ))}
             </div>
             <div className="grid gap-5 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <RevealOnScroll className="h-full">
-                <div className="flex h-full flex-col rounded-[1.6rem] border border-slate-200 bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.08)] sm:rounded-[2rem] sm:p-8">
+              {/* Desktop: full left panel with description and starters */}
+              <RevealOnScroll className="hidden h-full sm:block">
+                <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
                     Contact
                   </p>
-                  <h2 className="mt-3 font-[var(--font-landing-display)] text-3xl leading-tight text-slate-950 sm:mt-4 sm:text-4xl">
+                  <h2 className="mt-4 font-[var(--font-landing-display)] text-4xl leading-tight text-slate-950">
                     Tell us your current stage. We will guide your next steps
                   </h2>
                   <p className="mt-4 leading-relaxed text-slate-700">
@@ -751,6 +845,19 @@ export default function HomePage() {
                 </div>
               </RevealOnScroll>
 
+              {/* Mobile: compact heading + starters above form */}
+              <div className="sm:hidden">
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563eb]">
+                  Contact
+                </p>
+                <h2 className="mt-2 font-[var(--font-landing-display)] text-2xl leading-tight text-slate-950">
+                  Tell us your current stage
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  Tap a starter to pre-fill your message, or type your own.
+                </p>
+              </div>
+
               <RevealOnScroll delayMs={120} className="h-full">
                 <div className="h-full rounded-[1.6rem] border border-slate-200 bg-white p-5 shadow-[0_14px_34px_rgba(15,23,42,0.1)] sm:rounded-[2rem] sm:p-9">
                   {formSubmitted ? (
@@ -773,7 +880,7 @@ export default function HomePage() {
                             type="text"
                             required
                             placeholder="John Doe"
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30"
+                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
                           />
                         </div>
 
@@ -786,7 +893,7 @@ export default function HomePage() {
                             type="tel"
                             required
                             placeholder="(902) 555-1234"
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30"
+                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
                           />
                         </div>
                       </div>
@@ -801,7 +908,7 @@ export default function HomePage() {
                             type="email"
                             required
                             placeholder="you@email.com"
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30"
+                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
                           />
                         </div>
 
@@ -811,7 +918,7 @@ export default function HomePage() {
                           </label>
                           <select
                             id="plan"
-                            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30"
+                            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
                           >
                             <option>Single Lesson Package</option>
                             <option>Multi Lesson Package</option>
@@ -826,6 +933,19 @@ export default function HomePage() {
                         <label htmlFor="message" className="text-sm font-semibold text-slate-800">
                           Message
                         </label>
+                        {/* Mobile: template starter pills directly above textarea */}
+                        <div className="flex gap-2 overflow-x-auto pb-1.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:hidden">
+                          {inquiryTemplates.map((template) => (
+                            <button
+                              key={template.label}
+                              type="button"
+                              onClick={() => applyInquiryTemplate(template.text)}
+                              className="shrink-0 rounded-full border border-blue-200 bg-blue-50/70 px-3 py-1.5 text-xs font-semibold text-[#2563eb] transition-colors active:bg-blue-100"
+                            >
+                              {template.label}
+                            </button>
+                          ))}
+                        </div>
                         <textarea
                           ref={messageRef}
                           id="message"
@@ -834,7 +954,7 @@ export default function HomePage() {
                           placeholder="Tell us your availability and current driving experience."
                           value={messageDraft}
                           onChange={(event) => setMessageDraft(event.target.value)}
-                          className="min-h-[190px] w-full resize-y rounded-2xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/30"
+                          className="w-full resize-y rounded-2xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[190px]"
                         />
                       </div>
 
