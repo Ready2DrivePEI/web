@@ -540,7 +540,7 @@ export default function HomePage() {
             </div>
           </RevealOnScroll>
 
-          <div className="relative grid items-stretch gap-7 sm:gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="relative grid items-start gap-7 sm:gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <RevealOnScroll delayMs={120} className="h-full">
               <article className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
                 <Image
@@ -638,7 +638,7 @@ export default function HomePage() {
                       <ChevronRight className="h-4 w-4 text-[#2563eb] transition-transform duration-200 group-open:rotate-90" />
                     </summary>
                     <div className="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out group-open:max-h-80">
-                      <div className="border-t border-slate-200 bg-white px-4 py-4">
+                      <div className="bg-white px-4 py-4">
                         <div className="grid grid-cols-2 gap-3">
                           {lessonCards.map((lesson) => (
                             <div
