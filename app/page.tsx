@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   Sparkles,
   X,
+  RefreshCw,
 } from "lucide-react";
 import RevealOnScroll from "./components/motion/reveal-on-scroll";
 import SubtleFloat from "./components/motion/subtle-float";
@@ -139,6 +140,21 @@ const lessonCards = [
   },
 ];
 
+const getLessonIcon = (title: string) => {
+  switch (title) {
+    case "Beginner":
+      return <Sparkles className="h-4 w-4 text-[#2563eb] shrink-0" />;
+    case "Defensive":
+      return <ShieldCheck className="h-4 w-4 text-[#2563eb] shrink-0" />;
+    case "Refresher":
+      return <RefreshCw className="h-4 w-4 text-[#2563eb] shrink-0" />;
+    case "Advanced":
+      return <Award className="h-4 w-4 text-[#2563eb] shrink-0" />;
+    default:
+      return <CheckCircle2 className="h-4 w-4 text-[#2563eb] shrink-0" />;
+  }
+};
+
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -173,6 +189,10 @@ export default function HomePage() {
       const absDelta = Math.abs(delta);
 
       setIsScrolled(currentScrollY > 16);
+
+      if (currentScrollY < 60) {
+        setActiveSection("home");
+      }
 
       if (isMobileMenuOpen || currentScrollY < 24) {
         setIsNavVisible(true);
@@ -529,7 +549,7 @@ export default function HomePage() {
                   width={1000}
                   height={1200}
                   sizes="(max-width: 1023px) calc(100vw - 2rem), 36vw"
-                  className="aspect-[4/3] w-full object-cover object-top sm:aspect-[4/5]"
+                  className="aspect-[4/3] w-full object-cover object-center sm:aspect-[1.25/1]"
                 />
                 <div className="flex flex-1 flex-col space-y-4 p-5 sm:p-6">
                   <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
@@ -598,13 +618,11 @@ export default function HomePage() {
                     )}
                   </div>
 
-                  {/* Desktop: original accordion + lesson grid (unchanged) */}
-                  <details className="group hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/80 sm:block">
-                    <summary className="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700">
+                  {/* Desktop: original accordion + lesson grid (elevated UI/UX) */}
+                  <details className="group hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block">
+                    <summary className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700 transition-all hover:bg-blue-50/40 hover:text-[#2563eb]">
                       <span>Our Driving Program</span>
-                      <span className="text-base text-[#2563eb] transition-transform group-open:rotate-90">
-                        &gt;
-                      </span>
+                      <ChevronRight className="h-4 w-4 text-[#2563eb] transition-transform duration-200 group-open:rotate-90" />
                     </summary>
                     <div className="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out group-open:max-h-64">
                       <div className="max-h-52 space-y-2 overflow-y-auto border-t border-slate-200 px-4 py-3 pr-2 text-sm text-slate-700">
@@ -617,20 +635,23 @@ export default function HomePage() {
                       </div>
                     </div>
                   </details>
-                  <div className="mt-auto hidden rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-700 sm:block">
+                  <div className="mt-auto hidden rounded-2xl border border-slate-200/80 bg-white px-4 py-4 text-sm text-slate-700 sm:block">
                     <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
-                      Lessons
+                      Lessons & Skill Levels
                     </p>
-                    <div className="grid grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-2 gap-3">
                       {lessonCards.map((lesson) => (
                         <div
                           key={lesson.title}
-                          className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5"
+                          className="group rounded-xl border border-slate-100 bg-[#2563eb]/[0.02] px-3.5 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-[#2563eb]/[0.05] hover:shadow-sm"
                         >
-                          <p className="text-center text-[0.92rem] font-semibold text-slate-800">
-                            {lesson.title}
-                          </p>
-                          <p className="mt-1 text-center text-xs leading-relaxed text-slate-600">
+                          <div className="flex items-center gap-2">
+                            {getLessonIcon(lesson.title)}
+                            <p className="text-sm font-semibold text-slate-800 transition-colors group-hover:text-[#2563eb]">
+                              {lesson.title}
+                            </p>
+                          </div>
+                          <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
                             {lesson.description}
                           </p>
                         </div>
