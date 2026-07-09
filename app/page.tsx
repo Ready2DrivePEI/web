@@ -570,15 +570,14 @@ export default function HomePage() {
                         Levels
                       </button>
                     </div>
-                    {mobileTab === "curriculum" ? (
-                      <div className="mt-3 space-y-2 text-sm text-slate-700">
-                        {drivingProgramTopics.map((topic) => (
-                          <div key={topic} className="flex items-start gap-2">
-                            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2563eb]" />
-                            <span>{topic}</span>
-                          </div>
-                        ))}
-                      </div>
+                     {mobileTab === "curriculum" ? (
+                       <ul className="mt-3 list-disc pl-5 space-y-2 text-sm text-slate-700 marker:text-[#2563eb]">
+                         {drivingProgramTopics.map((topic) => (
+                           <li key={topic} className="pl-1">
+                             {topic}
+                           </li>
+                         ))}
+                       </ul>
                     ) : (
                       <div className="mt-3 space-y-2">
                         {lessonCards.map((lesson) => (
