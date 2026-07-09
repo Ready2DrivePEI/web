@@ -549,20 +549,16 @@ export default function HomePage() {
                   width={1000}
                   height={1200}
                   sizes="(max-width: 1023px) calc(100vw - 2rem), 36vw"
-                  className="aspect-[4/3] w-full object-cover object-center sm:aspect-[1.25/1]"
+                  className="aspect-[4/3] w-full object-cover object-center sm:aspect-[1.1/1]"
                 />
                 <div className="flex flex-1 flex-col space-y-4 p-5 sm:p-6">
                   <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
                     <Clock3 className="h-3.5 w-3.5" />
                     Practical Session Focus
                   </p>
-                  <h3 className="font-[var(--font-landing-display)] text-2xl text-slate-900">
-                    Learn with direct, in-car feedback from your instructor.
+                  <h3 className="font-[var(--font-landing-display)] text-[1.25rem] leading-snug text-slate-900 sm:text-2xl">
+                    Build lane control and confident decision-making through calm, structured in-car coaching.
                   </h3>
-                   <p className="leading-relaxed text-slate-600 hidden sm:block">
-                     Build lane control and confident decision-making through calm, structured
-                     in-car coaching.
-                   </p>
 
                   {/* Mobile Tab Switcher: Curriculum | Levels */}
                   <div className="sm:hidden">
@@ -618,7 +614,7 @@ export default function HomePage() {
                     )}
                   </div>
 
-                  {/* Desktop: original accordion + lesson grid (elevated UI/UX) */}
+                  {/* Desktop: Collapsible Our Driving Program Accordion */}
                   <details className="group hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block">
                     <summary className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700 transition-all hover:bg-blue-50/40 hover:text-[#2563eb]">
                       <span>Our Driving Program</span>
@@ -635,88 +631,94 @@ export default function HomePage() {
                       </div>
                     </div>
                   </details>
-                  <div className="mt-auto hidden rounded-2xl border border-slate-200/80 bg-white px-4 py-4 text-sm text-slate-700 sm:block">
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
-                      Lessons & Skill Levels
-                    </p>
-                    <div className="grid grid-cols-2 gap-3">
-                      {lessonCards.map((lesson) => (
-                        <div
-                          key={lesson.title}
-                          className="group rounded-xl border border-slate-100 bg-[#2563eb]/[0.02] px-3.5 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-[#2563eb]/[0.05] hover:shadow-sm"
-                        >
-                          <div className="flex items-center gap-2">
-                            {getLessonIcon(lesson.title)}
-                            <p className="text-sm font-semibold text-slate-800 transition-colors group-hover:text-[#2563eb]">
-                              {lesson.title}
-                            </p>
-                          </div>
-                          <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
-                            {lesson.description}
-                          </p>
+
+                  <details className="group mt-3 hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block">
+                    <summary className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700 transition-all hover:bg-blue-50/40 hover:text-[#2563eb]">
+                      <span>Lessons & Skill Levels</span>
+                      <ChevronRight className="h-4 w-4 text-[#2563eb] transition-transform duration-200 group-open:rotate-90" />
+                    </summary>
+                    <div className="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-out group-open:max-h-80">
+                      <div className="border-t border-slate-200 bg-white px-4 py-4">
+                        <div className="grid grid-cols-2 gap-3">
+                          {lessonCards.map((lesson) => (
+                            <div
+                              key={lesson.title}
+                              className="rounded-xl border border-slate-100 bg-[#2563eb]/[0.02] px-3.5 py-3 hover:border-slate-300 transition-colors"
+                            >
+                              <div className="flex items-center gap-2">
+                                {getLessonIcon(lesson.title)}
+                                <p className="text-sm font-semibold text-slate-800">
+                                  {lesson.title}
+                                </p>
+                              </div>
+                              <p className="mt-1.5 text-xs leading-relaxed text-slate-500">
+                                {lesson.description}
+                              </p>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
                     </div>
-                  </div>
+                  </details>
                 </div>
               </article>
             </RevealOnScroll>
 
-            <div className="grid gap-6">
-              {offlinePlans.map((plan) => (
-                <article
-                  key={plan.title}
-                  className={`rounded-3xl border p-5 sm:p-7 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.14)] ${plan.recommended
-                      ? "border-blue-300 bg-blue-50/60"
-                      : "border-slate-200 bg-white"
-                    }`}
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#2563eb] sm:text-xs sm:tracking-[0.16em]">
-                          {plan.duration}
-                        </p>
-                        {plan.recommended && (
-                          <span className="rounded-full border border-blue-300 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1d4ed8] sm:text-[11px] sm:tracking-[0.12em]">
-                            Recommended
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="mt-2 text-2xl font-semibold text-slate-900">{plan.title}</h3>
-                    </div>
-                    <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold text-slate-700 sm:text-xs">
-                      {plan.pricingLabel}
-                    </span>
-                  </div>
+             <div className="grid gap-6">
+               {offlinePlans.map((plan) => (
+                 <article
+                   key={plan.title}
+                   className={`rounded-3xl border p-4 sm:p-5.5 shadow-[0_12px_30px_rgba(15,23,42,0.1)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_42px_rgba(15,23,42,0.14)] ${plan.recommended
+                       ? "border-blue-300 bg-blue-50/60"
+                       : "border-slate-200 bg-white"
+                     }`}
+                 >
+                   <div className="flex flex-wrap items-start justify-between gap-3">
+                     <div>
+                       <div className="flex flex-wrap items-center gap-2">
+                         <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#2563eb] sm:text-xs sm:tracking-[0.16em]">
+                           {plan.duration}
+                         </p>
+                         {plan.recommended && (
+                           <span className="rounded-full border border-blue-300 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1d4ed8] sm:text-[11px] sm:tracking-[0.12em]">
+                             Recommended
+                           </span>
+                         )}
+                       </div>
+                       <h3 className="mt-1.5 text-2xl font-semibold text-slate-900">{plan.title}</h3>
+                     </div>
+                     <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold text-slate-700 sm:text-xs">
+                       {plan.pricingLabel}
+                     </span>
+                   </div>
 
-                  <p className="mt-4 leading-relaxed text-slate-700">{plan.description}</p>
+                   <p className="mt-3 leading-relaxed text-slate-700">{plan.description}</p>
 
-                  {plan.bestFor && (
-                    <p className="mt-4 rounded-xl border border-blue-200 bg-white/75 px-4 py-3 text-sm leading-relaxed text-slate-700">
-                      <span className="font-semibold text-slate-900">Best for:</span> {plan.bestFor}
-                    </p>
-                  )}
+                   {plan.bestFor && (
+                     <p className="mt-3 rounded-xl border border-blue-200 bg-white/75 px-4 py-2.5 text-sm leading-relaxed text-slate-700">
+                       <span className="font-semibold text-slate-900">Best for:</span> {plan.bestFor}
+                     </p>
+                   )}
 
-                  <ul className="mt-5 space-y-2.5">
-                    {plan.points.map((point) => (
-                      <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-slate-700">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#2563eb]" />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+                   <ul className="mt-4 space-y-2">
+                     {plan.points.map((point) => (
+                       <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-slate-700">
+                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#2563eb]" />
+                         {point}
+                       </li>
+                     ))}
+                   </ul>
 
-                  <a
-                    href="#contact"
-                    className="mt-6 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                  >
-                    Continue to Contact Form
-                    <ChevronRight className="ml-1.5 h-4 w-4" />
-                  </a>
-                </article>
-              ))}
-            </div>
+                   <a
+                     href="#contact"
+                     className="mt-4 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                   >
+                     Continue to Contact Form
+                     <ChevronRight className="ml-1.5 h-4 w-4" />
+                   </a>
+                 </article>
+               ))}
+             </div>
           </div>
         </div>
       </section>
