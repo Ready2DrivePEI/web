@@ -18,6 +18,11 @@ import {
   Sparkles,
   X,
   RefreshCw,
+  User,
+  Phone,
+  Mail,
+  CreditCard,
+  Pencil,
 } from "lucide-react";
 import RevealOnScroll from "./components/motion/reveal-on-scroll";
 import SubtleFloat from "./components/motion/subtle-float";
@@ -929,26 +934,32 @@ export default function HomePage() {
                           <label htmlFor="fullName" className="text-sm font-semibold text-slate-800">
                             Full name
                           </label>
-                          <input
-                            id="fullName"
-                            type="text"
-                            required
-                            placeholder="John Doe"
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
-                          />
+                          <div className="relative flex items-center">
+                            <User className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <input
+                              id="fullName"
+                              type="text"
+                              required
+                              placeholder="John Doe"
+                              className="w-full rounded-xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
+                            />
+                          </div>
                         </div>
 
                         <div className="space-y-2">
                           <label htmlFor="phone" className="text-sm font-semibold text-slate-800">
                             Phone number
                           </label>
-                          <input
-                            id="phone"
-                            type="tel"
-                            required
-                            placeholder="(902) 555-1234"
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
-                          />
+                          <div className="relative flex items-center">
+                            <Phone className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <input
+                              id="phone"
+                              type="tel"
+                              required
+                              placeholder="(902) 555-1234"
+                              className="w-full rounded-xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
+                            />
+                          </div>
                         </div>
                       </div>
 
@@ -957,29 +968,35 @@ export default function HomePage() {
                           <label htmlFor="email" className="text-sm font-semibold text-slate-800">
                             Email
                           </label>
-                          <input
-                            id="email"
-                            type="email"
-                            required
-                            placeholder="you@email.com"
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
-                          />
+                          <div className="relative flex items-center">
+                            <Mail className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <input
+                              id="email"
+                              type="email"
+                              required
+                              placeholder="you@email.com"
+                              className="w-full rounded-xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
+                            />
+                          </div>
                         </div>
 
                         <div className="space-y-2">
                           <label htmlFor="plan" className="text-sm font-semibold text-slate-800">
                             Interested plan
                           </label>
-                          <select
-                            id="plan"
-                            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
-                          >
-                            <option>Single Lesson Package</option>
-                            <option>Multi Lesson Package</option>
-                            <option>Co-Pilot Package</option>
-                            <option>Online Course Purchase</option>
-                            <option>Not sure yet</option>
-                          </select>
+                          <div className="relative flex items-center">
+                            <CreditCard className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <select
+                              id="plan"
+                              className="w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
+                            >
+                              <option>Single Lesson Package</option>
+                              <option>Multi Lesson Package</option>
+                              <option>Co-Pilot Package</option>
+                              <option>Online Course Purchase</option>
+                              <option>Not sure yet</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
 
@@ -1000,16 +1017,19 @@ export default function HomePage() {
                             </button>
                           ))}
                         </div>
-                        <textarea
-                          ref={messageRef}
-                          id="message"
-                          required
-                          rows={7}
-                          placeholder="Tell us your availability and current driving experience."
-                          value={messageDraft}
-                          onChange={(event) => setMessageDraft(event.target.value)}
-                          className="w-full resize-y rounded-2xl border border-slate-300 px-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[190px]"
-                        />
+                        <div className="relative">
+                          <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-400 pointer-events-none" />
+                          <textarea
+                            ref={messageRef}
+                            id="message"
+                            required
+                            rows={7}
+                            placeholder="Tell us your availability and current driving experience."
+                            value={messageDraft}
+                            onChange={(event) => setMessageDraft(event.target.value)}
+                            className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[190px]"
+                          />
+                        </div>
                       </div>
 
                       <button
