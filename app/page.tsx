@@ -789,10 +789,10 @@ export default function HomePage() {
                         Explore Online Course Details
                       </Link>
                       <Link
-                        href="/lms-course"
+                        href="/login"
                         className="hidden w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-blue-300 hover:text-[#2563eb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:inline-flex"
                       >
-                        Go to Course Dashboard
+                        Go to Student Login
                       </Link>
                     </div>
                   </div>
