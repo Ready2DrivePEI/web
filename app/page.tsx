@@ -92,7 +92,7 @@ const offlinePlans: OfflinePlan[] = [
 
 const contactNotes = [
   "PEI-focused instructor guidance",
-  "Practical, one-on-one road coaching",
+  "One-on-one road coaching",
   "Structured online theory",
   "Clear progress path to exam day",
 ];
@@ -164,6 +164,7 @@ export default function HomePage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [messageDraft, setMessageDraft] = useState("");
   const [mobileTab, setMobileTab] = useState<"curriculum" | "levels">("curriculum");
+  const [openAccordion, setOpenAccordion] = useState<"program" | "lessons" | null>("lessons");
 
   // Sliding pill state
   const [pillStyle, setPillStyle] = useState<React.CSSProperties>({ left: 0, width: 0, opacity: 0 });
@@ -540,7 +541,7 @@ export default function HomePage() {
             </div>
           </RevealOnScroll>
 
-          <div className="relative grid items-stretch gap-7 sm:gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="relative grid items-start gap-7 sm:gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <RevealOnScroll delayMs={120} className="h-full">
               <article className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
                 <Image
@@ -615,8 +616,17 @@ export default function HomePage() {
                   </div>
 
                   {/* Desktop: Collapsible Our Driving Program Accordion */}
-                  <details className="group hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block">
-                    <summary className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700 transition-all hover:bg-blue-50/40 hover:text-[#2563eb]">
+                  <details
+                    open={openAccordion === "program"}
+                    className="group hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block"
+                  >
+                    <summary
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenAccordion(openAccordion === "program" ? null : "program");
+                      }}
+                      className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-700 transition-all hover:bg-blue-50/40 hover:text-[#2563eb] focus:outline-none focus:ring-0"
+                    >
                       <span>Our Driving Program</span>
                       <ChevronRight className="h-4 w-4 text-[#2563eb] transition-transform duration-200 group-open:rotate-90" />
                     </summary>
@@ -632,8 +642,17 @@ export default function HomePage() {
                     </div>
                   </details>
 
-                  <details className="group mt-3 hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block">
-                    <summary className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-500 transition-all hover:bg-blue-50/40 hover:text-[#2563eb]">
+                  <details
+                    open={openAccordion === "lessons"}
+                    className="group mt-3 hidden overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 sm:block"
+                  >
+                    <summary
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenAccordion(openAccordion === "lessons" ? null : "lessons");
+                      }}
+                      className="flex cursor-pointer items-center justify-between px-4 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-slate-500 transition-all hover:bg-blue-50/40 hover:text-[#2563eb] focus:outline-none focus:ring-0"
+                    >
                       <span>Lessons & Skill Levels</span>
                       <ChevronRight className="h-4 w-4 text-[#2563eb]/70 transition-transform duration-200 group-open:rotate-90" />
                     </summary>
@@ -664,7 +683,7 @@ export default function HomePage() {
               </article>
             </RevealOnScroll>
 
-             <div className="flex flex-col justify-between h-full gap-4">
+             <div className="grid gap-6">
                {offlinePlans.map((plan) => (
                  <article
                    key={plan.title}
