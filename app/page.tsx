@@ -571,13 +571,14 @@ export default function HomePage() {
                       </button>
                     </div>
                      {mobileTab === "curriculum" ? (
-                       <ul className="mt-3 list-disc pl-5 space-y-2 text-sm text-slate-700 marker:text-[#2563eb]">
+                       <div className="mt-3 space-y-2.5 text-sm text-slate-700">
                          {drivingProgramTopics.map((topic) => (
-                           <li key={topic} className="pl-1">
-                             {topic}
-                           </li>
+                           <div key={topic} className="relative pl-4.5">
+                             <span className="absolute left-1.5 top-[0.6em] h-1.5 w-1.5 shrink-0 -translate-y-1/2 rounded-full bg-[#2563eb]" />
+                             <span>{topic}</span>
+                           </div>
                          ))}
-                       </ul>
+                       </div>
                     ) : (
                       <div className="mt-3 space-y-2">
                         {lessonCards.map((lesson) => (
