@@ -29,10 +29,20 @@ import {
   SendHorizontal,
   ChevronDown,
   CircleHelp,
+  Compass,
+  BookOpen,
 } from "lucide-react";
 import RevealOnScroll from "./components/motion/reveal-on-scroll";
 import SubtleFloat from "./components/motion/subtle-float";
 import BrandLogo from "@/components/brand-logo";
+
+const SteeringWheelIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="12" r="3" />
+    <path d="M12 2v7M12 15v7M2 12h7M15 12h7" />
+  </svg>
+);
 
 const displayFont = Playfair_Display({
   subsets: ["latin"],
@@ -876,15 +886,25 @@ export default function HomePage() {
           </div>
           <div className="rounded-[2.2rem] border border-blue-100 bg-[#f4f8fe] p-3 sm:rounded-[2.4rem] sm:p-6 md:p-8">
             <div className="mb-4 hidden grid-cols-2 gap-3 sm:grid md:gap-4 xl:grid-cols-4">
-              {contactNotes.map((note) => (
-                <div
-                  key={note}
-                  className="flex items-center gap-2.5 rounded-2xl border border-slate-200/70 bg-white px-5 py-3.5 text-sm font-semibold text-slate-700 shadow-[0_2px_8px_rgba(15,23,42,0.02)] transition-colors hover:border-slate-300"
-                >
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb]/70" />
-                  <span className="leading-tight">{note}</span>
-                </div>
-              ))}
+              {contactNotes.map((note, index) => {
+                const Icon =
+                  index === 0
+                    ? Compass
+                    : index === 1
+                      ? SteeringWheelIcon
+                      : index === 2
+                        ? BookOpen
+                        : CheckCircle2;
+                return (
+                  <div
+                    key={note}
+                    className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-5 py-4 text-sm font-semibold text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-colors hover:border-slate-200"
+                  >
+                    <Icon className="h-5 w-5 shrink-0 text-[#2563eb]" />
+                    <span className="leading-tight">{note}</span>
+                  </div>
+                );
+              })}
             </div>
             <div className="grid gap-5 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr]">
               {/* Desktop: full left panel with description and starters */}
@@ -1031,16 +1051,6 @@ export default function HomePage() {
                         <label htmlFor="message" className="text-sm font-semibold text-slate-800">
                           Message
                         </label>
-                        {/* Mobile: template starters section header with response badge */}
-                        <div className="flex flex-wrap items-center justify-between gap-2 sm:hidden pb-1">
-                          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
-                            Quick starters
-                          </p>
-                          <span className="inline-flex items-center gap-1 rounded-full border border-blue-100 bg-blue-50/60 px-2 py-0.5 text-[10px] font-semibold text-[#2563eb]">
-                            <Clock className="h-3 w-3" />
-                            Usually responds within 24 hours
-                          </span>
-                        </div>
                         {/* Mobile: template starter pills directly above textarea */}
                         <div className="flex gap-2 overflow-x-auto pb-1.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:hidden">
                           {inquiryTemplates.map((template) => (
