@@ -23,6 +23,12 @@ import {
   Mail,
   CreditCard,
   Pencil,
+  Calendar,
+  GraduationCap,
+  Clock,
+  SendHorizontal,
+  ChevronDown,
+  CircleHelp,
 } from "lucide-react";
 import RevealOnScroll from "./components/motion/reveal-on-scroll";
 import SubtleFloat from "./components/motion/subtle-float";
@@ -157,6 +163,19 @@ const getLessonIcon = (title: string) => {
       return <Award className="h-4 w-4 text-[#2563eb]/70 shrink-0" />;
     default:
       return <CheckCircle2 className="h-4 w-4 text-[#2563eb]/70 shrink-0" />;
+  }
+};
+
+const getTemplateIcon = (label: string) => {
+  switch (label) {
+    case "Offline lesson booking":
+      return <Calendar className="h-5 w-5 text-blue-600 shrink-0" />;
+    case "Online course purchase":
+      return <GraduationCap className="h-5 w-5 text-blue-600 shrink-0" />;
+    case "Questions or support":
+      return <CircleHelp className="h-5 w-5 text-blue-600 shrink-0" />;
+    default:
+      return null;
   }
 };
 
@@ -881,22 +900,29 @@ export default function HomePage() {
                     Choose a starter below and click it. We will auto-fill your message box so
                     you can send your inquiry faster.
                   </p>
-                  <div className="mt-7 space-y-3 pt-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
-                      Quick message starters
-                    </p>
-                    <div className="space-y-2.5">
+                  <div className="mt-7 space-y-3.5 pt-5">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
+                        Quick message starters
+                      </p>
+                      <span className="inline-flex items-center gap-1 rounded-full border border-blue-100 bg-blue-50/60 px-2 py-0.5 text-[10px] font-semibold text-[#2563eb]">
+                        <Clock className="h-3 w-3" />
+                        Usually responds within 24 hours
+                      </span>
+                    </div>
+                    <div className="space-y-3">
                       {inquiryTemplates.map((template) => (
                         <button
                           key={template.label}
                           type="button"
                           onClick={() => applyInquiryTemplate(template.text)}
-                          className="group flex w-full items-center justify-between rounded-xl border border-blue-200 bg-blue-50/55 px-4 py-3 text-left text-sm font-semibold text-[#1d4ed8] transition-colors hover:bg-blue-100/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                          className="group flex w-full items-center justify-between rounded-2xl border border-blue-100/80 bg-blue-50/[0.03] px-5 py-4 text-left text-sm font-semibold text-[#2563eb] transition-all hover:bg-blue-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         >
-                          <span>{template.label}</span>
-                          <span className="text-base font-bold text-[#2563eb] transition-transform group-hover:translate-x-0.5">
-                            &gt;
-                          </span>
+                          <div className="flex items-center gap-3.5">
+                            {getTemplateIcon(template.label)}
+                            <span>{template.label}</span>
+                          </div>
+                          <ChevronRight className="h-4 w-4 text-blue-600 transition-transform group-hover:translate-x-0.5" />
                         </button>
                       ))}
                     </div>
@@ -935,7 +961,7 @@ export default function HomePage() {
                             Full name
                           </label>
                           <div className="relative flex items-center">
-                            <User className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <User className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <input
                               id="fullName"
                               type="text"
@@ -951,7 +977,7 @@ export default function HomePage() {
                             Phone number
                           </label>
                           <div className="relative flex items-center">
-                            <Phone className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <Phone className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <input
                               id="phone"
                               type="tel"
@@ -969,7 +995,7 @@ export default function HomePage() {
                             Email
                           </label>
                           <div className="relative flex items-center">
-                            <Mail className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <Mail className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <input
                               id="email"
                               type="email"
@@ -985,10 +1011,10 @@ export default function HomePage() {
                             Interested plan
                           </label>
                           <div className="relative flex items-center">
-                            <CreditCard className="absolute left-4 h-4 w-4 text-slate-400 pointer-events-none" />
+                            <CreditCard className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <select
                               id="plan"
-                              className="w-full rounded-xl border border-slate-300 bg-white pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
+                              className="w-full appearance-none rounded-xl border border-slate-300 bg-white pl-11 pr-10 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
                             >
                               <option>Single Lesson Package</option>
                               <option>Multi Lesson Package</option>
@@ -996,6 +1022,7 @@ export default function HomePage() {
                               <option>Online Course Purchase</option>
                               <option>Not sure yet</option>
                             </select>
+                            <ChevronDown className="absolute right-4 h-4 w-4 text-slate-500 pointer-events-none" />
                           </div>
                         </div>
                       </div>
@@ -1004,6 +1031,16 @@ export default function HomePage() {
                         <label htmlFor="message" className="text-sm font-semibold text-slate-800">
                           Message
                         </label>
+                        {/* Mobile: template starters section header with response badge */}
+                        <div className="flex flex-wrap items-center justify-between gap-2 sm:hidden pb-1">
+                          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
+                            Quick starters
+                          </p>
+                          <span className="inline-flex items-center gap-1 rounded-full border border-blue-100 bg-blue-50/60 px-2 py-0.5 text-[10px] font-semibold text-[#2563eb]">
+                            <Clock className="h-3 w-3" />
+                            Usually responds within 24 hours
+                          </span>
+                        </div>
                         {/* Mobile: template starter pills directly above textarea */}
                         <div className="flex gap-2 overflow-x-auto pb-1.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:hidden">
                           {inquiryTemplates.map((template) => (
@@ -1018,26 +1055,38 @@ export default function HomePage() {
                           ))}
                         </div>
                         <div className="relative">
-                          <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-400 pointer-events-none" />
+                          <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
                           <textarea
                             ref={messageRef}
                             id="message"
                             required
+                            maxLength={500}
                             rows={7}
                             placeholder="Tell us your availability and current driving experience."
                             value={messageDraft}
                             onChange={(event) => setMessageDraft(event.target.value)}
-                            className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[190px]"
+                            className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[190px]"
                           />
+                          <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400 select-none pointer-events-none">
+                            {messageDraft.length} / 500
+                          </span>
                         </div>
                       </div>
 
-                      <button
-                        type="submit"
-                        className="inline-flex w-full items-center justify-center rounded-2xl bg-[#4285F4] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                      >
-                        Submit Inquiry
-                      </button>
+                      <div className="space-y-4">
+                        <button
+                          type="submit"
+                          className="inline-flex w-full items-center justify-center rounded-2xl bg-[#2563eb] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2"
+                        >
+                          <SendHorizontal className="mr-2 h-4 w-4" />
+                          Submit Inquiry
+                        </button>
+
+                        <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
+                          <ShieldCheck className="h-4.5 w-4.5 text-emerald-500 shrink-0" />
+                          <span>No spam. No pressure. Just a real conversation.</span>
+                        </div>
+                      </div>
                     </form>
                   )}
                 </div>
