@@ -31,10 +31,13 @@ import {
   CircleHelp,
   Compass,
   BookOpen,
+  Loader2,
 } from "lucide-react";
 import RevealOnScroll from "./components/motion/reveal-on-scroll";
 import SubtleFloat from "./components/motion/subtle-float";
 import BrandLogo from "@/components/brand-logo";
+import { sendContactInquiry } from "@/app/actions/contact";
+import { contactSchema } from "@/lib/contact-schema";
 
 const SteeringWheelIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -196,6 +199,8 @@ export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [messageDraft, setMessageDraft] = useState("");
   const [mobileTab, setMobileTab] = useState<"curriculum" | "levels">("curriculum");
   const [openAccordion, setOpenAccordion] = useState<"program" | "lessons" | null>("lessons");
@@ -206,6 +211,7 @@ export default function HomePage() {
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const messageRef = useRef<HTMLTextAreaElement | null>(null);
+  const planSelectRef = useRef<HTMLSelectElement | null>(null);
   const lastScrollY = useRef(0);
   const navDirection = useRef<"up" | "down" | null>(null);
   const directionalDistance = useRef(0);
@@ -214,6 +220,30 @@ export default function HomePage() {
   useEffect(() => {
     const frame = requestAnimationFrame(() => setIsMounted(true));
     return () => cancelAnimationFrame(frame);
+  }, []);
+
+  // Pre-fill message starter and select plan from query param if available
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const starter = params.get("starter");
+      if (starter) {
+        if (starter === "online-course") {
+          const template = inquiryTemplates.find((t) => t.label === "Online course purchase");
+          if (template) {
+            applyInquiryTemplate(template.text);
+            if (planSelectRef.current) {
+              planSelectRef.current.value = "Online Course Purchase";
+            }
+          }
+        }
+        // Delay scroll slightly to ensure page/layout is hydrated
+        const timer = setTimeout(() => {
+          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+        return () => clearTimeout(timer);
+      }
+    }
   }, []);
 
   // Scroll tracking: hide/show header
@@ -327,10 +357,51 @@ export default function HomePage() {
     return () => window.removeEventListener("keydown", onEscape);
   }, [isMobileMenuOpen]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFormSubmitted(true);
-    window.setTimeout(() => setFormSubmitted(false), 4200);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const formData = new FormData(event.currentTarget);
+    
+    // Generate UUID immediately before submission for duplicate check safety
+    const submissionId = crypto.randomUUID();
+    formData.append("submissionId", submissionId);
+
+    // Perform client-side Zod validation
+    const rawData = {
+      submissionId,
+      fullName: formData.get("fullName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      plan: formData.get("plan"),
+      message: formData.get("message"),
+    };
+
+    const validation = contactSchema.safeParse(rawData);
+    if (!validation.success) {
+      const firstError = validation.error.issues[0]?.message || "Validation failed.";
+      setSubmitError(firstError);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const result = await sendContactInquiry(formData);
+      if (result.success) {
+        setFormSubmitted(true);
+        event.currentTarget.reset();
+        setMessageDraft(""); // Reset text state
+        window.setTimeout(() => setFormSubmitted(false), 5000);
+      } else {
+        setSubmitError(result.message || "An error occurred. Please try again.");
+      }
+    } catch (err) {
+      console.error("[contact-form] Submission error:", err);
+      setSubmitError("Failed to submit inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -975,6 +1046,15 @@ export default function HomePage() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+                      {/* Honeypot field for bot spam detection */}
+                      <input
+                        type="text"
+                        name="website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        className="absolute left-[-9999px] h-0 w-0 opacity-0 pointer-events-none"
+                      />
+
                       <div className="grid gap-5 sm:grid-cols-2">
                         <div className="space-y-2">
                           <label htmlFor="fullName" className="text-sm font-semibold text-slate-800">
@@ -984,6 +1064,7 @@ export default function HomePage() {
                             <User className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <input
                               id="fullName"
+                              name="fullName"
                               type="text"
                               required
                               placeholder="John Doe"
@@ -1000,6 +1081,7 @@ export default function HomePage() {
                             <Phone className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <input
                               id="phone"
+                              name="phone"
                               type="tel"
                               required
                               placeholder="(902) 555-1234"
@@ -1018,6 +1100,7 @@ export default function HomePage() {
                             <Mail className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <input
                               id="email"
+                              name="email"
                               type="email"
                               required
                               placeholder="you@email.com"
@@ -1033,7 +1116,9 @@ export default function HomePage() {
                           <div className="relative flex items-center">
                             <CreditCard className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
                             <select
+                              ref={planSelectRef}
                               id="plan"
+                              name="plan"
                               className="w-full appearance-none rounded-xl border border-slate-300 bg-white pl-11 pr-10 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
                             >
                               <option>Single Lesson Package</option>
@@ -1069,6 +1154,7 @@ export default function HomePage() {
                           <textarea
                             ref={messageRef}
                             id="message"
+                            name="message"
                             required
                             maxLength={500}
                             rows={7}
@@ -1083,13 +1169,24 @@ export default function HomePage() {
                         </div>
                       </div>
 
+                      {submitError && (
+                        <div aria-live="polite" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+                          {submitError}
+                        </div>
+                      )}
+
                       <div className="space-y-4">
                         <button
                           type="submit"
-                          className="inline-flex w-full items-center justify-center rounded-2xl bg-[#2563eb] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2"
+                          disabled={isSubmitting}
+                          className="inline-flex w-full items-center justify-center rounded-2xl bg-[#2563eb] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 disabled:bg-blue-400 disabled:cursor-not-allowed"
                         >
-                          <SendHorizontal className="mr-2 h-4 w-4" />
-                          Submit Inquiry
+                          {isSubmitting ? (
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          ) : (
+                            <SendHorizontal className="mr-2 h-4 w-4" />
+                          )}
+                          {isSubmitting ? "Submitting..." : "Submit Inquiry"}
                         </button>
 
                         <div className="flex items-center justify-center gap-2 text-xs text-slate-500">

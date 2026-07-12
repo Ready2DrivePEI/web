@@ -84,6 +84,8 @@ export function LMSShell({ children }: { children: ReactNode }) {
       const { data } = await supabase.auth.getSession()
       if (!active) return
       if (!data.session) {
+        localStorage.removeItem("r2d-auth")
+        sessionStorage.removeItem("r2d-auth")
         setAuthChecked(true)
         router.replace("/login")
         return

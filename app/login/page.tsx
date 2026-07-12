@@ -15,6 +15,7 @@ export default function LoginPage() {
   const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+  const [authChecked, setAuthChecked] = useState(false);
 
   // Authenticates via server-side route that resolves full_name → email
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -137,22 +138,46 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth");
-    if (authSnapshot) {
-      try {
-        const parsed = JSON.parse(authSnapshot) as { role?: string };
-        if (parsed.role === "admin") {
-          router.replace("/admin");
-          return;
-        }
-
-        router.replace("/lms-course");
+    let active = true;
+    void (async () => {
+      const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth");
+      
+      if (!authSnapshot) {
+        if (active) setAuthChecked(true);
         return;
-      } catch {
+      }
+
+      if (!supabase) {
+        localStorage.removeItem("r2d-auth");
+        sessionStorage.removeItem("r2d-auth");
+        if (active) setAuthChecked(true);
+        return;
+      }
+
+      // Check current session to ensure it is actually valid
+      const { data } = await supabase.auth.getSession();
+      if (!active) return;
+
+      if (data.session) {
+        try {
+          const parsed = JSON.parse(authSnapshot) as { role?: string };
+          if (parsed.role === "admin") {
+            router.replace("/admin");
+            return;
+          }
+          router.replace("/lms-course");
+          return;
+        } catch {
+          localStorage.removeItem("r2d-auth");
+          sessionStorage.removeItem("r2d-auth");
+        }
+      } else {
+        // Clear stale local representation since session is invalid/missing
         localStorage.removeItem("r2d-auth");
         sessionStorage.removeItem("r2d-auth");
       }
-    }
+      setAuthChecked(true);
+    })();
 
     if (localStorage.getItem("r2d-remember-me") === "false") {
       void supabase?.auth.signOut();
@@ -162,7 +187,15 @@ export default function LoginPage() {
     if (!visited) {
       localStorage.setItem("r2d-visited", "true");
     }
+
+    return () => {
+      active = false;
+    };
   }, [router]);
+
+  if (!authChecked) {
+    return null;
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 flex items-center justify-center px-6 py-24">

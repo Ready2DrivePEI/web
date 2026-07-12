@@ -111,7 +111,7 @@ export default function OnlineCoursePage() {
             <RevealOnScroll delayMs={240}>
               <div className="pt-2">
                 <Link
-                  href="/lms-course"
+                  href="/#contact?starter=online-course"
                   className="inline-flex items-center justify-center rounded-2xl bg-[#4285F4] px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.99]"
                 >
                   Enroll Now
