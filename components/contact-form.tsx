@@ -136,6 +136,8 @@ export default function ContactForm({
     );
   }
 
+  const gridClass = hideTemplates ? "grid gap-5" : "grid gap-5 sm:grid-cols-2";
+
   return (
     <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
       {/* Honeypot field for bot spam detection */}
@@ -147,7 +149,7 @@ export default function ContactForm({
         className="absolute left-[-9999px] h-0 w-0 opacity-0 pointer-events-none"
       />
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className={gridClass}>
         <div className="space-y-2">
           <label htmlFor="fullName" className="text-sm font-semibold text-slate-800">
             Full name
@@ -185,7 +187,7 @@ export default function ContactForm({
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className={gridClass}>
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-semibold text-slate-800">
             Email
@@ -276,7 +278,7 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex w-full items-center justify-center rounded-2xl bg-[#2563eb] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 disabled:bg-blue-400 disabled:cursor-not-allowed"
+          className="inline-flex w-full items-center justify-center rounded-2xl bg-[#4285F4] px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 disabled:bg-blue-400 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

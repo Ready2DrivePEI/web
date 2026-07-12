@@ -37,7 +37,7 @@ export default function EnrollModal({ open, onOpenChange }: EnrollModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent 
-        className="sm:max-w-[500px] overflow-hidden bg-white"
+        className="sm:max-w-[500px] bg-white p-8 pt-10 max-h-[90vh] overflow-y-auto"
         onPointerDownOutside={(e) => e.preventDefault()}
         onInteractOutside={(e) => e.preventDefault()}
       >
