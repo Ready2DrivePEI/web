@@ -20,14 +20,20 @@ export default function EnrollModal({ open, onOpenChange }: EnrollModalProps) {
     }
   }, [open]);
 
-  // Handle success callback from ContactForm
-  const handleSuccess = () => {
-    setSuccess(true);
-    // Auto-close modal after 5 seconds
+  // Handle auto-closing on success
+  useEffect(() => {
+    if (!success) return;
+
     const timer = setTimeout(() => {
       onOpenChange(false);
     }, 5000);
+
     return () => clearTimeout(timer);
+  }, [success, onOpenChange]);
+
+  // Handle success callback from ContactForm
+  const handleSuccess = () => {
+    setSuccess(true);
   };
 
   const onlineCourseTemplate = inquiryTemplates.find(
