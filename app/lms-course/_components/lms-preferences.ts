@@ -25,7 +25,10 @@ export const subscribeToPreference = (
 
 export const getCollapseSnapshot = () => {
   if (typeof window === "undefined") return false;
-  return localStorage.getItem(COLLAPSE_STORAGE_KEY) === "true";
+  const stored = localStorage.getItem(COLLAPSE_STORAGE_KEY);
+  // Default to false (open) if no preference is saved
+  if (stored === null) return false;
+  return stored === "true";
 };
 
 export const getThemeSnapshot = (): LMSTheme => {
