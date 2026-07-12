@@ -126,7 +126,7 @@ export default function ContactForm({
 
   if (formSubmitted) {
     return (
-      <div className="rounded-3xl border border-emerald-200 bg-emerald-50 px-6 py-10 text-center animate-in fade-in duration-300">
+      <div className="flex min-h-[400px] flex-col justify-center rounded-3xl border border-emerald-200 bg-emerald-50 px-6 py-10 text-center animate-in fade-in duration-300">
         <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600" />
         <h3 className="mt-4 text-2xl font-semibold text-emerald-700">Inquiry sent</h3>
         <p className="mt-2 text-sm text-emerald-800">
@@ -230,11 +230,13 @@ export default function ContactForm({
         </div>
       </div>
 
-      <div className="space-y-2">
-        <label htmlFor="message" className="text-sm font-semibold text-slate-800">
-          Message
-        </label>
-        {!hideTemplates && (
+      {hideTemplates ? (
+        <input type="hidden" name="message" value={messageDraft} />
+      ) : (
+        <div className="space-y-2">
+          <label htmlFor="message" className="text-sm font-semibold text-slate-800">
+            Message
+          </label>
           <div className="flex gap-2 overflow-x-auto pb-1.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:hidden">
             {inquiryTemplates.map((template) => (
               <button
@@ -247,26 +249,26 @@ export default function ContactForm({
               </button>
             ))}
           </div>
-        )}
-        <div className="relative">
-          <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
-          <textarea
-            ref={messageRef}
-            id="message"
-            name="message"
-            required
-            maxLength={500}
-            rows={5}
-            placeholder="Tell us your availability and current driving experience."
-            value={messageDraft}
-            onChange={(event) => setMessageDraft(event.target.value)}
-            className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[150px]"
-          />
-          <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400 select-none pointer-events-none">
-            {messageDraft.length} / 500
-          </span>
+          <div className="relative">
+            <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
+            <textarea
+              ref={messageRef}
+              id="message"
+              name="message"
+              required
+              maxLength={500}
+              rows={5}
+              placeholder="Any questions or specific requirements?"
+              value={messageDraft}
+              onChange={(event) => setMessageDraft(event.target.value)}
+              className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[150px]"
+            />
+            <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400 select-none pointer-events-none">
+              {messageDraft.length} / 500
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
       {submitError && (
         <div aria-live="polite" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
