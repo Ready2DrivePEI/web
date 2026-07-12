@@ -3,6 +3,7 @@ import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import Navbar from "./components/navbar";
 import RevealOnScroll from "../components/motion/reveal-on-scroll";
 import SubtleFloat from "../components/motion/subtle-float";
+import EnrollButton from "@/components/enroll-button";
 import {
   Award,
   CheckCircle2,
@@ -110,12 +111,11 @@ export default function OnlineCoursePage() {
 
             <RevealOnScroll delayMs={240}>
               <div className="pt-2">
-                <Link
-                  href="/#contact?starter=online-course"
+                <EnrollButton
                   className="inline-flex items-center justify-center rounded-2xl bg-[#4285F4] px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:-translate-y-0.5 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.99]"
                 >
                   Enroll Now
-                </Link>
+                </EnrollButton>
               </div>
             </RevealOnScroll>
           </section>
@@ -191,12 +191,11 @@ export default function OnlineCoursePage() {
                   </h3>
                   <p className="mt-3 font-[var(--font-landing-display)] text-5xl text-slate-900">$499</p>
                   <p className="mt-4 text-slate-600">One-time payment. Full 90-day access.</p>
-                  <Link
-                    href="/lms-course"
+                  <EnrollButton
                     className="mt-8 inline-flex w-full items-center justify-center rounded-xl bg-[#4285F4] px-8 py-4 text-lg font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 active:scale-[0.99]"
                   >
                     Get Started Today
-                  </Link>
+                  </EnrollButton>
                 </article>
               </SubtleFloat>
             </RevealOnScroll>

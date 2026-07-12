@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type React from "react";
 import BrandLogo from "@/components/brand-logo";
+import EnrollButton from "@/components/enroll-button";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -179,12 +180,11 @@ export default function Navbar() {
               >
                 Student Login
               </Link>
-              <Link
-                href="/#contact?starter=online-course"
+              <EnrollButton
                 className="rounded-xl bg-[#4285F4] px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-200 motion-safe:transition-[transform,box-shadow] motion-safe:duration-200 hover:scale-[1.02] hover:shadow-md active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 Enroll Now
-              </Link>
+              </EnrollButton>
             </>
           )}
         </div>
