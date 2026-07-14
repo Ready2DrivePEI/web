@@ -137,13 +137,13 @@ export function ModuleList({
                   )}
                   <TruncatedLabel text={module.title} className="lms-module-title text-left" />
                 </div>
-                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+                <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
                   {isAssessment ? (
-                    <span className="lms-accent rounded bg-[var(--lms-active-bg)] px-1 py-[1px] text-[8px] sm:text-[9px] font-medium tracking-wider" aria-hidden="true">
+                    <span className="inline-flex items-center rounded-full border border-blue-200/50 bg-blue-50/50 px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase text-blue-600 dark:border-blue-900/30 dark:bg-blue-950/20 dark:text-blue-400 leading-none shrink-0" aria-hidden="true">
                       EXAM
                     </span>
                   ) : (
-                    <span className="lms-count-chip rounded px-1.5 py-0.5 text-[9px] sm:text-[10px]" aria-hidden="true">
+                    <span className="inline-flex items-center rounded-full border border-[var(--lms-border)] bg-[var(--lms-surface-2)] px-2 py-0.5 text-[10px] font-bold text-[var(--lms-text-muted)] leading-none shrink-0" aria-hidden="true">
                       {completedCount}/{module.chapters.length}
                     </span>
                   )}
