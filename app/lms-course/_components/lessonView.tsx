@@ -22,7 +22,7 @@ const calloutIcons: Record<CalloutVariant, React.ComponentType<any>> = {
 const calloutLabels: Record<CalloutVariant, string> = {
   info: "Study Tip",
   warning: "Important Notice",
-  danger: "Critical Exam Tip",
+  danger: "Road Safety Warning",
 };
 
 const calloutTitleStyles: Record<CalloutVariant, string> = {
