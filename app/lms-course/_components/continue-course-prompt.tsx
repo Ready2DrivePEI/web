@@ -23,7 +23,7 @@ export function ContinueCoursePrompt({
 
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/45 p-4">
-      <div className="lms-modal-card relative w-full max-w-md rounded-2xl border p-6 shadow-xl">
+      <div className="lms-modal-card relative w-full max-w-sm rounded-2xl border p-6 shadow-xl">
         {/* Top-Right Dismiss Button */}
         <button
           type="button"
@@ -34,12 +34,12 @@ export function ContinueCoursePrompt({
           <X className="h-4.5 w-4.5" />
         </button>
 
-        <h2 className="text-lg font-bold pr-8">Would you like to continue where you left off?</h2>
+        <h2 className="text-lg font-bold pr-8 leading-snug">Would you like to continue where you left off?</h2>
 
-        <div className="mt-5 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-col gap-2.5">
           <Button
             onClick={onContinueLast}
-            className="flex items-center gap-1.5 bg-[var(--lms-accent)] hover:bg-[var(--lms-accent)]/90 text-white focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
+            className="w-full flex items-center justify-center gap-1.5 bg-[var(--lms-accent)] hover:bg-[var(--lms-accent)]/90 text-white focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer h-10.5 rounded-xl font-semibold"
           >
             <Bookmark className="h-4 w-4" />
             {lastOptionLabel}
@@ -48,7 +48,7 @@ export function ContinueCoursePrompt({
           {showFurthestOption ? (
             <Button
               variant="outline"
-              className="lms-button-outline flex items-center gap-1.5 text-foreground dark:text-foreground focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
+              className="w-full lms-button-outline flex items-center justify-center gap-1.5 text-foreground dark:text-foreground focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer h-10.5 rounded-xl font-semibold"
               onClick={onContinueFurthest}
             >
               <Zap className="h-4 w-4" />
