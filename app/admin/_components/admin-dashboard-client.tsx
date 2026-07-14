@@ -313,29 +313,29 @@ export function AdminDashboardClient() {
                 </h2>
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm mt-4">
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col gap-1 shadow-2xs">
+                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Database State</span>
-                  <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700 text-sm">
+                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-emerald-700 text-sm">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                     Connected
                   </span>
                 </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col gap-1 shadow-2xs">
+                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Auth Service</span>
-                  <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700 text-sm">
+                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-emerald-700 text-sm">
                     <span className="h-2 w-2 rounded-full bg-emerald-500" />
                     Active
                   </span>
                 </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col gap-1 shadow-2xs">
+                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Active Accounts</span>
-                  <span className="font-bold text-slate-800 text-sm">
+                  <span className="font-bold text-slate-800 text-sm text-center">
                     {totalActiveAccounts} Profiles
                   </span>
                 </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col gap-1 shadow-2xs">
+                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Last Sync</span>
-                  <span className="font-bold text-slate-800 text-xs truncate">
+                  <span className="font-bold text-slate-800 text-xs truncate text-center w-full">
                     {formatLastSync(lastSyncedAt)}
                   </span>
                 </div>
