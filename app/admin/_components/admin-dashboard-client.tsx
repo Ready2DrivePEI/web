@@ -283,47 +283,37 @@ export function AdminDashboardClient() {
 
       <main className="mx-auto max-w-6xl space-y-8 px-6 pb-16 pt-8">
         {/* Compact, Single-Row Diagnostic Status Bar */}
-        <section className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 px-5 py-3 shadow-xs flex flex-wrap items-center justify-between gap-4">
-          <div className="pointer-events-none absolute -top-10 -right-10 h-20 w-20 rounded-full bg-blue-100/20 blur-xl" />
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Database</span>
-              <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                Connected
-              </span>
+        <section className="relative overflow-hidden rounded-full border border-slate-200/80 bg-slate-50/40 px-6 py-2.5 shadow-2xs flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-slate-600">
+            {/* Database */}
+            <div className="flex items-center gap-1.5">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Database online</span>
             </div>
-            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
-              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Auth</span>
-              <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Active
-              </span>
+            {/* Auth */}
+            <div className="flex items-center gap-1.5 md:border-l md:border-slate-200 md:pl-5">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span>Auth service active</span>
             </div>
-            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
-              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Latency</span>
-              <span className="font-bold text-slate-800">
-                {latency ? `${latency}ms` : "checking..."}
-              </span>
+            {/* Latency */}
+            <div className="flex items-center gap-1.5 md:border-l md:border-slate-200 md:pl-5">
+              <span className="h-2 w-2 rounded-full bg-blue-500" />
+              <span>{latency ? `${latency}ms latency` : "Latency checking..."}</span>
             </div>
-            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
-              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Mail</span>
-              <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Resend Active
-              </span>
+            {/* Mail */}
+            <div className="flex items-center gap-1.5 md:border-l md:border-slate-200 md:pl-5">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span>Emails active (Resend)</span>
             </div>
-            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
-              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Env</span>
-              <span className="font-bold text-slate-700">
-                {process.env.NODE_ENV === "production" ? "Production" : "Development"}
-              </span>
+            {/* Env */}
+            <div className="flex items-center gap-1.5 md:border-l md:border-slate-200 md:pl-5">
+              <span className="h-2 w-2 rounded-full bg-violet-500" />
+              <span>{process.env.NODE_ENV === "production" ? "Production" : "Development"}</span>
             </div>
-            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
-              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Synced</span>
-              <span className="font-bold text-slate-700">
-                {formatLastSync(lastSyncedAt)}
-              </span>
+            {/* Synced */}
+            <div className="flex items-center gap-1.5 md:border-l md:border-slate-200 md:pl-5 text-slate-500 font-medium">
+              <Clock size={12} className="text-slate-400" />
+              <span>Synced {formatLastSync(lastSyncedAt)}</span>
             </div>
           </div>
           <button
@@ -340,9 +330,8 @@ export function AdminDashboardClient() {
         {/* Create Account Panel (Full-Width bento card) */}
         <section
           id="create-account-section"
-          className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_35px_rgba(66,133,244,0.08)] flex flex-col justify-between"
+          className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between"
         >
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#4285F4] via-blue-500 to-indigo-500" />
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
               Create account
