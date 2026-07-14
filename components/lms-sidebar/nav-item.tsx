@@ -169,7 +169,7 @@ export function ModuleList({
                   return (
                     <div
                       key={chapter.id}
-                      className="lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm opacity-70"
+                      className="lms-chapter-item flex items-center justify-between rounded-xl px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm opacity-70"
                       aria-label={`${chapter.title} locked. Complete previous chapter quiz to unlock.`}
                       title="Complete previous chapter quiz to unlock"
                     >
@@ -195,8 +195,9 @@ export function ModuleList({
                     onClick={onNavigate}
                   >
                     <div
-                      className={`lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm ${isActive ? "lms-chapter-item-active font-medium" : ""
-                        }`}
+                      className={`lms-chapter-item flex items-center justify-between rounded-xl px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm ${
+                        isActive ? "lms-chapter-item-active font-semibold" : ""
+                      }`}
                     >
                       <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
                         {isChapterDone ? (

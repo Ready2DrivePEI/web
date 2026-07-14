@@ -332,7 +332,6 @@
 
   .lms-chapter-item-active {
     background-color: var(--lms-active-bg);
-    border-left-color: var(--lms-accent-2);
     color: var(--lms-accent);
   }
 
