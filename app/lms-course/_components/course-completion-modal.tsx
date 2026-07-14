@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckCircle, Download, Copy, PartyPopper, X, Loader2 } from "lucide-react";
-import { useCertificateStatus } from "../_hooks/useCertificateStatus";
+import { CheckCircle, PartyPopper, X, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CourseCompletionModalProps {
@@ -18,16 +17,7 @@ export function CourseCompletionModal({
   courseName = "Ready2Drive PEI Driver's Education",
   completionDate,
 }: CourseCompletionModalProps) {
-  const [isCopied, setIsCopied] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  
-  const { 
-    loading, 
-    error, 
-    exists, 
-    certificateUrl, 
-    refetch 
-  } = useCertificateStatus(isOpen);
 
   useEffect(() => {
     setTimeout(() => setIsMounted(true), 0);
@@ -38,9 +28,6 @@ export function CourseCompletionModal({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-      // We reset isCopied here when the modal closes
-      // Wrap in setTimeout to avoid synchronous state update in effect warning
-      setTimeout(() => setIsCopied(false), 0);
     }
     return () => {
       document.body.style.overflow = "unset";
@@ -49,49 +36,11 @@ export function CourseCompletionModal({
 
   if (!isMounted || !isOpen) return null;
 
-  const handleCopyLink = async () => {
-    if (!certificateUrl || loading) return;
-
-    try {
-      await navigator.clipboard.writeText(certificateUrl);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch {
-      // Error handling for copy is local to the component
-    }
-  };
-
-  const handleDownload = () => {
-    if (!certificateUrl || loading) return;
-
-    const anchor = document.createElement("a");
-    anchor.href = certificateUrl;
-    anchor.download = "certificate.pdf";
-    anchor.rel = "noopener noreferrer";
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
-  };
-
-  const handleGetCertificate = () => {
-    if (!certificateUrl || loading) return;
-    window.open(certificateUrl, "_blank", "noopener,noreferrer");
-  };
-
-  const handleRetry = () => {
-    if (loading) return;
-    refetch();
-  };
-
   const displayDate = completionDate || new Date().toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric"
   });
-
-  const hasCertificate = exists && !!certificateUrl;
-  const disableMain = loading || !hasCertificate;
-  const disableSecondary = loading || !hasCertificate;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
@@ -121,7 +70,6 @@ export function CourseCompletionModal({
             onClick={onClose}
             className="absolute right-4 top-4 rounded-full p-1.5 text-[color:var(--lms-text-muted)] hover:bg-[color:var(--lms-active-bg)] hover:text-[color:var(--lms-text)] transition-colors z-10"
             aria-label="Close modal"
-            disabled={loading}
           >
             <X className="h-5 w-5" />
           </button>
@@ -145,7 +93,7 @@ export function CourseCompletionModal({
             </p>
 
             {/* Subtle Course Details */}
-            <div className="mb-10 flex w-full flex-col items-center justify-center gap-1.5 border-y border-[color:var(--lms-border)] py-4 text-xs text-[color:var(--lms-text-muted)]">
+            <div className="mb-8 flex w-full flex-col items-center justify-center gap-1.5 border-y border-[color:var(--lms-border)] py-4 text-xs text-[color:var(--lms-text-muted)]">
               <div className="flex items-center gap-2">
                 <span className="uppercase tracking-wider opacity-70">Course</span>
                 <span className="font-medium text-[color:var(--lms-text)] opacity-90">{courseName}</span>
@@ -156,69 +104,33 @@ export function CourseCompletionModal({
               </div>
             </div>
 
+            {/* Certificate Information */}
+            <div className="mb-8 flex w-full items-start gap-4 rounded-2xl border border-green-500/20 bg-green-500/5 dark:bg-green-500/10 px-5 py-4 text-left">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-500/15 text-green-600 dark:text-green-400">
+                <Award className="h-6 w-6" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-base font-bold text-green-700 dark:text-green-500">Certificate Delivery</p>
+                <p className="mt-1 text-sm leading-relaxed text-[color:var(--lms-text)] opacity-90">
+                  Your official course completion certificate will be provided directly by your Ready2Drive instructor.
+                </p>
+              </div>
+            </div>
+
             {/* Actions */}
-            {loading ? (
-              <div className="flex w-full flex-col items-center justify-center gap-3 px-4 py-6">
-                <Loader2 className="h-6 w-6 animate-spin text-[color:var(--lms-text-muted)]" />
-                <p className="text-sm text-[color:var(--lms-text-muted)]">Checking your certificate...</p>
-              </div>
-            ) : (
-              <div className="flex w-full flex-col gap-4 px-4">
-                {!hasCertificate && (
-                  <p className="text-sm text-[color:var(--lms-text-muted)]">Certificate will be available soon</p>
-                )}
-
-                <Button
-                  onClick={handleGetCertificate}
-                  disabled={disableMain}
-                  className="group relative w-full overflow-hidden rounded-xl bg-green-600 hover:bg-green-700 text-white shadow-md shadow-green-500/10 transition-all hover:scale-[1.01] h-14 text-lg font-bold disabled:opacity-60 disabled:hover:scale-100"
-                >
-                  <span className="relative z-10">{hasCertificate ? "Get Your Certificate" : "Certificate Processing..."}</span>
-                  <div className="absolute inset-0 h-full w-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Button>
-
-                <div className="flex w-full gap-3">
-                  <Button
-                    variant="outline"
-                    onClick={handleDownload}
-                    disabled={disableSecondary}
-                    className="flex-1 rounded-xl border-[color:var(--lms-border)] bg-transparent hover:bg-[color:var(--lms-active-bg)] text-[color:var(--lms-text)] transition-colors h-11"
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    Download
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    onClick={handleCopyLink}
-                    disabled={disableSecondary}
-                    className="flex-1 rounded-xl text-[color:var(--lms-text-muted)] hover:text-[color:var(--lms-text)] hover:bg-[color:var(--lms-active-bg)] transition-colors h-11"
-                  >
-                    <Copy className="mr-2 h-4 w-4" />
-                    {isCopied ? "Copied!" : "Copy Link"}
-                  </Button>
-                </div>
-
-                {error && (
-                  <div className="flex flex-col items-center gap-2">
-                    <p className="text-sm text-red-500">{error}</p>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={handleRetry}
-                      disabled={loading}
-                      className="h-9 rounded-lg"
-                    >
-                      Retry
-                    </Button>
-                  </div>
-                )}
-
-
-              </div>
-            )}
+            <div className="flex w-full flex-col gap-3 px-4">
+              <Button
+                onClick={onClose}
+                className="group relative w-full overflow-hidden rounded-xl bg-green-600 hover:bg-green-700 text-white shadow-md shadow-green-500/10 transition-all hover:scale-[1.01] h-14 text-lg font-bold"
+              >
+                <span className="relative z-10">🎉 Course Complete! Well Done!</span>
+                <div className="absolute inset-0 h-full w-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
+

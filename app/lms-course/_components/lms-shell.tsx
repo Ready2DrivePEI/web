@@ -28,6 +28,7 @@ import { ContinueCoursePrompt } from "@/app/lms-course/_components/continue-cour
 import { StudentAccountMenu } from "@/app/lms-course/_components/student-account-menu"
 import { CourseCompletionModal } from "@/app/lms-course/_components/course-completion-modal"
 import { supabase } from "@/lib/supabase/client"
+import { DevCompletionTest } from "@/app/lms-course/_components/dev-completion-test"
 
 const MOBILE_BREAKPOINT = 640
 const EDGE_SWIPE_ZONE = 32
@@ -250,6 +251,14 @@ export function LMSShell({ children }: { children: ReactNode }) {
     pathChapterIndex > snapshotFurthestIndex ? pathChapterId : snapshotFurthestId
   const effectiveProgressPercent = getProgressPercentForChapter(effectiveFurthestChapterId)
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const dismissed = sessionStorage.getItem("r2d:completion-modal:dismissed") === "true";
+    if (effectiveProgressPercent === 100 && !dismissed) {
+      setShowTestModal(true);
+    }
+  }, [effectiveProgressPercent]);
+
   const furthestChapterHref = effectiveFurthestChapterId
     ? getChapterHref(effectiveFurthestChapterId)
     : null;
@@ -367,13 +376,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
           <div className="mb-3 hidden sm:flex items-center justify-end gap-2">
             {bypassLocksEnabled ? (
               <>
-                <button
-                  type="button"
-                  onClick={() => setShowTestModal(true)}
-                  className="rounded-full bg-purple-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-purple-700 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-400 dark:hover:bg-purple-900/50 transition-colors"
-                >
-                  Test Modal
-                </button>
+                <DevCompletionTest onProgressUpdate={setProgressSnapshot} />
                 <span className="lms-progress-pill rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide">
                   Dev Preview Mode
                 </span>
@@ -394,7 +397,10 @@ export function LMSShell({ children }: { children: ReactNode }) {
 
       <CourseCompletionModal 
         isOpen={showTestModal} 
-        onClose={() => setShowTestModal(false)} 
+        onClose={() => {
+          setShowTestModal(false);
+          sessionStorage.setItem("r2d:completion-modal:dismissed", "true");
+        }} 
       />
     </div>
   )
