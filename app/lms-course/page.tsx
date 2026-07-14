@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import {
   Play,
   BookOpen,
@@ -16,6 +17,25 @@ import { getFirstChapterId, getChapterHref } from "@/app/lms-course/data/modules
 export default function LMSHome() {
   const firstChapterId = getFirstChapterId();
   const startHref = firstChapterId ? (getChapterHref(firstChapterId) ?? "/lms-course") : "/lms-course";
+ 
+  const [hasStarted, setHasStarted] = useState(false);
+  const [targetHref, setTargetHref] = useState(startHref);
+ 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const raw = localStorage.getItem("r2d:progress:last-path");
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (parsed.path && parsed.path.startsWith("/lms-course")) {
+          setHasStarted(true);
+          setTargetHref(parsed.path);
+        }
+      } catch {
+        // Fallback
+      }
+    }
+  }, [startHref]);
 
   return (
     <div className="max-w-5xl">
@@ -117,14 +137,14 @@ export default function LMSHome() {
             <div className="relative z-10">
               <h2 className="mb-2 text-2xl font-black italic">START YOUR ENGINE</h2>
               <p className="mb-8 font-medium opacity-90">
-                Pick the first lesson from the sidebar to begin your journey toward your driving license.
+                Launch the course content viewer to begin or resume your journey toward your driving license.
               </p>
               <Link
-                href={startHref}
+                href={targetHref}
                 className="lms-home-cta-chip inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition-transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none"
               >
                 <ArrowRight className="h-4 w-4" />
-                Select a Module to Start
+                {hasStarted ? "Resume Course" : "Start Course"}
               </Link>
             </div>
             <Play className="absolute -right-4 -bottom-4 h-32 w-32 opacity-10 rotate-12" />
