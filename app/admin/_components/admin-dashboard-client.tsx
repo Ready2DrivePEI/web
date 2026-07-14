@@ -278,7 +278,7 @@ export function AdminDashboardClient() {
       </header>
 
       <main className="mx-auto max-w-6xl space-y-8 px-6 pb-16 pt-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
           {/* Left Column (1/3 width): Diagnostic & Metric Cards stacked vertically */}
           <div className="flex flex-col gap-4">
             {/* Supabase Status Card */}
@@ -347,7 +347,7 @@ export function AdminDashboardClient() {
           {/* Right Column: Create Account Form */}
           <section
             id="create-account-section"
-            className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between"
+            className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
           >
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
