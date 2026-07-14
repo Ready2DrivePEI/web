@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronDown, LogOut, UserCircle2, ExternalLink } from "lucide-react";
+import { ChevronDown, LogOut, UserCircle2, House } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 
 function getEmailName(value: string): string {
@@ -123,24 +123,26 @@ export function StudentAccountMenu() {
 
           <div className="my-2 h-px bg-[color:var(--lms-border)]" />
 
-          <Link
-            href="/"
-            onClick={() => setIsOpen(false)}
-            className="inline-flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-medium text-[color:var(--lms-text)] hover:text-[color:var(--lms-accent)] transition-colors hover:bg-[color:var(--lms-active-bg)] cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none"
-          >
-            <ExternalLink className="h-4 w-4 text-[color:var(--lms-text-muted)]" />
-            Landing page
-          </Link>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl px-2.5 py-2 text-center text-sm font-medium text-[color:var(--lms-danger)] transition-colors hover:bg-red-500/10 disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--lms-danger)] outline-none"
+            >
+              <LogOut className="h-4 w-4" />
+              {isLoggingOut ? "Logging out" : "Log out"}
+            </button>
 
-          <button
-            type="button"
-            onClick={handleLogout}
-            disabled={isLoggingOut}
-            className="inline-flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-medium text-[color:var(--lms-danger)] transition-colors hover:bg-red-500/10 disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--lms-danger)] outline-none"
-          >
-            <LogOut className="h-4 w-4" />
-            {isLoggingOut ? "Logging out..." : "Log out"}
-          </button>
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl px-2.5 py-2 text-center text-sm font-medium text-[color:var(--lms-text)] hover:text-[color:var(--lms-accent)] transition-colors hover:bg-[color:var(--lms-active-bg)] cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none"
+            >
+              <House className="h-4 w-4" />
+              Home
+            </Link>
+          </div>
         </div>
       ) : null}
     </div>

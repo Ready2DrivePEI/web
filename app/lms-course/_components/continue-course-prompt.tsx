@@ -23,8 +23,18 @@ export function ContinueCoursePrompt({
 
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/45 p-4">
-      <div className="lms-modal-card w-full max-w-md rounded-2xl border p-6 shadow-xl">
-        <h2 className="text-lg font-bold">Would you like to continue where you left off?</h2>
+      <div className="lms-modal-card relative w-full max-w-md rounded-2xl border p-6 shadow-xl">
+        {/* Top-Right Dismiss Button */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-4.5 right-4.5 rounded-xl p-1 text-muted-foreground hover:bg-muted/10 hover:text-foreground transition-colors focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
+          aria-label="Close dialog"
+        >
+          <X className="h-4.5 w-4.5" />
+        </button>
+
+        <h2 className="text-lg font-bold pr-8">Would you like to continue where you left off?</h2>
 
         <div className="mt-5 flex flex-wrap gap-3">
           <Button
@@ -45,15 +55,6 @@ export function ContinueCoursePrompt({
               Furthest chapter
             </Button>
           ) : null}
-
-          <Button
-            variant="ghost"
-            className="text-muted-foreground hover:text-foreground flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
-            onClick={onClose}
-          >
-            <X className="h-4 w-4" />
-            Close
-          </Button>
         </div>
       </div>
     </div>
