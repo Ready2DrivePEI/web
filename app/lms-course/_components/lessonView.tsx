@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ContentBlock } from "@/app/lms-course/data/modules/module1/chapter1";
+import { ImageOff } from "lucide-react";
 
 type CalloutVariant = "info" | "warning" | "danger";
 type ImageLayout = "quarter" | "half" | "threeQuarter" | "full";
@@ -109,7 +110,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                     href={inlineLink.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="text-[#0000EE] underline underline-offset-4"
+                    className="text-[var(--lms-accent)] hover:text-[var(--lms-accent)] underline underline-offset-4"
                   >
                     {inlineLink.label}
                   </a>
@@ -172,12 +173,10 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
               data-lms-media-layout={layout}
               className={`lms-image-frame lms-media-block my-6 overflow-hidden rounded-2xl border p-2 ${imageLayoutClasses[layout]}`}
             >
-              <div className="flex min-h-44 flex-col items-center justify-center gap-3 rounded-xl border border-dashed px-5 py-8 text-center sm:min-h-52">
-                <p className="lms-muted text-xs font-semibold uppercase tracking-wide">
-                  Image Placeholder
-                </p>
-                <p className="max-w-[60ch] whitespace-pre-wrap text-sm leading-6 sm:text-base">
-                  {block.prompt}
+              <div className="flex min-h-32 flex-col items-center justify-center gap-2 rounded-xl bg-muted/10 px-5 py-6 text-center">
+                <ImageOff className="h-7 w-7 text-muted-foreground/60" />
+                <p className="text-sm font-semibold text-muted-foreground">
+                  Visual guide coming soon
                 </p>
               </div>
             </figure>
@@ -258,7 +257,7 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
                 href={block.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-[#0000EE] underline underline-offset-4"
+                className="text-[var(--lms-accent)] hover:text-[var(--lms-accent)] underline underline-offset-4"
               >
                 {block.label}
               </a>

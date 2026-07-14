@@ -10,8 +10,13 @@ import {
   Clock,
   ArrowRight,
 } from "lucide-react"
+import Link from "next/link"
+import { getFirstChapterId, getChapterHref } from "@/app/lms-course/data/modules"
 
 export default function LMSHome() {
+  const firstChapterId = getFirstChapterId();
+  const startHref = firstChapterId ? (getChapterHref(firstChapterId) ?? "/lms-course") : "/lms-course";
+
   return (
     <div className="max-w-5xl">
       <div className="max-w-4xl">
@@ -108,16 +113,19 @@ export default function LMSHome() {
             </div>
           </section>
 
-          <div className="lms-home-cta relative overflow-hidden rounded-3xl p-8 lg:translate-y-4">
+          <div className="lms-home-cta relative overflow-hidden rounded-3xl p-8">
             <div className="relative z-10">
               <h2 className="mb-2 text-2xl font-black italic">START YOUR ENGINE</h2>
               <p className="mb-8 font-medium opacity-90">
                 Pick the first lesson from the sidebar to begin your journey toward your driving license.
               </p>
-              <div className="lms-home-cta-chip flex w-fit items-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
+              <Link
+                href={startHref}
+                className="lms-home-cta-chip inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition-transform hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none"
+              >
                 <ArrowRight className="h-4 w-4" />
                 Select a Module to Start
-              </div>
+              </Link>
             </div>
             <Play className="absolute -right-4 -bottom-4 h-32 w-32 opacity-10 rotate-12" />
           </div>

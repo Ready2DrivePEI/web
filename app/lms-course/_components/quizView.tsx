@@ -152,7 +152,7 @@ export function QuizView({
                   </p>
                 ) : null}
                 <div>
-                  <Button variant="outline" asChild className="lms-button-outline text-black hover:text-black">
+                  <Button variant="outline" asChild className="lms-button-outline">
                     <Link href={`${reviewLessonBasePath}/${question.sourceLessonId}`}>
                       {isCorrect ? 'Review lesson' : 'Go to lesson'}
                     </Link>

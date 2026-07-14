@@ -168,8 +168,9 @@ export function ModuleList({
                   return (
                     <div
                       key={chapter.id}
-                      className="lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm opacity-50"
-                      aria-label={`${chapter.title} locked`}
+                      className="lms-chapter-item flex items-center justify-between rounded-r-lg border-l-2 border-transparent px-2 py-1.5 sm:px-4 sm:py-2.5 text-xs sm:text-sm opacity-70"
+                      aria-label={`${chapter.title} locked. Complete previous chapter quiz to unlock.`}
+                      title="Complete previous chapter quiz to unlock"
                     >
                       <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
                         <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 opacity-65" />
@@ -177,7 +178,7 @@ export function ModuleList({
                       </div>
                       <TruncatedLabel
                         text="locked"
-                        className="text-[8px] sm:text-[9px] font-bold uppercase opacity-60"
+                        className="text-[10px] font-bold uppercase opacity-60"
                         containerClassName="ml-1 sm:ml-3 max-w-10 sm:max-w-20 shrink-0"
                       />
                     </div>

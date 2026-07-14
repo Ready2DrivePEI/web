@@ -8,6 +8,7 @@ type LMSTheme = "dark" | "light"
 
 interface DrivingSidebarProps {
   isCollapsed: boolean
+  mobileDrawerOpen?: boolean
   theme: LMSTheme
   onToggleCollapse: () => void
   onToggleTheme: () => void
@@ -18,6 +19,7 @@ interface DrivingSidebarProps {
 
 export default function DrivingSidebar({
   isCollapsed,
+  mobileDrawerOpen = false,
   theme,
   onToggleCollapse,
   onToggleTheme,
@@ -25,18 +27,24 @@ export default function DrivingSidebar({
   progressPercent,
   furthestChapterId,
 }: DrivingSidebarProps) {
+  const showCollapsedHeader = isCollapsed && !mobileDrawerOpen;
+  const activeCollapsed = mobileDrawerOpen ? false : isCollapsed;
 
   return (
     <aside
       data-lms-sidebar
-      className={`lms-sidebar sticky top-0 z-40 flex h-screen shrink-0 flex-col border-r transition-[width] duration-300 ${
-        isCollapsed ? "w-10 sm:w-20" : "w-[min(85vw,22rem)] sm:w-80"
+      className={`lms-sidebar h-screen flex-col border-r transition-[transform,width] duration-300 ${
+        mobileDrawerOpen
+          ? "fixed inset-y-0 left-0 z-50 w-[min(85vw,22rem)] flex translate-x-0 sm:sticky sm:w-80"
+          : isCollapsed
+            ? "hidden sm:flex w-10 sm:w-20"
+            : "hidden sm:flex sm:w-80"
       }`}
     >
       
       {/* Sidebar Header */}
-      <div className={`lms-border flex items-center border-b ${isCollapsed ? "justify-center px-1 py-3 sm:px-3 sm:py-4" : "justify-between gap-2 px-2 py-4 sm:px-6 sm:py-6"}`}>
-        {isCollapsed ? (
+      <div className={`lms-border flex items-center border-b ${showCollapsedHeader ? "justify-center px-1 py-3 sm:px-3 sm:py-4" : "justify-between gap-2 px-2 py-4 sm:px-6 sm:py-6"}`}>
+        {showCollapsedHeader ? (
           <button
             type="button"
             onClick={onToggleCollapse}
@@ -54,13 +62,13 @@ export default function DrivingSidebar({
               </div>
               <div className="min-w-0">
                 <h1 className="truncate text-xs sm:text-base font-semibold leading-tight tracking-tight">Ready2Drive</h1>
-                <p className="lms-accent truncate text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.12em] sm:tracking-[0.18em]">Theory Course</p>
+                <p className="lms-accent truncate text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.18em]">Theory Course</p>
               </div>
             </div>
             <button
               type="button"
               onClick={onToggleCollapse}
-              className="lms-module-trigger flex h-8 w-8 shrink-0 items-center justify-center rounded-xl sm:h-10 sm:w-10"
+              className="lms-module-trigger hidden sm:flex h-8 w-8 shrink-0 items-center justify-center rounded-xl sm:h-10 sm:w-10"
               aria-label="Collapse sidebar"
               title="Collapse sidebar"
             >
@@ -72,7 +80,7 @@ export default function DrivingSidebar({
 
       {/* Main Module Navigation */}
       <ModuleList
-        isCollapsed={isCollapsed}
+        isCollapsed={activeCollapsed}
         furthestChapterId={furthestChapterId}
         onNavigate={onMobileNavigate}
       />

@@ -13,6 +13,7 @@ npm install
 ```bash
 npm run dev
 ```
+4. **Local Auth Testing (Inbucket Email Dashboard)**: If you trigger signup/sign-in verification emails locally using the Supabase CLI, you can view the sent emails in the mock SMTP inbox dashboard at `http://localhost:54321/monitor` (under the "Inbucket" tab).
 
 ## Vercel Deployment
 

@@ -10,6 +10,16 @@ When making changes, prefer practical improvements that make the product easier 
 - Product shape: marketing landing + online-course info + LMS experience (driving school).
 - Priority: preserve continuity across these surfaces unless the task explicitly asks for a redesign.
 
+## Project Documentation & Custom Skills
+Before editing code or performing tasks, refer to the following local reference files and workspace skills:
+- **Project Structure & Map**: [ARCHITECTURE.md](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/docs/ARCHITECTURE.md) (contains folder tree, conventions, static module schemas, and AI prompt template).
+- **Supabase Auth & Database Model**: [auth.md](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/docs/backend/auth.md) (defines the core auth architecture, tables schema, JWT flows, and RLS rules).
+- **Styling Guidelines**: [STYLE.md](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/docs/STYLE.md) (explains OKLCH layout variables and the custom `.lms-` class system used to style the LMS shell).
+- **Component Catalog**: [COMPONENTS.md](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/docs/COMPONENTS.md) (lists existing reusable custom components and shadcn installation guidelines).
+- **Workspace Custom Skills**: 
+  - [Supabase Integration Rules](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/.agents/skills/supabase/SKILL.md) (safety check for storage, views, JWT metadata, and direct DB modifications).
+  - [Postgres Best Practices](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/.agents/skills/supabase-postgres-best-practices/SKILL.md) (guide for query performance, index strategies, and concurrency patterns).
+
 ## General behavior
 - Act like a strong senior engineer with product sense.
 - Complete the task end-to-end when possible, instead of stopping at analysis.
@@ -91,6 +101,7 @@ When making changes, prefer practical improvements that make the product easier 
 - Do not add new packages unless necessary.
 - If adding a package, choose a widely used and actively maintained one.
 - Briefly justify any new dependency.
+- **shadcn/ui Primitives**: When adding new UI base elements (such as `dialog`, `progress`, etc.), always install them using the shadcn CLI: `npx shadcn@latest add <component-name>` instead of writing custom elements or copy-pasting from other sources.
 
 ## Commands
 - Install: `npm install`
@@ -113,3 +124,28 @@ When summarizing completed work:
 - say why it changed
 - mention any important tradeoffs or follow-up issues
 - keep it concise and useful
+
+## Agent Workflow & Execution Skills
+
+Use available agent workflow skills when they improve reliability, planning, or implementation quality.
+
+### When to use structured execution workflows
+Prefer `superpowers:subagent-driven-development` or `superpowers:executing-plans` for:
+- Multi-file feature implementations
+- Refactors affecting multiple components
+- Database/auth changes
+- Complex UI changes with multiple states
+- Tasks requiring investigation before implementation
+- Changes where verification steps are important
+
+For small isolated changes, simple bug fixes, or minor styling adjustments, proceed directly without unnecessary planning overhead.
+
+### Execution expectations
+When using a structured workflow:
+- Break work into clear implementation steps
+- Verify assumptions against the existing codebase before editing
+- Keep changes scoped to the requested task
+- Run relevant checks after implementation
+- Report what changed, why it changed, and any remaining risks
+
+Prefer completing the implementation over only providing analysis or a plan.

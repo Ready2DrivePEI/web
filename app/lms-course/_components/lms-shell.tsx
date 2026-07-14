@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { useSyncExternalStore } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { House } from "lucide-react"
+import { House, Menu } from "lucide-react"
 import Sidebar from "@/components/lms-sidebar"
 import {
   COLLAPSE_EVENT,
@@ -45,6 +45,56 @@ export function LMSShell({ children }: { children: ReactNode }) {
     getCollapseSnapshot,
     () => false,
   )
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false)
+  const menuTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const isFirstRender = useRef(true)
+
+  // Close drawer on path changes
+  useEffect(() => {
+    setMobileDrawerOpen(false)
+  }, [pathname])
+
+  // Lock body scroll on drawer open
+  useEffect(() => {
+    if (typeof document === "undefined") return
+    if (mobileDrawerOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = ""
+      }
+    }
+  }, [mobileDrawerOpen])
+
+  // Handle accessibility focus transfers
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    if (!mobileDrawerOpen) {
+      menuTriggerRef.current?.focus()
+    } else {
+      const sidebarEl = document.querySelector("[data-lms-sidebar]") as HTMLElement | null
+      if (sidebarEl) {
+        sidebarEl.setAttribute("tabindex", "-1")
+        sidebarEl.focus()
+      }
+    }
+  }, [mobileDrawerOpen])
+
+  // Close drawer on Escape
+  useEffect(() => {
+    if (!mobileDrawerOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileDrawerOpen(false)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [mobileDrawerOpen])
 
   const theme = useSyncExternalStore<LMSTheme>(
     (onStoreChange) => subscribeToPreference(THEME_EVENT, onStoreChange),
@@ -114,7 +164,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
   const handleMobileNavigate = () => {
     if (typeof window === "undefined") return
     if (window.innerWidth < MOBILE_BREAKPOINT) {
-      collapseSidebar()
+      setMobileDrawerOpen(false)
     }
   }
 
@@ -128,12 +178,12 @@ export function LMSShell({ children }: { children: ReactNode }) {
     const startX = event.clientX
     const startY = event.clientY
 
-    if (isCollapsed && startX <= EDGE_SWIPE_ZONE) {
+    if (!mobileDrawerOpen && startX <= EDGE_SWIPE_ZONE) {
       sidebarGestureRef.current = { type: "open", startX, startY }
       return
     }
 
-    if (!isCollapsed && startedInSidebar) {
+    if (mobileDrawerOpen && startedInSidebar) {
       sidebarGestureRef.current = { type: "close", startX, startY }
     }
   }
@@ -148,11 +198,11 @@ export function LMSShell({ children }: { children: ReactNode }) {
     if (deltaY > MAX_VERTICAL_DRIFT) return
 
     if (gesture.type === "open" && deltaX >= MIN_SWIPE_DISTANCE) {
-      setSidebarCollapsed(false)
+      setMobileDrawerOpen(true)
     }
 
     if (gesture.type === "close" && deltaX <= -MIN_SWIPE_DISTANCE) {
-      setSidebarCollapsed(true)
+      setMobileDrawerOpen(false)
     }
   }
 
@@ -242,15 +292,41 @@ export function LMSShell({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className="lms-shell flex min-h-screen"
+      className={`lms-shell flex flex-col sm:flex-row h-dvh overflow-hidden ${
+        theme === "dark" ? "dark" : ""
+      }`}
       data-lms-theme={theme}
       data-sidebar-collapsed={isCollapsed}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerCancel}
     >
+      {/* Mobile Top Navbar */}
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b lms-border lms-surface px-4 sm:hidden">
+        <div className="flex items-center gap-3">
+          <button
+            ref={menuTriggerRef}
+            id="mobile-menu-trigger"
+            type="button"
+            onClick={() => setMobileDrawerOpen(true)}
+            className="lms-module-trigger flex h-9 w-9 items-center justify-center rounded-xl"
+            aria-label="Open navigation menu"
+            aria-expanded={mobileDrawerOpen}
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="lms-progress-pill rounded-full px-2 py-0.5 text-xs font-semibold">
+            {effectiveProgressPercent}%
+          </span>
+          <StudentAccountMenu />
+        </div>
+      </header>
+
       <Sidebar
         isCollapsed={isCollapsed}
+        mobileDrawerOpen={mobileDrawerOpen}
         theme={theme}
         onToggleCollapse={toggleCollapse}
         onToggleTheme={toggleTheme}
@@ -259,15 +335,14 @@ export function LMSShell({ children }: { children: ReactNode }) {
         furthestChapterId={effectiveFurthestChapterId}
       />
 
-      {!isCollapsed ? (
+      {mobileDrawerOpen && (
         <button
           type="button"
-          className="fixed inset-y-0 right-0 left-[var(--lms-sidebar-width)] z-30 cursor-default bg-transparent sm:hidden"
-          aria-label="Collapse sidebar"
-          tabIndex={-1}
-          onClick={collapseSidebar}
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs transition-opacity duration-300 sm:hidden"
+          aria-label="Close navigation menu"
+          onClick={() => setMobileDrawerOpen(false)}
         />
-      ) : null}
+      )}
 
       <ContinueCoursePrompt
         open={showContinuePrompt}
@@ -279,7 +354,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
 
       <main className="min-w-0 flex-1 overflow-y-auto px-2.5 py-3 sm:p-4 sm:pl-20">
         <div className="min-w-0">
-          <div className="mb-3 flex items-center justify-end gap-2">
+          <div className="mb-3 hidden sm:flex items-center justify-end gap-2">
             {bypassLocksEnabled ? (
               <>
                 <button
