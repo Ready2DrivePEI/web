@@ -177,11 +177,6 @@ export function ModuleList({
                         <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 opacity-65" />
                         <TruncatedLabel text={chapter.title} className="lms-chapter-title text-left" />
                       </div>
-                      <TruncatedLabel
-                        text="locked"
-                        className="text-[10px] font-bold uppercase opacity-60"
-                        containerClassName="ml-1 sm:ml-3 max-w-10 sm:max-w-20 shrink-0"
-                      />
                     </div>
                   );
                 }
@@ -207,13 +202,6 @@ export function ModuleList({
                         )}
                         <TruncatedLabel text={chapter.title} className="lms-chapter-title text-left" />
                       </div>
-                      <TruncatedLabel
-                        text={chapter.type}
-                        className={`text-[8px] sm:text-[9px] font-medium uppercase transition-opacity group-hover/item:opacity-100 ${
-                          isAssessment ? "text-[var(--lms-text)] opacity-80" : "opacity-60"
-                        }`}
-                        containerClassName="ml-1 sm:ml-3 max-w-10 sm:max-w-20 shrink-0"
-                      />
                     </div>
                   </Link>
                 );
