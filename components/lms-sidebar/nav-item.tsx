@@ -98,7 +98,10 @@ export function ModuleList({
   return (
     <nav className="custom-scrollbar flex-1 space-y-2 overflow-y-auto px-2 py-3 sm:px-4 sm:py-6">
       {modules.map((module) => {
-        const isOpen = Boolean(manuallyOpenModules[module.slug]) || activeModuleSlug === module.slug;
+        const isOpen =
+          manuallyOpenModules[module.slug] !== undefined
+            ? manuallyOpenModules[module.slug]
+            : activeModuleSlug === module.slug;
         const ModuleIcon = module.icon || Car; // Fallback icon
         const completedCount = module.chapters.filter(
           (chapter) => getChapterIndex(chapter.id) <= furthestIndex,
