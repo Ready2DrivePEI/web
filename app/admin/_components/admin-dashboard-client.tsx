@@ -279,7 +279,27 @@ export function AdminDashboardClient() {
 
       <main className="mx-auto max-w-6xl space-y-8 px-6 pb-16 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column (1/3 width): Supabase Status Card */}
+          {/* Left Column (2/3 width): Create Account Form */}
+          <section
+            id="create-account-section"
+            className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between h-full"
+          >
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
+                Create account
+              </p>
+              <h3 className="mt-2 text-xl font-semibold text-slate-900">
+                Add a new student or admin
+              </h3>
+              <p className="mt-1 text-sm text-slate-600">
+                Create users in Supabase Auth and store access rules in `profiles`.
+              </p>
+            </div>
+
+            <CreateAccountForm />
+          </section>
+
+          {/* Right Column (1/3 width): Supabase Status Card */}
           <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/40 p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between h-full min-h-[340px]">
             <div className="pointer-events-none absolute -top-20 -right-16 h-32 w-32 rounded-full bg-blue-100/30 blur-2xl" />
             <div className="flex-1 flex flex-col justify-between my-2">
@@ -331,26 +351,6 @@ export function AdminDashboardClient() {
                 {isRefreshing ? "Syncing..." : "Refresh data"}
               </button>
             </div>
-          </section>
-
-          {/* Right Column (2/3 width): Create Account Form */}
-          <section
-            id="create-account-section"
-            className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between h-full"
-          >
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
-                Create account
-              </p>
-              <h3 className="mt-2 text-xl font-semibold text-slate-900">
-                Add a new student or admin
-              </h3>
-              <p className="mt-1 text-sm text-slate-600">
-                Create users in Supabase Auth and store access rules in `profiles`.
-              </p>
-            </div>
-
-            <CreateAccountForm />
           </section>
         </div>
 
