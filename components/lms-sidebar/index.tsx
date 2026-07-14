@@ -1,6 +1,7 @@
 "use client"
 
 import { PanelLeftClose, PanelLeftOpen, TrafficCone } from "lucide-react"
+import Link from "next/link"
 import { ModuleList } from "./nav-item"
 import { ProgressFooter } from "./progress-section"
 
@@ -56,7 +57,11 @@ export default function DrivingSidebar({
           </button>
         ) : (
           <>
-            <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <Link
+              href="/lms-course"
+              className="flex min-w-0 items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] rounded-lg outline-none"
+              onClick={onMobileNavigate}
+            >
               <div className="lms-icon-chip rounded-xl p-1.5 shadow-sm shrink-0 sm:p-2">
                 <TrafficCone className="h-4 w-4 sm:h-5 sm:w-5" />
               </div>
@@ -64,7 +69,7 @@ export default function DrivingSidebar({
                 <h1 className="truncate text-xs sm:text-base font-semibold leading-tight tracking-tight">Ready2Drive</h1>
                 <p className="lms-accent truncate text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.18em]">Theory Course</p>
               </div>
-            </div>
+            </Link>
             <button
               type="button"
               onClick={onToggleCollapse}

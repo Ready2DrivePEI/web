@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ContentBlock } from "@/app/lms-course/data/modules/module1/chapter1";
-import { ImageOff } from "lucide-react";
+import { ImageOff, Lightbulb, AlertTriangle, ShieldAlert } from "lucide-react";
 
 type CalloutVariant = "info" | "warning" | "danger";
 type ImageLayout = "quarter" | "half" | "threeQuarter" | "full";
@@ -13,10 +13,34 @@ const calloutStyles: Record<CalloutVariant, string> = {
   danger: "lms-callout-danger",
 };
 
+const calloutIcons: Record<CalloutVariant, React.ComponentType<any>> = {
+  info: Lightbulb,
+  warning: AlertTriangle,
+  danger: ShieldAlert,
+};
+
 const calloutLabels: Record<CalloutVariant, string> = {
-  info: "Note",
-  warning: "Important",
-  danger: "Critical",
+  info: "Study Tip",
+  warning: "Important Notice",
+  danger: "Critical Exam Tip",
+};
+
+const calloutTitleStyles: Record<CalloutVariant, string> = {
+  info: "text-blue-600 dark:text-blue-400",
+  warning: "text-amber-600 dark:text-amber-400",
+  danger: "text-red-600 dark:text-red-400",
+};
+
+const calloutIconStyles: Record<CalloutVariant, string> = {
+  info: "text-blue-600 dark:text-blue-400",
+  warning: "text-amber-600 dark:text-amber-400",
+  danger: "text-red-600 dark:text-red-400",
+};
+
+const calloutIconBgStyles: Record<CalloutVariant, string> = {
+  info: "bg-blue-100/80 dark:bg-blue-900/30",
+  warning: "bg-amber-100/80 dark:bg-amber-900/30",
+  danger: "bg-red-100/80 dark:bg-red-900/30",
 };
 
 const imageLayoutClasses: Record<ImageLayout, string> = {
@@ -233,16 +257,22 @@ export function LessonView({ content }: { content: ContentBlock[] }) {
 
         if (block.type === "callout") {
           const variant: CalloutVariant = block.variant ?? "info";
+          const Icon = calloutIcons[variant];
 
           return (
             <div
               key={idx}
-              className={`lms-callout ${calloutStyles[variant]} border px-4 py-2.5 sm:px-5 sm:py-3`}
+              className={`lms-callout my-6 flex gap-4 rounded-2xl border p-4 sm:p-5 border-l-[6px] ${calloutStyles[variant]}`}
             >
-              <p className="text-sm font-semibold uppercase tracking-wide">
-                {calloutLabels[variant]}
-              </p>
-              <p className="mt-1 whitespace-pre-wrap text-base leading-6">{block.value}</p>
+              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${calloutIconBgStyles[variant]}`}>
+                <Icon className={`h-5 w-5 ${calloutIconStyles[variant]}`} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className={`text-xs font-bold uppercase tracking-wider mb-1 ${calloutTitleStyles[variant]}`}>
+                  {calloutLabels[variant]}
+                </p>
+                <p className="whitespace-pre-wrap text-sm leading-6 sm:text-base">{block.value}</p>
+              </div>
             </div>
           );
         }

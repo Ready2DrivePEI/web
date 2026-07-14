@@ -1,4 +1,4 @@
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, Compass } from "lucide-react"
 
 /**
  * ProgressFooter Component
@@ -59,7 +59,8 @@ export function ProgressFooter({
       </div>
       
       <div className="mt-2.5 sm:mt-3 flex items-center justify-between gap-1 sm:gap-2">
-        <p className="lms-muted text-[10px] italic hidden sm:block">
+        <p className="lms-muted text-[10px] italic hidden sm:flex items-center gap-1">
+          <Compass className="h-3.5 w-3.5 shrink-0" />
           Begin your first lesson to start tracking progress
         </p>
         <button

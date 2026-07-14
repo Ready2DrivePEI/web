@@ -125,8 +125,9 @@ export function ModuleList({
               <button
                 type="button"
                 aria-label={module.title}
-                className={`lms-module-trigger group/module flex w-full items-center justify-between rounded-xl px-1.5 py-2.5 sm:px-3 sm:py-3 text-xs sm:text-[0.95rem] font-semibold ${isOpen ? "lms-module-trigger-open" : ""
-                  }`}
+                className={`lms-module-trigger group/module flex w-full items-center justify-between rounded-xl px-1.5 py-2.5 sm:px-3 sm:py-3 text-xs sm:text-[0.95rem] font-semibold ${
+                  isOpen ? "lms-module-trigger-open" : ""
+                } ${!hasUnlockedChapter ? "opacity-60 text-muted-foreground" : ""}`}
               >
                 <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
                   {hasUnlockedChapter ? (

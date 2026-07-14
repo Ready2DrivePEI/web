@@ -450,7 +450,7 @@
 
   .lms-floating-footer {
     background-color: var(--lms-footer-bg);
-    background-color: color-mix(in srgb, var(--lms-surface) 88%, transparent);
+    background-color: color-mix(in srgb, var(--lms-surface) 60%, transparent);
     border-color: var(--lms-border);
     border-color: color-mix(in srgb, var(--lms-border) 95%, transparent);
     backdrop-filter: blur(20px);
@@ -512,6 +512,12 @@
   .lms-home-card:hover {
     background-color: var(--lms-hover-bg-strong);
     border-color: var(--lms-border);
+  }
+
+  .lms-modal-card {
+    background-color: var(--lms-surface-2);
+    border-color: var(--lms-border);
+    color: var(--lms-text);
   }
 
   .lms-home-card-copy {
@@ -664,7 +670,7 @@
   }
 
   .lms-progress-fill {
-    background: linear-gradient(90deg, var(--lms-accent), var(--lms-accent-2));
+    background: linear-gradient(90deg, var(--lms-accent), oklch(0.68 0.11 230));
   }
 
   /* Custom sleek sidebar scrollbar */

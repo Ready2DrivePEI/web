@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Bookmark, Zap, X } from "lucide-react";
 
 interface ContinueCoursePromptProps {
   open: boolean;
@@ -18,23 +19,39 @@ export function ContinueCoursePrompt({
   onClose,
 }: ContinueCoursePromptProps) {
   if (!open) return null;
-  const lastOptionLabel = showFurthestOption ? "Where i left off" : "Continue";
+  const lastOptionLabel = showFurthestOption ? "Where I left off" : "Continue";
 
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/45 p-4">
-      <div className="lms-home-card w-full max-w-md rounded-2xl border p-6 shadow-xl">
-        <h2 className="text-lg font-bold">Do you want continue where you left off ?</h2>
+      <div className="lms-modal-card w-full max-w-md rounded-2xl border p-6 shadow-xl">
+        <h2 className="text-lg font-bold">Would you like to continue where you left off?</h2>
 
         <div className="mt-5 flex flex-wrap gap-3">
-          <Button onClick={onContinueLast}>{lastOptionLabel}</Button>
+          <Button
+            onClick={onContinueLast}
+            className="flex items-center gap-1.5 bg-[var(--lms-accent)] hover:bg-[var(--lms-accent)]/90 text-white focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
+          >
+            <Bookmark className="h-4 w-4" />
+            {lastOptionLabel}
+          </Button>
 
           {showFurthestOption ? (
-            <Button variant="outline" className="lms-button-outline" onClick={onContinueFurthest}>
+            <Button
+              variant="outline"
+              className="lms-button-outline flex items-center gap-1.5 text-foreground dark:text-foreground focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
+              onClick={onContinueFurthest}
+            >
+              <Zap className="h-4 w-4" />
               Furthest chapter
             </Button>
           ) : null}
 
-          <Button variant="ghost" onClick={onClose}>
+          <Button
+            variant="ghost"
+            className="text-muted-foreground hover:text-foreground flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
+            onClick={onClose}
+          >
+            <X className="h-4 w-4" />
             Close
           </Button>
         </div>
