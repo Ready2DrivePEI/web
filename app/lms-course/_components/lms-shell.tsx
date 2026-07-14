@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { useSyncExternalStore } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { House, Menu } from "lucide-react"
+import { House, Menu, TrafficCone } from "lucide-react"
 import Sidebar from "@/components/lms-sidebar"
 import {
   COLLAPSE_EVENT,
@@ -302,8 +302,8 @@ export function LMSShell({ children }: { children: ReactNode }) {
       onPointerCancel={handlePointerCancel}
     >
       {/* Mobile Top Navbar */}
-      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b lms-border lms-surface px-4 sm:hidden">
-        <div className="flex items-center gap-3">
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b lms-border bg-[var(--lms-surface)]/75 backdrop-blur-md px-4 sm:hidden">
+        <div className="flex items-center gap-2">
           <button
             ref={menuTriggerRef}
             id="mobile-menu-trigger"
@@ -315,11 +315,24 @@ export function LMSShell({ children }: { children: ReactNode }) {
           >
             <Menu className="h-5 w-5" />
           </button>
+          
+          <Link href="/lms-course" className="flex items-center gap-1.5 ml-0.5">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--lms-active-bg)] text-[var(--lms-accent)] border border-blue-200/40 dark:border-blue-900/30">
+              <TrafficCone className="h-4 w-4 rotate-12" />
+            </span>
+            <span className="text-xs font-bold tracking-tight text-[var(--lms-text)]">
+              Ready2Drive
+            </span>
+          </Link>
         </div>
         <div className="flex items-center gap-3">
-          <span className="lms-progress-pill rounded-full px-2 py-0.5 text-xs font-semibold">
-            {effectiveProgressPercent}%
-          </span>
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-200/50 bg-blue-50/50 px-2 py-0.5 text-[9px] font-bold text-blue-600 dark:border-blue-900/30 dark:bg-blue-950/20 dark:text-blue-400">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
+            </span>
+            <span>{effectiveProgressPercent}% PROGRESS</span>
+          </div>
           <StudentAccountMenu />
         </div>
       </header>

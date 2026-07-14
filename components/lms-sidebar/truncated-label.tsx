@@ -17,6 +17,8 @@ export function TruncatedLabel({
   const labelRef = useRef<HTMLSpanElement>(null);
   const [isTruncated, setIsTruncated] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+
   useEffect(() => {
     const node = labelRef.current;
     if (!node) return;
@@ -39,16 +41,18 @@ export function TruncatedLabel({
 
   return (
     <span
-      className={cn("group/truncate relative min-w-0", containerClassName)}
-      title={isTruncated ? text : undefined}
+      className={cn("relative min-w-0", containerClassName)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onPointerDown={() => setIsHovered(false)}
     >
       <span ref={labelRef} className={cn("block truncate whitespace-nowrap", className)}>
         {text}
       </span>
-      {isTruncated ? (
+      {isTruncated && isHovered ? (
         <span
           role="tooltip"
-          className="pointer-events-none absolute left-0 top-full z-50 mt-1 hidden max-w-80 rounded-md border border-[var(--lms-border)] bg-[var(--lms-surface)] px-2 py-1.5 text-xs leading-5 text-[var(--lms-text)] shadow-lg group-hover/truncate:block group-hover/item:block group-focus-visible/item:block group-hover/module:block group-focus-visible/module:block"
+          className="pointer-events-none absolute left-0 top-full z-50 mt-1 max-w-80 rounded-md border border-[var(--lms-border)] bg-[var(--lms-surface)] px-2 py-1.5 text-xs leading-5 text-[var(--lms-text)] shadow-lg"
         >
           {text}
         </span>
