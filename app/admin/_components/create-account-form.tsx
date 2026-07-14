@@ -118,7 +118,8 @@ export function CreateAccountForm() {
 
   return (
     <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+        {/* Full Name */}
         <div className="space-y-2">
           <label className="text-sm font-semibold text-slate-700" htmlFor="fullName">
             Full name
@@ -133,6 +134,7 @@ export function CreateAccountForm() {
           />
         </div>
 
+        {/* Email */}
         <div className="space-y-2">
           <label className="text-sm font-semibold text-slate-700" htmlFor="email">
             Email
@@ -149,6 +151,70 @@ export function CreateAccountForm() {
           />
         </div>
 
+        {/* Role */}
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="role">
+            Role
+          </label>
+          <select
+            id="role"
+            value={form.role}
+            onChange={handleChange("role")}
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+          >
+            <option value="student">student</option>
+            <option value="admin">admin</option>
+          </select>
+        </div>
+
+        {/* Status */}
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="status">
+            Status
+          </label>
+          <select
+            id="status"
+            value={form.status}
+            onChange={handleChange("status")}
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+          >
+            <option value="active">active</option>
+            <option value="paused">paused</option>
+            <option value="expired">expired</option>
+          </select>
+        </div>
+
+        {/* Access Start */}
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="startAt">
+            Access start
+          </label>
+          <input
+            id="startAt"
+            type="date"
+            required
+            value={form.accessStart}
+            onChange={handleChange("accessStart")}
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+          />
+        </div>
+
+        {/* Access End */}
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="expiresAt">
+            Access end
+          </label>
+          <input
+            id="expiresAt"
+            type="date"
+            required
+            value={form.accessEnd}
+            onChange={handleChange("accessEnd")}
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+          />
+        </div>
+
+        {/* Password */}
         <div className="space-y-2">
           <label className="text-sm font-semibold text-slate-700" htmlFor="password">
             Password
@@ -176,78 +242,18 @@ export function CreateAccountForm() {
             </button>
           </div>
         </div>
-      </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-slate-700" htmlFor="role">
-            Role
-          </label>
-          <select
-            id="role"
-            value={form.role}
-            onChange={handleChange("role")}
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+        {/* Submit Button */}
+        <div className="flex items-end">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#4285F4] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-70 h-[42px]"
           >
-            <option value="student">student</option>
-            <option value="admin">admin</option>
-          </select>
+            <UserPlus size={16} />
+            {isSubmitting ? "Creating account..." : "Create account"}
+          </button>
         </div>
-
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-slate-700" htmlFor="status">
-            Status
-          </label>
-          <select
-            id="status"
-            value={form.status}
-            onChange={handleChange("status")}
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
-          >
-            <option value="active">active</option>
-            <option value="paused">paused</option>
-            <option value="expired">expired</option>
-          </select>
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-slate-700" htmlFor="startAt">
-            Access start
-          </label>
-          <input
-            id="startAt"
-            type="date"
-            required
-            value={form.accessStart}
-            onChange={handleChange("accessStart")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-slate-700" htmlFor="expiresAt">
-            Access end
-          </label>
-          <input
-            id="expiresAt"
-            type="date"
-            required
-            value={form.accessEnd}
-            onChange={handleChange("accessEnd")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
-          />
-        </div>
-      </div>
-
-      <div className="flex justify-center pt-2">
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="inline-flex w-full md:w-auto items-center justify-center gap-2 rounded-xl bg-[#4285F4] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-70"
-        >
-          <UserPlus size={16} />
-          {isSubmitting ? "Creating account..." : "Create account"}
-        </button>
       </div>
 
       {submitError ? <p className="text-sm font-medium text-red-600">{submitError}</p> : null}
