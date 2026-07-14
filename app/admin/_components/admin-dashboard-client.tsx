@@ -146,6 +146,7 @@ export function AdminDashboardClient() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [lastSyncedAt, setLastSyncedAt] = useState<string | null>(null);
+  const [latency, setLatency] = useState<number | null>(null);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRole, setSelectedRole] = useState("all");
@@ -190,12 +191,15 @@ export function AdminDashboardClient() {
       return;
     }
 
+    const startTime = Date.now();
     const response = await fetch("/api/admin/dashboard/overview", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+    const endTime = Date.now();
+    setLatency(endTime - startTime);
 
     const payload = (await response.json().catch(() => null)) as
       | { error?: string; stats?: DashboardStats; users?: DashboardUser[] }
@@ -325,6 +329,20 @@ export function AdminDashboardClient() {
                   <span className="inline-flex items-center justify-center gap-1.5 font-bold text-emerald-700 text-sm">
                     <span className="h-2 w-2 rounded-full bg-emerald-500" />
                     Active
+                  </span>
+                </div>
+                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">API Latency</span>
+                  <span className="inline-flex items-center justify-center gap-1 font-bold text-slate-800 text-sm">
+                    <span className="h-2 w-2 rounded-full bg-blue-500" />
+                    {latency ? `${latency}ms` : "checking..."}
+                  </span>
+                </div>
+                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Environment</span>
+                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-slate-700 text-sm">
+                    <span className="h-2 w-2 rounded-full bg-violet-500" />
+                    {process.env.NODE_ENV === "production" ? "Prod" : "Dev"}
                   </span>
                 </div>
                 <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
