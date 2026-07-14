@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -314,9 +315,16 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={!isSupabaseConfigured || isSubmitting}
-            className="w-full min-h-[48px] rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:hover:bg-blue-300"
+            className="w-full min-h-[48px] rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:hover:bg-blue-300 flex items-center justify-center gap-2"
           >
-            {isSubmitting ? "Signing in..." : "Log In"}
+            {isSubmitting ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin text-white" />
+                <span>Signing in...</span>
+              </>
+            ) : (
+              "Log In"
+            )}
           </button>
           {submitError && (
             <p className="text-sm text-red-600">{submitError}</p>

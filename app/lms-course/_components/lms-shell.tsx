@@ -318,7 +318,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
           
           <Link href="/lms-course" className="flex items-center gap-1.5 ml-0.5 min-w-0">
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--lms-active-bg)] text-[var(--lms-accent)] border border-blue-200/40 dark:border-blue-900/30 shrink-0">
-              <TrafficCone className="h-4 w-4 rotate-12" />
+              <House className="h-4 w-4" />
             </span>
             <span className="text-xs font-bold tracking-tight text-[var(--lms-text)] hidden min-[360px]:inline truncate">
               Ready2Drive
