@@ -54,10 +54,6 @@ export default async function LessonPage({
           <span className="lms-muted">
             Lesson {lessonPosition} of {lessonTotal}
           </span>
-          <span className="lms-muted hidden sm:inline">|</span>
-          <span className="lms-progress-pill rounded-full px-3 py-1 font-medium">
-            {progressPercent}% chapter progress
-          </span>
         </div>
       </header>
 
