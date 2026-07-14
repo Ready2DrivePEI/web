@@ -346,9 +346,10 @@ export function AdminDashboardClient() {
                   </span>
                 </div>
                 <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Active Accounts</span>
-                  <span className="font-bold text-slate-800 text-sm text-center">
-                    {totalActiveAccounts} Profiles
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Mail Delivery</span>
+                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-emerald-700 text-sm">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                    Resend Active
                   </span>
                 </div>
                 <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
@@ -410,9 +411,6 @@ export function AdminDashboardClient() {
               <h2 className="mt-2 text-2xl font-semibold text-slate-900">
                 Active students and admins
               </h2>
-              <p className="mt-1 text-sm text-slate-600">
-                Fetched from `profiles` and matched with Supabase Auth metadata.
-              </p>
             </div>
           </div>
 
