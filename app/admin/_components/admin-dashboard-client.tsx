@@ -282,8 +282,9 @@ export function AdminDashboardClient() {
           {/* Left Column (2/3 width): Create Account Form */}
           <section
             id="create-account-section"
-            className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between h-full"
+            className="relative overflow-hidden lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_35px_rgba(66,133,244,0.08)] flex flex-col justify-between h-full"
           >
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#4285F4] via-blue-500 to-indigo-500" />
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
                 Create account

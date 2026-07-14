@@ -239,7 +239,7 @@ export function CreateAccountForm() {
         </div>
       </div>
 
-      <div className="flex justify-end pt-2">
+      <div className="flex justify-center pt-2">
         <button
           type="submit"
           disabled={isSubmitting}
