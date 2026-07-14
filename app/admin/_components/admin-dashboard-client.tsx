@@ -279,72 +279,44 @@ export function AdminDashboardClient() {
 
       <main className="mx-auto max-w-6xl space-y-8 px-6 pb-16 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-          {/* Left Column (1/3 width): Diagnostic & Metric Cards stacked vertically */}
-          <div className="flex flex-col gap-4">
-            {/* Supabase Status Card */}
-            <section className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <div className="pointer-events-none absolute -top-20 -right-16 h-32 w-32 rounded-full bg-blue-100/30 blur-2xl" />
-              <div className="flex flex-col gap-3">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
-                    Supabase Status
-                  </p>
-                  <h2 className="text-base font-bold text-slate-900 mt-0.5">
-                    Live Connection Data
-                  </h2>
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <span className="w-fit inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
-                    {isRefreshing ? "Syncing..." : "Live connection"}
-                  </span>
-                  <span className="w-fit inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-[#2563eb]">
-                    {totalActiveAccounts} active accounts
-                  </span>
-                  <span className="w-fit inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
-                    Last sync: {formatLastSync(lastSyncedAt)}
-                  </span>
-                </div>
-                <div className="pt-2 border-t border-slate-100">
-                  <button
-                    type="button"
-                    onClick={handleRefresh}
-                    disabled={isRefreshing}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3.5 py-1.5 text-xs font-semibold text-[#2563eb] disabled:cursor-not-allowed disabled:opacity-70 transition-colors hover:bg-blue-100/50"
-                  >
-                    <RefreshCw size={14} className={isRefreshing ? "animate-spin" : ""} />
-                    {isRefreshing ? "Syncing..." : "Refresh data"}
-                  </button>
-                </div>
+          {/* Left Column (1/3 width): Supabase Status Card */}
+          <section className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="pointer-events-none absolute -top-20 -right-16 h-32 w-32 rounded-full bg-blue-100/30 blur-2xl" />
+            <div className="flex flex-col gap-3">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
+                  Supabase Status
+                </p>
+                <h2 className="text-base font-bold text-slate-900 mt-0.5">
+                  Live Connection Data
+                </h2>
               </div>
-            </section>
-
-            {/* Vertically Stacked Metric Cards */}
-            {statsConfig.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article
-                  key={item.label}
-                  className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              <div className="flex flex-col gap-1.5">
+                <span className="w-fit inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
+                  {isRefreshing ? "Syncing..." : "Live connection"}
+                </span>
+                <span className="w-fit inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-[#2563eb]">
+                  {totalActiveAccounts} active accounts
+                </span>
+                <span className="w-fit inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
+                  Last sync: {formatLastSync(lastSyncedAt)}
+                </span>
+              </div>
+              <div className="pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={handleRefresh}
+                  disabled={isRefreshing}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3.5 py-1.5 text-xs font-semibold text-[#2563eb] disabled:cursor-not-allowed disabled:opacity-70 transition-colors hover:bg-blue-100/50"
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#4285F4] via-sky-400 to-cyan-300" />
-                  <div className="flex items-center justify-between">
-                    <p className="text-xs font-semibold text-slate-500">{item.label}</p>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-[#4285F4]">
-                      <Icon size={16} />
-                    </span>
-                  </div>
-                  <p className="mt-2 text-2xl font-bold text-slate-900">
-                    {isLoading ? "--" : stats[item.key]}
-                  </p>
-                  <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
-                    {item.change}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
+                  <RefreshCw size={14} className={isRefreshing ? "animate-spin" : ""} />
+                  {isRefreshing ? "Syncing..." : "Refresh data"}
+                </button>
+              </div>
+            </div>
+          </section>
 
-          {/* Right Column: Create Account Form */}
+          {/* Right Column (2/3 width): Create Account Form */}
           <section
             id="create-account-section"
             className="lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
@@ -365,7 +337,34 @@ export function AdminDashboardClient() {
           </section>
         </div>
 
-        {/* Current Users Panel (Full-Width, Below the Grid) */}
+        {/* Stats Cards (Horizontal Row, Below the Top Split) */}
+        <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {statsConfig.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article
+                key={item.label}
+                className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#4285F4] via-sky-400 to-cyan-300" />
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-semibold text-slate-600">{item.label}</p>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 text-[#4285F4]">
+                    <Icon size={18} />
+                  </span>
+                </div>
+                <p className="mt-4 text-3xl font-semibold text-slate-900">
+                  {isLoading ? "--" : stats[item.key]}
+                </p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+                  {item.change}
+                </p>
+              </article>
+            );
+          })}
+        </section>
+
+        {/* Current Users Panel (Full-Width, Below the Stats Cards) */}
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
