@@ -327,10 +327,7 @@ export function LMSShell({ children }: { children: ReactNode }) {
         </div>
         <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-200/50 bg-blue-50/50 px-2.5 py-0.5 text-[10px] font-bold text-blue-600 dark:border-blue-900/30 dark:bg-blue-950/20 dark:text-blue-400 whitespace-nowrap leading-none shrink-0">
-            <span className="relative flex h-1.5 w-1.5 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500"></span>
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0" />
             <span>{effectiveProgressPercent}%</span>
           </div>
           <StudentAccountMenu />
