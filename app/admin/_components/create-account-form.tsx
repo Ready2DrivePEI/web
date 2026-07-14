@@ -118,65 +118,67 @@ export function CreateAccountForm() {
 
   return (
     <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-slate-700" htmlFor="fullName">
-          Full name
-        </label>
-        <input
-          id="fullName"
-          type="text"
-          placeholder="Student full name"
-          value={form.fullName}
-          onChange={handleChange("fullName")}
-          className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-slate-700" htmlFor="email">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          placeholder="student@email.com"
-          required
-          autoComplete="email"
-          value={form.email}
-          onChange={handleChange("email")}
-          className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-sm font-semibold text-slate-700" htmlFor="password">
-          Password
-        </label>
-        <div className="relative">
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="fullName">
+            Full name
+          </label>
           <input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="At least 6 characters"
-            required
-            minLength={6}
-            autoComplete="new-password"
-            value={form.password}
-            onChange={handleChange("password")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 pr-12 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            id="fullName"
+            type="text"
+            placeholder="Student full name"
+            value={form.fullName}
+            onChange={handleChange("fullName")}
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
           />
-          <button
-            type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute inset-y-0 right-3 inline-flex items-center text-slate-500 transition-colors hover:text-[#4285F4]"
-            aria-label={showPassword ? "Hide password" : "Show password"}
-            title={showPassword ? "Hide password" : "Show password"}
-          >
-            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-          </button>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="email">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="student@email.com"
+            required
+            autoComplete="email"
+            value={form.email}
+            onChange={handleChange("email")}
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="password">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="At least 6 characters"
+              required
+              minLength={6}
+              autoComplete="new-password"
+              value={form.password}
+              onChange={handleChange("password")}
+              className="w-full rounded-xl border border-slate-200 px-4 py-2.5 pr-12 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute inset-y-0 right-3 inline-flex items-center text-slate-500 transition-colors hover:text-[#4285F4]"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              title={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
         <div className="space-y-2">
           <label className="text-sm font-semibold text-slate-700" htmlFor="role">
             Role
@@ -207,9 +209,7 @@ export function CreateAccountForm() {
             <option value="expired">expired</option>
           </select>
         </div>
-      </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
         <div className="space-y-2">
           <label className="text-sm font-semibold text-slate-700" htmlFor="startAt">
             Access start
@@ -239,14 +239,16 @@ export function CreateAccountForm() {
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#4285F4] px-4 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-70"
-      >
-        <UserPlus size={16} />
-        {isSubmitting ? "Creating account..." : "Create account"}
-      </button>
+      <div className="flex justify-end pt-2">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex w-full md:w-auto items-center justify-center gap-2 rounded-xl bg-[#4285F4] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          <UserPlus size={16} />
+          {isSubmitting ? "Creating account..." : "Create account"}
+        </button>
+      </div>
 
       {submitError ? <p className="text-sm font-medium text-red-600">{submitError}</p> : null}
       {successMessage ? <p className="text-sm font-medium text-emerald-700">{successMessage}</p> : null}
