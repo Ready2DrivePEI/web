@@ -282,97 +282,81 @@ export function AdminDashboardClient() {
       </header>
 
       <main className="mx-auto max-w-6xl space-y-8 px-6 pb-16 pt-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column (2/3 width): Create Account Form */}
-          <section
-            id="create-account-section"
-            className="relative overflow-hidden lg:col-span-2 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_35px_rgba(66,133,244,0.08)] flex flex-col justify-between h-full"
+        {/* Compact, Single-Row Diagnostic Status Bar */}
+        <section className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/40 px-5 py-3 shadow-xs flex flex-wrap items-center justify-between gap-4">
+          <div className="pointer-events-none absolute -top-10 -right-10 h-20 w-20 rounded-full bg-blue-100/20 blur-xl" />
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Database</span>
+              <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                Connected
+              </span>
+            </div>
+            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
+              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Auth</span>
+              <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                Active
+              </span>
+            </div>
+            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
+              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Latency</span>
+              <span className="font-bold text-slate-800">
+                {latency ? `${latency}ms` : "checking..."}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
+              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Mail</span>
+              <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                Resend Active
+              </span>
+            </div>
+            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
+              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Env</span>
+              <span className="font-bold text-slate-700">
+                {process.env.NODE_ENV === "production" ? "Production" : "Development"}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 md:border-l md:border-slate-200 md:pl-6">
+              <span className="font-semibold uppercase tracking-wider text-slate-500 text-[10px]">Synced</span>
+              <span className="font-bold text-slate-700">
+                {formatLastSync(lastSyncedAt)}
+              </span>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className="inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-[#2563eb] disabled:cursor-not-allowed disabled:opacity-70 transition-colors hover:bg-blue-100/50"
           >
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#4285F4] via-blue-500 to-indigo-500" />
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
-                Create account
-              </p>
-              <h3 className="mt-2 text-xl font-semibold text-slate-900">
-                Add a new student or admin
-              </h3>
-              <p className="mt-1 text-sm text-slate-600">
-                Create users in Supabase Auth and store access rules in `profiles`.
-              </p>
-            </div>
+            <RefreshCw size={12} className={isRefreshing ? "animate-spin" : ""} />
+            {isRefreshing ? "Syncing..." : "Refresh Status"}
+          </button>
+        </section>
 
-            <CreateAccountForm />
-          </section>
+        {/* Create Account Panel (Full-Width bento card) */}
+        <section
+          id="create-account-section"
+          className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_35px_rgba(66,133,244,0.08)] flex flex-col justify-between"
+        >
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#4285F4] via-blue-500 to-indigo-500" />
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
+              Create account
+            </p>
+            <h3 className="mt-2 text-xl font-semibold text-slate-900">
+              Add a new student or admin
+            </h3>
+            <p className="mt-1 text-sm text-slate-600">
+              Create users in Supabase Auth and store access rules in `profiles`.
+            </p>
+          </div>
 
-          {/* Right Column (1/3 width): Supabase Status Card */}
-          <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/40 p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between h-full min-h-[340px]">
-            <div className="pointer-events-none absolute -top-20 -right-16 h-32 w-32 rounded-full bg-blue-100/30 blur-2xl" />
-            <div className="flex-1 flex flex-col justify-between my-2">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
-                  Supabase Status
-                </p>
-                <h2 className="text-base font-bold text-slate-900 mt-0.5">
-                  Live Connection Data
-                </h2>
-              </div>
-              <div className="grid grid-cols-2 gap-3 text-sm mt-4">
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Database State</span>
-                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-emerald-700 text-sm">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    Connected
-                  </span>
-                </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Auth Service</span>
-                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-emerald-700 text-sm">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                    Active
-                  </span>
-                </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">API Latency</span>
-                  <span className="inline-flex items-center justify-center gap-1 font-bold text-slate-800 text-sm">
-                    <span className="h-2 w-2 rounded-full bg-blue-500" />
-                    {latency ? `${latency}ms` : "checking..."}
-                  </span>
-                </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Environment</span>
-                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-slate-700 text-sm">
-                    <span className="h-2 w-2 rounded-full bg-violet-500" />
-                    {process.env.NODE_ENV === "production" ? "Prod" : "Dev"}
-                  </span>
-                </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Mail Delivery</span>
-                  <span className="inline-flex items-center justify-center gap-1.5 font-bold text-emerald-700 text-sm">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                    Resend Active
-                  </span>
-                </div>
-                <div className="rounded-xl border border-slate-200/60 bg-white p-3 flex flex-col items-center justify-center gap-1 text-center shadow-2xs">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Last Sync</span>
-                  <span className="font-bold text-slate-800 text-xs truncate text-center w-full">
-                    {formatLastSync(lastSyncedAt)}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="pt-3 border-t border-slate-100">
-              <button
-                type="button"
-                onClick={handleRefresh}
-                disabled={isRefreshing}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-3.5 py-2.5 text-xs font-semibold text-[#2563eb] disabled:cursor-not-allowed disabled:opacity-70 transition-colors hover:bg-blue-100/50"
-              >
-                <RefreshCw size={14} className={isRefreshing ? "animate-spin" : ""} />
-                {isRefreshing ? "Syncing..." : "Refresh data"}
-              </button>
-            </div>
-          </section>
-        </div>
+          <CreateAccountForm />
+        </section>
 
         {/* Stats Cards (Horizontal Row, Below the Top Split) */}
         <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
