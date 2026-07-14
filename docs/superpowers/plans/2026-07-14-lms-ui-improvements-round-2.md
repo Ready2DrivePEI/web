@@ -37,20 +37,22 @@ Make the sidebar logo and title group clickable so that it acts as a primary das
 
 ---
 
-### Task 2: Popup Modal Usability, Copy, & Hover Refinements
+### Task 2: Popup Modal & Account Dropdown Refinements
 
 **Files:**
 - Modify: [app/lms-course/_components/continue-course-prompt.tsx](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/app/lms-course/_components/continue-course-prompt.tsx)
+- Modify: [app/lms-course/_components/student-account-menu.tsx](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/app/lms-course/_components/student-account-menu.tsx)
 - Modify: [app/globals.css](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/app/globals.css)
 
 **Outcome:**
-Create a clean, opaque popup card that does not go transparent on hover, has correct copy, and clear visual button hierarchy.
-- **Card Background:** Create a dedicated style wrapper for the dialog card that overrides the default `.lms-home-card` hover properties to prevent transparency leakage when hovered in light mode.
-- **Spelling & Copy:** Update header text to *"Would you like to continue where you left off?"* and first button label to *"Where I left off"*.
-- **Visual Button Hierarchy**:
-  - *"Where I left off"* (Primary): Style with a soft brand blue accent and include a Lucide `Bookmark` or `Play` icon.
-  - *"Furthest chapter"* (Secondary): Style with an outline border and include a Lucide `Zap` icon.
-  - *"Close"* (Tertiary): Style with a ghost format using muted gray text (`text-muted-foreground`) and include a Lucide `X` icon.
+Create clean, opaque modal cards and dropdown panels that do not go transparent on hover, present clear action hierarchies, and add critical route navigation shortcuts.
+- **Hover Bleed-through (Modal & Dropdown):** Switch both the continue prompt popup card and the student account dropdown menu card to a dedicated style wrapper (using `.lms-modal-card` instead of `.lms-home-card`) to prevent transparent background bleeding when hovered.
+- **Resume Modal Wording & Copy:** Update prompt text to *"Would you like to continue where you left off?"* and first button label to *"Where I left off"*.
+- **Resume Modal Visual Button Hierarchy**:
+  - *"Where I left off"* (Primary): Soft brand-blue accent background, featuring a Lucide `Bookmark` icon.
+  - *"Furthest chapter"* (Secondary): Clean outline style, featuring a Lucide `Zap` icon.
+  - *"Close"* (Tertiary): Muted gray text ghost style (`text-muted-foreground`), featuring a Lucide `X` icon.
+- **Account Dropdown Landing Page Shortcut**: Add a link back to the public website home page (`/`) directly inside the student account menu dropdown, placed clearly above the log out action and styled with a Lucide `ExternalLink` icon.
 
 ---
 
