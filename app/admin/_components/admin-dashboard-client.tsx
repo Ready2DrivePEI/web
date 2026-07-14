@@ -291,30 +291,30 @@ export function AdminDashboardClient() {
                   Live Connection Data
                 </h2>
               </div>
-              <div className="divide-y divide-slate-100 text-sm">
-                <div className="flex items-center justify-between py-2">
-                  <span className="text-slate-500 font-medium">Database State</span>
-                  <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-600">
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3 flex flex-col gap-1">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Database State</span>
+                  <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700 text-sm">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                     Connected
                   </span>
                 </div>
-                <div className="flex items-center justify-between py-2">
-                  <span className="text-slate-500 font-medium">Auth Service</span>
-                  <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-600">
+                <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3 flex flex-col gap-1">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Auth Service</span>
+                  <span className="inline-flex items-center gap-1.5 font-bold text-emerald-700 text-sm">
                     <span className="h-2 w-2 rounded-full bg-emerald-500" />
                     Active
                   </span>
                 </div>
-                <div className="flex items-center justify-between py-2">
-                  <span className="text-slate-500 font-medium">Active Accounts</span>
-                  <span className="font-semibold text-slate-800">
+                <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3 flex flex-col gap-1">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Active Accounts</span>
+                  <span className="font-bold text-slate-800 text-sm">
                     {totalActiveAccounts} Profiles
                   </span>
                 </div>
-                <div className="flex items-center justify-between py-2">
-                  <span className="text-slate-500 font-medium">Last Sync</span>
-                  <span className="font-semibold text-slate-800 text-xs">
+                <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3 flex flex-col gap-1">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Last Sync</span>
+                  <span className="font-bold text-slate-800 text-xs truncate">
                     {formatLastSync(lastSyncedAt)}
                   </span>
                 </div>
