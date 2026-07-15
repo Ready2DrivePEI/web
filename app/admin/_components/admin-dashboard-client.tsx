@@ -312,7 +312,7 @@ export function AdminDashboardClient() {
             </div>
             {/* Synced */}
             <div className="flex items-center gap-1.5 md:border-l md:border-slate-200 md:pl-5 text-slate-500 font-medium">
-              <Clock size={12} className="text-slate-400" />
+              <Clock3 size={12} className="text-slate-400" />
               <span>Synced {formatLastSync(lastSyncedAt)}</span>
             </div>
           </div>
