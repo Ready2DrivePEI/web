@@ -221,7 +221,7 @@ export function CreateAccountForm() {
             type="date"
             required
             value={form.accessEnd}
-            onChange={handleChange("expiresAt")}
+            onChange={handleChange("accessEnd")}
             className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           />
         </div>
