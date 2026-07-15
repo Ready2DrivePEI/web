@@ -151,6 +151,35 @@ export function CreateAccountForm() {
           />
         </div>
 
+        {/* Password */}
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="password">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="At least 6 characters"
+              required
+              minLength={6}
+              autoComplete="new-password"
+              value={form.password}
+              onChange={handleChange("password")}
+              className="w-full rounded-xl border border-slate-200 px-4 py-2.5 pr-12 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute inset-y-0 right-3 inline-flex items-center text-slate-500 transition-colors hover:text-[#4285F4]"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              title={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+        </div>
+
         {/* Role */}
         <div className="space-y-2">
           <label className="text-sm font-semibold text-slate-700" htmlFor="role">
@@ -164,23 +193,6 @@ export function CreateAccountForm() {
           >
             <option value="student">student</option>
             <option value="admin">admin</option>
-          </select>
-        </div>
-
-        {/* Status */}
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-slate-700" htmlFor="status">
-            Status
-          </label>
-          <select
-            id="status"
-            value={form.status}
-            onChange={handleChange("status")}
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
-          >
-            <option value="active">active</option>
-            <option value="paused">paused</option>
-            <option value="expired">expired</option>
           </select>
         </div>
 
@@ -209,38 +221,26 @@ export function CreateAccountForm() {
             type="date"
             required
             value={form.accessEnd}
-            onChange={handleChange("accessEnd")}
+            onChange={handleChange("expiresAt")}
             className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
           />
         </div>
 
-        {/* Password */}
+        {/* Status */}
         <div className="space-y-2">
-          <label className="text-sm font-semibold text-slate-700" htmlFor="password">
-            Password
+          <label className="text-sm font-semibold text-slate-700" htmlFor="status">
+            Status
           </label>
-          <div className="relative">
-            <input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="At least 6 characters"
-              required
-              minLength={6}
-              autoComplete="new-password"
-              value={form.password}
-              onChange={handleChange("password")}
-              className="w-full rounded-xl border border-slate-200 px-4 py-2.5 pr-12 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute inset-y-0 right-3 inline-flex items-center text-slate-500 transition-colors hover:text-[#4285F4]"
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              title={showPassword ? "Hide password" : "Show password"}
-            >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
-          </div>
+          <select
+            id="status"
+            value={form.status}
+            onChange={handleChange("status")}
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+          >
+            <option value="active">active</option>
+            <option value="paused">paused</option>
+            <option value="expired">expired</option>
+          </select>
         </div>
 
         {/* Submit Button */}

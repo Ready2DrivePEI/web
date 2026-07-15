@@ -330,7 +330,7 @@ export function AdminDashboardClient() {
         {/* Create Account Panel (Full-Width bento card) */}
         <section
           id="create-account-section"
-          className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.08)] flex flex-col justify-between"
+          className="relative overflow-hidden rounded-3xl border border-[#4285F4]/30 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.06),_0_0_20px_rgba(66,133,244,0.08)] flex flex-col justify-between"
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4]">
