@@ -283,7 +283,7 @@ export function AdminDashboardClient() {
 
       <main className="mx-auto max-w-6xl space-y-8 px-6 pb-16 pt-8">
         {/* Compact, Single-Row Diagnostic Status Bar */}
-        <section className="relative overflow-hidden rounded-full border border-slate-200/80 bg-slate-50/40 px-6 py-2.5 shadow-2xs flex flex-wrap items-center justify-between gap-4">
+        <section className="relative overflow-hidden rounded-full border border-white/60 bg-white/40 backdrop-blur-md px-6 py-2.5 shadow-2xs flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-slate-600">
             {/* Database */}
             <div className="flex items-center gap-1.5">
@@ -354,7 +354,7 @@ export function AdminDashboardClient() {
             return (
               <article
                 key={item.label}
-                className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="relative overflow-hidden rounded-2xl border border-white/60 bg-white/40 backdrop-blur-md p-5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-sm"
               >
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#4285F4] via-sky-400 to-cyan-300" />
                 <div className="flex items-center justify-between">
