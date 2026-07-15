@@ -141,13 +141,6 @@ export default function LoginPage() {
   useEffect(() => {
     let active = true;
     void (async () => {
-      const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth");
-      
-      if (!authSnapshot) {
-        if (active) setAuthChecked(true);
-        return;
-      }
-
       if (!supabase) {
         localStorage.removeItem("r2d-auth");
         sessionStorage.removeItem("r2d-auth");
@@ -161,12 +154,50 @@ export default function LoginPage() {
 
       if (data.session) {
         try {
-          const parsed = JSON.parse(authSnapshot) as { role?: string };
-          if (parsed.role === "admin") {
-            router.replace("/admin");
+          const { data: profile, error } = await supabase
+            .from("profiles")
+            .select("role, full_name, status, expires_at, id")
+            .eq("user_id", data.session.user.id)
+            .maybeSingle();
+
+          if (error || !profile) {
+            localStorage.removeItem("r2d-auth");
+            sessionStorage.removeItem("r2d-auth");
+            await supabase.auth.signOut();
+            if (active) setAuthChecked(true);
             return;
           }
-          router.replace("/lms-course");
+
+          if (
+            profile.status.toLowerCase() !== "active" ||
+            (profile.expires_at && new Date(profile.expires_at) < new Date())
+          ) {
+            localStorage.removeItem("r2d-auth");
+            sessionStorage.removeItem("r2d-auth");
+            await supabase.auth.signOut();
+            if (active) setAuthChecked(true);
+            return;
+          }
+
+          const updatedSnapshot = JSON.stringify({
+            profileId: profile.id,
+            role: profile.role,
+            full_name: profile.full_name,
+            signedInAt: new Date().toISOString(),
+          });
+
+          const rememberMe = localStorage.getItem("r2d-remember-me") !== "false";
+          if (rememberMe) {
+            localStorage.setItem("r2d-auth", updatedSnapshot);
+          } else {
+            sessionStorage.setItem("r2d-auth", updatedSnapshot);
+          }
+
+          if (profile.role === "admin") {
+            router.replace("/admin");
+          } else {
+            router.replace("/lms-course");
+          }
           return;
         } catch {
           localStorage.removeItem("r2d-auth");
@@ -177,7 +208,7 @@ export default function LoginPage() {
         localStorage.removeItem("r2d-auth");
         sessionStorage.removeItem("r2d-auth");
       }
-      setAuthChecked(true);
+      if (active) setAuthChecked(true);
     })();
 
     if (localStorage.getItem("r2d-remember-me") === "false") {
