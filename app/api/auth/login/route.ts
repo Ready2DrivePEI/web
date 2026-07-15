@@ -50,57 +50,40 @@ export async function POST(request: Request) {
 
   const isEmail = identifier.includes("@");
 
+  let signInData: any = null;
+  let signInError: any = null;
+  let foundProfile: any = null;
+
   if (isEmail) {
     // 1. If it's an email, try signing in directly first to verify credentials
-    const { data: signInData, error: signInError } =
+    const { data: directData, error: directError } =
       await anonSupabase.auth.signInWithPassword({ email: identifier, password });
 
-    if (signInError || !signInData.session) {
-      const message = signInError?.message?.toLowerCase() ?? "";
-      if (message.includes("invalid login credentials")) {
+    signInData = directData;
+    signInError = directError;
+
+    if (!signInError && signInData?.session) {
+      // 2. Get the profile for this user
+      const { data: profile, error: profileError } = await adminSupabase
+        .from("profiles")
+        .select("user_id, full_name, role, status, expires_at, id")
+        .eq("user_id", signInData.session.user.id)
+        .maybeSingle();
+
+      if (profileError || !profile) {
         return NextResponse.json(
-          { error: "Incorrect password or email. Please try again." },
-          { status: 401 },
+          { error: "Account found but profile missing. Contact admin." },
+          { status: 500 },
         );
       }
-      return NextResponse.json(
-        { error: signInError?.message || "Could not sign in. Please try again." },
-        { status: 401 },
-      );
+      foundProfile = profile;
     }
+  }
 
-    // 2. Get the profile for this user
-    const { data: foundProfile, error: profileError } = await adminSupabase
-      .from("profiles")
-      .select("user_id, full_name, role, status, expires_at, id")
-      .eq("user_id", signInData.session.user.id)
-      .maybeSingle();
-
-    if (profileError || !foundProfile) {
-      return NextResponse.json(
-        { error: "Account found but profile missing. Contact admin." },
-        { status: 500 },
-      );
-    }
-
-    // Return session tokens + profile info
-    return NextResponse.json(
-      {
-        access_token: signInData.session.access_token,
-        refresh_token: signInData.session.refresh_token,
-        profile: {
-          id: foundProfile.id,
-          role: foundProfile.role,
-          full_name: foundProfile.full_name,
-          status: foundProfile.status,
-          expires_at: foundProfile.expires_at,
-        },
-      },
-      { status: 200 },
-    );
-  } else {
+  // If we couldn't sign in directly as an email (or if it wasn't an email in the first place)
+  if (!foundProfile) {
     // 1. Look up the profile by full_name to get user_id
-    const { data: foundProfile, error: profileError } = await adminSupabase
+    const { data: profile, error: profileError } = await adminSupabase
       .from("profiles")
       .select("user_id, full_name, role, status, expires_at, id")
       .eq("full_name", identifier)
@@ -114,12 +97,28 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!foundProfile || !foundProfile.user_id) {
+    if (!profile || !profile.user_id) {
+      // If it originally failed direct email login, return that error
+      if (isEmail && signInError) {
+        const message = signInError.message?.toLowerCase() ?? "";
+        if (message.includes("invalid login credentials")) {
+          return NextResponse.json(
+            { error: "Incorrect password or email. Please try again." },
+            { status: 401 },
+          );
+        }
+        return NextResponse.json(
+          { error: signInError.message || "Could not sign in. Please try again." },
+          { status: 401 },
+        );
+      }
       return NextResponse.json(
-        { error: "No account found with that name. Check your spelling and try again." },
+        { error: "No account found with that name/email. Check your spelling and try again." },
         { status: 401 },
       );
     }
+
+    foundProfile = profile;
 
     // 2. Get the real email from Supabase Auth using admin API
     const { data: authUser, error: authUserError } =
@@ -136,8 +135,11 @@ export async function POST(request: Request) {
     const email = authUser.user.email;
 
     // 3. Sign in with email + password
-    const { data: signInData, error: signInError } =
+    const { data: finalData, error: finalError } =
       await anonSupabase.auth.signInWithPassword({ email, password });
+
+    signInData = finalData;
+    signInError = finalError;
 
     if (signInError || !signInData.session) {
       const message = signInError?.message?.toLowerCase() ?? "";
@@ -152,21 +154,21 @@ export async function POST(request: Request) {
         { status: 401 },
       );
     }
-
-    // 4. Return session tokens + profile info
-    return NextResponse.json(
-      {
-        access_token: signInData.session.access_token,
-        refresh_token: signInData.session.refresh_token,
-        profile: {
-          id: foundProfile.id,
-          role: foundProfile.role,
-          full_name: foundProfile.full_name,
-          status: foundProfile.status,
-          expires_at: foundProfile.expires_at,
-        },
-      },
-      { status: 200 },
-    );
   }
+
+  // Return session tokens + profile info
+  return NextResponse.json(
+    {
+      access_token: signInData.session.access_token,
+      refresh_token: signInData.session.refresh_token,
+      profile: {
+        id: foundProfile.id,
+        role: foundProfile.role,
+        full_name: foundProfile.full_name,
+        status: foundProfile.status,
+        expires_at: foundProfile.expires_at,
+      },
+    },
+    { status: 200 },
+  );
 }

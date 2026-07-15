@@ -494,8 +494,8 @@
 
   .lms-start-chip {
     color: var(--lms-text-muted);
-    background-color: color-mix(in srgb, var(--lms-surface-2) 75%, transparent);
-    border: 1px solid color-mix(in srgb, var(--lms-border) 88%, transparent);
+    background-color: var(--lms-surface-2);
+    border: 1px solid var(--lms-border);
   }
 
   .lms-shell[data-lms-theme="dark"] .lms-prev-lesson-btn {
