@@ -103,6 +103,18 @@ function getRoleBadgeClass(role: string): string {
   return "border-blue-200 bg-blue-50 text-[#2563eb]";
 }
 
+function getStatusBadgeClass(status: string, accessEnd: string | null): string {
+  const isChronologicallyExpired = accessEnd ? new Date(accessEnd) < new Date() : false;
+  const clean = status.toLowerCase();
+  if (isChronologicallyExpired || clean === "expired") {
+    return "border-red-200 bg-red-50 text-red-700";
+  }
+  if (clean === "paused") {
+    return "border-amber-200 bg-amber-50 text-amber-700";
+  }
+  return "border-emerald-200 bg-emerald-50 text-emerald-700";
+}
+
 function getAccessMeta(accessEnd: string | null): { label: string; toneClass: string } {
   if (!accessEnd) {
     return {
@@ -161,7 +173,18 @@ export function AdminDashboardClient() {
       u.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       u.email.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesRole = selectedRole === "all" || u.role === selectedRole;
-    const matchesStatus = selectedStatus === "all" || u.status === selectedStatus;
+    
+    const isChronologicallyExpired = u.accessEnd ? new Date(u.accessEnd) < new Date() : false;
+    let matchesStatus = true;
+    if (selectedStatus !== "all") {
+      if (selectedStatus === "active") {
+        matchesStatus = u.status === "active" && !isChronologicallyExpired;
+      } else if (selectedStatus === "expired") {
+        matchesStatus = u.status === "expired" || isChronologicallyExpired;
+      } else {
+        matchesStatus = u.status === selectedStatus;
+      }
+    }
     return matchesSearch && matchesRole && matchesStatus;
   });
 
@@ -489,8 +512,8 @@ export function AdminDashboardClient() {
                           </span>
                         </div>
                         <div className="flex items-center">
-                          <span className="inline-flex h-fit items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
-                            {user.status}
+                          <span className={`inline-flex h-fit items-center justify-center rounded-full border px-2.5 py-0.5 text-xs font-semibold ${getStatusBadgeClass(user.status, user.accessEnd)}`}>
+                            {user.status === "active" && (user.accessEnd ? new Date(user.accessEnd) < new Date() : false) ? "expired (date)" : user.status}
                           </span>
                         </div>
                         <div className="space-y-1 text-xs text-slate-600 flex flex-col justify-center">
