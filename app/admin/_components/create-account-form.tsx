@@ -130,7 +130,7 @@ export function CreateAccountForm() {
             placeholder="Student full name"
             value={form.fullName}
             onChange={handleChange("fullName")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-500/80 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           />
         </div>
 
@@ -147,7 +147,7 @@ export function CreateAccountForm() {
             autoComplete="email"
             value={form.email}
             onChange={handleChange("email")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-500/80 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           />
         </div>
 
@@ -166,12 +166,12 @@ export function CreateAccountForm() {
               autoComplete="new-password"
               value={form.password}
               onChange={handleChange("password")}
-              className="w-full rounded-xl border border-slate-200 px-4 py-2.5 pr-12 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+              className="w-full rounded-xl border border-slate-200 px-4 py-2.5 pr-12 text-sm text-slate-700 placeholder-slate-500/80 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
             />
             <button
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute inset-y-0 right-3 inline-flex items-center text-slate-500 transition-colors hover:text-[#4285F4]"
+              className="absolute inset-y-0 right-3 inline-flex items-center text-slate-500 transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-md"
               aria-label={showPassword ? "Hide password" : "Show password"}
               title={showPassword ? "Hide password" : "Show password"}
             >
@@ -189,7 +189,7 @@ export function CreateAccountForm() {
             id="role"
             value={form.role}
             onChange={handleChange("role")}
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           >
             <option value="student">student</option>
             <option value="admin">admin</option>
@@ -207,7 +207,7 @@ export function CreateAccountForm() {
             required
             value={form.accessStart}
             onChange={handleChange("accessStart")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           />
         </div>
 
@@ -222,7 +222,7 @@ export function CreateAccountForm() {
             required
             value={form.accessEnd}
             onChange={handleChange("expiresAt")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           />
         </div>
 
@@ -235,7 +235,7 @@ export function CreateAccountForm() {
             id="status"
             value={form.status}
             onChange={handleChange("status")}
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-[#4285F4] focus:outline-none focus:ring-2 focus:ring-[#4285F4]/20"
+            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           >
             <option value="active">active</option>
             <option value="paused">paused</option>
@@ -248,7 +248,7 @@ export function CreateAccountForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#4285F4] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-70 h-[42px]"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-100 transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70 h-[42px] focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <UserPlus size={16} />
             {isSubmitting ? "Creating account..." : "Create account"}
