@@ -473,22 +473,24 @@ export default function HomePage() {
                Train one-on-one with a focused instructor, then reinforce what you learn with our
                online theory modules. One calm, complete path from first drive to test day 
              </p>
-             <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
+              <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
                 <Link
                   href="/online-course-info"
-                  className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl bg-[#4285F4] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+                  className="inline-flex min-w-0 w-full items-center justify-center rounded-xl bg-[#2563eb] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#1d4ed8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
+                  <GraduationCap className="mr-2 h-4.5 w-4.5 shrink-0 text-white/90" />
                   <span>Explore Online Course</span>
-                  <ChevronRight className="ml-2 h-4 w-4" />
+                  <ChevronRight className="ml-1.5 h-4 w-4 shrink-0 text-white/80" />
                 </Link>
                 <a
                   href="#plans"
-                  className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+                  className="inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
+                  <Calendar className="mr-2 h-4.5 w-4.5 shrink-0 text-slate-500" />
                   <span className="sm:hidden">See Offline Plans</span>
                   <span className="hidden sm:inline">See Offline Lesson Plans</span>
                 </a>
-             </div>
+              </div>
 
              {/* Desktop/Tablet: original 3 cards block inside the left column (exactly as original) */}
              <div className="hidden sm:grid sm:grid-cols-3 sm:gap-2.5 sm:overflow-visible sm:px-0 sm:pb-0 text-sm text-slate-600">
