@@ -5,19 +5,22 @@ import { useEffect, useRef, useState } from "react";
 import type React from "react";
 import BrandLogo from "@/components/brand-logo";
 import EnrollButton from "@/components/enroll-button";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Price", href: "#price" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Home", href: "/#home" },
+  { label: "Plans", href: "/#plans" },
+  { label: "Online Course", href: "/online-course-info" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("online-course-info");
   const [isMounted, setIsMounted] = useState(false);
   const [user] = useState<{ name: string } | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Sliding pill state
   const [pillStyle, setPillStyle] = useState<React.CSSProperties>({ left: 0, width: 0, opacity: 0 });
@@ -33,6 +36,19 @@ export default function Navbar() {
     const frame = requestAnimationFrame(() => setIsMounted(true));
     return () => cancelAnimationFrame(frame);
   }, []);
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  // Close mobile menu on ESC
+  useEffect(() => {
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMobileMenu();
+    };
+    if (isMobileMenuOpen) {
+      window.addEventListener("keydown", onEscape);
+    }
+    return () => window.removeEventListener("keydown", onEscape);
+  }, [isMobileMenuOpen]);
 
   // Scroll tracking: hide/show header
   useEffect(() => {
@@ -128,18 +144,18 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-[90] border-b transform-gpu motion-safe:transition-[transform,opacity,background-color,border-color,box-shadow] motion-safe:duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+      className={`fixed inset-x-0 top-0 z-[100] border-b transform-gpu motion-safe:transition-[transform,opacity,background-color,border-color,box-shadow] motion-safe:duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
         isMounted && isNavVisible ? "translate-y-0 opacity-100" : !isMounted ? "-translate-y-2 opacity-0" : "-translate-y-full opacity-0"
       } ${
         isScrolled
-          ? "border-blue-100 bg-white/85 shadow-[0_10px_28px_rgba(15,23,42,0.1)] backdrop-blur-xl"
-          : "border-transparent bg-white/60 backdrop-blur-lg"
+          ? "border-blue-100 bg-white/88 shadow-[0_10px_35px_rgba(15,23,42,0.1)] backdrop-blur-xl"
+          : "border-transparent bg-white/70 backdrop-blur-lg"
       }`}
     >
-      <nav className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
         <BrandLogo />
 
-        <div
+        <nav
           ref={containerRef}
           className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-2 text-sm font-semibold md:flex"
         >
@@ -149,7 +165,7 @@ export default function Navbar() {
             style={pillStyle}
           />
           {navItems.map((item, idx) => (
-            <Link
+            <a
               key={item.label}
               ref={(el) => { linkRefs.current[idx] = el; }}
               href={item.href}
@@ -160,11 +176,11 @@ export default function Navbar() {
               }`}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
-        </div>
+        </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="hidden items-center gap-4 md:flex">
           {user ? (
             <div className="flex items-center gap-3 rounded-full border border-blue-100 bg-white px-4 py-2 shadow-sm">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#4285F4] text-sm font-bold text-white">
@@ -176,7 +192,7 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="hidden rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:block"
+                className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
               >
                 Student Login
               </Link>
@@ -188,7 +204,57 @@ export default function Navbar() {
             </>
           )}
         </div>
-      </nav>
+
+        <button
+          type="button"
+          className="rounded-xl border border-slate-200 bg-white/90 p-2 text-slate-700 transition-colors hover:border-blue-200 hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] md:hidden"
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-nav"
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsMobileMenuOpen((current) => !current)}
+        >
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {isMobileMenuOpen && (
+        <div
+          id="mobile-nav"
+          className="border-t border-blue-100 bg-white/95 px-4 pb-6 pt-4 shadow-lg backdrop-blur-xl sm:px-6 md:hidden"
+        >
+          <div className="space-y-2 border-b border-slate-200/80 pb-4">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                aria-current={activeSection === item.href.slice(1) ? "page" : undefined}
+                onClick={closeMobileMenu}
+                className={`block min-h-12 rounded-xl px-4 py-3.5 text-sm font-semibold transition-colors ${
+                  activeSection === item.href.slice(1)
+                    ? "bg-blue-50 text-[#2563eb]"
+                    : "text-slate-700 hover:bg-blue-50 hover:text-[#4285F4]"
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+          <div className="mt-5 flex items-center gap-3 border-t border-slate-100 pt-4">
+            <Link
+              href="/login"
+              onClick={closeMobileMenu}
+              className="flex-1 rounded-xl border border-slate-200 px-4 py-2.5 text-center text-sm font-semibold text-slate-700"
+            >
+              Login
+            </Link>
+            <EnrollButton
+              className="flex-grow flex-shrink-0 flex-1 rounded-xl bg-[#4285F4] px-4 py-2.5 text-center text-sm font-semibold text-white"
+            >
+              Enroll Now
+            </EnrollButton>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
