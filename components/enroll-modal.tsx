@@ -43,7 +43,7 @@ export default function EnrollModal({ open, onOpenChange }: EnrollModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent 
-        className="sm:max-w-[500px] bg-white p-8 pt-10 max-h-[90vh] overflow-y-auto"
+        className="flex flex-col gap-0 sm:max-w-[500px] bg-white p-6 md:p-8 pt-10 max-h-[90vh] overflow-y-auto"
         onPointerDownOutside={(e) => e.preventDefault()}
         onInteractOutside={(e) => e.preventDefault()}
       >
@@ -59,7 +59,7 @@ export default function EnrollModal({ open, onOpenChange }: EnrollModalProps) {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="mt-2">
+        <div className="mt-6">
           <ContactForm
             defaultPlan="Online Course Purchase"
             defaultMessage={onlineCourseTemplate}
@@ -69,7 +69,7 @@ export default function EnrollModal({ open, onOpenChange }: EnrollModalProps) {
         </div>
 
         {success && (
-          <div className="mt-4 flex justify-center">
+          <div className="mt-6 flex justify-center">
             <button
               onClick={() => onOpenChange(false)}
               className="w-full rounded-2xl bg-emerald-600 py-3 text-sm font-semibold text-white shadow-md hover:bg-emerald-700 transition-colors"
@@ -81,7 +81,7 @@ export default function EnrollModal({ open, onOpenChange }: EnrollModalProps) {
 
         {/* Small log-in redirect for users who clicked by mistake */}
         {!success && (
-          <div className="mt-4 text-center text-xs text-slate-500 border-t border-slate-100 pt-4">
+          <div className="mt-6 text-center text-xs text-slate-500 border-t border-slate-100 pt-6">
             Already enrolled?{" "}
             <Link 
               href="/login" 
