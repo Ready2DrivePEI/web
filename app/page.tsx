@@ -513,20 +513,12 @@ export default function HomePage() {
                     aria-hidden="true"
                   >
                     <path
-                      d="M8 2V13.5"
+                      d="M5 6.5L8 9.5L11 6.5"
                       stroke="currentColor"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="origin-top scale-y-0 opacity-0 transition-all duration-200 ease-out group-hover:scale-y-100 group-hover:opacity-100"
-                    />
-                    <path
-                      d="M5 10L8 13.5L11 10"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="transform transition-transform duration-200 ease-out translate-y-[-3.5px] group-hover:translate-y-0"
+                      className="transform transition-transform duration-200 ease-out group-hover:translate-y-[2.5px]"
                     />
                   </svg>
                 </a>
