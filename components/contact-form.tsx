@@ -291,7 +291,7 @@ export default function ContactForm({
         </button>
 
         <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
-          <ShieldCheck className="h-4.5 w-4.5 text-emerald-500 shrink-0" />
+          <ShieldCheck className="h-4 w-4 text-emerald-500 shrink-0" />
           <span>No spam. No pressure. Just a real conversation.</span>
         </div>
       </div>

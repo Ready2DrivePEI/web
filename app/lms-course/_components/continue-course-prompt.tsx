@@ -28,10 +28,10 @@ export function ContinueCoursePrompt({
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4.5 right-4.5 rounded-xl p-1 text-muted-foreground hover:bg-muted/10 hover:text-foreground transition-colors focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
+          className="absolute top-4 right-4 rounded-xl p-1 text-muted-foreground hover:bg-muted/10 hover:text-foreground transition-colors focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer"
           aria-label="Close dialog"
         >
-          <X className="h-4.5 w-4.5" />
+          <X className="h-4 w-4" />
         </button>
 
         <h2 className="text-lg font-bold pr-8 leading-snug">Would you like to continue where you left off?</h2>
@@ -39,7 +39,7 @@ export function ContinueCoursePrompt({
         <div className="mt-6 flex flex-col gap-2.5">
           <Button
             onClick={onContinueLast}
-            className="w-full flex items-center justify-center gap-1.5 bg-[var(--lms-accent)] hover:bg-[var(--lms-accent)]/90 text-white focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer h-10.5 rounded-xl font-semibold"
+            className="w-full flex items-center justify-center gap-1.5 bg-[var(--lms-accent)] hover:bg-[var(--lms-accent)]/90 text-white focus-visible:ring-2 focus-visible:ring-[var(--lms-accent)] outline-none cursor-pointer h-10 rounded-xl font-semibold"
           >
             <Bookmark className="h-4 w-4" />
             {lastOptionLabel}

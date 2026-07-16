@@ -478,7 +478,7 @@ export default function HomePage() {
                   href="/online-course-info"
                   className="inline-flex min-w-0 w-full items-center justify-center rounded-xl bg-[#2563eb] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#1d4ed8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
-                  <GraduationCap className="mr-2 h-4.5 w-4.5 shrink-0 text-white/90" />
+                  <GraduationCap className="mr-2 h-5 w-5 shrink-0 text-white/90" />
                   <span>Explore Online Course</span>
                   <ChevronRight className="ml-1.5 h-4 w-4 shrink-0 text-white/80" />
                 </Link>
@@ -486,7 +486,7 @@ export default function HomePage() {
                   href="#plans"
                   className="inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
-                  <Calendar className="mr-2 h-4.5 w-4.5 shrink-0 text-slate-500" />
+                  <Calendar className="mr-2 h-5 w-5 shrink-0 text-slate-500" />
                   <span className="sm:hidden">See Offline Plans</span>
                   <span className="hidden sm:inline">See Offline Lesson Plans</span>
                 </a>
@@ -921,7 +921,7 @@ export default function HomePage() {
                     you can send your inquiry faster.
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
-                    <Clock className="h-4.5 w-4.5 text-blue-500" />
+                    <Clock className="h-5 w-5 text-blue-500" />
                     <span>Usually respond within 24 hours</span>
                   </div>
                   <div className="mt-5 space-y-3 pt-4 border-t border-slate-100">
