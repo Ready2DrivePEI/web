@@ -243,7 +243,7 @@ export default function ContactForm({
                 key={template.label}
                 type="button"
                 onClick={() => applyInquiryTemplate(template.text)}
-                className="shrink-0 rounded-full border border-blue-200 bg-blue-50/70 px-3 py-1.5 text-xs font-semibold text-[#2563eb] transition-colors active:bg-blue-100"
+                className="shrink-0 rounded-full border border-blue-200 bg-blue-50/70 px-3 py-1.5 text-xs font-semibold text-blue-500 transition-colors active:bg-blue-100"
               >
                 {template.label}
               </button>

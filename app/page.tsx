@@ -167,11 +167,11 @@ const getLessonIcon = (title: string) => {
 const getTemplateIcon = (label: string) => {
   switch (label) {
     case "Offline lesson booking":
-      return <Calendar className="h-5 w-5 text-blue-600 shrink-0" />;
+      return <Calendar className="h-5 w-5 text-blue-500 shrink-0" />;
     case "Online course purchase":
-      return <GraduationCap className="h-5 w-5 text-blue-600 shrink-0" />;
+      return <GraduationCap className="h-5 w-5 text-blue-500 shrink-0" />;
     case "Questions or support":
-      return <CircleHelp className="h-5 w-5 text-blue-600 shrink-0" />;
+      return <CircleHelp className="h-5 w-5 text-blue-500 shrink-0" />;
     default:
       return null;
   }
@@ -921,7 +921,7 @@ export default function HomePage() {
                     you can send your inquiry faster.
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
-                    <Clock className="h-4.5 w-4.5 text-[#2563eb]" />
+                    <Clock className="h-4.5 w-4.5 text-blue-500" />
                     <span>Usually respond within 24 hours</span>
                   </div>
                   <div className="mt-5 space-y-3 pt-4 border-t border-slate-100">
@@ -934,13 +934,13 @@ export default function HomePage() {
                           key={template.label}
                           type="button"
                           onClick={() => applyInquiryTemplate(template.text)}
-                          className="group flex w-full items-center justify-between rounded-2xl border border-blue-100/80 bg-blue-50/[0.03] px-5 py-4 text-left text-sm font-semibold text-[#2563eb] transition-all hover:bg-blue-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                          className="group flex w-full items-center justify-between rounded-2xl border border-blue-100/50 bg-blue-50/[0.03] px-5 py-4 text-left text-sm font-semibold text-blue-500 transition-all hover:bg-blue-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
                         >
                           <div className="flex items-center gap-3.5">
                             {getTemplateIcon(template.label)}
                             <span>{template.label}</span>
                           </div>
-                          <ChevronRight className="h-4 w-4 text-blue-600 transition-transform group-hover:translate-x-0.5" />
+                          <ChevronRight className="h-4 w-4 text-blue-500 transition-transform group-hover:translate-x-0.5" />
                         </button>
                       ))}
                     </div>
@@ -960,7 +960,7 @@ export default function HomePage() {
                   Tap a starter to pre-fill your message, or type your own.
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs text-slate-500">
-                  <Clock className="h-4 w-4 text-[#2563eb]" />
+                  <Clock className="h-4 w-4 text-blue-500" />
                   <span>Usually respond within 24 hours</span>
                 </div>
               </div>
