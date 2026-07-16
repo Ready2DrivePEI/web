@@ -471,12 +471,12 @@ export default function HomePage() {
               <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
                 <Link
                   href="/online-course-info"
-                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl bg-[#2563eb] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-sm transition-all duration-200 hover:bg-[#1d4ed8] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl bg-[#2563eb] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-sm transition-colors duration-200 hover:bg-[#1d4ed8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
                   <GraduationCap className="mr-2 h-5 w-5 shrink-0 text-white/90" />
                   <span>Explore Online Course</span>
                   <svg
-                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[1px] transition-transform duration-200"
+                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[2.5px] transition-transform duration-200"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
