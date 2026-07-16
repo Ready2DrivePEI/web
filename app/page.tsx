@@ -913,8 +913,8 @@ export default function HomePage() {
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
                     Contact
                   </p>
-                  <h2 className="mt-4 font-[var(--font-landing-display)] text-4xl leading-tight text-slate-950">
-                    Tell us your current stage. We will guide your next steps
+                  <h2 className="mt-4 font-bold text-4xl leading-tight text-slate-950 tracking-tight">
+                    Tell us your current stage. We'll guide your next steps.
                   </h2>
                   <p className="mt-4 leading-relaxed text-slate-700">
                     Choose a starter below and click it. We will auto-fill your message box so
@@ -955,8 +955,8 @@ export default function HomePage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563eb]">
                   Contact
                 </p>
-                <h2 className="mt-2 font-[var(--font-landing-display)] text-2xl leading-tight text-slate-950">
-                  Tell us your current stage
+                <h2 className="mt-2 font-bold text-2xl leading-tight text-slate-950 tracking-tight">
+                  Tell us your current stage. We'll guide your next steps.
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   Tap a starter to pre-fill your message, or type your own.
