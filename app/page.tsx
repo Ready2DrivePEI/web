@@ -476,27 +476,27 @@ export default function HomePage() {
                   <GraduationCap className="mr-2 h-5 w-5 shrink-0 text-white/90" />
                   <span>Explore Online Course</span>
                   <svg
-                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[1px] transition-transform duration-200"
+                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[2px] transition-transform duration-200"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
                   >
                     <path
-                      d="M1 8H13"
+                      d="M2 8H13.5"
                       stroke="currentColor"
-                      strokeWidth="2.1"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       className="origin-left scale-x-0 opacity-0 transition-all duration-200 ease-out group-hover:scale-x-100 group-hover:opacity-100"
                     />
                     <path
-                      d="M9 4L13 8L9 12"
+                      d="M10 5L13.5 8L10 11"
                       stroke="currentColor"
-                      strokeWidth="2.1"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="transform transition-transform duration-200 ease-out translate-x-[-4px] group-hover:translate-x-0"
+                      className="transform transition-transform duration-200 ease-out translate-x-[-3.5px] group-hover:translate-x-0"
                     />
                   </svg>
                 </Link>
