@@ -480,7 +480,7 @@ export default function HomePage() {
                 >
                   <GraduationCap className="mr-2 h-5 w-5 shrink-0 text-white/90" />
                   <span>Explore Online Course</span>
-                  <ChevronRight className="ml-1.5 h-4 w-4 shrink-0 text-white/80" />
+                  <ChevronRight className="ml-1.5 h-4 w-4 shrink-0 text-white/80 translate-y-[1px]" />
                 </Link>
                 <a
                   href="#plans"
