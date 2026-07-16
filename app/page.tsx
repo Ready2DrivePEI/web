@@ -465,13 +465,8 @@ export default function HomePage() {
             <h1 className="font-[var(--font-landing-display)] text-[1.95rem] leading-[1.1] tracking-tight text-slate-950 sm:text-5xl sm:leading-[1.03] lg:text-7xl">
               Practical driving lessons built for confidence on real roads
             </h1>
-             {/* Mobile: simplified, punchier subtext; Desktop: original detailed paragraph */}
-             <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:hidden">
-               One-on-one PEI road lessons backed by online theory. A calm, complete path from first drive to test day.
-             </p>
-             <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 hidden sm:block sm:text-xl sm:leading-[1.72]">
-               Train one-on-one with a focused instructor, then reinforce what you learn with our
-               online theory modules. One calm, complete path from first drive to test day 
+             <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:text-xl sm:leading-[1.72]">
+               Train one-on-one with a focused instructor, reinforce your learning with our certified online theory course modules. One calm, complete path from first drive to test day
              </p>
               <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
                 <Link
