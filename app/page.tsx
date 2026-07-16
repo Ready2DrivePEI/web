@@ -913,20 +913,18 @@ export default function HomePage() {
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
                     Contact
                   </p>
-                  <h2 className="mt-4 font-semibold text-3xl leading-tight text-slate-950 tracking-tight">
+                  <h2 className="mt-4 font-semibold text-[2.1rem] leading-tight text-slate-950 tracking-tight">
                     Tell us your current stage. We'll guide your next steps.
                   </h2>
                   <p className="mt-3 text-[0.93rem] leading-relaxed text-slate-600">
                     Choose a starter below and click it. We'll auto-fill your message so
                     you can send your inquiry faster.
                   </p>
-                  <div className="mt-3 flex">
-                    <span className="inline-flex items-center gap-1 rounded-full border border-blue-100 bg-blue-50/60 px-2 py-0.5 text-[10px] font-semibold text-[#2563eb]">
-                      <Clock className="h-3.5 w-3.5" />
-                      Usually responds within 24 hours
-                    </span>
+                  <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+                    <Clock className="h-4.5 w-4.5 text-[#2563eb]" />
+                    <span>Usually respond within 24 hours</span>
                   </div>
-                  <div className="mt-6 space-y-3 pt-4 border-t border-slate-100">
+                  <div className="mt-5 space-y-3 pt-4 border-t border-slate-100">
                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
                       Quick message starters
                     </p>
@@ -955,17 +953,15 @@ export default function HomePage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563eb]">
                   Contact
                 </p>
-                <h2 className="mt-2 font-semibold text-xl leading-tight text-slate-950 tracking-tight">
+                <h2 className="mt-2 font-semibold text-[1.375rem] leading-tight text-slate-950 tracking-tight">
                   Tell us your current stage. We'll guide your next steps.
                 </h2>
                 <p className="mt-2 text-[13px] leading-relaxed text-slate-600">
                   Tap a starter to pre-fill your message, or type your own.
                 </p>
-                <div className="mt-3 flex">
-                  <span className="inline-flex items-center gap-1 rounded-full border border-blue-100 bg-blue-50/60 px-2 py-0.5 text-[10px] font-semibold text-[#2563eb]">
-                    <Clock className="h-3.5 w-3.5" />
-                    Usually responds within 24 hours
-                  </span>
+                <div className="mt-3 flex items-center gap-2 text-xs text-slate-500">
+                  <Clock className="h-4 w-4 text-[#2563eb]" />
+                  <span>Usually respond within 24 hours</span>
                 </div>
               </div>
 
