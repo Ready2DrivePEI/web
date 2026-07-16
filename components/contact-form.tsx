@@ -261,7 +261,7 @@ export default function ContactForm({
               placeholder="Any questions or specific requirements?"
               value={messageDraft}
               onChange={(event) => setMessageDraft(event.target.value)}
-              className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[150px] flex-1"
+              className="w-full resize-y rounded-xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[150px] flex-1"
             />
             <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400 select-none pointer-events-none">
               {messageDraft.length} / 500
