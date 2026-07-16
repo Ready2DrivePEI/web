@@ -139,7 +139,7 @@ export default function ContactForm({
   const gridClass = hideTemplates ? "grid gap-5" : "grid gap-5 sm:grid-cols-2";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+    <form onSubmit={handleSubmit} className="flex flex-col h-full space-y-5 sm:space-y-6">
       {/* Honeypot field for bot spam detection */}
       <input
         type="text"
@@ -233,7 +233,7 @@ export default function ContactForm({
       {hideTemplates ? (
         <input type="hidden" name="message" value={messageDraft} />
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-2 flex-1 flex flex-col">
           <label htmlFor="message" className="text-sm font-semibold text-slate-800">
             Message
           </label>
@@ -249,7 +249,7 @@ export default function ContactForm({
               </button>
             ))}
           </div>
-          <div className="relative">
+          <div className="relative flex-1 flex flex-col">
             <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
             <textarea
               ref={messageRef}
@@ -261,7 +261,7 @@ export default function ContactForm({
               placeholder="Any questions or specific requirements?"
               value={messageDraft}
               onChange={(event) => setMessageDraft(event.target.value)}
-              className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[150px]"
+              className="w-full resize-y rounded-2xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[150px] flex-1"
             />
             <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400 select-none pointer-events-none">
               {messageDraft.length} / 500
