@@ -136,7 +136,7 @@ export default function ContactForm({
     );
   }
 
-  const gridClass = "grid gap-5 sm:grid-cols-2";
+  const gridClass = hideTemplates ? "grid gap-5" : "grid gap-5 sm:grid-cols-2";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
