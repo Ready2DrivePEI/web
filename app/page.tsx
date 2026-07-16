@@ -502,11 +502,33 @@ export default function HomePage() {
                 </Link>
                 <a
                   href="#plans"
-                  className="inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-colors duration-200 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
-                  <Calendar className="mr-2 h-5 w-5 shrink-0 text-slate-500" />
-                  <span className="sm:hidden">See Offline Plans</span>
-                  <span className="hidden sm:inline">See Offline Lesson Plans</span>
+                  <span>Explore Offline Course</span>
+                  <svg
+                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[1px] transition-transform duration-200"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M8 2V13.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="origin-top scale-y-0 opacity-0 transition-all duration-200 ease-out group-hover:scale-y-100 group-hover:opacity-100"
+                    />
+                    <path
+                      d="M5 10L8 13.5L11 10"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transform transition-transform duration-200 ease-out translate-y-[-3.5px] group-hover:translate-y-0"
+                    />
+                  </svg>
                 </a>
               </div>
 
