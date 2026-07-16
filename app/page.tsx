@@ -61,7 +61,7 @@ const bodyFont = Source_Sans_3({
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "Plans", href: "#plans" },
-  { label: "Online Course", href: "#online-course" },
+  { label: "Online Course", href: "/online-course-info" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -878,7 +878,7 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {contactNotes.map((note) => (
                 <div key={note} className="flex items-start gap-1.5 text-xs font-semibold text-slate-700">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb] mt-0.5" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-blue-500/75 mt-0.5" />
                   <span className="leading-tight">{note}</span>
                 </div>
               ))}
@@ -900,7 +900,7 @@ export default function HomePage() {
                     key={note}
                     className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-5 py-4 text-sm font-semibold text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-colors hover:border-slate-200"
                   >
-                    <Icon className="h-5 w-5 shrink-0 text-[#2563eb]" />
+                    <Icon className="h-5 w-5 shrink-0 text-blue-500/75" />
                     <span className="leading-tight">{note}</span>
                   </div>
                 );
