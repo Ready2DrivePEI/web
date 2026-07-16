@@ -280,7 +280,7 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-500/10 transition-all hover:from-[#1d4ed8] hover:to-[#1e40af] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 disabled:from-blue-400 disabled:to-blue-500 disabled:cursor-not-allowed"
+          className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#2563eb] px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-500/10 transition-all hover:from-[#2563eb] hover:to-[#1d4ed8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6] focus-visible:ring-offset-2 disabled:from-blue-400 disabled:to-blue-500 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
