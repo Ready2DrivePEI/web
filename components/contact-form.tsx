@@ -9,7 +9,7 @@ import {
   ChevronDown, 
   Pencil, 
   Loader2, 
-  SendHorizontal, 
+  Send, 
   ShieldCheck, 
   CheckCircle2 
 } from "lucide-react";
@@ -285,7 +285,7 @@ export default function ContactForm({
           {isSubmitting ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           ) : (
-            <SendHorizontal className="mr-2 h-4 w-4" />
+            <Send className="mr-2 h-4 w-4" />
           )}
           {isSubmitting ? "Submitting..." : "Submit Inquiry"}
         </button>
