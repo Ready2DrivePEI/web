@@ -160,7 +160,7 @@ export default function Navbar() {
         >
           {/* Sliding background pill */}
           <div
-            className="absolute top-1 bottom-1 rounded-lg bg-blue-100/60 will-change-[left,width] motion-safe:transition-[left,width,opacity] motion-safe:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+            className="absolute top-1 bottom-1 rounded-lg bg-slate-100/70 will-change-[left,width] motion-safe:transition-[left,width,opacity] motion-safe:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={pillStyle}
           />
           {navItems.map((item, idx) => (
@@ -170,8 +170,8 @@ export default function Navbar() {
               href={item.href}
               className={`relative z-10 rounded-lg px-3 py-1.5 focus-visible:outline-none motion-safe:transition-colors ${
                 activeSection === item.href.slice(1)
-                  ? "text-[#2563eb]"
-                  : "text-slate-600 hover:text-[#4285F4] focus-visible:text-[#4285F4]"
+                  ? "text-slate-900 font-semibold"
+                  : "text-slate-500 hover:text-slate-950 focus-visible:text-slate-950"
               }`}
             >
               {item.label}
@@ -230,8 +230,8 @@ export default function Navbar() {
                 onClick={closeMobileMenu}
                 className={`block min-h-12 rounded-xl px-4 py-3.5 text-sm font-semibold transition-colors ${
                   activeSection === item.href.slice(1)
-                    ? "bg-blue-50 text-[#2563eb]"
-                    : "text-slate-700 hover:bg-blue-50 hover:text-[#4285F4]"
+                    ? "bg-slate-100/80 text-slate-900"
+                    : "text-slate-700 hover:bg-slate-50/60 hover:text-slate-900"
                 }`}
               >
                 {item.label}

@@ -367,7 +367,7 @@ export default function HomePage() {
             >
               {/* Sliding background pill */}
               <div
-                className="absolute top-1 bottom-1 rounded-lg bg-blue-100/60 will-change-[left,width] motion-safe:transition-[left,width,opacity] motion-safe:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="absolute top-1 bottom-1 rounded-lg bg-slate-100/70 will-change-[left,width] motion-safe:transition-[left,width,opacity] motion-safe:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={pillStyle}
               />
               {navItems.map((item, idx) => (
@@ -377,8 +377,8 @@ export default function HomePage() {
                   href={item.href}
                   className={`relative z-10 rounded-lg px-3 py-1.5 focus-visible:outline-none motion-safe:transition-colors ${
                     activeSection === item.href.slice(1)
-                      ? "text-[#2563eb]"
-                      : "text-slate-600 hover:text-[#4285F4] focus-visible:text-[#4285F4]"
+                      ? "text-slate-900 font-semibold"
+                      : "text-slate-500 hover:text-slate-950 focus-visible:text-slate-950"
                   }`}
                 >
                   {item.label}
@@ -426,8 +426,8 @@ export default function HomePage() {
                     aria-current={activeSection === item.href.slice(1) ? "page" : undefined}
                     onClick={closeMobileMenu}
                     className={`block min-h-12 rounded-xl px-4 py-3.5 text-sm font-semibold transition-colors ${activeSection === item.href.slice(1)
-                        ? "bg-blue-50 text-[#2563eb]"
-                        : "text-slate-700 hover:bg-blue-50 hover:text-[#4285F4]"
+                        ? "bg-slate-100/80 text-slate-900"
+                        : "text-slate-700 hover:bg-slate-50/60 hover:text-slate-900"
                       }`}
                   >
                     {item.label}
@@ -457,7 +457,7 @@ export default function HomePage() {
         <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-26 md:gap-16 md:pt-32 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <RevealOnScroll className="min-w-0 space-y-6 sm:space-y-8">
             {/* Badge — sparkles icon hidden on mobile for cleaner look */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#4285F4] shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-sm">
               <Sparkles className="hidden h-3.5 w-3.5 sm:block" />
               <span className="sm:hidden">Licensed in PEI</span>
               <span className="hidden sm:inline">Licensed Driving Instruction in PEI</span>
@@ -483,13 +483,13 @@ export default function HomePage() {
                  <span className="hidden sm:inline">See Offline Lesson Plans</span>
                  <ChevronRight className="ml-2 h-4 w-4" />
                </a>
-               <Link
-                 href="/online-course-info"
-                 className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl border border-blue-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-[#2563eb] transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
-               >
-                 <span className="sm:hidden">Explore Online Course</span>
-                 <span className="hidden sm:inline">Explore the New Online Course</span>
-               </Link>
+                <Link
+                  href="/online-course-info"
+                  className="inline-flex min-w-0 w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+                >
+                  <span className="sm:hidden">Explore Online Course</span>
+                  <span className="hidden sm:inline">Explore the New Online Course</span>
+                </Link>
              </div>
 
              {/* Desktop/Tablet: original 3 cards block inside the left column (exactly as original) */}
