@@ -476,7 +476,7 @@ export default function HomePage() {
                   <GraduationCap className="mr-2 h-5 w-5 shrink-0 text-white/90" />
                   <span>Explore Online Course</span>
                   <svg
-                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[2px] transition-transform duration-200"
+                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible transition-transform duration-200"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
