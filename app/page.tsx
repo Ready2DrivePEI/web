@@ -906,18 +906,18 @@ export default function HomePage() {
                 );
               })}
             </div>
-            <div className="grid gap-5 sm:gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="grid gap-5 sm:gap-8 lg:grid-cols-[0.7fr_1.3fr]">
               {/* Desktop: full left panel with description and starters */}
               <RevealOnScroll className="hidden h-full sm:block">
                 <div className="flex h-full flex-col rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
                     Contact
                   </p>
-                  <h2 className="mt-4 font-bold text-4xl leading-tight text-slate-950 tracking-tight">
+                  <h2 className="mt-4 font-semibold text-4xl leading-tight text-slate-950 tracking-tight">
                     Tell us your current stage. We'll guide your next steps.
                   </h2>
                   <p className="mt-4 leading-relaxed text-slate-700">
-                    Choose a starter below and click it. We will auto-fill your message box so
+                    Choose a starter below and click it. We'll auto-fill your message so
                     you can send your inquiry faster.
                   </p>
                   <div className="mt-7 space-y-3.5 pt-5">
@@ -955,7 +955,7 @@ export default function HomePage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563eb]">
                   Contact
                 </p>
-                <h2 className="mt-2 font-bold text-2xl leading-tight text-slate-950 tracking-tight">
+                <h2 className="mt-2 font-semibold text-2xl leading-tight text-slate-950 tracking-tight">
                   Tell us your current stage. We'll guide your next steps.
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
