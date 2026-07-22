@@ -256,6 +256,23 @@ export function AdminDashboardClient() {
     };
   }, [loadOverview]);
 
+  // React to auth state changes (e.g., sign-out in another tab)
+  useEffect(() => {
+    if (!supabase) return;
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        localStorage.removeItem("r2d-auth");
+        sessionStorage.removeItem("r2d-auth");
+        router.replace("/login");
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [router]);
+
   const handleRefresh = () => {
     void loadOverview("refresh");
   };

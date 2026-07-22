@@ -89,7 +89,8 @@ export default function ContactForm({
     // Perform client-side Zod validation
     const rawData = {
       submissionId,
-      fullName: formData.get("fullName"),
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
       email: formData.get("email"),
       phone: formData.get("phone"),
       plan: formData.get("plan"),
@@ -149,25 +150,47 @@ export default function ContactForm({
         className="absolute left-[-9999px] h-0 w-0 opacity-0 pointer-events-none"
       />
 
-      <div className={gridClass}>
+      {/* First Name & Last Name (Split Box) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="space-y-2">
-          <label htmlFor="fullName" className="text-sm font-semibold text-slate-800">
-            Full name
+          <label htmlFor="firstName" className="text-sm font-semibold text-slate-800">
+            First name
           </label>
           <div className="relative flex items-center">
             <User className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
             <input
-              id="fullName"
-              name="fullName"
+              id="firstName"
+              name="firstName"
               type="text"
               required
-              placeholder="John Doe"
-              autoComplete="name"
+              placeholder="John"
+              autoComplete="given-name"
               className="w-full rounded-xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
             />
           </div>
         </div>
 
+        <div className="space-y-2">
+          <label htmlFor="lastName" className="text-sm font-semibold text-slate-800">
+            Last name
+          </label>
+          <div className="relative flex items-center">
+            <User className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              required
+              placeholder="Doe"
+              autoComplete="family-name"
+              className="w-full rounded-xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Phone & Email */}
+      <div className={gridClass}>
         <div className="space-y-2">
           <label htmlFor="phone" className="text-sm font-semibold text-slate-800">
             Phone number
@@ -185,9 +208,7 @@ export default function ContactForm({
             />
           </div>
         </div>
-      </div>
 
-      <div className={gridClass}>
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-semibold text-slate-800">
             Email
@@ -205,28 +226,28 @@ export default function ContactForm({
             />
           </div>
         </div>
+      </div>
 
-        <div className="space-y-2">
-          <label htmlFor="plan" className="text-sm font-semibold text-slate-800">
-            Interested plan
-          </label>
-          <div className="relative flex items-center">
-            <CreditCard className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
-            <select
-              ref={planSelectRef}
-              id="plan"
-              name="plan"
-              defaultValue={defaultPlan}
-              className="w-full appearance-none rounded-xl border border-slate-300 bg-white pl-11 pr-10 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
-            >
-              <option>Single Lesson Package</option>
-              <option>Multi Lesson Package</option>
-              <option>Co-Pilot Package</option>
-              <option>Online Course Purchase</option>
-              <option>Not sure yet</option>
-            </select>
-            <ChevronDown className="absolute right-4 h-4 w-4 text-slate-500 pointer-events-none" />
-          </div>
+      <div className="space-y-2">
+        <label htmlFor="plan" className="text-sm font-semibold text-slate-800">
+          Interested plan
+        </label>
+        <div className="relative flex items-center">
+          <CreditCard className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
+          <select
+            ref={planSelectRef}
+            id="plan"
+            name="plan"
+            defaultValue={defaultPlan}
+            className="w-full appearance-none rounded-xl border border-slate-300 bg-white pl-11 pr-10 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
+          >
+            <option>Single Lesson Package</option>
+            <option>Multi Lesson Package</option>
+            <option>Co-Pilot Package</option>
+            <option>Online Course Purchase</option>
+            <option>Not sure yet</option>
+          </select>
+          <ChevronDown className="absolute right-4 h-4 w-4 text-slate-500 pointer-events-none" />
         </div>
       </div>
 

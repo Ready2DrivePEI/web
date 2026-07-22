@@ -123,15 +123,15 @@ export function LMSShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let active = true
-    void (async () => {
-      const authSnapshot = localStorage.getItem("r2d-auth") ?? sessionStorage.getItem("r2d-auth")
-      if (!authSnapshot || !supabase) {
-        if (!active) return
-        setAuthChecked(true)
-        router.replace("/login")
-        return
-      }
 
+    if (!supabase) {
+      setAuthChecked(true)
+      router.replace("/login")
+      return
+    }
+
+    // Use Supabase session as the single source of truth
+    void (async () => {
       const { data } = await supabase.auth.getSession()
       if (!active) return
       if (!data.session) {
@@ -144,8 +144,19 @@ export function LMSShell({ children }: { children: ReactNode }) {
       setAuthChecked(true)
     })()
 
+    // React to auth state changes (e.g., sign-out in another tab)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (!active) return
+      if (event === "SIGNED_OUT") {
+        localStorage.removeItem("r2d-auth")
+        sessionStorage.removeItem("r2d-auth")
+        router.replace("/login")
+      }
+    })
+
     return () => {
       active = false
+      subscription.unsubscribe()
     }
   }, [router])
 

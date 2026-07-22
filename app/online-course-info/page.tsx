@@ -121,8 +121,8 @@ export default function OnlineCoursePage() {
           </section>
 
           <section id="about" className="grid scroll-mt-20 gap-6 md:grid-cols-3 md:scroll-mt-20">
-            <RevealOnScroll delayMs={40}>
-              <article className="rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
+            <RevealOnScroll delayMs={40} className="h-full">
+              <article className="h-full flex flex-col rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
                 <PlayCircle className="mb-4 text-[#4285F4]" size={32} />
                 <h3 className="text-xl font-semibold text-slate-900">Interactive Modules</h3>
                 <p className="mt-3 text-slate-600">
@@ -132,8 +132,8 @@ export default function OnlineCoursePage() {
               </article>
             </RevealOnScroll>
 
-            <RevealOnScroll delayMs={120}>
-              <article className="rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
+            <RevealOnScroll delayMs={120} className="h-full">
+              <article className="h-full flex flex-col rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
                 <CheckCircle2 className="mb-4 text-[#4285F4]" size={32} />
                 <h3 className="text-xl font-semibold text-slate-900">Progress Tracking</h3>
                 <p className="mt-3 text-slate-600">
@@ -143,13 +143,12 @@ export default function OnlineCoursePage() {
               </article>
             </RevealOnScroll>
 
-            <RevealOnScroll delayMs={200}>
-              <article className="rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
+            <RevealOnScroll delayMs={200} className="h-full">
+              <article className="h-full flex flex-col rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
                 <Award className="mb-4 text-[#4285F4]" size={32} />
                 <h3 className="text-xl font-semibold text-slate-900">Official Certificate</h3>
                 <p className="mt-3 text-slate-600">
-                  Upon successful completion, receive a certificate approved by the PEI Government
-                  validating your achievement.
+                  Upon completion, receive an official certificate approved by the PEI Government.
                 </p>
               </article>
             </RevealOnScroll>
@@ -164,22 +163,24 @@ export default function OnlineCoursePage() {
                 <h2 className="font-[var(--font-landing-display)] text-3xl leading-tight text-slate-900 md:text-4xl">
                   Why choose this course?
                 </h2>
-                <p className="text-lg text-slate-600">
-                  Our system ensures true mastery instead of passive watching.
-                </p>
-                <ul className="space-y-4">
-                  {[
-                    "Unlimited quiz attempts",
-                    "Full 90-day access period",
-                    "Step-by-step guided modules",
-                    "Official completion certificate",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-base font-medium text-slate-700">
-                      <CheckCircle2 size={20} className="shrink-0 text-[#4285F4]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div className="space-y-3">
+                  <p className="text-lg text-slate-600">
+                    Our system ensures true mastery instead of passive watching.
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Unlimited quiz attempts",
+                      "Full 90-day access period",
+                      "Step-by-step guided modules",
+                      "Official completion certificate",
+                    ].map((item) => (
+                      <li key={item} className="flex items-center gap-3 text-base font-medium text-slate-700">
+                        <CheckCircle2 size={20} className="shrink-0 text-[#4285F4]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </RevealOnScroll>
 

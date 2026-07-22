@@ -211,9 +211,6 @@ export default function LoginPage() {
       if (active) setAuthChecked(true);
     })();
 
-    if (localStorage.getItem("r2d-remember-me") === "false") {
-      void supabase?.auth.signOut();
-    }
 
     const visited = localStorage.getItem("r2d-visited");
     if (!visited) {

@@ -29,7 +29,8 @@ export async function sendContactInquiry(formData: FormData) {
 
   // 2. Extract values from FormData
   const submissionId = formData.get("submissionId");
-  const fullName = formData.get("fullName");
+  const firstName = formData.get("firstName");
+  const lastName = formData.get("lastName");
   const email = formData.get("email");
   const phone = formData.get("phone");
   const plan = formData.get("plan");
@@ -38,7 +39,8 @@ export async function sendContactInquiry(formData: FormData) {
   // 3. Validation: Run cheap validation schema checks
   const validationResult = contactSchema.safeParse({
     submissionId,
-    fullName,
+    firstName,
+    lastName,
     email,
     phone,
     plan,
@@ -55,6 +57,7 @@ export async function sendContactInquiry(formData: FormData) {
   }
 
   const validatedData = validationResult.data;
+  const fullName = `${validatedData.firstName} ${validatedData.lastName}`.trim();
 
   // 4. Supabase Insert: Save the lead details using admin service role client.
   // Cast adminClient as any because contact_inquiries doesn't exist in static database.types.ts yet.
@@ -62,7 +65,7 @@ export async function sendContactInquiry(formData: FormData) {
     .from("contact_inquiries")
     .insert({
       submission_id: validatedData.submissionId,
-      name: validatedData.fullName,
+      name: fullName,
       email: validatedData.email,
       phone: validatedData.phone,
       plan: validatedData.plan,
@@ -95,7 +98,7 @@ export async function sendContactInquiry(formData: FormData) {
     await resend.emails.send({
       from: "Ready2Drive PEI <onboarding@resend.dev>",
       to: "kamizyt600@gmail.com",
-      subject: `New Driving Lesson Inquiry — ${escapeHtml(validatedData.fullName)}`,
+      subject: `New Driving Lesson Inquiry — ${escapeHtml(fullName)}`,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
           <h2 style="color: #2563eb; margin-top: 0;">New Driving Lesson Inquiry</h2>
@@ -104,7 +107,7 @@ export async function sendContactInquiry(formData: FormData) {
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="padding: 6px 0; font-weight: bold; width: 140px;">Name:</td>
-              <td style="padding: 6px 0;">${escapeHtml(validatedData.fullName)}</td>
+              <td style="padding: 6px 0;">${escapeHtml(fullName)}</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Email:</td>

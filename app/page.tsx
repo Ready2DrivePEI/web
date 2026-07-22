@@ -90,14 +90,14 @@ const offlinePlans: OfflinePlan[] = [
   },
   {
     title: "Multi Lesson Package",
-    duration: "4.5 to 6 hours",
+    duration: "5 hours",
     description:
       "A progressive lesson pathway that builds confidence step by step over multiple sessions.",
     pricingLabel: "Quote shared after consultation",
     bestFor: "Recommended for beginners building confidence from the basics.",
     recommended: true,
     points: [
-      "Multiple practical sessions across 4.5 to 6 hours",
+      "Multiple practical sessions across 5 hours",
       "Structured pacing for beginner skill development",
     ],
   },

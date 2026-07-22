@@ -6,7 +6,8 @@ import { Eye, EyeOff, UserPlus } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 
 type FormState = {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   role: "student" | "admin";
@@ -30,7 +31,8 @@ function addDays(dateString: string, days: number): string {
 function buildInitialState(): FormState {
   const today = formatDateInput(new Date());
   return {
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     role: "student",
@@ -88,13 +90,15 @@ export function CreateAccountForm() {
         return;
       }
 
+      const fullName = `${form.firstName.trim()} ${form.lastName.trim()}`.trim();
+
       const response = await fetch("/api/admin/students", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, fullName }),
       });
 
       const payload = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -119,17 +123,34 @@ export function CreateAccountForm() {
   return (
     <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-        {/* Full Name */}
+        {/* First Name */}
         <div className="space-y-2">
-          <label className="text-sm font-semibold text-slate-700" htmlFor="fullName">
-            Full name
+          <label className="text-sm font-semibold text-slate-700" htmlFor="firstName">
+            First name
           </label>
           <input
-            id="fullName"
+            id="firstName"
             type="text"
-            placeholder="Student full name"
-            value={form.fullName}
-            onChange={handleChange("fullName")}
+            placeholder="Student first name"
+            required
+            value={form.firstName}
+            onChange={handleChange("firstName")}
+            className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-500/80 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+          />
+        </div>
+
+        {/* Last Name */}
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-slate-700" htmlFor="lastName">
+            Last name
+          </label>
+          <input
+            id="lastName"
+            type="text"
+            placeholder="Student last name"
+            required
+            value={form.lastName}
+            onChange={handleChange("lastName")}
             className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-700 placeholder-slate-500/80 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           />
         </div>

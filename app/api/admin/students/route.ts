@@ -4,6 +4,8 @@ import type { Database } from "@/database.types";
 
 type CreateStudentPayload = {
   fullName?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
   password?: string;
   role?: string;
@@ -69,7 +71,11 @@ export async function POST(request: Request) {
 
   const email = String(payload.email ?? "").trim().toLowerCase();
   const password = String(payload.password ?? "");
-  const fullName = String(payload.fullName ?? "").trim();
+  const firstName = String(payload.firstName ?? "").trim();
+  const lastName = String(payload.lastName ?? "").trim();
+  const fullName = payload.fullName
+    ? String(payload.fullName).trim()
+    : `${firstName} ${lastName}`.trim();
   const role = payload.role === "admin" ? "admin" : "student";
   const status =
     payload.status === "paused" || payload.status === "expired" ? payload.status : "active";

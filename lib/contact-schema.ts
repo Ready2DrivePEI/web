@@ -4,10 +4,15 @@ export const contactSchema = z.object({
   submissionId: z.string().uuid({
     message: "Invalid submission ID format."
   }),
-  fullName: z
+  firstName: z
     .string()
-    .min(2, { message: "Name must be at least 2 characters long." })
-    .max(50, { message: "Name must not exceed 50 characters." })
+    .min(1, { message: "First name is required." })
+    .max(50, { message: "First name must not exceed 50 characters." })
+    .trim(),
+  lastName: z
+    .string()
+    .min(1, { message: "Last name is required." })
+    .max(50, { message: "Last name must not exceed 50 characters." })
     .trim(),
   email: z
     .string()
