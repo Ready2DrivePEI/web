@@ -9,7 +9,8 @@ When making changes, prefer practical improvements that make the product easier 
 - UI: shadcn/ui component library.
 - Product shape: marketing landing + online-course info + LMS experience (driving school).
 - Priority: preserve continuity across these surfaces unless the task explicitly asks for a redesign.
-
+- account login passwords in
+ .env.local
 ## Project Documentation & Custom Skills
 Before editing code or performing tasks, refer to the following local reference files and workspace skills:
 - **Project Structure & Map**: [ARCHITECTURE.md](file:///c:/GAMES%20G/Code/APP/Antigravity%20porjects/lms-ready2drive/docs/ARCHITECTURE.md) (contains folder tree, conventions, static module schemas, and AI prompt template).
@@ -149,3 +150,4 @@ When using a structured workflow:
 - Report what changed, why it changed, and any remaining risks
 
 Prefer completing the implementation over only providing analysis or a plan.
+
