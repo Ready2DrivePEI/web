@@ -9,6 +9,7 @@ import {
   RefreshCw,
   LogOut,
   Search,
+  SearchX,
   Trash2,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -563,6 +564,7 @@ export function AdminDashboardClient() {
                   })}
                   {!isLoading && filteredUsers.length === 0 ? (
                     <div className="px-4 py-10 text-center">
+                      <SearchX className="mx-auto mb-2 h-8 w-8 text-slate-400" />
                       <p className="text-sm font-semibold text-slate-700">
                         No users match your filters.
                       </p>

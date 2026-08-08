@@ -206,7 +206,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="rounded-xl border border-slate-200 bg-white/90 p-2 text-slate-700 transition-colors hover:border-blue-200 hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] md:hidden"
+          className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/90 p-2 text-slate-700 transition-colors hover:border-blue-200 hover:text-[#4285F4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] md:hidden"
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-nav"
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
