@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ContentBlock } from "@/app/lms-course/data/modules/module1/chapter1";
 import { ImageOff, Lightbulb, AlertTriangle, ShieldAlert } from "lucide-react";
+import { renderFormattedText, getYouTubeEmbedUrl } from "@/lib/lesson-utils";
 
 type CalloutVariant = "info" | "warning" | "danger";
 type ImageLayout = "quarter" | "half" | "threeQuarter" | "full";
@@ -77,43 +78,6 @@ const tableCellClasses: Record<TableSize, string> = {
 
 function getTableSize(size?: TableSize): TableSize {
   return size ?? "default";
-}
-function renderFormattedText(text: string) {
-  const parts = text.split(/(\*\*.*?\*\*)/g);
-
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      const inner = part.slice(2, -2);
-      return (
-        <strong key={i} className="font-semibold">
-          {inner}
-        </strong>
-      );
-    }
-
-    return <span key={i}>{part}</span>;
-  });
-}
-
-function getYouTubeEmbedUrl(url: string): string | null {
-  try {
-    const parsed = new URL(url);
-    const host = parsed.hostname.replace(/^www\./, "");
-
-    if (host === "youtube.com" || host === "m.youtube.com") {
-      const videoId = parsed.searchParams.get("v");
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-    }
-
-    if (host === "youtu.be") {
-      const videoId = parsed.pathname.replace("/", "");
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-    }
-  } catch {
-    return null;
-  }
-
-  return null;
 }
 
 export function LessonView({ content }: { content: ContentBlock[] }) {
