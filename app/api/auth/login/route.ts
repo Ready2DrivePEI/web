@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   const identifier = String(payload.fullName ?? "").trim();
   const password = String(payload.password ?? "");
 
-  if (!identifier || !password) {
+  if (!identifier || !password.trim()) {
     return NextResponse.json(
       { error: "Please enter both your identifier and password." },
       { status: 400 },

@@ -80,12 +80,12 @@ export async function POST(request: Request) {
   const status =
     payload.status === "paused" || payload.status === "expired" ? payload.status : "active";
 
-  if (!email) {
-    return NextResponse.json({ error: "Email is required." }, { status: 400 });
+  if (!email || !firstName || !lastName) {
+    return NextResponse.json({ error: "Email, first name, and last name are required." }, { status: 400 });
   }
 
-  if (!password || password.length < 6) {
-    return NextResponse.json({ error: "Password must be at least 6 characters." }, { status: 400 });
+  if (!password.trim() || password.trim().length < 6) {
+    return NextResponse.json({ error: "Password must be at least 6 non-blank characters." }, { status: 400 });
   }
 
   const today = new Date().toISOString().slice(0, 10);

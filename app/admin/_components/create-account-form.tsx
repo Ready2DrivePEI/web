@@ -90,7 +90,24 @@ export function CreateAccountForm() {
         return;
       }
 
-      const fullName = `${form.firstName.trim()} ${form.lastName.trim()}`.trim();
+      const firstName = form.firstName.trim();
+      const lastName = form.lastName.trim();
+      const email = form.email.trim();
+      const password = form.password.trim();
+
+      if (!firstName || !lastName || !email || !password) {
+        setSubmitError("Please fill in all required fields (no blank spaces).");
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (password.length < 6) {
+        setSubmitError("Password must be at least 6 characters.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      const fullName = `${firstName} ${lastName}`.trim();
 
       const response = await fetch("/api/admin/students", {
         method: "POST",

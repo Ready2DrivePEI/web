@@ -36,8 +36,8 @@ export default function LoginPage() {
     const fullName = String(formData.get("fullName") ?? "").trim();
     const password = String(formData.get("password") ?? "");
 
-    if (!fullName || !password) {
-      setSubmitError("Please enter both your name and password.");
+    if (!fullName || !password.trim()) {
+      setSubmitError("Please enter both your email/name and password.");
       setIsSubmitting(false);
       return;
     }
