@@ -22,7 +22,7 @@ export const m4chapter2Quiz: ChapterQuiz = {
     },
     {
       id: "q2",
-      question: "During Stage 2 of the GDL program, at how many demerit points is your license suspended for one month?",
+      question: "During Stage 2 of the GDL program, at how many demerit points is your licence suspended for one month?",
       options: [
         "3 points",
         "6 points",
@@ -39,7 +39,7 @@ export const m4chapter2Quiz: ChapterQuiz = {
       options: [
         "They receive a warning letter.",
         "They receive a $50 fine but no points.",
-        "Their license is immediately suspended.",
+        "Their licence is immediately suspended.",
         "They are sent to an interview.",
       ],
       correctAnswerIndex: 2,
@@ -48,7 +48,7 @@ export const m4chapter2Quiz: ChapterQuiz = {
     },
     {
       id: "q4",
-      question: "True or False: Drivers under 19, or those who have had a license for less than 3 years, must have a \"0\" blood alcohol content while driving.",
+      question: "True or False: Drivers under 19, or those who have had a licence for less than 3 years, must have a \"0\" blood alcohol content while driving.",
       options: [
         "True",
         "False",
@@ -59,7 +59,7 @@ export const m4chapter2Quiz: ChapterQuiz = {
     },
     {
       id: "q5",
-      question: "At what point range is an experienced driver required to attend an interview to \"show cause\" why their license shouldn't be suspended?",
+      question: "At what point range is an experienced driver required to attend an interview to \"show cause\" why their licence shouldn't be suspended?",
       options: [
         "3 to 5 points",
         "6, 7, or 8 points",

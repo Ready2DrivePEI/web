@@ -24,7 +24,7 @@ export const m2chapter3Quiz: ChapterQuiz = {
     },
     {
       id: "q2",
-      question: "Which stop-sign behavior is correct?",
+      question: "Which stop-sign behaviour is correct?",
       options: [
         "Slow and roll through if no one is visible",
         "Make a full stop at the proper stopping point",

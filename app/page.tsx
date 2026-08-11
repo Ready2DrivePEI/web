@@ -667,7 +667,7 @@ export default function HomePage() {
                             : "text-slate-600"
                         }`}
                       >
-                        Curriculum
+                        Course Topics
                       </button>
                       <button
                         type="button"
@@ -851,7 +851,7 @@ export default function HomePage() {
                     Online theory course that complements your road sessions.
                   </h2>
                    <p className="text-base leading-relaxed text-slate-700 sm:hidden">
-                     Study for your PEI license test at home with interactive modules and practice quizzes.
+                     Study for your PEI licence test at home with interactive modules and practice quizzes.
                    </p>
                    <p className="text-base leading-relaxed text-slate-700 hidden sm:block sm:text-lg">
                      Continue learning off the road with guided modules, quizzes, and
@@ -963,8 +963,8 @@ export default function HomePage() {
                       key={note}
                       className="flex items-center gap-3 lg:px-5 lg:first:pl-1 lg:last:pr-1"
                     >
-                      <Icon className="h-5 w-5 shrink-0 text-[#2563eb]" />
-                      <span className="text-xs font-semibold text-slate-700 leading-tight">
+                      <Icon className="h-5 w-5 shrink-0 text-blue-500/75" />
+                      <span className="text-xs font-semibold text-slate-800 leading-tight">
                         {note}
                       </span>
                     </div>

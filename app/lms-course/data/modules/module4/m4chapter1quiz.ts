@@ -13,8 +13,8 @@ export const m4chapter1Quiz: ChapterQuiz = {
       options: [
         "$100 to $150 and 1 demerit point",
         "$250 to $400 and 3 demerit points",
-        "Loss of your license for 30 days",
-        "Only a verbal warning for the first offense",
+        "Loss of your licence for 30 days",
+        "Only a verbal warning for the first offence",
       ],
       correctAnswerIndex: 1,
       explanation: "Correct Answer: B",
@@ -40,7 +40,7 @@ export const m4chapter1Quiz: ChapterQuiz = {
         "They receive a warning and are sent home.",
         "They get a 24-hour suspension and a 90-day driving prohibition.",
         "They must pay a $50 fine but can keep driving.",
-        "Their license is cancelled for five years instantly.",
+        "Their licence is cancelled for five years instantly.",
       ],
       correctAnswerIndex: 1,
       explanation: "Correct Answer: B",
@@ -63,7 +63,7 @@ export const m4chapter1Quiz: ChapterQuiz = {
       id: "q5",
       question: "What is an Administrative Driving Prohibition (ADP)?",
       options: [
-        "A 90-day license suspension issued by police at the time of an impaired driving charge.",
+        "A 90-day licence suspension issued by police at the time of an impaired driving charge.",
         "A permanent ban from driving in Canada.",
         "A penalty specifically for drag racing.",
         "A 24-hour suspension given for emotional driving.",
@@ -85,7 +85,7 @@ export const m4chapter1Quiz: ChapterQuiz = {
     },
     {
       id: "q7",
-      question: "Which of the following is considered an aggressive driving behavior often caused by emotionally charged conversations in the vehicle?",
+      question: "Which of the following is considered an aggressive driving behaviour often caused by emotionally charged conversations in the vehicle?",
       options: [
         "Signaling too early",
         "Tailgating and speeding",
@@ -98,7 +98,7 @@ export const m4chapter1Quiz: ChapterQuiz = {
     },
     {
       id: "q8",
-      question: "If you are convicted of your second impaired driving offense, how long is your license cancelled?",
+      question: "If you are convicted of your second impaired driving offence, how long is your licence cancelled?",
       options: [
         "Six months",
         "One year",

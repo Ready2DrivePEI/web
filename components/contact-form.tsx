@@ -32,6 +32,13 @@ export const inquiryTemplates = [
   },
 ];
 
+function formatPhoneNumber(val: string): string {
+  const digits = val.replace(/\D/g, "").slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+}
+
 interface ContactFormProps {
   defaultPlan?: string;
   defaultMessage?: string;
@@ -50,6 +57,11 @@ export default function ContactForm({
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [messageDraft, setMessageDraft] = useState(defaultMessage ?? "");
   const [selectedPlan, setSelectedPlan] = useState<string>(defaultPlan ?? "");
+  const [phone, setPhone] = useState("");
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(formatPhoneNumber(e.target.value));
+  };
 
   // Counter-based trigger: incrementing forces TiptapMessageEditor to re-sync
   // even when the same template text is applied twice.
@@ -139,6 +151,7 @@ export default function ContactForm({
         setFormSubmitted(true);
         event.currentTarget.reset();
         setMessageDraft("");
+        setPhone("");
         tiptapMessageRef.current = "";
         setTiptapKey((k) => k + 1);
         if (onSuccess) {
@@ -233,6 +246,8 @@ export default function ContactForm({
               name="phone"
               type="tel"
               required
+              value={phone}
+              onChange={handlePhoneChange}
               placeholder="(902) 555-1234"
               autoComplete="tel"
               className="w-full rounded-xl border border-slate-300 pl-11 pr-4 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"

@@ -51,7 +51,7 @@ export default function LMSHome() {
     <div className="max-w-5xl">
       <div className="max-w-4xl">
         <h1 id="lms-home-header" className="lms-home-title mb-2 text-3xl sm:text-4xl font-bold scroll-mt-6">
-          Ready to get your license?
+          Ready to get your licence?
         </h1>
         <p className="lms-home-lead mb-6 max-w-2xl text-base sm:text-lg">
           Welcome to the <span className="lms-accent font-semibold">Driving Theory Masterclass</span>.
@@ -147,7 +147,7 @@ export default function LMSHome() {
             <div className="relative z-10">
               <h2 className="mb-2 text-2xl font-black italic">START YOUR ENGINE</h2>
               <p className="mb-5 font-medium opacity-90 text-sm sm:text-base">
-                Launch the course content viewer to begin or resume your journey toward your driving license.
+                Launch the course content viewer to begin or resume your journey toward your driving licence.
               </p>
               <Link
                 href={targetHref}

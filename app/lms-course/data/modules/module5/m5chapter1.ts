@@ -1,4 +1,4 @@
-﻿import type { Chapter } from "@/app/lms-course/data/modules/module1/chapter1";
+import type { Chapter } from "@/app/lms-course/data/modules/module1/chapter1";
 
 export const m5chapter1: Chapter = {
   id: "m5chapter1",
@@ -50,7 +50,7 @@ export const m5chapter1: Chapter = {
         {
           type: "text",
           value:
-            "If you drive a vehicle, your behavior around cyclists can either create space or create a crash. The safest driver is the one who treats a cyclist like a real road user, not like a decoration on the shoulder.",
+            "If you drive a vehicle, your behaviour around cyclists can either create space or create a crash. The safest driver is the one who treats a cyclist like a real road user, not like a decoration on the shoulder.",
         },
         {
           type: "text",

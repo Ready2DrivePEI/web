@@ -132,7 +132,7 @@ export const m2chapter2Quiz: ChapterQuiz = {
       ],
       correctAnswerIndex: 1,
       explanation:
-        "School zones require expectation of unpredictable child behavior.",
+        "School zones require expectation of unpredictable child behaviour.",
       sourceLessonId: "m2ch2_pg2",
     },
     {

@@ -237,7 +237,7 @@ export const m2chapter2: Chapter = {
         {
           type: "text",
           value:
-            "These signs indicate areas with high pedestrian vulnerability, like schools or parks. The immediate behavioral change required is **hyper-awareness** and strict speed compliance, as fines are doubled for offenses here.",
+            "These signs indicate areas with high pedestrian vulnerability, like schools or parks. The immediate behavioural change required is **hyper-awareness** and strict speed compliance, as fines are doubled for offences here.",
         },
         {
           type: "image",

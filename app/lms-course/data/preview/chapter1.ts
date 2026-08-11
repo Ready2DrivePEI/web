@@ -1,4 +1,4 @@
-﻿import type { Chapter, Lesson } from "@/app/lms-course/data/modules/module1/chapter1";
+import type { Chapter, Lesson } from "@/app/lms-course/data/modules/module1/chapter1";
 
 const lessons: Lesson[] = [
   {
@@ -23,7 +23,7 @@ const lessons: Lesson[] = [
       {
         type: "text",
         value:
-          "Driving is treated as a safety responsibility. Privileges are maintained through safe behavior and legal compliance.",
+          "Driving is treated as a safety responsibility. Privileges are maintained through safe behaviour and legal compliance.",
       },
       {
         type: "text",
@@ -432,7 +432,7 @@ const lessons: Lesson[] = [
         type: "list",
         items: [
           "A safe, legal test vehicle is mandatory.",
-          "The examiner checks practical safety behavior, not just vehicle control.",
+          "The examiner checks practical safety behaviour, not just vehicle control.",
           "Complete post-pass licensing steps promptly.",
         ],
       },

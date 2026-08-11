@@ -331,7 +331,7 @@ export const m4chapter1: Chapter = {
         {
           type: "text",
           value:
-            "You already learned how hydroplaning works. The real danger here is behavioral: drivers continue at high speed, follow too closely, or react aggressively in rain, which turns a manageable loss of traction into a full loss of control",
+            "You already learned how hydroplaning works. The real danger here is behavioural: drivers continue at high speed, follow too closely, or react aggressively in rain, which turns a manageable loss of traction into a full loss of control",
         },
         {
   type: "text",
