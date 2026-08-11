@@ -455,24 +455,15 @@ export default function HomePage() {
           )}
         </header>
 
-        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-24 md:gap-16 md:pt-28 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-10 pt-22 sm:gap-8 sm:px-6 sm:pb-14 sm:pt-24 md:gap-16 md:pt-28 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <RevealOnScroll className="min-w-0">
-            {/* Badge — sparkles icon hidden on mobile for cleaner look */}
-            <div className="mb-4 sm:mb-3.5">
-              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-sm">
-                <Sparkles className="hidden h-3.5 w-3.5 sm:block" />
-                <span className="sm:hidden">Licensed in PEI</span>
-                <span className="hidden sm:inline">Licensed Driving Instruction in PEI</span>
-              </div>
-            </div>
-
-            <div className="space-y-6 sm:space-y-7">
-              <h1 className="font-[var(--font-landing-display)] text-[1.95rem] leading-[1.1] tracking-tight text-slate-950 sm:text-5xl sm:leading-[1.03] lg:text-7xl">
+            <div className="space-y-5 sm:space-y-6">
+              <h1 className="font-[var(--font-landing-display)] text-2xl leading-[1.12] tracking-tight text-slate-950 sm:text-[2.65rem] sm:leading-[1.06] lg:text-[3.65rem] lg:leading-[1.05]">
                 Practical driving lessons built for confidence on real roads
               </h1>
-             <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:text-xl sm:leading-[1.72]">
-               Train one-on-one with a focused instructor, reinforce your learning with our certified online theory course modules. One calm, complete path from first drive to test day
-             </p>
+              <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:text-xl sm:leading-[1.72]">
+                Train one-on-one with a focused instructor, reinforce your learning with our certified online theory course modules. One calm, complete path from first drive to test day
+              </p>
               <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
                 <Link
                   href="/online-course-info"
@@ -567,51 +558,43 @@ export default function HomePage() {
         </section>
 
         {/* Full-Width Trust Bar Section below Hero Grid (matching Image 2 reference layout) */}
-        <div className="mx-auto max-w-7xl px-4 pb-12 pt-2 sm:px-6 sm:pb-16 sm:pt-4">
+        <div className="mx-auto max-w-7xl px-4 pb-6 pt-2 sm:px-6 sm:pb-8 sm:pt-2">
           <RevealOnScroll delayMs={160}>
-            <div className="rounded-2xl border border-slate-200/80 bg-white/95 p-5 shadow-sm sm:p-6">
+            <div className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_20px_rgba(15,23,42,0.04)] sm:p-7.5">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-slate-200/80 lg:gap-0">
                 {/* Point 1: Licensed in PEI */}
-                <div className="flex items-center gap-4 lg:px-6 lg:first:pl-2">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
-                    <ShieldCheck className="h-6 w-6" />
-                  </div>
+                <div className="flex items-center gap-4.5 lg:px-7 lg:first:pl-2">
+                  <ShieldCheck className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Licensed in PEI</h3>
-                    <p className="mt-0.5 text-xs text-slate-500">Government licensed driving instruction</p>
+                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Licensed in PEI</h3>
+                    <p className="mt-1 text-[13px] leading-snug text-slate-600">Government licensed driving instruction</p>
                   </div>
                 </div>
 
                 {/* Point 2: Test-Focused */}
-                <div className="flex items-center gap-4 lg:px-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
-                    <CheckCircle2 className="h-6 w-6" />
-                  </div>
+                <div className="flex items-center gap-4.5 lg:px-7">
+                  <CheckCircle2 className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Test-Focused</h3>
-                    <p className="mt-0.5 text-xs text-slate-500">Preparation that helps you pass with confidence</p>
+                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Test-Focused</h3>
+                    <p className="mt-1 text-[13px] leading-snug text-slate-600">Preparation that helps you pass with confidence</p>
                   </div>
                 </div>
 
                 {/* Point 3: Personalized */}
-                <div className="flex items-center gap-4 lg:px-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
-                    <User className="h-6 w-6" />
-                  </div>
+                <div className="flex items-center gap-4.5 lg:px-7">
+                  <User className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Personalized</h3>
-                    <p className="mt-0.5 text-xs text-slate-500">1-on-1 lessons with expert instructors</p>
+                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Personalized</h3>
+                    <p className="mt-1 text-[13px] leading-snug text-slate-600">1-on-1 lessons with expert instructors</p>
                   </div>
                 </div>
 
                 {/* Point 4: Flexible Scheduling */}
-                <div className="flex items-center gap-4 lg:px-6 lg:last:pr-2">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
-                    <Calendar className="h-6 w-6" />
-                  </div>
+                <div className="flex items-center gap-4.5 lg:px-7 lg:last:pr-2">
+                  <Calendar className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Flexible Scheduling</h3>
-                    <p className="mt-0.5 text-xs text-slate-500">Lessons that fit your busy life</p>
+                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Flexible Scheduling</h3>
+                    <p className="mt-1 text-[13px] leading-snug text-slate-600">Lessons that fit your busy life</p>
                   </div>
                 </div>
               </div>
