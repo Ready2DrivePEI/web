@@ -37,6 +37,7 @@ import RevealOnScroll from "./components/motion/reveal-on-scroll";
 import SubtleFloat from "./components/motion/subtle-float";
 import BrandLogo from "@/components/brand-logo";
 import ContactForm, { inquiryTemplates } from "@/components/contact-form";
+import Footer from "@/components/footer";
 
 const SteeringWheelIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -454,27 +455,31 @@ export default function HomePage() {
           )}
         </header>
 
-        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-26 md:gap-16 md:pt-32 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-          <RevealOnScroll className="min-w-0 space-y-6 sm:space-y-8">
+        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-14 pt-22 sm:gap-8 sm:px-6 sm:pb-20 sm:pt-24 md:gap-16 md:pt-28 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <RevealOnScroll className="min-w-0">
             {/* Badge — sparkles icon hidden on mobile for cleaner look */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-sm">
-              <Sparkles className="hidden h-3.5 w-3.5 sm:block" />
-              <span className="sm:hidden">Licensed in PEI</span>
-              <span className="hidden sm:inline">Licensed Driving Instruction in PEI</span>
+            <div className="mb-4 sm:mb-3.5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-sm">
+                <Sparkles className="hidden h-3.5 w-3.5 sm:block" />
+                <span className="sm:hidden">Licensed in PEI</span>
+                <span className="hidden sm:inline">Licensed Driving Instruction in PEI</span>
+              </div>
             </div>
-            <h1 className="font-[var(--font-landing-display)] text-[1.95rem] leading-[1.1] tracking-tight text-slate-950 sm:text-5xl sm:leading-[1.03] lg:text-7xl">
-              Practical driving lessons built for confidence on real roads
-            </h1>
+
+            <div className="space-y-6 sm:space-y-7">
+              <h1 className="font-[var(--font-landing-display)] text-[1.95rem] leading-[1.1] tracking-tight text-slate-950 sm:text-5xl sm:leading-[1.03] lg:text-7xl">
+                Practical driving lessons built for confidence on real roads
+              </h1>
              <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:text-xl sm:leading-[1.72]">
                Train one-on-one with a focused instructor, reinforce your learning with our certified online theory course modules. One calm, complete path from first drive to test day
              </p>
               <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
                 <Link
                   href="/online-course-info"
-                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl bg-[#2563eb] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-sm transition-colors duration-200 hover:bg-[#1d54db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl bg-[#2563eb] px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white shadow-sm transition-colors duration-200 hover:bg-[#1d54db] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 sm:w-auto sm:min-w-[14.5rem] sm:px-10 sm:py-4 sm:text-base"
                 >
                   <GraduationCap className="mr-2 h-5 w-5 shrink-0 text-white/90" />
-                  <span>Explore Online Course</span>
+                  <span>Online Course</span>
                   <svg
                     className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[2.5px] transition-transform duration-200"
                     viewBox="0 0 16 16"
@@ -502,23 +507,32 @@ export default function HomePage() {
                 </Link>
                 <a
                   href="#plans"
-                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-colors duration-200 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-colors duration-200 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[14.5rem] sm:px-10 sm:py-4 sm:text-base"
                 >
-                  <span>Explore Offline Course</span>
+                  <CarFront className="mr-2 h-5 w-5 shrink-0 text-slate-700" />
+                  <span>Driving Lessons</span>
                   <svg
-                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[1px] transition-transform duration-200"
+                    className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[2.5px] transition-transform duration-200"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     aria-hidden="true"
                   >
                     <path
-                      d="M5 6.5L8 9.5L11 6.5"
+                      d="M2 8H13.5"
                       stroke="currentColor"
                       strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="transform transition-transform duration-200 ease-out group-hover:translate-y-[2.5px]"
+                      className="origin-left scale-x-0 opacity-0 transition-all duration-200 ease-out group-hover:scale-x-100 group-hover:opacity-100"
+                    />
+                    <path
+                      d="M10 5L13.5 8L10 11"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transform transition-transform duration-200 ease-out translate-x-[-3.5px] group-hover:translate-x-0"
                     />
                   </svg>
                 </a>
@@ -538,7 +552,8 @@ export default function HomePage() {
                  <p className="text-sm font-semibold text-slate-900">Online reinforcement</p>
                  <p className="mt-1 text-slate-600">Theory support at home</p>
                </div>
-             </div>
+              </div>
+            </div>
            </RevealOnScroll>
 
            <RevealOnScroll className="relative min-w-0" delayMs={120}>
@@ -1007,23 +1022,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-blue-100/80 bg-white/80 py-6 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>Ready2Drive PEI. Practical lessons + online support for PEI learners.</p>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <a href="#plans" className="transition-colors hover:text-[#4285F4]">
-              Plans
-            </a>
-            <Link href="/online-course-info" className="transition-colors hover:text-[#4285F4]">
-              Online Course
-            </Link>
-            <Link href="/login" className="transition-colors hover:text-[#4285F4]">
-              Login
-            </Link>
-            <span className="text-slate-400">(902) 555-0147</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

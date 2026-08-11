@@ -8,15 +8,16 @@ import EnrollButton from "@/components/enroll-button";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "Home", href: "/#home" },
-  { label: "Plans", href: "/#plans" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Overview", href: "#about" },
+  { label: "Pricing", href: "#price" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
-  const [activeSection, setActiveSection] = useState("online-course-info");
+  const [activeSection, setActiveSection] = useState("");
   const [isMounted, setIsMounted] = useState(false);
   const [user] = useState<{ name: string } | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,6 +58,10 @@ export default function Navbar() {
       const absDelta = Math.abs(delta);
 
       setIsScrolled(currentScrollY > 16);
+
+      if (currentScrollY < 150) {
+        setActiveSection("");
+      }
 
       if (currentScrollY < 24) {
         setIsNavVisible(true);
@@ -99,6 +104,10 @@ export default function Navbar() {
     const sectionIds = navItems.map((item) => item.href.replace("#", ""));
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      if (window.scrollY < 150) {
+        setActiveSection("");
+        return;
+      }
       const intersecting = entries.find((entry) => entry.isIntersecting);
       if (intersecting) {
         setActiveSection(intersecting.target.id);
@@ -168,10 +177,10 @@ export default function Navbar() {
               key={item.label}
               ref={(el) => { linkRefs.current[idx] = el; }}
               href={item.href}
-              className={`relative z-10 rounded-lg px-3 py-1.5 focus-visible:outline-none motion-safe:transition-colors ${
+              className={`relative z-10 rounded-lg px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] motion-safe:transition-colors ${
                 activeSection === item.href.slice(1)
                   ? "text-slate-900 font-semibold"
-                  : "text-slate-500 hover:text-slate-950 focus-visible:text-slate-950"
+                  : "text-slate-600 font-medium hover:text-slate-900 hover:bg-slate-100/50"
               }`}
             >
               {item.label}

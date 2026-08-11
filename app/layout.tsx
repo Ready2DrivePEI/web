@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   title: "Ready2Drive PEI",
   description:
     "Professional driving lessons and structured online driving courses in Prince Edward Island.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/icon.svg",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

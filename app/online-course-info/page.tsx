@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import RevealOnScroll from "../components/motion/reveal-on-scroll";
 import SubtleFloat from "../components/motion/subtle-float";
 import EnrollButton from "@/components/enroll-button";
+import Footer from "@/components/footer";
 import {
   Award,
   CheckCircle2,
@@ -85,7 +86,7 @@ export default function OnlineCoursePage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_6%,rgba(66,133,244,0.18),transparent_42%),radial-gradient(circle_at_92%_2%,rgba(15,23,42,0.08),transparent_32%),linear-gradient(180deg,#f8fbff_0%,#fdfefe_45%,#f8fbff_100%)]" />
         <Navbar />
 
-        <main className="mx-auto max-w-6xl space-y-20 px-6 pb-20 pt-28 md:space-y-24 md:pt-36">
+        <main className="mx-auto max-w-6xl space-y-16 px-6 pb-16 pt-28 md:space-y-20 md:pb-20 md:pt-36">
           <section className="mx-auto max-w-3xl space-y-8 pt-6 text-center md:pt-8">
             <RevealOnScroll>
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-sm font-semibold text-[#4285F4] shadow-sm">
@@ -120,7 +121,7 @@ export default function OnlineCoursePage() {
             </RevealOnScroll>
           </section>
 
-          <section id="about" className="grid scroll-mt-20 gap-6 md:grid-cols-3 md:scroll-mt-20">
+          <section id="about" className="grid scroll-mt-24 gap-6 md:grid-cols-3 md:scroll-mt-28">
             <RevealOnScroll delayMs={40} className="h-full">
               <article className="h-full flex flex-col rounded-[1.75rem] border border-blue-100 bg-white p-8 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
                 <PlayCircle className="mb-4 text-[#4285F4]" size={32} />
@@ -156,7 +157,7 @@ export default function OnlineCoursePage() {
 
           <section
             id="price"
-            className="grid scroll-mt-20 items-center gap-8 rounded-[2rem] border border-blue-100 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.1)] md:grid-cols-2 md:scroll-mt-20 md:p-12"
+            className="grid scroll-mt-24 items-center gap-8 rounded-[2rem] border border-blue-100 bg-white p-8 shadow-[0_16px_40px_rgba(15,23,42,0.1)] md:grid-cols-2 md:scroll-mt-28 md:p-12"
           >
             <RevealOnScroll delayMs={80}>
               <div className="space-y-6">
@@ -202,7 +203,7 @@ export default function OnlineCoursePage() {
             </RevealOnScroll>
           </section>
 
-          <section id="faq" className="mx-auto max-w-5xl scroll-mt-20 space-y-14 pb-16 md:scroll-mt-20">
+          <section id="faq" className="mx-auto max-w-5xl scroll-mt-24 space-y-14 md:scroll-mt-28">
             <RevealOnScroll>
               <div className="mb-14 space-y-3 text-center">
                 <div className="flex items-center justify-center gap-3">
@@ -239,10 +240,8 @@ export default function OnlineCoursePage() {
                               size={22}
                             />
                           </summary>
-                          <div className="px-6 pb-6">
-                            <div className="ml-1 border-l-2 border-blue-100 pl-5">
-                              <p className="leading-relaxed text-slate-600">{faq.a}</p>
-                            </div>
+                          <div className="px-6 pb-6 pt-1">
+                            <p className="leading-relaxed text-slate-600">{faq.a}</p>
                           </div>
                         </details>
                       ))}
@@ -251,9 +250,11 @@ export default function OnlineCoursePage() {
                 </RevealOnScroll>
               ))}
             </div>
+          </section>
 
+          <section id="contact" className="mx-auto max-w-5xl scroll-mt-24 md:scroll-mt-28">
             <RevealOnScroll delayMs={120}>
-              <div className="relative mt-16 overflow-hidden rounded-[2.2rem] border border-blue-100 bg-white p-8 text-center shadow-[0_18px_45px_rgba(15,23,42,0.12)] md:p-12">
+              <div className="relative overflow-hidden rounded-[2.2rem] border border-blue-100 bg-white p-8 text-center shadow-[0_18px_45px_rgba(15,23,42,0.12)] md:p-12">
                 <div className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(circle_at_85%_0%,rgba(66,133,244,0.16),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.95),rgba(248,251,255,0.95))]" />
                 <div className="relative z-10 mx-auto max-w-xl">
                   <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#4285F4] shadow-sm">
@@ -278,6 +279,7 @@ export default function OnlineCoursePage() {
             </RevealOnScroll>
           </section>
         </main>
+        <Footer />
       </div>
     </div>
   );
