@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { RotateCcw, ArrowRight } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { QuizQuestion } from "@/app/lms-course/data/modules/module1/chapter1quiz";
 
@@ -141,9 +141,32 @@ export function QuizView({
                   {question.explanation}
                 </p>
                 <div>
-                  <Button variant="outline" asChild className="lms-button-outline">
+                  <Button variant="outline" asChild className="group lms-button-outline">
                     <Link href={`${reviewLessonBasePath}/${question.sourceLessonId}`}>
-                      <ArrowRight className="h-4 w-4 shrink-0" />
+                      <svg
+                        className="mr-1.5 h-4 w-4 shrink-0 overflow-visible transition-transform duration-200"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M14 8H2.5"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="origin-right scale-x-0 opacity-0 transition-all duration-200 ease-out group-hover:scale-x-100 group-hover:opacity-100"
+                        />
+                        <path
+                          d="M6 5L2.5 8L6 11"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="transform transition-transform duration-200 ease-out translate-x-[3.5px] group-hover:translate-x-0"
+                        />
+                      </svg>
                       <span>{isCorrect ? 'Review lesson' : 'Go to lesson'}</span>
                     </Link>
                   </Button>
