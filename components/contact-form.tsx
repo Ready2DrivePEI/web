@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, type FormEvent } from "react";
+import { useState, useRef, useEffect, useCallback, type FormEvent } from "react";
 import { 
   User, 
   Phone, 
@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { sendContactInquiry } from "@/app/actions/contact";
 import { contactSchema } from "@/lib/contact-schema";
+import TiptapMessageEditor from "@/components/tiptap-message-editor";
 
 export const inquiryTemplates = [
   {
@@ -48,32 +49,59 @@ export default function ContactForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [messageDraft, setMessageDraft] = useState(defaultMessage ?? "");
+  const [selectedPlan, setSelectedPlan] = useState<string>(defaultPlan ?? "");
 
-  const messageRef = useRef<HTMLTextAreaElement | null>(null);
-  const planSelectRef = useRef<HTMLSelectElement | null>(null);
-
-  // Sync props to state if they change after mount (e.g., landing page URLSearchParams delay)
-  useEffect(() => {
-    if (defaultMessage !== undefined) {
-      setMessageDraft(defaultMessage);
-    }
-  }, [defaultMessage]);
+  // Counter-based trigger: incrementing forces TiptapMessageEditor to re-sync
+  // even when the same template text is applied twice.
+  const [tiptapKey, setTiptapKey] = useState(0);
+  const tiptapMessageRef = useRef(defaultMessage ?? "");
 
   useEffect(() => {
-    if (defaultPlan !== undefined && planSelectRef.current) {
-      planSelectRef.current.value = defaultPlan;
+    if (defaultPlan !== undefined) {
+      setSelectedPlan(defaultPlan);
     }
   }, [defaultPlan]);
 
-  const applyInquiryTemplate = (text: string) => {
-    setMessageDraft(text);
-    window.requestAnimationFrame(() => {
-      if (messageRef.current) {
-        messageRef.current.focus();
-        messageRef.current.setSelectionRange(text.length, text.length);
-      }
-    });
+  // When defaultMessage prop changes externally (plan card click, sidebar template),
+  // push the new value to the Tiptap editor.
+  useEffect(() => {
+    if (defaultMessage !== undefined) {
+      tiptapMessageRef.current = defaultMessage;
+      setTiptapKey((k) => k + 1);
+    }
+  }, [defaultMessage]);
+
+  const handlePlanChange = (newPlan: string) => {
+    setSelectedPlan(newPlan);
+
+    let newTemplateMessage = "";
+    if (!newPlan) {
+      newTemplateMessage = "";
+    } else if (newPlan === "Online Course Purchase") {
+      newTemplateMessage =
+        "Hi, I want to purchase the online course. Please share the payment steps and account setup process.";
+    } else if (newPlan === "General Inquiry") {
+      newTemplateMessage =
+        "Hi, I have a question about [lessons/course/account]. I need help with [issue]. Please guide me on the next steps.";
+    } else {
+      // Offline lesson packages: Single Lesson Package, Multi Lesson Package, Co-Pilot Package
+      newTemplateMessage = `Hi, I want to book the ${newPlan}. My current level is [beginner/intermediate], and I am available on [days/times]. Please suggest the best scheduling.`;
+    }
+
+    tiptapMessageRef.current = newTemplateMessage;
+    setTiptapKey((k) => k + 1);
   };
+
+  // Stable callback for TiptapMessageEditor onChange
+  const handleEditorChange = useCallback((plainText: string) => {
+    setMessageDraft(plainText);
+  }, []);
+
+  // Mobile template starters: update editor content directly
+  const applyInquiryTemplate = useCallback((text: string) => {
+    tiptapMessageRef.current = text;
+    setTiptapKey((k) => k + 1);
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -111,6 +139,8 @@ export default function ContactForm({
         setFormSubmitted(true);
         event.currentTarget.reset();
         setMessageDraft("");
+        tiptapMessageRef.current = "";
+        setTiptapKey((k) => k + 1);
         if (onSuccess) {
           onSuccess();
         }
@@ -236,17 +266,20 @@ export default function ContactForm({
         <div className="relative flex items-center">
           <CreditCard className="absolute left-4 h-4 w-4 text-slate-500 pointer-events-none" />
           <select
-            ref={planSelectRef}
             id="plan"
             name="plan"
-            defaultValue={defaultPlan}
+            value={selectedPlan}
+            onChange={(e) => handlePlanChange(e.target.value)}
             className="w-full appearance-none rounded-xl border border-slate-300 bg-white pl-11 pr-10 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20"
           >
-            <option>Single Lesson Package</option>
-            <option>Multi Lesson Package</option>
-            <option>Co-Pilot Package</option>
+            <option value="" disabled hidden>
+              Select a plan
+            </option>
+            <option value="Single Lesson Package">Single Lesson Package</option>
+            <option value="Multi Lesson Package">Multi Lesson Package</option>
+            <option value="Co-Pilot Package">Co-Pilot Package</option>
             <option>Online Course Purchase</option>
-            <option>Not sure yet</option>
+            <option>General Inquiry</option>
           </select>
           <ChevronDown className="absolute right-4 h-4 w-4 text-slate-500 pointer-events-none" />
         </div>
@@ -256,7 +289,7 @@ export default function ContactForm({
         <input type="hidden" name="message" value={messageDraft} />
       ) : (
         <div className="space-y-2 flex-1 flex flex-col">
-          <label htmlFor="message" className="text-sm font-semibold text-slate-800">
+          <label className="text-sm font-semibold text-slate-800">
             Message
           </label>
           <div className="flex gap-2 overflow-x-auto pb-1.5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:hidden">
@@ -272,20 +305,16 @@ export default function ContactForm({
             ))}
           </div>
           <div className="relative flex-1 flex flex-col">
-            <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-500 pointer-events-none" />
-            <textarea
-              ref={messageRef}
-              id="message"
-              name="message"
-              required
-              maxLength={500}
-              rows={5}
+            <Pencil className="absolute left-4 top-3.5 h-4 w-4 text-slate-500 pointer-events-none z-10" />
+            <TiptapMessageEditor
+              key={tiptapKey}
+              defaultMessage={tiptapMessageRef.current}
+              onChange={handleEditorChange}
               placeholder="Any questions or specific requirements?"
-              value={messageDraft}
-              onChange={(event) => setMessageDraft(event.target.value)}
-              className="w-full resize-y rounded-xl border border-slate-300 pl-11 pr-16 py-3 text-sm text-slate-900 transition-all focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 sm:min-h-[150px] flex-1"
             />
-            <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400 select-none pointer-events-none">
+            {/* Hidden input carries the plain-text message for FormData submission */}
+            <input type="hidden" name="message" value={messageDraft} />
+            <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400 select-none pointer-events-none z-10">
               {messageDraft.length} / 500
             </span>
           </div>

@@ -24,7 +24,7 @@ export function ProgressFooter({
     return (
       <div className="lms-surface relative mt-auto border-t px-1.5 sm:px-3 py-3 sm:py-4">
         <div className="flex flex-col items-center gap-1.5 sm:gap-2">
-          <span className="lms-progress-value text-[10px] sm:text-xs font-black">{percentage}%</span>
+          <span className="lms-progress-value text-[10px] sm:text-xs font-semibold">{percentage}%</span>
           <div className="lms-progress-track h-1 sm:h-1.5 w-full overflow-hidden rounded-full">
             <div
               className="lms-progress-fill h-full rounded-full transition-all duration-1000 ease-out"
@@ -41,9 +41,9 @@ export function ProgressFooter({
       <div className="flex justify-between items-end mb-2 sm:mb-3">
         <div className="min-w-0">
           <p className="lms-muted text-[9px] sm:text-xs font-medium tracking-wide uppercase truncate">Overall Course</p>
-          <p className="text-xs sm:text-sm font-bold truncate">Progress</p>
+          <p className="text-xs sm:text-sm font-semibold truncate">Progress</p>
         </div>
-        <span className="lms-progress-value text-sm sm:text-lg font-black shrink-0">{percentage}%</span>
+        <span className="lms-progress-value text-sm sm:text-base font-bold shrink-0">{percentage}%</span>
       </div>
       
       {/* Progress Bar Track */}

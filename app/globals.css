@@ -725,7 +725,7 @@
   }
 
   .lms-feedback-correct {
-    color: var(--lms-text);
+    color: var(--lms-success);
   }
 
   .lms-quiz-radio {
@@ -746,15 +746,15 @@
   }
 
   .lms-progress-value {
-    color: var(--lms-accent);
+    color: color-mix(in srgb, var(--lms-text) 80%, transparent);
   }
 
   .lms-progress-track {
-    background-color: var(--lms-bg);
+    background-color: color-mix(in srgb, var(--lms-border) 70%, var(--lms-bg));
   }
 
   .lms-progress-fill {
-    background: linear-gradient(90deg, var(--lms-accent), oklch(0.68 0.11 230));
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
   }
 
   /* Custom sleek sidebar scrollbar */
@@ -784,4 +784,28 @@
     border-width: 4px;
     background-clip: padding-box;
   }
+}
+
+/* ------------------------------------------------
+   Tiptap message editor (contact form)
+   ------------------------------------------------ */
+
+/* Placeholder text when editor is empty */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: theme(colors.slate.400);
+  font-size: theme(fontSize.sm);
+  pointer-events: none;
+  height: 0;
+}
+
+/* Remove default ProseMirror outline so Tailwind focus-within handles it */
+.tiptap:focus {
+  outline: none;
+}
+
+/* Remove default paragraph margins inside the editor */
+.tiptap p {
+  margin: 0;
 }

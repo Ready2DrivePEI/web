@@ -19,11 +19,13 @@ import {
   X,
   RefreshCw,
   User,
+  Users,
   Phone,
   Mail,
   CreditCard,
   Pencil,
   Calendar,
+  CalendarCheck,
   GraduationCap,
   Clock,
   SendHorizontal,
@@ -228,6 +230,14 @@ export default function HomePage() {
 
   const applyInquiryTemplate = (text: string) => {
     setDefaultMessage(text);
+  };
+
+  const handleSelectPlan = (planTitle: string) => {
+    setDefaultPlan(planTitle);
+    setDefaultMessage(
+      `Hi, I want to book the ${planTitle}. My current level is [beginner/intermediate], and I am available on [days/times]. Please suggest the best scheduling.`
+    );
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   // Scroll tracking: hide/show header
@@ -455,10 +465,10 @@ export default function HomePage() {
           )}
         </header>
 
-        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-10 pt-22 sm:gap-8 sm:px-6 sm:pb-14 sm:pt-24 md:gap-16 md:pt-28 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-6 sm:gap-8 sm:px-6 sm:pb-8 sm:pt-24 md:gap-16 md:pt-28 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <RevealOnScroll className="min-w-0">
             <div className="space-y-5 sm:space-y-6">
-              <h1 className="font-[var(--font-landing-display)] text-2xl leading-[1.12] tracking-tight text-slate-950 sm:text-[2.65rem] sm:leading-[1.06] lg:text-[3.65rem] lg:leading-[1.05]">
+              <h1 className="font-[var(--font-landing-display)] text-3xl leading-[1.08] tracking-tight text-slate-950 sm:text-[2.75rem] sm:leading-[1.04] lg:text-[4.15rem] lg:leading-[1.03]">
                 Practical driving lessons built for confidence on real roads
               </h1>
               <p className="max-w-2xl text-[15px] leading-[1.65] text-slate-700 sm:text-xl sm:leading-[1.72]">
@@ -498,9 +508,9 @@ export default function HomePage() {
                 </Link>
                 <a
                   href="#plans"
-                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-slate-800 shadow-sm transition-colors duration-200 hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[14.5rem] sm:px-10 sm:py-4 sm:text-base"
+                  className="group inline-flex min-w-0 w-full items-center justify-center rounded-xl border border-blue-200/80 bg-blue-50/60 px-4 py-3.5 text-center text-sm font-semibold leading-tight text-blue-950 shadow-none transition-colors duration-200 hover:border-blue-300 hover:bg-blue-100/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 sm:w-auto sm:min-w-[14.5rem] sm:px-10 sm:py-4 sm:text-base"
                 >
-                  <CarFront className="mr-2 h-5 w-5 shrink-0 text-slate-700" />
+                  <CarFront className="mr-2 h-5 w-5 shrink-0 text-[#2563eb]" />
                   <span>Driving Lessons</span>
                   <svg
                     className="ml-1.5 h-4 w-4 shrink-0 overflow-visible translate-y-[2.5px] transition-transform duration-200"
@@ -558,43 +568,43 @@ export default function HomePage() {
         </section>
 
         {/* Full-Width Trust Bar Section below Hero Grid (matching Image 2 reference layout) */}
-        <div className="mx-auto max-w-7xl px-4 pb-6 pt-2 sm:px-6 sm:pb-8 sm:pt-2">
+        <div className="mx-auto max-w-7xl px-4 pb-4 pt-1 sm:px-6 sm:pb-6 sm:pt-2">
           <RevealOnScroll delayMs={160}>
-            <div className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_4px_20px_rgba(15,23,42,0.04)] sm:p-7.5">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-slate-200/80 lg:gap-0">
+            <div className="rounded-2xl border border-slate-200/90 bg-white px-6 py-4.5 shadow-[0_4px_20px_rgba(15,23,42,0.04)] sm:px-7.5 sm:py-5">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-slate-200/80 lg:gap-0">
                 {/* Point 1: Licensed in PEI */}
-                <div className="flex items-center gap-4.5 lg:px-7 lg:first:pl-2">
-                  <ShieldCheck className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
+                <div className="flex items-center gap-4 lg:px-6 lg:first:pl-2">
+                  <ShieldCheck className="h-9 w-9 shrink-0 text-[#4285F4] stroke-[1.75] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Licensed in PEI</h3>
-                    <p className="mt-1 text-[13px] leading-snug text-slate-600">Government licensed driving instruction</p>
+                    <h3 className="text-[14.5px] font-semibold text-slate-800 sm:text-[15px]">Licensed in PEI</h3>
+                    <p className="mt-0.5 text-[13px] leading-snug text-slate-600">Government licensed driving instruction</p>
                   </div>
                 </div>
 
                 {/* Point 2: Test-Focused */}
-                <div className="flex items-center gap-4.5 lg:px-7">
-                  <CheckCircle2 className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
+                <div className="flex items-center gap-4 lg:px-6">
+                  <CheckCircle2 className="h-9 w-9 shrink-0 text-[#4285F4] stroke-[1.75] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Test-Focused</h3>
-                    <p className="mt-1 text-[13px] leading-snug text-slate-600">Preparation that helps you pass with confidence</p>
+                    <h3 className="text-[14.5px] font-semibold text-slate-800 sm:text-[15px]">Test-Focused</h3>
+                    <p className="mt-0.5 text-[13px] leading-snug text-slate-600">Preparation that helps you pass with confidence</p>
                   </div>
                 </div>
 
                 {/* Point 3: Personalized */}
-                <div className="flex items-center gap-4.5 lg:px-7">
-                  <User className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
+                <div className="flex items-center gap-4 lg:px-6">
+                  <Users className="h-9 w-9 shrink-0 text-[#4285F4] stroke-[1.75] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Personalized</h3>
-                    <p className="mt-1 text-[13px] leading-snug text-slate-600">1-on-1 lessons with expert instructors</p>
+                    <h3 className="text-[14.5px] font-semibold text-slate-800 sm:text-[15px]">Personalized</h3>
+                    <p className="mt-0.5 text-[13px] leading-snug text-slate-600">1-on-1 lessons with expert instructors</p>
                   </div>
                 </div>
 
                 {/* Point 4: Flexible Scheduling */}
-                <div className="flex items-center gap-4.5 lg:px-7 lg:last:pr-2">
-                  <Calendar className="h-9 w-9 shrink-0 text-[#2563eb] stroke-[2.2] sm:h-10 sm:w-10" />
+                <div className="flex items-center gap-4 lg:px-6 lg:last:pr-2">
+                  <CalendarCheck className="h-9 w-9 shrink-0 text-[#4285F4] stroke-[1.75] sm:h-10 sm:w-10" />
                   <div>
-                    <h3 className="text-[15px] font-bold text-slate-900 sm:text-base">Flexible Scheduling</h3>
-                    <p className="mt-1 text-[13px] leading-snug text-slate-600">Lessons that fit your busy life</p>
+                    <h3 className="text-[14.5px] font-semibold text-slate-800 sm:text-[15px]">Flexible Scheduling</h3>
+                    <p className="mt-0.5 text-[13px] leading-snug text-slate-600">Lessons that fit your busy life</p>
                   </div>
                 </div>
               </div>
@@ -812,13 +822,14 @@ export default function HomePage() {
                      ))}
                    </ul>
 
-                   <a
-                     href="#contact"
-                     className="mt-5 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
-                   >
-                     Continue to Contact Form
-                     <ChevronRight className="ml-1.5 h-4 w-4" />
-                   </a>
+                    <button
+                      type="button"
+                      onClick={() => handleSelectPlan(plan.title)}
+                      className="mt-5 inline-flex items-center rounded-xl bg-[#4285F4] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition-all hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4285F4] focus-visible:ring-offset-2"
+                    >
+                      Continue to Contact Form
+                      <ChevronRight className="ml-1.5 h-4 w-4" />
+                    </button>
                  </article>
                ))}
              </div>
@@ -935,26 +946,31 @@ export default function HomePage() {
             </div>
           </div>
           <div className="rounded-3xl border border-blue-100 bg-[#f4f8fe] p-3 sm:p-5 md:p-6">
-            <div className="mb-4 hidden grid-cols-2 gap-3 sm:grid md:gap-4 xl:grid-cols-4">
-              {contactNotes.map((note, index) => {
-                const Icon =
-                  index === 0
-                    ? Compass
-                    : index === 1
-                      ? SteeringWheelIcon
-                      : index === 2
-                        ? BookOpen
-                        : CheckCircle2;
-                return (
-                  <div
-                    key={note}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-5 py-4 text-sm font-semibold text-slate-800 shadow-[0_8px_30px_rgba(15,23,42,0.03)] transition-colors hover:border-slate-200"
-                  >
-                    <Icon className="h-5 w-5 shrink-0 text-blue-500/75" />
-                    <span className="leading-tight">{note}</span>
-                  </div>
-                );
-              })}
+            {/* Desktop: Unified Trust & Feature Bar */}
+            <div className="mb-5 hidden rounded-2xl border border-blue-100/80 bg-white px-6 py-4 shadow-[0_4px_16px_rgba(15,23,42,0.03)] sm:block">
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:divide-x lg:divide-slate-200/80 lg:gap-0">
+                {contactNotes.map((note, index) => {
+                  const Icon =
+                    index === 0
+                      ? Compass
+                      : index === 1
+                        ? SteeringWheelIcon
+                        : index === 2
+                          ? BookOpen
+                          : CheckCircle2;
+                  return (
+                    <div
+                      key={note}
+                      className="flex items-center gap-3 lg:px-5 lg:first:pl-1 lg:last:pr-1"
+                    >
+                      <Icon className="h-5 w-5 shrink-0 text-[#2563eb]" />
+                      <span className="text-xs font-semibold text-slate-700 leading-tight">
+                        {note}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             <div className="grid gap-4 sm:gap-5 lg:grid-cols-[0.7fr_1.3fr]">
               {/* Desktop: full left panel with description and starters */}

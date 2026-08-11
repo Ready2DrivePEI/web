@@ -57,11 +57,11 @@ export default async function LessonPage({
         </div>
       </header>
 
-      <main className="flex-grow pt-4 pb-2 sm:pt-0 sm:pb-0">
+      <main className="flex-grow pt-4 pb-28 sm:pt-0 sm:pb-32">
         <LessonView content={lesson.content} />
       </main>
 
-      <footer className="fixed right-5 bottom-5 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
+      <footer className="fixed right-5 bottom-10 sm:bottom-12 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
         <div className="lms-floating-footer mx-auto flex w-full max-w-4xl items-center justify-between rounded-2xl border px-3 py-3 sm:px-5">
           <div className="min-h-9">
             {prevLesson ? (

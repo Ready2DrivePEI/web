@@ -36,7 +36,7 @@ export const contactSchema = z.object({
     "Multi Lesson Package",
     "Co-Pilot Package",
     "Online Course Purchase",
-    "Not sure yet"
+    "General Inquiry"
   ], {
     message: "Please select a valid package plan."
   }),

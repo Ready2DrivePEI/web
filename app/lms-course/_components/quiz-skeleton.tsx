@@ -42,7 +42,7 @@ export function QuizSkeleton({ count = 3 }: { count?: number }) {
       ))}
 
       {/* Floating Footer Skeleton */}
-      <footer className="fixed bottom-5 left-5 right-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
+      <footer className="fixed bottom-10 sm:bottom-12 left-5 right-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
         <div className="lms-floating-footer mx-auto flex w-fit max-w-full items-center gap-3 rounded-2xl border px-3 py-2.5">
           <div className="h-4 w-32 rounded bg-muted/50"></div>
           <div className="h-10 w-28 rounded-md bg-muted"></div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { QuizQuestion } from "@/app/lms-course/data/modules/module1/chapter1quiz";
 
@@ -60,11 +60,6 @@ export function QuizView({
         const isAnswered = Number.isInteger(selectedOption);
         const showFeedback = isSubmitted && isAnswered;
         const optionGroupName = `quiz-${question.id}`;
-        const correctOptionLabel = String.fromCharCode(65 + question.correctAnswerIndex);
-        const correctOptionText = normalizeOptionText(
-          question.options[question.correctAnswerIndex] ?? "",
-          correctOptionLabel,
-        );
 
         return (
           <section
@@ -140,21 +135,16 @@ export function QuizView({
             {showFeedback ? (
               <div className={`lms-callout space-y-3 rounded-xl border px-3 py-3 sm:px-4 ${isCorrect ? 'lms-callout-success' : 'lms-callout-danger'}`}>
                 <p className="lms-feedback-explanation whitespace-pre-wrap text-sm leading-6 sm:text-base">
-                  <span className={`font-semibold ${!isCorrect ? 'lms-feedback-wrong' : ''}`}>
+                  <span className={`font-bold ${isCorrect ? 'text-emerald-700 dark:text-emerald-300' : 'lms-feedback-wrong'}`}>
                     {isCorrect ? 'Correct.' : 'Incorrect.'}
                   </span>{" "}
                   {question.explanation}
                 </p>
-                {!isCorrect ? (
-                  <p className="lms-feedback-correct whitespace-pre-wrap text-sm leading-6 sm:text-base">
-                    Correct answer: <span className="font-semibold">{correctOptionLabel}.</span>{" "}
-                    {correctOptionText}
-                  </p>
-                ) : null}
                 <div>
                   <Button variant="outline" asChild className="lms-button-outline">
                     <Link href={`${reviewLessonBasePath}/${question.sourceLessonId}`}>
-                      {isCorrect ? 'Review lesson' : 'Go to lesson'}
+                      <ArrowRight className="h-4 w-4 shrink-0" />
+                      <span>{isCorrect ? 'Review lesson' : 'Go to lesson'}</span>
                     </Link>
                   </Button>
                 </div>
@@ -202,10 +192,10 @@ export function QuizView({
       ) : null}
 
       {!isSubmitted ? (
-        <footer className="fixed right-5 bottom-5 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
+        <footer className="fixed right-5 bottom-10 sm:bottom-12 left-5 z-40 sm:left-[calc(var(--lms-sidebar-width,20rem)+1rem)] sm:right-5">
           <div className="lms-floating-footer mx-auto w-fit max-w-full rounded-2xl border px-3 py-2.5">
             <div className="flex items-center gap-3">
-              <p className="lms-muted text-sm whitespace-nowrap">
+              <p className="text-sm font-semibold whitespace-nowrap">
                 Answered {answeredCount} of {questions.length}
               </p>
               <Button onClick={onSubmit} disabled={submitDisabled} size="lg">
