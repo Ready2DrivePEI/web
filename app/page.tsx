@@ -538,20 +538,6 @@ export default function HomePage() {
                 </a>
               </div>
 
-             {/* Desktop/Tablet: original 3 cards block inside the left column (exactly as original) */}
-             <div className="hidden sm:grid sm:grid-cols-3 sm:gap-2.5 sm:overflow-visible sm:px-0 sm:pb-0 text-sm text-slate-600">
-               <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
-                 <p className="text-sm font-semibold text-slate-900">One-on-one coaching</p>
-                 <p className="mt-1 text-slate-600">Personalized road training</p>
-               </div>
-               <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
-                 <p className="text-sm font-semibold text-slate-900">Offline-first path</p>
-                 <p className="mt-1 text-slate-600">Practical skills prioritized</p>
-               </div>
-               <div className="min-w-0 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm">
-                 <p className="text-sm font-semibold text-slate-900">Online reinforcement</p>
-                 <p className="mt-1 text-slate-600">Theory support at home</p>
-               </div>
               </div>
             </div>
            </RevealOnScroll>
@@ -580,24 +566,60 @@ export default function HomePage() {
                </div>
              </SubtleFloat>
            </RevealOnScroll>
-
-           {/* Mobile Benefit Points: 2x2 Micro-Grid Capsule Layout — hidden on sm and above */}
-           <div className="rounded-2xl border border-blue-100/80 bg-white/90 p-4 shadow-sm sm:hidden">
-             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
-               {[
-                 "One-on-one coaching",
-                 "Offline-first path",
-                 "Online reinforcement",
-                 "PEI licensed instruction",
-               ].map((point) => (
-                 <div key={point} className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                   <CheckCircle2 className="h-4 w-4 shrink-0 text-[#2563eb]" />
-                   <span>{point}</span>
-                 </div>
-               ))}
-             </div>
-           </div>
         </section>
+
+        {/* Full-Width Trust Bar Section below Hero Grid (matching Image 2 reference layout) */}
+        <div className="mx-auto max-w-7xl px-4 pb-12 pt-2 sm:px-6 sm:pb-16 sm:pt-4">
+          <RevealOnScroll delayMs={160}>
+            <div className="rounded-2xl border border-slate-200/80 bg-white/95 p-5 shadow-sm sm:p-6">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-slate-200/80 lg:gap-0">
+                {/* Point 1: Licensed in PEI */}
+                <div className="flex items-center gap-4 lg:px-6 lg:first:pl-2">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
+                    <ShieldCheck className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Licensed in PEI</h3>
+                    <p className="mt-0.5 text-xs text-slate-500">Government licensed driving instruction</p>
+                  </div>
+                </div>
+
+                {/* Point 2: Test-Focused */}
+                <div className="flex items-center gap-4 lg:px-6">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
+                    <CheckCircle2 className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Test-Focused</h3>
+                    <p className="mt-0.5 text-xs text-slate-500">Preparation that helps you pass with confidence</p>
+                  </div>
+                </div>
+
+                {/* Point 3: Personalized */}
+                <div className="flex items-center gap-4 lg:px-6">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
+                    <User className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Personalized</h3>
+                    <p className="mt-0.5 text-xs text-slate-500">1-on-1 lessons with expert instructors</p>
+                  </div>
+                </div>
+
+                {/* Point 4: Flexible Scheduling */}
+                <div className="flex items-center gap-4 lg:px-6 lg:last:pr-2">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-[#2563eb]">
+                    <Calendar className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-slate-900 sm:text-base">Flexible Scheduling</h3>
+                    <p className="mt-0.5 text-xs text-slate-500">Lessons that fit your busy life</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
       </div>
 
       <section id="plans" className="relative scroll-mt-0 bg-[linear-gradient(180deg,#edf3fb_0%,#eef4fb_100%)] pb-16 pt-12 md:scroll-mt-0 md:pb-24 md:pt-20">
