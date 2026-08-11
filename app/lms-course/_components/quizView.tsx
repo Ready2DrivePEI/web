@@ -141,10 +141,10 @@ export function QuizView({
                   {question.explanation}
                 </p>
                 <div>
-                  <Button variant="outline" asChild className="group lms-button-outline">
+                  <Button variant="outline" asChild className="group lms-button-outline gap-1">
                     <Link href={`${reviewLessonBasePath}/${question.sourceLessonId}`}>
                       <svg
-                        className="mr-1.5 h-4 w-4 shrink-0 overflow-visible transition-transform duration-200"
+                        className="h-4 w-4 shrink-0 overflow-visible transition-transform duration-200"
                         viewBox="0 0 16 16"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
