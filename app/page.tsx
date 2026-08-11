@@ -537,10 +537,8 @@ export default function HomePage() {
                   </svg>
                 </a>
               </div>
-
-              </div>
             </div>
-           </RevealOnScroll>
+          </RevealOnScroll>
 
            <RevealOnScroll className="relative min-w-0" delayMs={120}>
              <SubtleFloat className="relative" maxShiftPx={6} speed={0.68}>
