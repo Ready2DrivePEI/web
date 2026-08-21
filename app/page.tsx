@@ -51,14 +51,16 @@ const SteeringWheelIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const displayFont = Playfair_Display({
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["600"],
   variable: "--font-landing-display",
+  display: "swap",
 });
 
 const bodyFont = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-landing-body",
+  display: "swap",
 });
 
 const navItems = [
@@ -466,7 +468,7 @@ export default function HomePage() {
         </header>
 
         <section className="mx-auto grid max-w-7xl items-center gap-6 px-4 pb-6 sm:gap-8 sm:px-6 sm:pb-8 sm:pt-24 md:gap-16 md:pt-28 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-          <RevealOnScroll className="min-w-0">
+          <div className="min-w-0">
             <div className="space-y-5 sm:space-y-6">
               <h1 className="font-[var(--font-landing-display)] text-3xl leading-[1.08] tracking-tight text-slate-950 sm:text-[2.75rem] sm:leading-[1.04] lg:text-[4.15rem] lg:leading-[1.03]">
                 Practical driving lessons built for confidence on real roads
@@ -539,32 +541,32 @@ export default function HomePage() {
                 </a>
               </div>
             </div>
-          </RevealOnScroll>
+          </div>
 
-           <RevealOnScroll className="relative min-w-0" delayMs={120}>
-             <SubtleFloat className="relative" maxShiftPx={6} speed={0.68}>
-               <div className="mx-auto w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_28px_65px_rgba(15,23,42,0.17)]">
-                 <Image
-                   src="/landing/hero-offline-premium.png"
-                   alt="Editorial wide-angle photo of a calm professional driving instructor coaching a young adult in a modern car on a clean Prince Edward Island suburban street during golden hour, natural light, authentic candid style, high detail, trust-focused composition."
-                   width={1200}
-                   height={900}
-                   priority
-                   sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) 80vw, 44vw"
-                   className="aspect-[4/3] w-full object-cover object-center sm:aspect-[5/4]"
-                 />
-               </div>
-               {/* Desktop-only floating caption */}
-               <div className="absolute -bottom-8 left-5 hidden rounded-2xl border border-blue-100 bg-white/95 px-5 py-4 shadow-xl backdrop-blur-sm sm:left-8 sm:block">
-                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
-                   Instructor-Led
-                 </p>
-                 <p className="mt-1 text-sm font-semibold text-slate-900">
-                   Real-road sessions tailored to your learning pace.
-                 </p>
-               </div>
-             </SubtleFloat>
-           </RevealOnScroll>
+          <div className="relative min-w-0">
+            <SubtleFloat className="relative" maxShiftPx={6} speed={0.68}>
+              <div className="mx-auto w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-[0_28px_65px_rgba(15,23,42,0.17)]">
+                <Image
+                  src="/landing/hero-offline-premium.png"
+                  alt="Editorial wide-angle photo of a calm professional driving instructor coaching a young adult in a modern car on a clean Prince Edward Island suburban street during golden hour, natural light, authentic candid style, high detail, trust-focused composition."
+                  width={1200}
+                  height={900}
+                  priority
+                  sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) 80vw, 44vw"
+                  className="aspect-[4/3] w-full object-cover object-center sm:aspect-[5/4]"
+                />
+              </div>
+              {/* Desktop-only floating caption */}
+              <div className="absolute -bottom-8 left-5 hidden rounded-2xl border border-blue-100 bg-white/95 px-5 py-4 shadow-xl backdrop-blur-sm sm:left-8 sm:block">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4285F4]">
+                  Instructor-Led
+                </p>
+                <p className="mt-1 text-sm font-semibold text-slate-900">
+                  Real-road sessions tailored to your learning pace.
+                </p>
+              </div>
+            </SubtleFloat>
+          </div>
         </section>
 
         {/* Full-Width Trust Bar Section below Hero Grid (matching Image 2 reference layout) */}
