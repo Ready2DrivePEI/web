@@ -98,7 +98,6 @@ This file provides a concise snapshot of the project's architecture, folder stru
 │  │  ├─ client.ts
 │  │  ├─ server.ts
 │  │  └─ admin.ts
-│  ├─ certificate.ts
 │  ├─ contact-schema.ts
 │  ├─ lms-progress-server.ts
 │  ├─ lms-progress.ts

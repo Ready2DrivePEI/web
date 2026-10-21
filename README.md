@@ -9,13 +9,12 @@ Ready2Drive LMS is a driving school web platform built for Prince Edward Island 
 - Tailwind CSS v4
 - Supabase (PostgreSQL, Supabase Auth via `@supabase/ssr`, Row-Level Security)
 - Resend (transactional email alerts for contact inquiries)
-- pdf-lib (client-side and server-side PDF certificate generation)
 - Vitest and Playwright (unit, integration, and end-to-end test suites)
 
 ## Core features
 
 - Marketing and program pages: Program overviews, pricing tiers, instructor details, and contact inquiry forms.
-- Student LMS: Modular course structure with chapters, reading lessons, interactive quizzes, progress tracking, and downloadable completion certificates.
+- Student LMS: Modular course structure with chapters, reading lessons, interactive quizzes, progress tracking, and course completion celebration modals.
 - Admin dashboard: Account provisioning with automated 90-day access windows, student progress overviews, and lead management.
 - Secure auth: Cookie-based session handling across server and client boundaries with role-based access checks for students and admins.
 
@@ -102,7 +101,6 @@ Row-Level Security restricts student queries to their own records. Admin routes 
 ├── docs/                         # Architecture, auth, and styling documentation
 ├── lib/
 │   ├── supabase/                 # Supabase browser, server, and admin clients
-│   ├── certificate.ts            # PDF certificate generator using pdf-lib
 │   ├── contact-schema.ts         # Zod validation schema for contact forms
 │   └── lms-progress.ts           # Student progress tracking utilities
 ├── public/                       # Static assets, branding, and images
