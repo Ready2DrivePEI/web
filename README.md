@@ -30,8 +30,8 @@ Ready2Drive LMS is a driving school web platform built for Prince Edward Island 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Ready2DrivePEI/web.git
-cd web
+git clone https://github.com/ready2driveweb/website-and-lms.git
+cd website-and-lms
 ```
 
 2. Install dependencies:
