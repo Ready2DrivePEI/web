@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import type { Database } from "@/database.types";
+import {
+  ADMIN_NOTIFICATION_EMAIL,
+  RESEND_FROM_EMAIL,
+  escapeHtml,
+  sanitizeEmailSubject,
+} from "@/lib/email";
 
 type CompletionPayload = {
   user_id?: string;
@@ -160,24 +166,38 @@ export async function POST(request: Request) {
   const completedAt = formatCompletionDate(progress.updated_at);
 
   // --- 8. Build and send email ---
-  const appUrl = supabaseUrl.replace(".supabase.co", "").includes("localhost")
-    ? "http://localhost:3000"
-    : (request.headers.get("origin") ?? "https://ready2drivepei.com");
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const requestOrigin = (() => {
+    try {
+      return new URL(request.url).origin;
+    } catch {
+      return null;
+    }
+  })();
+  const appUrl =
+    configuredSiteUrl ||
+    (supabaseUrl.replace(".supabase.co", "").includes("localhost")
+      ? "http://localhost:3000"
+      : (requestOrigin ?? "https://ready2drivepei.com"));
 
   const resend = new Resend(resendApiKey);
 
   try {
-    const { data: emailData } = await resend.emails.send({
-      from: "Ready2Drive PEI <onboarding@resend.dev>",
-      to: "kamizyt600@gmail.com",
-      subject: `Course Completed — ${studentName}`,
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: RESEND_FROM_EMAIL,
+      to: ADMIN_NOTIFICATION_EMAIL,
+      subject: `Course Completed — ${sanitizeEmailSubject(studentName)}`,
       html: buildCompletionEmailHtml({
         studentName,
         studentEmail,
         completedAt,
-        adminDashboardUrl: `${appUrl}/admin`,
+        adminDashboardUrl: `${appUrl.replace(/\/+$/, "")}/admin`,
       }),
     });
+
+    if (emailError) {
+      throw new Error(emailError.message || "Resend API returned an error");
+    }
 
     console.log(
       "[course-completion] Course completion email sent\n" +
@@ -216,7 +236,10 @@ function buildCompletionEmailHtml(args: {
   completedAt: string;
   adminDashboardUrl: string;
 }): string {
-  const { studentName, studentEmail, completedAt, adminDashboardUrl } = args;
+  const safeStudentName = escapeHtml(args.studentName);
+  const safeStudentEmail = escapeHtml(args.studentEmail);
+  const safeCompletedAt = escapeHtml(args.completedAt);
+  const safeAdminDashboardUrl = escapeHtml(args.adminDashboardUrl);
 
   return `
 <!DOCTYPE html>
@@ -253,7 +276,7 @@ function buildCompletionEmailHtml(args: {
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #e2e8f0;">
                     <p style="margin:0 0 2px;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#94a3b8;font-weight:600;">User</p>
-                    <p style="margin:0;font-size:16px;color:#1e293b;font-weight:500;">${studentName}</p>
+                    <p style="margin:0;font-size:16px;color:#1e293b;font-weight:500;">${safeStudentName}</p>
                   </td>
                 </tr>
 
@@ -261,7 +284,7 @@ function buildCompletionEmailHtml(args: {
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #e2e8f0;">
                     <p style="margin:0 0 2px;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#94a3b8;font-weight:600;">Email</p>
-                    <p style="margin:0;font-size:16px;color:#1e293b;">${studentEmail}</p>
+                    <p style="margin:0;font-size:16px;color:#1e293b;">${safeStudentEmail}</p>
                   </td>
                 </tr>
 
@@ -269,7 +292,7 @@ function buildCompletionEmailHtml(args: {
                 <tr>
                   <td style="padding:12px 0;border-bottom:1px solid #e2e8f0;">
                     <p style="margin:0 0 2px;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#94a3b8;font-weight:600;">Completed</p>
-                    <p style="margin:0;font-size:16px;color:#1e293b;">${completedAt}</p>
+                    <p style="margin:0;font-size:16px;color:#1e293b;">${safeCompletedAt}</p>
                   </td>
                 </tr>
 
@@ -296,7 +319,7 @@ function buildCompletionEmailHtml(args: {
           <!-- CTA Button -->
           <tr>
             <td style="padding:8px 32px 28px;">
-              <a href="${adminDashboardUrl}" target="_blank" rel="noopener noreferrer"
+              <a href="${safeAdminDashboardUrl}" target="_blank" rel="noopener noreferrer"
                 style="display:block;text-align:center;padding:12px 24px;background-color:#0f766e;color:#ffffff;font-size:14px;font-weight:600;text-decoration:none;border-radius:8px;">
                 View Admin Dashboard
               </a>

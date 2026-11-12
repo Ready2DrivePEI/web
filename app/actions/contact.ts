@@ -3,23 +3,22 @@
 import { Resend } from "resend";
 import { adminClient } from "@/lib/supabase/admin";
 import { contactSchema } from "@/lib/contact-schema";
+import {
+  ADMIN_NOTIFICATION_EMAIL,
+  RESEND_FROM_EMAIL,
+  escapeHtml,
+  sanitizeEmailSubject,
+} from "@/lib/email";
 
-/** Escape HTML special characters to prevent injection in email templates. */
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+type UntypedInsertClient = {
+  from: (table: string) => {
+    insert: (values: Record<string, unknown>) => Promise<{
+      error: { code?: string; message?: string } | null;
+    }>;
+  };
+};
 
 export async function sendContactInquiry(formData: FormData) {
-  const resendApiKey = process.env.RESEND_API_KEY;
-  if (!resendApiKey) {
-    throw new Error("Missing RESEND_API_KEY environment variable.");
-  }
-
   // 1. Honeypot check: check if the hidden field is filled
   const website = formData.get("website");
   if (website) {
@@ -60,8 +59,8 @@ export async function sendContactInquiry(formData: FormData) {
   const fullName = `${validatedData.firstName} ${validatedData.lastName}`.trim();
 
   // 4. Supabase Insert: Save the lead details using admin service role client.
-  // Cast adminClient as any because contact_inquiries doesn't exist in static database.types.ts yet.
-  const { error: dbError } = await (adminClient as any)
+  // Cast via UntypedInsertClient because contact_inquiries doesn't exist in static database.types.ts yet.
+  const { error: dbError } = await (adminClient as unknown as UntypedInsertClient)
     .from("contact_inquiries")
     .insert({
       submission_id: validatedData.submissionId,
@@ -93,12 +92,21 @@ export async function sendContactInquiry(formData: FormData) {
   }
 
   // 5. Resend: Email notification dispatch
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (!resendApiKey) {
+    console.error("[contact-form] Missing RESEND_API_KEY; inquiry saved to Supabase without email notification.", {
+      submissionId: validatedData.submissionId,
+    });
+    return { success: true };
+  }
+
   const resend = new Resend(resendApiKey);
   try {
-    await resend.emails.send({
-      from: "Ready2Drive PEI <onboarding@resend.dev>",
-      to: "kamizyt600@gmail.com",
-      subject: `New Driving Lesson Inquiry — ${escapeHtml(fullName)}`,
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: RESEND_FROM_EMAIL,
+      to: ADMIN_NOTIFICATION_EMAIL,
+      replyTo: validatedData.email,
+      subject: `New Driving Lesson Inquiry — ${sanitizeEmailSubject(fullName)}`,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
           <h2 style="color: #2563eb; margin-top: 0;">New Driving Lesson Inquiry</h2>
@@ -130,6 +138,12 @@ export async function sendContactInquiry(formData: FormData) {
         </div>
       `,
     });
+
+    if (emailError) {
+      console.error("[contact-form] Resend API error:", emailError);
+    } else {
+      console.log("[contact-form] Email sent successfully, Resend ID:", emailData?.id);
+    }
   } catch (emailError) {
     // Log failure but return success: true because the lead is safely captured in Supabase
     console.error("[contact-form] Contact inquiry notification email failed:", {
