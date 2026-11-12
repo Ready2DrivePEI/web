@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { contactSchema } from "@/lib/contact-schema";
+import { contactSchema, formatPhoneNumber } from "@/lib/contact-schema";
 
 describe("contactSchema Zod Validation", () => {
   const validPayload = {
@@ -130,5 +130,22 @@ describe("contactSchema Zod Validation", () => {
 
     // Assert
     expect(result.success).toBe(false);
+  });
+
+  describe("formatPhoneNumber", () => {
+    it("formats standard 10-digit North American numbers", () => {
+      expect(formatPhoneNumber("9025551234")).toBe("902 555 1234");
+    });
+
+    it("formats +1 and 11-digit North American numbers without truncating", () => {
+      expect(formatPhoneNumber("+1 (902) 555-1234")).toBe("+1 902 555 1234");
+      expect(formatPhoneNumber("19025551234")).toBe("1 902 555 1234");
+    });
+
+    it("allows up to 15 digits for international exceptions and caps above 15", () => {
+      expect(formatPhoneNumber("+44 7911 123456")).toBe("+447 911 1234 56");
+      expect(formatPhoneNumber("123456789012345")).toBe("123 456 7890 12345");
+      expect(formatPhoneNumber("12345678901234567")).toBe("123 456 7890 12345");
+    });
   });
 });

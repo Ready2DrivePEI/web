@@ -14,7 +14,7 @@ import {
   CheckCircle2 
 } from "lucide-react";
 import { sendContactInquiry } from "@/app/actions/contact";
-import { contactSchema } from "@/lib/contact-schema";
+import { contactSchema, formatPhoneNumber } from "@/lib/contact-schema";
 import TiptapMessageEditor from "@/components/tiptap-message-editor";
 
 export const inquiryTemplates = [
@@ -31,13 +31,6 @@ export const inquiryTemplates = [
     text: "Hi, I have a question about [lessons/course/account]. I need help with [issue]. Please guide me on the next steps.",
   },
 ];
-
-function formatPhoneNumber(val: string): string {
-  const digits = val.replace(/\D/g, "").slice(0, 10);
-  if (digits.length <= 3) return digits;
-  if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
-  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
-}
 
 interface ContactFormProps {
   defaultPlan?: string;
