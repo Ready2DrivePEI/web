@@ -1,16 +1,20 @@
-import { Playfair_Display, Source_Sans_3 } from "next/font/google";
+import localFont from "next/font/local";
 import { AdminDashboardClient } from "@/app/admin/_components/admin-dashboard-client";
 
-const displayFont = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
+const displayFont = localFont({
+  src: "../fonts/playfair-display-latin.woff2",
+  weight: "400 900",
+  style: "normal",
   variable: "--font-admin-display",
+  adjustFontFallback: "Times New Roman",
 });
 
-const bodyFont = Source_Sans_3({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const bodyFont = localFont({
+  src: "../fonts/source-sans-3-latin.woff2",
+  weight: "200 900",
+  style: "normal",
   variable: "--font-admin-body",
+  adjustFontFallback: "Arial",
 });
 
 export default function AdminPage() {

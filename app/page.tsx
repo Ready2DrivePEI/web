@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Playfair_Display, Source_Sans_3 } from "next/font/google";
+import localFont from "next/font/local";
 import { useEffect, useRef, useState } from "react";
 import type React from "react";
 import type { FormEvent } from "react";
@@ -49,18 +49,22 @@ const SteeringWheelIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const displayFont = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600"],
+const displayFont = localFont({
+  src: "./fonts/playfair-display-latin.woff2",
+  weight: "400 900",
+  style: "normal",
   variable: "--font-landing-display",
   display: "swap",
+  adjustFontFallback: "Times New Roman",
 });
 
-const bodyFont = Source_Sans_3({
-  subsets: ["latin"],
-  weight: ["400", "600"],
+const bodyFont = localFont({
+  src: "./fonts/source-sans-3-latin.woff2",
+  weight: "200 900",
+  style: "normal",
   variable: "--font-landing-body",
   display: "swap",
+  adjustFontFallback: "Arial",
 });
 
 const navItems = [

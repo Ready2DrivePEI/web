@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Playfair_Display, Source_Sans_3 } from "next/font/google";
+import localFont from "next/font/local";
 import Navbar from "./components/navbar";
 import RevealOnScroll from "../components/motion/reveal-on-scroll";
 import SubtleFloat from "../components/motion/subtle-float";
@@ -16,16 +16,20 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-const displayFont = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
+const displayFont = localFont({
+  src: "../fonts/playfair-display-latin.woff2",
+  weight: "400 900",
+  style: "normal",
   variable: "--font-landing-display",
+  adjustFontFallback: "Times New Roman",
 });
 
-const bodyFont = Source_Sans_3({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const bodyFont = localFont({
+  src: "../fonts/source-sans-3-latin.woff2",
+  weight: "200 900",
+  style: "normal",
   variable: "--font-landing-body",
+  adjustFontFallback: "Arial",
 });
 
 export default function OnlineCoursePage() {
